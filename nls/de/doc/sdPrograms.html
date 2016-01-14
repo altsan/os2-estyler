@@ -1,0 +1,71 @@
+<html>
+<head>
+   <title>Systemabschluá - Bei Systemabschluá auszufhrende Programme</title>
+</head>
+<body>
+
+<br>
+Mit Hilfe des erweiterten Systemabschlusses von eComStation kann vor
+dem eigentlichen Systemabschluá eine Auswahl von Programmen ausgefhrt
+werden.
+<p>
+Ist <b>Bei Systemabschluá auszufhrende Programme</b> ausgew„hlt,
+werden die nachstehenden Programmen nacheinander ausgefhrt. Erst nach
+Beendigung des letzten der Programme werden die zuvor ge”ffneten Fenster
+geschlossen und ein Systemabschluá durchgefhrt.<br>
+Sind in der Liste keine Programme eingetragen, wird die Option ignoriert.<br>
+<b>Hinweis:</b><br>
+Diese Funktion kann im Best„tigungsdialog fr den Systemabschluá ber
+das Markierungsfeld <b>Systemabschluáprogramme ausfhren</b>
+tempor„r deaktiviert werden.
+<p>
+Die Programmnamen werden ber das Eingabefeld <b>Programm</b> eingetragen.<br>
+Befindet sich ein Programm im <tt>PATH</tt> (d.h. in einem Verzeichnis,
+welches in der Umgebungsvariable PATH der Datei CONFIG.SYS genannt ist),
+muá nur der Programmname angegeben werden. Andernfalls ist der vollqualifizierte
+Programmpfad erforderlich.<br>
+Wird keine Erweiterung angegeben, wird automatisch die Erweiterung .EXE
+hinzugefgt.
+<br>Handelt es sich bei dem Programm um ein REXX-Skript oder eine
+Stapeldatei mit der Erweiterung .CMD, wird der Name automatisch in folgendes
+Format konvertiert:<br>
+<tt>CMD.EXE /C filename.cmd options</tt><p>
+Fhrt das REXX-Skript oder die Stapeldatei andere Programme aus, so muá
+dies auf synchrone Weise erfolgen, also nicht ber die Befehle START und
+DETACH, da es andernfalls nicht m”glich ist festzustellen, ob die Programme
+beendet wurden, und es zu Datenverlusten kommen k”nnte.
+<p>
+Optinal k”nnen Parameter fr die Programme im Feld <b>Parameter</b>
+angegeben werden. Bei Programmen, die keine Parameter erfordern, ist
+dieses Feld leer zu lassen.
+<p>
+Die Sichtbarkeit des Programms (normal, maximiert oder verborgen) kann
+ber das Listenfenster <b>Fenster</b> festgelegt werden.
+<p>
+Der Inhalt der Programmliste kann mit Hilfe der <b>Pfeilkn”pfe</b> durch
+Verschieben des ausgew„hlten Eintrags nach oben und unten sortiert werden. 
+Die Pfeilkn”pfe werden entsprechend der jeweiligen Situation aktiviert und
+deaktiviert.
+<p>
+Drcken von <b>Hinzufgen</b> fgt den aktuellen Inhalt der Eingabefelder
+als neuen Eintrag am Ende der Liste hinzu.
+<p>
+<b>Entfernen</b> entfernt den ausgew„hlten Eintrag aus der Liste.
+<p>
+<b>Bearbeiten</b> bernimmt die Daten des ausgew„hlten Eintrags in die
+Eingabefelder, so daá die bearbeitet werden k”nnen. Nach Anpassen der
+Daten kann der Eintrag durch Drcken von <b>Hinzufgen</b> aktualisert
+werden.
+<p>
+<b>Suchen</b> ”ffnet den Standarddateidialog, mit dem eine ausfhrbare
+Datei ausgew„hlt werden kann.
+<p>
+<b>Anwenden</b> sichert die Daten der Liste in der Datei eStyler.ini.
+<b>Widerrufen</b> setzt die Werte auf den Zustand vor ™ffnen des
+Einstellungsnotizbuches zurck.
+<p>
+<b>Siehe auch:</b><br>
+Ein <a href="sdProgExample.html">Praxisbeispiel</a> fr den Einsatz
+der Funktion Systemabschluáprogramme.
+</body>
+</html>

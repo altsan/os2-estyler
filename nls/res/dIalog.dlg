@@ -1,0 +1,14 @@
+// pushbutton options -------------------------------------------------------
+
+DLGTEMPLATE DLG_DIALOG LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "", DLG_DIALOG, 0, 0, CX_PAGEDLG, CY_PAGEDLG,
+            NOT FS_DLGBORDER | WS_VISIBLE
+            PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+    BEGIN
+        AUTOCHECKBOX    SZ_DLGFONTON, CHK_DLGFONTON, 10, 124, 230, 10
+        AUTOCHECKBOX    SZ_DLGOVERPP, CHK_DLGOVERPP, 20, 108, 220, 10
+        LTEXT           "", TXT_DLGFONT, 20, 90, 200, 8, DT_MNEMONIC
+        PUSHBUTTON      "...", BTN_DLGFONT, 224, 88, 16, 12
+    END
+END

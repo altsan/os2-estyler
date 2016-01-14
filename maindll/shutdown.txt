@@ -1,0 +1,175 @@
+SE NON ERROR O CANCEL:
+- copia in g.achsd indice tipo shutdown
+- se lockup e suspend o suspend avvia timer sospensione
+
+- se poweroff, shutdown, reboot
+  - se reboot e lista volumi copia in g.achsd volume da rebootare
+  - setta variabile o.sd.adv.runProgOnce
+  - posta messaggio shutdown al worker thread
+  - avvia dialogo messaggi chiusura sistema
+
+
+ritardi:
+
+- lockup e sospendi                 0 - 1000 decimi secondo
+- sospendi                          0 - 1000 decimi secondo
+- waitToSaveWarpCenter              1 - 1000 decimi secondo
+- waitUnrollWindows                 0 - 1000 decimi secondo
+
+
+Styler/2 shutdown:
+------------------
+
+1) handling of shutdown requests
+
+- The desktop folder, the launchpad and the warp center are subclassed
+  to intercept the shutdown requests which are converted to the PM
+  message STLRM_SHUTDOWNREQ which is posted to the worker thread
+  object window.
+- a shutdown request may also be sent by the CLI program SHUTDOWN.EXE
+  by posting the STLRM_SHUTDOWNREQ message to the object window.
+- on receiving the STLRM_SHUTDOWNREQ message the object window
+  firstly delete any previous pending shutdown procedure (which
+  for some reason was not completed) and then starts a new PM thread
+  to handle the shutdown mode selection (if needed) and the last
+  screen messages (i.e. "the system is being shut down. Please wait...")
+
+2) the shutdown thread
+
+- get the list of the re-bootable volumes from eStyler.ini
+- if the shutdown mode is not yet defined (i.e. if the shutdown request
+  does not come from SHUTDOWN.EXE) display a dialog to let the user
+  choose what kind of shutdown must be performed.
+- according to the selected shutdown mode:
+  - lockup and suspend:
+    - start a timer (WM_TIMER is to received by the worker thread)
+      and lockup the system
+    - on receving WM_TIMER the worker thread suspend the system via
+      the APM driver
+  - suspend
+    - start a timer (WM_TIMER is to received by the worker thread)
+    - on receving WM_TIMER the worker thread suspend the system via
+      the APM driver
+  - power off / shutdown / reboot
+    - in case of reboot store the name of the volume to be rebooted
+    - if the selection comes from the dialog save the shutdown data
+      in OS2.INI
+    - post the STLRM_SHUTDOWNSYS to the worker thread (indicating to
+      go on with the shutdown procedure)
+    - load the final shutdown messages according to the shutdown mode
+      (e.g. "the system is being shut down. Please wait...")
+
+3) power off / shutdown / reboot procedure performed by the worker thread
+  - set a flag to hook the destruction of the Window List (g.is.hookShutdonw)
+  - if there are any programs to be executed before shut down run all the
+    programs one by one, skipping the failing programs
+  - if the WarpCenter is opened save its data and wait a few seconds
+    (o.sd.adv.waitWarpCenter) for the data to be saved
+  - if a volume must be rebooted set the value via SETBOOT.EXE
+    (AIRBOOT users should get an updated version of SETABOOT.EXE and
+    rename it SETBOOT.EXE)
+  - if there is no program to be executed or on receiving the
+    WM_APPTERMINATENOTIFY from the last program in the list
+    calls systemShutdown() :
+    - if Styler/2 is installed broadcast a message to unroll any
+      rolled window and wait (o.sd.adv.waitUnrollWindows) to let
+      all the windows being unrolled (to prevent applications save
+      a wrong window size)
+    - read the list of the programs to be terminated via DosKillProcess
+      and kills them (in case of error do C-A-D via software)
+    - shutdown the system via WinShutdownSystem().
+      The system shutdown procedure is hacked by intercepting the
+      destruction of the Window List (see below).    
+
+4) actions performed in the window procedure of the Window List
+  - set a flag (g.is.replShutdownBox) to skip the default
+    system-is-being-shutdown boxes (this is done by blocking the
+    the creation of those dialogs - frame.c, WM_CREATE handling)
+  - send a message to the PM shutdown thread signaling that the
+    eStyler system-is-being-shutdown box has to be displayed
+  - once the box is displayed (i.e. WinSendMsg() returns),
+    according to the previous user selection power off the system
+    via the APM driver or do a software C-A-D
+  - call DosSleep to ensure that the WinSystemShutdown() call
+    stops
+
+5) last actions performed by the shutdown PM thread
+  - on receiving the message STLRM_SHOWSYSCLOSEBOX show the
+    appropriate message, hide the mouse pointer and if the user
+    selected ordinary shutdown calls DosShutdown() to complete
+    the system shutdown (since WinShutdownSystem() was stopped -
+    se above), wait for a few seconds and then displays the
+    message that it is possible "to switch off the machine".
+
+
+worker thread (workthread.c - fnwpWorker)
+-----------------------------------------
+
+- [STLRM_SHUTDOWNREQ]
+  process shutdown request (i.e. shutdown
+  selection from the WarpCenter, Launchpad
+  or desktop folder menu) by creating a new
+  PM thread used to display the shutdown selection
+  dialog.
+
+- [WM_APPTERMINATENOTIFY]
+  process termination of the program started on
+  shutdown. Once a program terminates calls
+  runShutdownProgrListItem() to start the next
+  program in the list.
+  When all the programs have been executed calls
+  systemShutdown().
+  See below for more details on systemShutdown().
+
+
+- [WM_TIMER]
+
+- [STLRM_SHUTDOWNSYS]
+
+- [STLRM_SHUTDOWNERR]
+  in case of error MODIFICARE !!! WinPostMsg non puo' funzionare !!!
+
+********
+
+shutdown thread and shutdown procedures (shutdown.c)
+----------------------------------------------------
+
+- [systemShutdown()]
+  - if Styler/2 version 1.x is installed, a PM message is posted to
+    all the frame windows to unroll any rolled window,
+    then DosSleep(1000) is called to allow all windows to be unrolled.
+  - the list of the programs to be killed is read from eStyler.ini
+  - kill the processes in the list executing a soft C-A-D in case
+    of error.
+  - shutdown the system via WinShutdownSystem in case of success
+
+frame windows (frame.c - stlrFrameProc)
+---------------------------------------
+
+- [WM_CREATE]
+  check WM_CREATE parameters to replace the default
+  system shutdown message boxes (i.e. not the confirmation
+  dialog but the boxes notifying that the system is shutting
+  down and that is possible to switch off the machine.
+  To prevent the system to display the default message boxes
+  a DosSleep(6000) is called and then the procedure                 ###
+  returns (MRESULT)TRUE to abor the message box creation.
+
+- [WM_DESTROY]
+  when the "Window List" is destroyed display the eStylerLite
+  shutdown message boxes (i.e. not the shutdown selection
+  dialog).
+  Then, according to the shutdow selection, power off the
+  system via the APM driver or executes a soft C-A-D.
+
+
+subclassed desktop folder procedure (frame.c - newDeskProc)
+-----------------------------------------------------------
+Check the window message corresponding to a shutdown
+confirmation request, in such case posts a shutdown request
+to the worker thread (message id STLRM_SHUTDOWNREQ).
+
+
+subclassed launchpad procedure (frame.c - newLnchpProc)
+-------------------------------------------------------
+Exactly like the subclassed desktop folder procedure.

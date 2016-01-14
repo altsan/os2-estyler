@@ -1,0 +1,44 @@
+<html>
+<head>
+   <title>Shutdown - programs termination list</title>
+</head>
+<body>
+
+<br>
+On system shutdown some programs do not behave correctly and just
+refuse to quit so, to let the system being correctly closed, it is
+necessary to use an appropriate utility to close them
+(in such case the utility should be entered in
+the <a href="sdPrograms.html">Shutdown programs</a> list) or to
+recur to the <b>Termination</b> list feature to terminate
+them via the DosKillProcess() API.
+<p>
+The <b>Terminate the following programs on shutdown</b>
+checkbox enables/disables
+the termination of the programs listed below.
+<p>
+The list of programs to be terminated, by default contains:
+<ul compact>
+<li>CHAT.EXE
+<li>CLKBASIC.EXE
+<li>CAD_POP.EXE
+</ul>
+New program names can be added by entering them in <b>entry field</b>
+below the list and clicking on the <b>Add</b> button.
+<p>
+<b>Remove</b> deletes the selected program from the list.
+<p>
+When <b>Edit</b> is pressed, the selected program name is entered
+in the entry field to let the user modify it. Once the program name
+has been modified the <b>Add</b> button must be pressed again to
+replace the name of the selected program with the new entry field
+content.
+<p>
+<b>Find</b> opens the standard file dialog allowing the user to
+find and select an executable name.
+<p>
+<b>Apply</b> saves the termination list to the eStyler.ini file,
+while <b>Undo</b> restores the list to the state it was in when
+the settings notebook was opened.
+</body>
+</html>

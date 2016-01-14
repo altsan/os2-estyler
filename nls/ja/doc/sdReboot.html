@@ -1,0 +1,68 @@
+<html>
+<head>
+   <title>Shutdown - reboot</title>
+</head>
+<body>
+
+<br>
+Through the <b>Reboot</b> feature the system can be shut down
+and then automatically rebooted to the selected volume.
+<p>
+Both the IBM Boot Manager and Martin Kiewitz's
+<a href="sdAiRBOOT.html">AiRBOOT</a> are supported.
+<p>
+The Reboot page dialog allows to define the list of the rebootable
+volumes to be displayed via the enhanced shutdown dialog.<br>
+The volume list can be filled either manually or automatically.
+<p>
+<h3>Manual filling</h3><p>
+The <b>Volume name</b> entry field must be filled with the volume name as
+it appears on the BootManager or AiRBOOT menu, while the
+<b>Volume description</b> field allows to associate to the volume
+a more meaningful (and long) description.<br>
+The shutdown confirmation dialog displays in a drop down box
+only the volume descriptions in the order they appear in the
+<i>Allow to reboot the following volumes</i> list.<br>
+The two small <b>arrow buttons</b> on the left of the list allow
+to change the items order moving up or down the selected item.
+<p>
+The <b>Add</b> button is enabled as soon as both the entry fields contain
+some text. Once the button is clicked the fields content is added at the
+end of the list as:<br>
+<tt>volume description (volume name)</tt><br>
+The <b>Remove</b> button removes an item from the list.<br>
+The <b>Edit</b> button allows to change
+the selected item volume name or description. Once it is clicked
+the data of the selected item are put in the entry fields and the
+<i>Add</i> button gets enabled to let the user update the selected item
+as soon as the fields content has been changed.
+<p>
+<h3>Automatic filling</h3><p>
+When the <b>Find</b> button is pressed the list of the bootable
+partitions is directly read from the disk if AiRBOOT is installed
+or through the LVM interface. Then, if the bootable volume is not
+yet in the list it is added to the end of the list with the following
+format:<br>
+<tt>volume name (volume name)</tt></br>
+i.e. the volume name is also used as volume description
+and the user will have to use the <i>Edit</i> button to provide
+it with a more meaningful description.
+<p>
+<b>Note:</b><br>
+If AiRBOOT is installed, the automatic detection of the bootable
+volumes may fail if new volumes have just been added or deleted
+via the LVM program as AiRBOOT updates its volume tables
+only after a reboot.
+<p>
+<h3>Common buttons</h3><p>
+The <b>Apply</b> button saves the new list to eStyler.ini.
+<p>
+<b>Undo</b> restores the list to the state it was in when the settings
+notebook was opened.
+<p>
+<b>Note:</b><br>
+The extended shutdown dialog pre-selects the option
+and re-bootable volume which were selected the last time, the dialog itself,
+was dismissed through the OK button.
+</body>
+</html>

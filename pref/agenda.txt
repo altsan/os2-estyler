@@ -1,0 +1,70 @@
+EVENTO
+
+* OPZIONI GENERALI --------------------------------------------------------
+
+abilita/disabilita opzioni       aggiorna titlebar attiva e inattiva
+
+ignora parametri presentazione   nessuna azione
+
+cambia font                      aggiorna titlebar attiva e inattiva
+
+allineamento testo               aggiorna titlebar attiva e inattiva
+
+
+- SOLID COLOR -------------------------------------------------------------
+
+cambia sfondo -> solid color     hBmpPrev = bmp handle sfumatura/immagine corr.
+                                 cancella hBmpPrev
+                                 aggiorna titlebar attiva/inattiva
+
+cambia colore background         aggiorna titlebar attiva/inattiva
+
+
+- SFUMATURA ---------------------------------------------------------------
+
+cambia sfondo -> sfumatura       hBmpPrev = bmp handle sfumatura/immagine corr.
+                                 ottiene bmp handle nuova sfumatura
+                                 cancella hBmpPrev
+                                 aggiorna titlebar attiva/inattiva
+
+scambia colori sfumatura         come sopra
+
+cambia un colore sfumatura       come sopra
+
+cambia modello sfumatura         come sopra
+
+
+- IMMAGINE ----------------------------------------------------------------
+
+cambia sfondo -> immagine        hBmpPrev = bmp handle sfumatura/immagine corr.
+                                 legge dati immagine da file/risorse
+                                 ottiene bmp handle nuova immagine
+                                 cancella hBmpPrev
+                                 aggiorna titlebar attiva/inattiva
+
+selezione nuova immagine         come sopra
+
+scala immagine                   aggiorna titlebar attiva/inattiva
+
+- BORDO -------------------------------------------------------------------
+
+mostra bordo                     aggiorna titlebar attiva/inattiva
+
+scambia colori bordo             aggiorna titlebar attiva/inattiva
+
+cambia un colore bordo           aggiorna titlebar attiva/inattiva
+
+- TESTO -------------------------------------------------------------------
+
+ombra testo                      aggiorna titlebar attiva/inattiva
+
+scambia colori testo             aggiorna titlebar attiva/inattiva
+
+cambia un colore testo           aggiorna titlebar attiva/inattiva
+
+
+
+
+
+
+

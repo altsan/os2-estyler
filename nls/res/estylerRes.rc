@@ -1,0 +1,87 @@
+#include "resources.h"
+
+//CODEPAGE 850
+
+// icons --------------------------------------------------------------------
+ICON   1 "styler.ico"       // default program icon
+ICON   2 "uiset.ico"        // user interface settings icon
+ICON   3 "shutdown.ico"     // shutdown settings icon
+ICON   4 "winkeys.ico"      // windows keys settings icon
+//ICON   5 "stlrbmped.ico"    // styler bitmap "editor"
+
+
+// default titlebar and pushbutton bitmaps ----------------------------------
+BITMAP 12 "WARPa.bmp"       // active titlebar
+BITMAP 13 "WARPi.bmp"       // inactive titlebar
+BITMAP 15 "button.bmp"      // pushbutton
+BITMAP 16 "warpa8.bmp"      // 256 colors active titlebar
+BITMAP 17 "warpi8.bmp"      // 256 colors inactive titlebar
+BITMAP 19 "button8.bmp"     // 256 colors pushbutton
+
+
+// dialogs ------------------------------------------------------------------
+RCINCLUDE "main.dlg"        // main window dialog
+RCINCLUDE "uigen.dlg"       // user interface general settings
+#if defined(NLV_NL)
+  RCINCLUDE "NLtitlebar.dlg"  // titlebar settings (Dutch)
+  RCINCLUDE "NLbutton.dlg"    // pushbutton settings (Dutch)
+#else
+  RCINCLUDE "titlebar.dlg"    // titlebar settings
+  RCINCLUDE "button.dlg"      // pushbutton settings
+#endif
+RCINCLUDE "dialog.dlg"      // dialog settings
+RCINCLUDE "prodinfo.dlg"    // product information page
+#if defined(NLV_JA)
+  RCINCLUDE "JAshutdown.dlg"
+#elif defined(NLV_TW)
+  RCINCLUDE "TWshutdown.dlg"
+#else
+  RCINCLUDE "shutdown.dlg"  // shutdown settings and shutdown selection box
+#endif
+RCINCLUDE "winkey.dlg"      // windows key dialog
+RCINCLUDE "editcol.dlg"     // edit color dialog
+//RCINCLUDE "stlrbmped.dlg"   // bitmap options dialog
+RCINCLUDE "strings.rc"
+
+HELPTABLE HLP_MAIN {
+   HELPITEM DLG_MAIN, HLPS_MAIN, 2
+   HELPITEM DLG_UIGENERAL, HLPS_UIGEN, 3
+   HELPITEM DLG_TITLEBARGEN, HLPS_TBARGEN, 4
+   HELPITEM DLG_TITLEBAR, HLPS_TBARHILITE, 5
+   HELPITEM DLG_BTNOPT, HLPS_BTN, 9
+   HELPITEM DLG_DIALOG, HLPS_DLG, 10
+   HELPITEM DLG_PRODINFO, HLPS_PRODINFO, 1
+   HELPITEM DLG_SDWNGEN, HLPS_SDWNGEN, 11
+   HELPITEM DLG_SDTIMING, HLPS_SDTIMING, 13
+   HELPITEM DLG_SDWNBOOTLIST, HLPS_SDWNREBOOT, 14
+   HELPITEM DLG_SDWNPROGS, HLPS_SDWNPROGS, 16
+   HELPITEM DLG_SDWNKILLPROG, HLPS_SDWNKILL, 18
+   HELPITEM DLG_WINKEY, HLPS_SDWINKEY, 20
+}
+HELPSUBTABLE HLPS_MAIN {
+}
+HELPSUBTABLE HLPS_UIGEN {
+}
+HELPSUBTABLE HLPS_TBARGEN {
+}
+HELPSUBTABLE HLPS_TBARHILITE {
+}
+HELPSUBTABLE HLPS_BTN {
+}
+HELPSUBTABLE HLPS_DLG {
+}
+HELPSUBTABLE HLPS_PRODINFO {
+}
+HELPSUBTABLE HLPS_SDWNGEN {
+}
+HELPSUBTABLE HLPS_SDTIMING {
+}
+HELPSUBTABLE HLPS_SDWNREBOOT {
+}
+HELPSUBTABLE HLPS_SDWNPROGS {
+}
+HELPSUBTABLE HLPS_SDWNKILL {
+}
+HELPSUBTABLE HLPS_SDWINKEY {
+}
+

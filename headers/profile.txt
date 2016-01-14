@@ -1,0 +1,55 @@
+data stored in OS2.INI:
+(see \headers\strings.h and \headers\options.h for more details)
+
+app               key                  data
+-----------------------------------------------------------------------------
+eStylerLite       Exceptions           program exceptions
+                  LastShutdown         data of previous eStyler shutdown
+
+
+
+
+
+data stored in ESTYLER.INI:
+
+app               key                  data
+-----------------------------------------------------------------------------
+ColorDepth        Current              current color depth
+
+Options                                current active options
+                  Version              format of the options
+                  Global               obsolete key used up to version 1.0
+                  General              general options
+                  UserInterface        user interface options
+                  Shutdown             shutdown options
+                  WinKey               Windows key options
+                  BmpNameATBar         name of the active titlebar bitmap
+                  BmpDataATBar         data of the active titlebar bitmap
+                  BmpNameITBar         name of the inactive titlebar bitmap
+                  BmpDataITBar         data of the inactive titlebar bitmap
+                  BmpNamePushBtn       name of the pushbutton bitmap
+                  BmpDataPushBtn       data of the pushbutton bitmap
+
+Shutdown                               shutdown data
+                  BootList             volumes which can be rebooted
+                  ProgramList          list of programs to be run on shutdown
+                  KillList             list of programs to be killed on shutdown
+
+Sizepos                                size and position of the setting windows
+                  ImageDlg             obsolete key
+                  Preferences          obsolete key
+                  UserInterface        user interface settings notebook
+                  Shutdown             shutdown settings notebook
+                  WinKeys              Windows key settings notebook
+                  Preview              Preview window
+
+The following applications are stored only when switching from a given
+color depth to a different one. Only the 'UserInterface' and the image
+keys are stored.
+
+Options4                               16 colors options
+
+Options8                               256 colors options
+
+OptionsT                               16 M colors options
+

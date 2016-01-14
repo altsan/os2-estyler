@@ -1,0 +1,33 @@
+
+DLGTEMPLATE DLG_CWHEEL LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  SZ_CLRWTITLE, DLG_CWHEEL, 10, -90, 228, 170,
+            FS_MOUSEALIGN | WS_VISIBLE,
+            FCF_SYSMENU | FCF_TITLEBAR | FCF_CLOSEBUTTON | FCF_NOBYTEALIGN
+            PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+    BEGIN
+        CONTROL         "", CWHEEL, -10, 43, 248, 135, WC_COLORWHEEL,
+                        WS_GROUP | WS_TABSTOP | WS_VISIBLE
+        LTEXT           SZ__RED, TXT_CLRWRED, 4, 32, 36, 8, DT_BOTTOM |
+                        DT_MNEMONIC
+        SPINBUTTON      SPN_CLRWRED, 39, 31, 38, 12, SPBS_NUMERICONLY |
+                        SPBS_MASTER | SPBS_JUSTRIGHT | SPBS_FASTSPIN |
+                        WS_GROUP
+                        CTLDATA 24,0,  0,0,  0,0,  255,0,  0,0,  0,0
+        LTEXT           SZ__GREEN, TXT_CLRWGREEN, 4, 18, 36, 8, DT_VCENTER |
+                        DT_MNEMONIC
+        SPINBUTTON      SPN_CLRWGREEN, 39, 17, 38, 12, SPBS_NUMERICONLY |
+                        SPBS_MASTER | SPBS_JUSTRIGHT | SPBS_FASTSPIN |
+                        WS_GROUP
+                        CTLDATA 24,0,  0,0,  0,0,  255,0,  0,0,  0,0
+        LTEXT           SZ__BLUE, TXT_CLRWBLUE, 4, 4, 36, 8, DT_VCENTER |
+                        DT_MNEMONIC
+        SPINBUTTON      SPN_CLRWBLUE, 39, 3, 38, 12, SPBS_NUMERICONLY |
+                        SPBS_MASTER | SPBS_JUSTRIGHT | SPBS_FASTSPIN |
+                        WS_GROUP
+                        CTLDATA 24,0,  0,0,  0,0,  255,0,  0,0,  0,0
+        DEFPUSHBUTTON   SZ__OK, BTN_CLRWOK, 88, 2, 45, 14, WS_GROUP
+        PUSHBUTTON      SZ_UNDO, BTN_CLRWUNDO, 134, 2, 45, 14, NOT WS_TABSTOP
+        PUSHBUTTON      SZ__CANCEL, BTN_CLRWCANCEL, 180, 2, 45, 14, NOT WS_TABSTOP
+    END
+END

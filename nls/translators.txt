@@ -1,0 +1,42 @@
+QUICK INSTRUCTIONS FOR TRANSLATORS
+
+These directions assume you do not have access to the full eStyler and
+GuidProc source in CVS.  (If you do have access, refer to the file
+README.TXT in the estyler\nls directory for compilation instructions.)
+
+Once you have translated the documentation and resource files, you will
+need to send them to the eStyler source code maintainer, or someone else
+who has the build environment for eStyler/GuidProc available.  This is
+because compiling even the language files depends on having various header
+files from both eStyler and GuidProc. 
+
+
+eStylerLite documentation
+-------------------------
+
+Instructions:
+- copy en\doc to the required language directory, e.g.
+  DE (German), EN (English), ES (Spanish), FR (French),
+  IT (Italian), JA (Japanese), NL (Dutch), RU (Russian),
+  TW (Chinese-Traditional).
+- translate the .htm files in the doc directory
+  using a plain text editor (do not modify the
+  html tags).
+- translate the 2nd and 3rd lines of estyler.lst
+- NOTE: all bitmaps resources (the one used for the
+  default titlebar and pushbutton bitmaps) must be
+  valid OS/2 bitmaps of version 1.x.
+  If needed open them with the icon editor and save
+  them as format 1.x.
+
+eStylerLite resources
+---------------------
+
+Instructions:
+- copy en\res to the required language directory:
+  DE (German), EN (English), ES (Spanish), FR (French),
+  IT (Italian), JA (Japanese), NL (Dutch), RU (Russian),
+  TW (Chinese-Traditional).
+- translate the C header file textres.h
+
+

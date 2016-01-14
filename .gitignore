@@ -1,0 +1,16 @@
+*.obj
+*.OBJ
+*.res
+*.RES
+*.hlp
+*.HLP
+*.ipf
+*.IPF
+*.map
+*.MAP
+*.dll
+*.DLL
+*.exe
+*.EXE
+*.zip
+*.ZIP

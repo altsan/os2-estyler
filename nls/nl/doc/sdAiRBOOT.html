@@ -1,0 +1,24 @@
+<html>
+<head>
+   <title>Shutdown - AiRBOOT support</title>
+</head>
+<body>
+
+<br>
+<a href="http://eComStation.ru/kiewitzsoft/">AiRBOOT</a>
+is an advanced and feature rich boot manager created by
+Martin Kiewitz.
+<p>
+To make the eStyler reboot feature cooperate with AiRBOOT the
+following requirements must be met:
+<ol>
+<li>AiRBOOT version 1.03 or newer must be installed.
+<li>SETABOOT.EXE must be copied as SETBOOT.EXE in a directory listed in
+the SET PATH directive of the CONFIG.SYS file, coming before the
+\OS2 directory so that it overrides the \OS2\SETBOOT.EXE file.
+The \ecs\bin path is probably the best solution.<br>
+Alternatively \OS2\SETBOOT.EXE can be renamed SETBOOT.IBM and
+SETABOOT.EXE can be copied as SETBOOT.EXE in the \OS2 directory.
+</ol>
+</body>
+</html>

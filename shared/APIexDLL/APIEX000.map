@@ -1,0 +1,569 @@
+
+ APIEX000
+
+ Start         Length     Name                   Class
+ 0001:00000000 0000102ACH CODE32                 CODE 32-bit
+	at offset 00000000 002A5H bytes from G:\edg_cvs\sources\guidproc\APIexDLL\boxClass.obj (boxClass.c)
+	at offset 000002b0 00077H bytes from G:\edg_cvs\sources\guidproc\APIexDLL\combobox.obj (combobox.c)
+	at offset 00000330 002AAH bytes from G:\edg_cvs\sources\guidproc\APIexDLL\ctrlutil.obj (ctrlutil.c)
+	at offset 000005e0 00538H bytes from G:\edg_cvs\sources\guidproc\APIexDLL\dllmain.obj (dllmain.c)
+	at offset 00000b20 00AF4H bytes from G:\edg_cvs\sources\guidproc\APIexDLL\gpprogress.obj (gpprogress.c)
+	at offset 00001620 00A9CH bytes from G:\edg_cvs\sources\guidproc\APIexDLL\gptasklist.obj (gptasklist.c)
+	at offset 000020c0 05C64H bytes from G:\edg_cvs\sources\guidproc\APIexDLL\treelist.obj (treelist.c)
+	at offset 00007d30 005BBH bytes from G:\edg_cvs\sources\guidproc\APIexDLL\gpLogo.obj (gpLogo.c)
+	at offset 000082f0 01C07H bytes from G:\edg_cvs\sources\guidproc\APIexDLL\gpPage.obj (gpPage.c)
+	at offset 00009f00 0255BH bytes from G:\edg_cvs\sources\guidproc\APIexDLL\stfv.obj (stfv.c)
+	at offset 0000c45c 0003FH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\sprintf.c)
+	at offset 0000c49c 00109H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\bufprint.c)
+	at offset 0000c5a8 00005H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\cfree.c)
+	at offset 0000c5b0 00013H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\cmalloc.c)
+	at offset 0000c5c4 0000CH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\crealloc.c)
+	at offset 0000c5d0 00032H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\crt_fd.c)
+	at offset 0000c604 00109H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\ctordtor.c)
+	at offset 0000c710 01325H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\dofmto.c)
+	at offset 0000da38 0004DH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\fmtcomm.c)
+	at offset 0000da88 00003H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\fpninit.asm)
+	at offset 0000da8c 0001EH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\isalpha.c)
+	at offset 0000daac 00014H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\isdigit.c)
+	at offset 0000dac0 00019H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\isspace.c)
+	at offset 0000dadc 00028H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\isxdigit.c)
+	at offset 0000db04 00016H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\memcmp.c)
+	at offset 0000db1c 0001FH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\memcpy.c)
+	at offset 0000db3c 0003BH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\memmove.c)
+	at offset 0000db78 0002CH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\memset.c)
+	at offset 0000dba4 00214H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\prtemsg.c)
+	at offset 0000ddb8 002BFH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\rcreate.c)
+	at offset 0000e078 000D2H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\rdestroy.c)
+	at offset 0000e14c 002C3H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\rheapmin.c)
+	at offset 0000e410 000F1H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\rinit.c)
+	at offset 0000e504 0174CH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\rmalloc.c)
+	at offset 0000fc50 0002FH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\ropen.c)
+	at offset 0000fc80 001F9H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\rrealloc.c)
+	at offset 0000fe7c 00029H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\dllinit.c)
+	at offset 0000fea8 0001DH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\strchr.c)
+	at offset 0000fec8 0002AH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\strcpy.c)
+	at offset 0000fef4 00011H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\strlen.c)
+	at offset 0000ff08 000EEH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\strtol.c)
+	at offset 0000fff8 000C7H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\strtoul.c)
+	at offset 000100c0 0017CH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\toint.c)
+	at offset 0001023c 00015H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\tolower.c)
+	at offset 00010254 0002DH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\vsprintf.c)
+	at offset 00010284 00017H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\weakfmt.c)
+	at offset 0001029c 00003H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\wflush.c)
+	at offset 000102a0 00005H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\wk_rmem.c)
+	at offset 000102a8 00003H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\wk_walk.c)
+
+ 0001:000102AC 000000030H _MSGSEG32              CODE 32-bit
+	at offset 00000000 00030H bytes from E:\Development\OS2TK45\lib\os2386.lib (msgseg32.asm)
+
+ 0002:00000000 0000000D0H CONST32_RO             CONST 32-bit
+	at offset 00000000 00008H bytes from G:\edg_cvs\sources\guidproc\APIexDLL\gpprogress.obj (gpprogress.c)
+	at offset 00000008 0003DH bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\dofmto.c)
+	at offset 00000048 00088H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\prtemsg.c)
+
+ 0003:00000000 000000010H DDE4_DATA32            DATA 32-bit
+	at offset 00000000 00004H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\bufprint.c)
+	at offset 00000004 00008H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\prtemsg.c)
+	at offset 0000000c 00004H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\dllstub.asm)
+
+ 0004:00000000 000000284H DATA32                 DATA 32-bit
+	at offset 00000000 00008H bytes from G:\edg_cvs\sources\guidproc\APIexDLL\boxClass.obj (boxClass.c)
+	at offset 00000008 0000CH bytes from G:\edg_cvs\sources\guidproc\APIexDLL\combobox.obj (combobox.c)
+	at offset 00000014 00014H bytes from G:\edg_cvs\sources\guidproc\APIexDLL\gpprogress.obj (gpprogress.c)
+	at offset 00000028 00010H bytes from G:\edg_cvs\sources\guidproc\APIexDLL\gptasklist.obj (gptasklist.c)
+	at offset 00000038 00008H bytes from G:\edg_cvs\sources\guidproc\APIexDLL\treelist.obj (treelist.c)
+	at offset 00000040 00008H bytes from G:\edg_cvs\sources\guidproc\APIexDLL\gpLogo.obj (gpLogo.c)
+	at offset 00000048 0011CH bytes from G:\edg_cvs\sources\guidproc\APIexDLL\gpPage.obj (gpPage.c)
+	at offset 00000164 000FCH bytes from G:\edg_cvs\sources\guidproc\APIexDLL\stfv.obj (stfv.c)
+	at offset 00000260 00004H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\crt_fd.c)
+	at offset 00000264 00004H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\ctordtor.c)
+	at offset 00000268 00008H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\dofmto.c)
+	at offset 00000270 00004H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\rinit.c)
+	at offset 00000274 00010H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\rmalloc.c)
+
+ 0004:00000284 000000000H CTOR_DTOR1             DATA 32-bit
+
+ 0004:00000284 000000000H CTOR_DTOR2             DATA 32-bit
+
+ 0004:00000284 000000000H CTOR_DTOR3             DATA 32-bit
+
+ 0004:00000284 000000024H BSS32                  BSS 32-bit
+	at offset 00000000 00018H bytes from G:\edg_cvs\sources\guidproc\APIexDLL\dllmain.obj (dllmain.c)
+	at offset 00000018 00003H bytes from G:\edg_cvs\sources\guidproc\APIexDLL\gpPage.obj (gpPage.c)
+	at offset 0000001c 00004H bytes from G:\edg_cvs\sources\guidproc\APIexDLL\stfv.obj (stfv.c)
+	at offset 00000020 00004H bytes from E:\Development\IBMCPP\LIB\cppon30.lib (D:\SwordCSD\crt\rinit.c)
+
+ 0004:000002A8 000000278H c_common               BSS 32-bit
+
+
+ Origin   Group
+ 0000:0   FLAT
+ 0004:0   DGROUP
+
+ Address       Export                  Alias
+
+ 0001:0000027F BoxClassRegister        BoxClassRegister
+ 0001:000002E4 ComboBoxClassRegister   ComboBoxClassRegister
+ 0001:00009D87 gpCheckGPDataList       gpCheckGPDataList
+ 0001:0000860B gpChkLvmAvailability    gpChkLvmAvailability
+ 0001:00008698 gpCopyFile              gpCopyFile
+ 0001:00009619 gpDefListBoxProc        gpDefListBoxProc
+ 0001:00009C24 GPDefPageProc           GPDefPageProc
+ 0001:00009797 gpFileExists            gpFileExists
+ 0001:000087FE gpFormatVolData         gpFormatVolData
+ 0001:00009986 gpFreeReadFile          gpFreeReadFile
+ 0001:00009AB7 gpFreeRespFileData      gpFreeRespFileData
+ 0001:00008387 gpGetDataItem           gpGetDataItem
+ 0001:000087CD gpHwndFromHapp          gpHwndFromHapp
+ 0001:00009EC6 gpInitNLS               gpInitNLS
+ 0001:000083B3 gpIsDBCSchar            gpIsDBCSchar
+ 0001:00009DCB gpIterateDataItem       gpIterateDataItem
+ 0001:000082CD gpLogoClassRegister     gpLogoClassRegister
+ 0001:00009805 gpMakePath              gpMakePath
+ 0001:00009B31 gpParseRespFileData     gpParseRespFileData
+ 0001:00009D17 gpPrintfError           gpPrintfError
+ 0001:0000998F gpReadFile              gpReadFile
+ 0001:00009A58 gpRespFileAddString     gpRespFileAddString
+ 0001:00009A2D gpRespFileFreeStrings   gpRespFileFreeStrings
+ 0001:00009E2E gpStartApp              gpStartApp
+ 0001:000082F0 gpVolDataFromVolLetter  gpVolDataFromVolLetter
+ 0001:00008333 gpVolIndexFromVolLetter  gpVolIndexFromVolLetter
+ 0001:000015EE ProgressRegister        ProgressRegister
+ 0001:0000C3EB STFVRegister            STFVRegister
+ 0001:00007D06 TListRegister           TListRegister
+ 0001:00002096 TskLstRegister          TskLstRegister
+ 0001:00009AED wMalloc                 wMalloc
+ 0001:0000974D wRealloc                wRealloc
+ 0001:00009709 wStrDup                 wStrDup
+ 0001:0000069C xpFree                  xpFree
+ 0001:0000060F xpHeapmin               xpHeapmin
+ 0001:0000078E xpMalloc                xpMalloc
+ 0001:0000072E xpRealloc               xpRealloc
+ 0001:000005E0 xpStrdup                xpStrdup
+ 0001:00008454 _dbgCopy                _dbgCopy
+ 0001:000083EF _dbgEnd                 _dbgEnd
+ 0001:00008407 _dbgPrintf              _dbgPrintf
+
+  Address         Publics by Name
+
+ 0001:0000027F       BoxClassRegister
+ 0000:00000000  Imp  Close_LVM_Engine     (LVM.72)
+ 0001:000002E4       ComboBoxClassRegister
+ 0001:0000056B       CtrlClrGet
+ 0001:00000499       CtrlDraw3DBorder
+ 0001:0000039C       CtrlDrawCheckMark
+ 0001:00000330       CtrlDrawRightArrow
+ 0001:00000422       CtrlStrDup
+ 0004:00000304       dbgBuf
+ 0004:000002F4       dbgInitDone
+ 0004:00000300       dbgUl
+ 0000:00000000  Imp  DevQueryCaps         (PMGPI.606)
+ 0000:00000000  Imp  DOS32TRUEGETMESSAGE  (MSG.6)
+ 0000:00000000  Imp  DosAllocMem          (DOSCALLS.299)
+ 0000:00000000  Imp  DosBeep              (DOSCALLS.286)
+ 0000:00000000  Imp  DosClose             (DOSCALLS.257)
+ 0000:00000000  Imp  DosCopy              (DOSCALLS.258)
+ 0000:00000000  Imp  DosCreateDir         (DOSCALLS.270)
+ 0000:00000000  Imp  DosFindClose         (DOSCALLS.263)
+ 0000:00000000  Imp  DosFindFirst         (DOSCALLS.264)
+ 0000:00000000  Imp  DosFreeMem           (DOSCALLS.304)
+ 0001:000102BE       DosGetMessage
+ 0000:00000000  Imp  DosOpen              (DOSCALLS.273)
+ 0000:00000000  Imp  DosQueryCtryInfo     (NLS.5)
+ 0000:00000000  Imp  DosQueryDBCSEnv      (NLS.6)
+ 0000:00000000  Imp  DosQueryFileInfo     (DOSCALLS.279)
+ 0000:00000000  Imp  DosQueryHType        (DOSCALLS.224)
+ 0000:00000000  Imp  DosQueryPathInfo     (DOSCALLS.223)
+ 0000:00000000  Imp  DosRead              (DOSCALLS.281)
+ 0000:00000000  Imp  DosScanEnv           (DOSCALLS.227)
+ 0000:00000000  Imp  DosSetPathInfo       (DOSCALLS.219)
+ 0000:00000000  Imp  DosSleep             (DOSCALLS.229)
+ 0000:00000000  Imp  DosWrite             (DOSCALLS.282)
+ 0001:0000C5A8       free
+ 0004:000002A8       g
+ 0001:00009D87       gpCheckGPDataList
+ 0001:0000860B       gpChkLvmAvailability
+ 0001:00008698       gpCopyFile
+ 0001:00009619       gpDefListBoxProc
+ 0001:00009C24       GPDefPageProc
+ 0001:00009797       gpFileExists
+ 0001:000087FE       gpFormatVolData
+ 0001:00009986       gpFreeReadFile
+ 0001:00009AB7       gpFreeRespFileData
+ 0001:00008387       gpGetDataItem
+ 0001:000087CD       gpHwndFromHapp
+ 0000:00000000  Imp  GpiBox               (PMGPI.356)
+ 0000:00000000  Imp  GpiCharString        (PMGPI.358)
+ 0000:00000000  Imp  GpiCharStringAt      (PMGPI.359)
+ 0000:00000000  Imp  GpiCharStringPosAt   (PMGPI.581)
+ 0000:00000000  Imp  GpiCreateLogColorTable (PMGPI.592)
+ 0000:00000000  Imp  GpiCreateLogFont     (PMGPI.368)
+ 0000:00000000  Imp  GpiCreateRegion      (PMGPI.370)
+ 0000:00000000  Imp  GpiDeleteBitmap      (PMGPI.371)
+ 0000:00000000  Imp  GpiDeleteSetId       (PMGPI.378)
+ 0000:00000000  Imp  GpiDestroyRegion     (PMGPI.611)
+ 0000:00000000  Imp  GpiLine              (PMGPI.398)
+ 0000:00000000  Imp  GpiLoadBitmap        (PMGPI.399)
+ 0000:00000000  Imp  GpiMove              (PMGPI.404)
+ 0001:00009EC6       gpInitNLS
+ 0000:00000000  Imp  GpiPolyLine          (PMGPI.415)
+ 0000:00000000  Imp  GpiQueryBitmapParameters (PMGPI.573)
+ 0000:00000000  Imp  GpiQueryDevice       (PMGPI.444)
+ 0000:00000000  Imp  GpiQueryFonts        (PMGPI.586)
+ 0000:00000000  Imp  GpiQueryTextBox      (PMGPI.489)
+ 0001:000083B3       gpIsDBCSchar
+ 0000:00000000  Imp  GpiSetBackColor      (PMGPI.504)
+ 0000:00000000  Imp  GpiSetCharSet        (PMGPI.513)
+ 0000:00000000  Imp  GpiSetClipRegion     (PMGPI.516)
+ 0000:00000000  Imp  GpiSetColor          (PMGPI.517)
+ 0000:00000000  Imp  GpiSetLineType       (PMGPI.530)
+ 0000:00000000  Imp  GpiSetMix            (PMGPI.537)
+ 0001:00009DCB       gpIterateDataItem
+ 0001:000082CD       gpLogoClassRegister
+ 0001:00009805       gpMakePath
+ 0001:00009B31       gpParseRespFileData
+ 0001:00009D17       gpPrintfError
+ 0001:0000998F       gpReadFile
+ 0001:00009A58       gpRespFileAddString
+ 0001:00009A2D       gpRespFileFreeStrings
+ 0001:00009E2E       gpStartApp
+ 0001:000082F0       gpVolDataFromVolLetter
+ 0001:00008333       gpVolIndexFromVolLetter
+ 0004:000002F8       hf
+ 0001:0000C5B0       malloc
+ 0001:0000DB04       memcmp
+ 0001:0000DB1C       memcpy
+ 0001:0000DB3C       memmove
+ 0001:0000DB78       memset
+ 0000:00000000  Imp  Open_LVM_Engine      (LVM.65)
+ 0001:000015EE       ProgressRegister
+ 0001:0000C5C4       realloc
+ 0001:0000C3EB       STFVRegister
+ 0001:0000FEA8       strchr
+ 0001:0000FEC8       strcpy
+ 0001:0000FEF4       strlen
+ 0001:0000FF08       strtol
+ 0001:0000FFF8       strtoul
+ 0001:00007D06       TListRegister
+ 0001:00002096       TskLstRegister
+ 0000:00000000  Imp  WinAlarm             (PMWIN.701)
+ 0000:00000000  Imp  WinBeginPaint        (PMWIN.703)
+ 0000:00000000  Imp  WinCalcFrameRect     (PMWIN.704)
+ 0000:00000000  Imp  WinCreateCursor      (PMWIN.715)
+ 0000:00000000  Imp  WinCreateWindow      (PMWIN.909)
+ 0000:00000000  Imp  WinDefDlgProc        (PMWIN.910)
+ 0000:00000000  Imp  WinDefWindowProc     (PMWIN.911)
+ 0000:00000000  Imp  WinDeleteLibrary     (PMWIN.722)
+ 0000:00000000  Imp  WinDestroyCursor     (PMWIN.725)
+ 0000:00000000  Imp  WinDestroyPointer    (PMWIN.727)
+ 0000:00000000  Imp  WinDestroyWindow     (PMWIN.728)
+ 0000:00000000  Imp  WinDismissDlg        (PMWIN.729)
+ 0000:00000000  Imp  WinDrawBitmap        (PMWIN.730)
+ 0000:00000000  Imp  WinDrawPointer       (PMWIN.732)
+ 0000:00000000  Imp  WinDrawText          (PMWIN.913)
+ 0000:00000000  Imp  WinEnableWindow      (PMWIN.735)
+ 0000:00000000  Imp  WinEndPaint          (PMWIN.738)
+ 0000:00000000  Imp  WinEnumDlgItem       (PMWIN.740)
+ 0000:00000000  Imp  WinFillRect          (PMWIN.743)
+ 0000:00000000  Imp  WinGetCurrentTime    (PMWIN.750)
+ 0000:00000000  Imp  WinGetPS             (PMWIN.757)
+ 0000:00000000  Imp  WinHSwitchFromHapp   (PMMERGE.5199)
+ 0000:00000000  Imp  WinInvalidateRect    (PMWIN.765)
+ 0000:00000000  Imp  WinIsChild           (PMWIN.768)
+ 0000:00000000  Imp  WinIsWindowEnabled   (PMWIN.773)
+ 0000:00000000  Imp  WinIsWindowShowing   (PMWIN.774)
+ 0000:00000000  Imp  WinLoadLibrary       (PMWIN.777)
+ 0000:00000000  Imp  WinLoadPointer       (PMWIN.780)
+ 0000:00000000  Imp  WinLoadString        (PMWIN.781)
+ 0000:00000000  Imp  WinMapDlgPoints      (PMWIN.787)
+ 0000:00000000  Imp  WinPostMsg           (PMWIN.919)
+ 0000:00000000  Imp  WinQueryAnchorBlock  (PMWIN.800)
+ 0000:00000000  Imp  WinQueryClassInfo    (PMWIN.925)
+ 0000:00000000  Imp  WinQueryFocus        (PMWIN.817)
+ 0000:00000000  Imp  WinQueryPresParam    (PMWIN.939)
+ 0000:00000000  Imp  WinQuerySwitchEntry  (PMSHAPI.124)
+ 0000:00000000  Imp  WinQuerySysColor     (PMWIN.826)
+ 0000:00000000  Imp  WinQuerySysValue     (PMWIN.829)
+ 0000:00000000  Imp  WinQueryWindow       (PMWIN.834)
+ 0000:00000000  Imp  WinQueryWindowPtr    (PMWIN.839)
+ 0000:00000000  Imp  WinQueryWindowRect   (PMWIN.840)
+ 0000:00000000  Imp  WinQueryWindowULong  (PMWIN.843)
+ 0000:00000000  Imp  WinQueryWindowUShort (PMWIN.844)
+ 0000:00000000  Imp  WinRegisterClass     (PMWIN.926)
+ 0000:00000000  Imp  WinReleasePS         (PMWIN.848)
+ 0000:00000000  Imp  WinScrollWindow      (PMWIN.849)
+ 0000:00000000  Imp  WinSendMsg           (PMWIN.920)
+ 0000:00000000  Imp  WinSetDlgItemText    (PMWIN.859)
+ 0000:00000000  Imp  WinSetFocus          (PMWIN.860)
+ 0000:00000000  Imp  WinSetWindowPos      (PMWIN.875)
+ 0000:00000000  Imp  WinSetWindowPtr      (PMWIN.876)
+ 0000:00000000  Imp  WinSetWindowULong    (PMWIN.878)
+ 0000:00000000  Imp  WinShowCursor        (PMWIN.880)
+ 0000:00000000  Imp  WinStartApp          (PMSHAPI.119)
+ 0000:00000000  Imp  WinWindowFromID      (PMWIN.899)
+ 0001:00009AED       wMalloc
+ 0001:0000974D       wRealloc
+ 0001:00009709       wStrDup
+ 0001:0000069C       xpFree
+ 0001:0000060F       xpHeapmin
+ 0001:0000078E       xpMalloc
+ 0001:0000072E       xpRealloc
+ 0001:000005E0       xpStrdup
+ 0001:0000C49C       _bufprint
+ 0004:00000260       _crt_msg_handle
+ 0001:00008454       _dbgCopy
+ 0001:000083EF       _dbgEnd
+ 0001:00008407       _dbgPrintf
+ 0004:00000270       _default_heap
+ 0001:0000FE7C       _DLL_InitTerm
+ 0001:0000DA88       _fpninit
+ 0001:000007E2       _mtalloc
+ 0001:000006E0       _mtfree
+ 0001:0000064E       _mtheapmin
+ 0001:0000DBA4       _PrintErrMsg
+ 0004:00000514       _reg_heap
+ 0001:0000E434       _rmem_init
+ 0001:0000E410       _rmem_term
+ 0001:0000E8FC       _rnode_delete
+ 0001:0000DA38       _signedAssign
+ 0001:0000C45C       _sprintfieee
+ 0001:000100C0       _toint
+ 0001:0000DF18       _uaddmem
+ 0001:0000FC50       _uclose
+ 0001:0000DDB8       _ucreate
+ 0001:0000E078       _udestroy
+ 0001:0000E948       _ufree
+ 0001:0000E1AC       _uheapmin
+ 0001:0000F8CC       _umalloc
+ 0001:0000FC68       _uopen
+ 0001:0000FC80       _urealloc
+ 0001:00010254       _vsprintfieee
+ 0004:0000051C       _walk_used
+ 0001:00010284       _wfloatfmt
+ 0001:0001029C       _w_int_uflush
+ 0001:000102A0       _w_uheap_verify
+ 0001:000102A8       _w_walking
+ 0004:00000504       __ctordtorCurrent
+ 0004:00000284       __ctordtorEnd
+ 0001:0000C634       __ctordtorInit
+ 0004:00000284       __ctordtorStart
+ 0001:0000C604       __ctordtorTerm
+ 0001:0000D470       __dofmto
+ 0001:0000DA8C       __isalpha
+ 0001:0000DAAC       __isdigit
+ 0001:0000DAC0       __isspace
+ 0001:0000DADC       __isxdigit
+ 0001:0001023C       __tolower
+
+  Address         Publics by Value
+
+ 0000:00000000  Imp  WinQueryWindowRect   (PMWIN.840)
+ 0000:00000000  Imp  DosSleep             (DOSCALLS.229)
+ 0000:00000000  Imp  DosSetPathInfo       (DOSCALLS.219)
+ 0000:00000000  Imp  WinDrawPointer       (PMWIN.732)
+ 0000:00000000  Imp  DosOpen              (DOSCALLS.273)
+ 0000:00000000  Imp  WinQueryWindow       (PMWIN.834)
+ 0000:00000000  Imp  DosCopy              (DOSCALLS.258)
+ 0000:00000000  Imp  DosQueryCtryInfo     (NLS.5)
+ 0000:00000000  Imp  WinSetWindowULong    (PMWIN.878)
+ 0000:00000000  Imp  DosScanEnv           (DOSCALLS.227)
+ 0000:00000000  Imp  GpiQueryBitmapParameters (PMGPI.573)
+ 0000:00000000  Imp  DosBeep              (DOSCALLS.286)
+ 0000:00000000  Imp  GpiDestroyRegion     (PMGPI.611)
+ 0000:00000000  Imp  GpiDeleteBitmap      (PMGPI.371)
+ 0000:00000000  Imp  WinDestroyCursor     (PMWIN.725)
+ 0000:00000000  Imp  WinInvalidateRect    (PMWIN.765)
+ 0000:00000000  Imp  WinGetCurrentTime    (PMWIN.750)
+ 0000:00000000  Imp  DosQueryHType        (DOSCALLS.224)
+ 0000:00000000  Imp  WinShowCursor        (PMWIN.880)
+ 0000:00000000  Imp  WinIsWindowShowing   (PMWIN.774)
+ 0000:00000000  Imp  WinAlarm             (PMWIN.701)
+ 0000:00000000  Imp  GpiSetLineType       (PMGPI.530)
+ 0000:00000000  Imp  GpiDeleteSetId       (PMGPI.378)
+ 0000:00000000  Imp  WinIsChild           (PMWIN.768)
+ 0000:00000000  Imp  WinLoadPointer       (PMWIN.780)
+ 0000:00000000  Imp  WinLoadLibrary       (PMWIN.777)
+ 0000:00000000  Imp  WinEnumDlgItem       (PMWIN.740)
+ 0000:00000000  Imp  GpiQueryDevice       (PMGPI.444)
+ 0000:00000000  Imp  GpiCharStringPosAt   (PMGPI.581)
+ 0000:00000000  Imp  WinCreateCursor      (PMWIN.715)
+ 0000:00000000  Imp  WinDeleteLibrary     (PMWIN.722)
+ 0000:00000000  Imp  Open_LVM_Engine      (LVM.65)
+ 0000:00000000  Imp  WinRegisterClass     (PMWIN.926)
+ 0000:00000000  Imp  GpiLine              (PMGPI.398)
+ 0000:00000000  Imp  WinHSwitchFromHapp   (PMMERGE.5199)
+ 0000:00000000  Imp  GpiCreateRegion      (PMGPI.370)
+ 0000:00000000  Imp  DosQueryDBCSEnv      (NLS.6)
+ 0000:00000000  Imp  WinIsWindowEnabled   (PMWIN.773)
+ 0000:00000000  Imp  WinQuerySwitchEntry  (PMSHAPI.124)
+ 0000:00000000  Imp  WinDestroyPointer    (PMWIN.727)
+ 0000:00000000  Imp  GpiSetClipRegion     (PMGPI.516)
+ 0000:00000000  Imp  WinQueryPresParam    (PMWIN.939)
+ 0000:00000000  Imp  WinQueryWindowPtr    (PMWIN.839)
+ 0000:00000000  Imp  WinMapDlgPoints      (PMWIN.787)
+ 0000:00000000  Imp  WinSetWindowPtr      (PMWIN.876)
+ 0000:00000000  Imp  GpiSetBackColor      (PMGPI.504)
+ 0000:00000000  Imp  WinDefWindowProc     (PMWIN.911)
+ 0000:00000000  Imp  WinCalcFrameRect     (PMWIN.704)
+ 0000:00000000  Imp  DosRead              (DOSCALLS.281)
+ 0000:00000000  Imp  GpiMove              (PMGPI.404)
+ 0000:00000000  Imp  WinWindowFromID      (PMWIN.899)
+ 0000:00000000  Imp  DosQueryFileInfo     (DOSCALLS.279)
+ 0000:00000000  Imp  WinEnableWindow      (PMWIN.735)
+ 0000:00000000  Imp  GpiCharStringAt      (PMGPI.359)
+ 0000:00000000  Imp  GpiBox               (PMGPI.356)
+ 0000:00000000  Imp  WinCreateWindow      (PMWIN.909)
+ 0000:00000000  Imp  GpiCreateLogFont     (PMGPI.368)
+ 0000:00000000  Imp  WinEndPaint          (PMWIN.738)
+ 0000:00000000  Imp  WinSetWindowPos      (PMWIN.875)
+ 0000:00000000  Imp  WinSetFocus          (PMWIN.860)
+ 0000:00000000  Imp  WinReleasePS         (PMWIN.848)
+ 0000:00000000  Imp  DOS32TRUEGETMESSAGE  (MSG.6)
+ 0000:00000000  Imp  WinPostMsg           (PMWIN.919)
+ 0000:00000000  Imp  DosFindClose         (DOSCALLS.263)
+ 0000:00000000  Imp  WinQueryClassInfo    (PMWIN.925)
+ 0000:00000000  Imp  DosFindFirst         (DOSCALLS.264)
+ 0000:00000000  Imp  GpiQueryTextBox      (PMGPI.489)
+ 0000:00000000  Imp  DosWrite             (DOSCALLS.282)
+ 0000:00000000  Imp  DevQueryCaps         (PMGPI.606)
+ 0000:00000000  Imp  WinDrawText          (PMWIN.913)
+ 0000:00000000  Imp  Close_LVM_Engine     (LVM.72)
+ 0000:00000000  Imp  WinStartApp          (PMSHAPI.119)
+ 0000:00000000  Imp  WinQueryWindowUShort (PMWIN.844)
+ 0000:00000000  Imp  GpiCreateLogColorTable (PMGPI.592)
+ 0000:00000000  Imp  WinDestroyWindow     (PMWIN.728)
+ 0000:00000000  Imp  WinQueryAnchorBlock  (PMWIN.800)
+ 0000:00000000  Imp  WinDrawBitmap        (PMWIN.730)
+ 0000:00000000  Imp  DosCreateDir         (DOSCALLS.270)
+ 0000:00000000  Imp  WinQuerySysColor     (PMWIN.826)
+ 0000:00000000  Imp  GpiSetColor          (PMGPI.517)
+ 0000:00000000  Imp  WinSetDlgItemText    (PMWIN.859)
+ 0000:00000000  Imp  WinFillRect          (PMWIN.743)
+ 0000:00000000  Imp  DosAllocMem          (DOSCALLS.299)
+ 0000:00000000  Imp  GpiPolyLine          (PMGPI.415)
+ 0000:00000000  Imp  GpiSetMix            (PMGPI.537)
+ 0000:00000000  Imp  DosClose             (DOSCALLS.257)
+ 0000:00000000  Imp  WinLoadString        (PMWIN.781)
+ 0000:00000000  Imp  WinScrollWindow      (PMWIN.849)
+ 0000:00000000  Imp  WinQueryWindowULong  (PMWIN.843)
+ 0000:00000000  Imp  DosFreeMem           (DOSCALLS.304)
+ 0000:00000000  Imp  WinGetPS             (PMWIN.757)
+ 0000:00000000  Imp  WinSendMsg           (PMWIN.920)
+ 0000:00000000  Imp  WinDefDlgProc        (PMWIN.910)
+ 0000:00000000  Imp  WinQueryFocus        (PMWIN.817)
+ 0000:00000000  Imp  DosQueryPathInfo     (DOSCALLS.223)
+ 0000:00000000  Imp  GpiSetCharSet        (PMGPI.513)
+ 0000:00000000  Imp  WinDismissDlg        (PMWIN.729)
+ 0000:00000000  Imp  GpiCharString        (PMGPI.358)
+ 0000:00000000  Imp  GpiQueryFonts        (PMGPI.586)
+ 0000:00000000  Imp  WinQuerySysValue     (PMWIN.829)
+ 0000:00000000  Imp  WinBeginPaint        (PMWIN.703)
+ 0000:00000000  Imp  GpiLoadBitmap        (PMGPI.399)
+ 0001:0000027F       BoxClassRegister
+ 0001:000002E4       ComboBoxClassRegister
+ 0001:00000330       CtrlDrawRightArrow
+ 0001:0000039C       CtrlDrawCheckMark
+ 0001:00000422       CtrlStrDup
+ 0001:00000499       CtrlDraw3DBorder
+ 0001:0000056B       CtrlClrGet
+ 0001:000005E0       xpStrdup
+ 0001:0000060F       xpHeapmin
+ 0001:0000064E       _mtheapmin
+ 0001:0000069C       xpFree
+ 0001:000006E0       _mtfree
+ 0001:0000072E       xpRealloc
+ 0001:0000078E       xpMalloc
+ 0001:000007E2       _mtalloc
+ 0001:000015EE       ProgressRegister
+ 0001:00002096       TskLstRegister
+ 0001:00007D06       TListRegister
+ 0001:000082CD       gpLogoClassRegister
+ 0001:000082F0       gpVolDataFromVolLetter
+ 0001:00008333       gpVolIndexFromVolLetter
+ 0001:00008387       gpGetDataItem
+ 0001:000083B3       gpIsDBCSchar
+ 0001:000083EF       _dbgEnd
+ 0001:00008407       _dbgPrintf
+ 0001:00008454       _dbgCopy
+ 0001:0000860B       gpChkLvmAvailability
+ 0001:00008698       gpCopyFile
+ 0001:000087CD       gpHwndFromHapp
+ 0001:000087FE       gpFormatVolData
+ 0001:00009619       gpDefListBoxProc
+ 0001:00009709       wStrDup
+ 0001:0000974D       wRealloc
+ 0001:00009797       gpFileExists
+ 0001:00009805       gpMakePath
+ 0001:00009986       gpFreeReadFile
+ 0001:0000998F       gpReadFile
+ 0001:00009A2D       gpRespFileFreeStrings
+ 0001:00009A58       gpRespFileAddString
+ 0001:00009AB7       gpFreeRespFileData
+ 0001:00009AED       wMalloc
+ 0001:00009B31       gpParseRespFileData
+ 0001:00009C24       GPDefPageProc
+ 0001:00009D17       gpPrintfError
+ 0001:00009D87       gpCheckGPDataList
+ 0001:00009DCB       gpIterateDataItem
+ 0001:00009E2E       gpStartApp
+ 0001:00009EC6       gpInitNLS
+ 0001:0000C3EB       STFVRegister
+ 0001:0000C45C       _sprintfieee
+ 0001:0000C49C       _bufprint
+ 0001:0000C5A8       free
+ 0001:0000C5B0       malloc
+ 0001:0000C5C4       realloc
+ 0001:0000C604       __ctordtorTerm
+ 0001:0000C634       __ctordtorInit
+ 0001:0000D470       __dofmto
+ 0001:0000DA38       _signedAssign
+ 0001:0000DA88       _fpninit
+ 0001:0000DA8C       __isalpha
+ 0001:0000DAAC       __isdigit
+ 0001:0000DAC0       __isspace
+ 0001:0000DADC       __isxdigit
+ 0001:0000DB04       memcmp
+ 0001:0000DB1C       memcpy
+ 0001:0000DB3C       memmove
+ 0001:0000DB78       memset
+ 0001:0000DBA4       _PrintErrMsg
+ 0001:0000DDB8       _ucreate
+ 0001:0000DF18       _uaddmem
+ 0001:0000E078       _udestroy
+ 0001:0000E1AC       _uheapmin
+ 0001:0000E410       _rmem_term
+ 0001:0000E434       _rmem_init
+ 0001:0000E8FC       _rnode_delete
+ 0001:0000E948       _ufree
+ 0001:0000F8CC       _umalloc
+ 0001:0000FC50       _uclose
+ 0001:0000FC68       _uopen
+ 0001:0000FC80       _urealloc
+ 0001:0000FE7C       _DLL_InitTerm
+ 0001:0000FEA8       strchr
+ 0001:0000FEC8       strcpy
+ 0001:0000FEF4       strlen
+ 0001:0000FF08       strtol
+ 0001:0000FFF8       strtoul
+ 0001:000100C0       _toint
+ 0001:0001023C       __tolower
+ 0001:00010254       _vsprintfieee
+ 0001:00010284       _wfloatfmt
+ 0001:0001029C       _w_int_uflush
+ 0001:000102A0       _w_uheap_verify
+ 0001:000102A8       _w_walking
+ 0001:000102BE       DosGetMessage
+ 0004:00000260       _crt_msg_handle
+ 0004:00000270       _default_heap
+ 0004:00000284       __ctordtorStart
+ 0004:00000284       __ctordtorEnd
+ 0004:000002A8       g
+ 0004:000002F4       dbgInitDone
+ 0004:000002F8       hf
+ 0004:00000300       dbgUl
+ 0004:00000304       dbgBuf
+ 0004:00000504       __ctordtorCurrent
+ 0004:00000514       _reg_heap
+ 0004:0000051C       _walk_used
+
+Program entry point at 0001:000009FB

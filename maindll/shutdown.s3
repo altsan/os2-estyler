@@ -1,0 +1,40 @@
+/* --------------------------------------------------------------------------
+ Power off or suspend using the ACPI driver
+- Parameters -------------------------------------------------------------
+ ULONG fl : Requested power-management state (APM_SUSPEND / APM_POWEROFF)
+- Return value -----------------------------------------------------------
+ BOOL
+ ACPI action succeeded (y/n)?
+-------------------------------------------------------------------------- */
+#ifdef ACPI_ENABLED
+BOOL tryAcpiPwrOff(ULONG flState)
+{
+   BOOL fAcpiOK = FALSE;
+   ACPI_API_HANDLE Hdl;
+   ULONG ul;
+
+   if (g.acpifn.pfnAcpiStartApi && g.acpifn.pfnAcpiGoToSleep && g.acpifn.pfnAcpiEndApi) {
+      if (g.acpifn.pfnAcpiStartApi(&Hdl) == NO_ERROR) {
+         fAcpiOK = TRUE;
+         if (flState==APM_POWEROFF) {
+             dbgPrintf1("Initiating ACPI power-off.\n");
+             dbgEnd();
+             ul = WinCancelShutdown(g.worker.hmq, TRUE);
+             ForceCommitFn(g.acpifn.pfnAcpiGoToSleep);
+             ul = DosShutdown(0L);
+             DosSleep(o.sd.wait.onPowerOff);
+             ul = g.acpifn.pfnAcpiGoToSleep(&Hdl, ACPI_STATE_S5);
+         }
+         else if (flState==APM_SUSPEND) {
+            dbgPrintf1("Initiating ACPI sleep state S3.\n");
+            ul = g.acpifn.pfnAcpiGoToSleep(&Hdl, ACPI_STATE_S3);
+         }
+         // The next lines will probably never be reached if poweroff was successful...
+         g.acpifn.pfnAcpiEndApi(&Hdl);
+         DosFreeModule(g.hmodAcpi);
+      } else dbgPrintf1("Failed to open ACPI API.\n");
+   }
+
+   return fAcpiOK;
+}
+#endif

@@ -1,0 +1,68 @@
+<html>
+<head>
+   <title>Shutdown - shutdown programs list</title>
+</head>
+<body>
+
+<br>
+The eComStation enhanced shutdown allows to execute a list of
+programs before the system is closed.
+<p>
+When <b>Run the following programs on shutdown</b> is checked,
+the programs listed below are executed one by one. Only when
+the execution of the last program ends, the previously opened windows
+are closed and the system is shut down.<br>
+If the program list is empty, the option is just ignored.<br>
+<b>Note:</b><br>
+The shutdown confirmation dialog allows to temporarely disable
+or enable this feature via an <b>Execute shutdown programs</b>
+checkbox.
+<p>
+The program names are entered via the <b>Program</b> entry field.<br>
+If a program is situated in the <tt>PATH</tt> (i.e. is in a directory
+listed in the PATH environment variable set in the CONFIG.SYS file),
+only the program name is needed, otherwise it is necessary to specify
+the full program path.<br>
+If no extension is provided, the .EXE extension is
+automatically appended to the program name.
+<br>If the program is a REXX script or batch CMD file, its name is
+automatically converted to:<br>
+<tt>CMD.EXE /C filename.cmd options</tt><p>
+If the REXX or batch file calls other programs, it will have to
+do that in a synchronous way, i.e. not through any START or DETACH command,
+otherwise it won't be possible to detect when each program terminates
+and some files might not be properly saved.
+<p>
+Optional program parameters may be entered through the
+<b>Parameters</b> field. This field must be left empty
+if the program doesn't require any parameters.
+<p>
+The program visibility (normal, maximized or hidden), may be
+set through the <b>Window</b> drop down box.
+<p>
+The two <b>arrow buttons</b> order the content of the program
+list, moving the selected item up or down. They are automatically
+enabled/disabled as suitable.
+<p>
+The <b>Add</b> button adds the current entry fields content to the
+end of the list.
+<p>
+<b>Remove</b> deletes the selected item from the list.
+<p>
+<b>Edit</b> fills the entry fields with the data of the selected
+item to let the user modify them. Once the data have been modified
+the <b>Add</b> button is used to replace the selected item with
+the new data.
+<p>
+<b>Find</b> opens the standard file dialog to let the user find and select
+an executable name.
+<p>
+<b>Apply</b> saves the list data to the eStyler.ini file while
+<b>Undo</b> restores the list content to the state it was in the
+settings notebook was opened.
+<p>
+<b>See also:</b><br>
+A <a href="sdProgExample.html">practical example</a> of the shutdown programs
+feature.
+</body>
+</html>

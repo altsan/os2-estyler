@@ -1,0 +1,44 @@
+<html>
+<head>
+   <title>Shutdown programs - example</title>
+</head>
+<body>
+
+<br>
+The <b>shutdown programs</b> feature may be used for
+<b>saving all the system files</b>.
+For that purpose, create a text file listing all the relevant system files.
+For instance (supposing that D: is your boot drive):<pre>
+d:\os2\*.ini
+d:\desktop
+d:\config.sys
+d:\autoexec.bat
+d:\os2\dll\*.cfg
+</pre>
+After having saved the file, for instance as FILES.LST, enter in the Program
+field:<pre>
+CMD.EXE
+</pre>
+and in the Parameters field:<pre>
+/C TYPE D:\FILES.LST | ZIP -rS9 D:\SYSTEM.SAV -@ 2>>D:\SYSSAV.LOG 1>>&amp;2
+</pre>
+This will create, in the root of the drive D:, a ZIP file, named SYSTEM.SAV,
+containing all the files specified in D:\FILES.LST while the file SYSSAV.LOG
+will register all the command output.
+<br>Now, you can create a simple CMD file in the root of the boot drive:<pre>
+@echo off
+d:
+cd\
+unzip -o d:\system.sav
+</pre>
+saving it, for instance, as RECSYS.CMD.
+<br>If it ever happens that you can't reboot your system because the system
+files are corrupted, or the eComCenter lost its configuration data,
+you just have to boot
+to a command line and run RECSYS.CMD to recover you previous system
+configuration.
+<p><b>Note:</b> This will not allow to save exactly the last state
+of the system since some files (e.g. OS2.INI) are not updated
+synchronously.
+</body>
+</html>

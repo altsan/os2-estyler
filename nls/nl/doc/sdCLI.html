@@ -1,0 +1,88 @@
+<html>
+<head>
+   <title>SHUTDOWN.EXE - command line shutdown</title>
+</head>
+<body>
+
+<br>
+In order to let the user access all the enhanced shutdown features
+even when the system must be closed via the command line or with
+a batch file, an <b>enhanced version of SHUTDOWN.EXE</b>, is provided in
+in the \ecs\bin directory.
+<p>
+The <b>command syntax</b> is quite simple:
+<pre>
+SHUTDOWN [command] [options]
+</pre>
+<b>Note:</b><br>
+All the command and options are case insensitive and can be
+prefixed by a dash (<tt>-</tt>), a slash (<tt>/</tt>) or can
+be entered without any prefix. Only the first letter is taken
+into account.<br>
+SHUTDOWN.EXE, executed without parameters, performs
+an ordinary shutdown (equivalent to the 'C' command - see below).
+<p>
+Valid <b>commands</b> are:
+<pre>
+[ [ / | - ] ? | D | L | S | C | O | R [:ItemIndex | VolName ] ]
+</pre>
+<dl nobreak>
+<dt><b>?</b> or <b>H</b></dt>
+<dd>shows a short help screen</dd>
+<dt><b>D</b></dt>
+<dd>show the shutdown dialog to let the user select
+what type of shutdown has to be performed.</dd>
+<dt><b>L</b></dt>
+<dd>lock up the desktop and put the system in suspend mode</dd>
+<dt><b>S</b></dt>
+<dd>put the system in suspend mode</dd>
+<dt><b>C</b></dt>
+<dd>close the system (the machine must be switched off or rebooted manually)</dd>
+<dt><b>O</b></dt>
+<dd>power off the system</dd>
+<dt><b>R</b></dt>
+<dd>reboot the current volume.<br>
+When followed by <b>:n</b> the nth volume (starting
+from 0, as specified in the reboot list) is rebooted.<br>
+When followed by a volume name the matching volume name is rebooted.</dd>
+</dl>
+The <b>options</b> are valid only with the <b>C</b>, <b>O</b> or <b>R</b>
+commands. Valid options are:
+<pre>
+[ [ / | - ] E | N ]
+</pre>
+<dl nobreak>
+<dt><b>E</b></dt>
+<dd>execute the the shutdown programs defined via the Shutdown settings notebook.
+</dd>
+<dt><b>N</b></dt>
+<dd>do not execute the shutdown programs</dd>
+<dt><b>no option</b></dt>
+<dd>as for the current eStylerLite settings</dd>
+</dl>
+<b>Examples:</b>
+<p>
+<tt>SHUTDOWN /RWIN2000 /N</tt><br>
+<tt>SHUTDWON -rWIN2000 -n</tt><br>
+<tt>SHUTDOWN rWIN2000 n</tt><br>
+<ul compact>
+reboots the volume whose name is "WIN2000" without executing the
+shutdown programs.
+</ul>
+<br>
+<tt>SHUTDOWN -r:0 -e</tt>
+<ul compact>
+reboots the first volume in the list of re-bootable volumes and
+execute the shutdown programs (is any program is listed).
+</ul>
+<p>
+<b>Return values:</b>
+<dl nobreak>
+<dt>0</dt><dd>successful execution.</dd>
+<dt>2</dt><dd>error: failed to get the handle of the eStyler object window.</dd>
+<dt>4</dt><dd>error: invalid parameters.</dd>
+<dt>6</dt><dd>error: failed to post the shutdown request to the eStyler
+object window.</dd>
+</dl>
+</body>
+</html>

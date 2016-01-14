@@ -1,0 +1,104 @@
+<html>
+<head>
+   <title>Systemabschluá - Erweiterte Optionen</title>
+</head>
+<body>
+
+<br>
+<b>Warnung:</b><br>
+Dieser Dialog dient nur zum Zweck der Fehlerbehebung.
+<p>
+Die erweiterte Funktionalit„t fr den Systemabschluá wird durch Einklinken
+in den Standardsystemabschluá und Ausfhren bestimmter Sonderfunktionen
+implementiert.<br>
+Die ordnungsgem„áe Durchfhrung eines Systemabschlusses kann dabei davon
+abh„ngen, in welchen zeitlichen Abst„nden diese Erweiterungen ausgefhrt
+werden.<br>
+Sollte der Systemabschluá nicht erfolgreich durchgefhrt werden, kann daher
+eine Anpassung der Verz”gerungswerte erforderlich sein.<br>
+Gew”hnlich wird das Fehlschlagen des Systemabschlusses durch Programme
+verursacht, die nicht ordnungsgem„á reagieren und ein Beenden verweigern.
+In solchen F„llen muá das verursachende Programm ermittelt und in die
+Liste <a href="sdTerm.html">Beenden erzwingen</a> eingetragen werden.<br>
+Als Faustregel gilt: Schl„gt der Systemabschluá auch bei deaktivierten
+Erweiterungen fehl, wird dies von einem Programm verursacht, andernfalls
+von den Erweiterungen selbst.
+<p>
+<b>Hinweis:</b><br>
+Alle Verz”gerungswerte werden in Zehntelsekunden angegeben. Eine Wert von
+80 steht also fr 8 Sekunden.
+<dl>
+<dt><b>Sperren und Wartemodus</b></dt>
+<dd>Viele Hauptplatinen sind nicht vollst„ndig mit dem Advanced Power
+Management von eComStation kompatibel, so daá es zu Abstrzen kommen kann,
+wenn ein Befehl zum Umschalten in den Wartemodus ausgefhrt wird, w„hrend
+die Maus bewegt wird. Die Verz”gerung fr Sperren und Wartemodus stellt
+sicher, daá das System vor dem Umschalten in den Wartemodus vollst„ndig
+gesperrt wurde.<br>
+Wird ein schnelleres Sperren und Umschalten in den Wartemodus gewnscht,
+kann die Verz”gerung so lange verringert werden, wie sich das System
+ordnungsgem„á verh„lt.<br>
+Wird die Funktion nicht genutzt, kann die Einstellung ignoriert werden.</dd>
+<dt><b>Wartemodus</b></dt>
+<dd>Sollte das System nach Auswahl von <i>Wartemodus</i> abstrzen, empfiehlt
+es sich, hier Verz”gerungswerte von 20-30 oder h”her zu testen.<br>
+Wird die Funktion nicht genutzt, kann die Einstellung ignoriert werden.</dd>
+<dt><b>eComCenter-Einstellungen sichern</b>
+<dd>Diese Verz”gerungseinstellung gibt dem System Zeit, die Einstellungen
+des eComCenter zu sichern. Bei schnellen Systemen kann die Einstellung
+problemlos auf 3-4 oder sogar geringere Werte herabgesetzt werden.<br>
+Wird das eComCenter nicht genutzt, kann die Einstellung ignoriert werden.</dd>
+<dt><b>Fenster ausklappen</b></dt>
+<dd>Dieser Verz”gerungswert gibt dem System Zeit, beim Systemabschluá
+s„mtliche Fenster auszuklappen.<br>
+Wird Styler/2 nicht eingesetzt, kann diese Einstellung ignoriert werden.<br>
+Wird die Styler/2-Funktion zum Einklappen von Fenstern nicht oder auf einem
+schnellen System verwendet, kann dieser Wert problemlos auf das Minimum
+herabgesetzt werden.</dd>
+<dt><b>Systemabschluámeldungen</b></dt>
+<dd>Dieser Verz”gerungswert unterdrckt die Anzeige der Standardmeldungen
+des Systemabschlusses und erm”glicht das Ersetzen durch die erweiterten
+Dialoge.<br>
+Sollte das System w„hrend des Systemabschlusses abstrzen, empfiehlt es
+sich, diesen Wert zu erh”hen oder herabzusetzen.</dd>
+<dt><b>DosKillProcess</b></dt>
+<dd>Dieser Verz”gerungswert legt die Zeit fest, die eStyler nach dem
+Ausfhren von <i>DosKillProcess</i> zum Beenden aller Programme wartet,
+bis <i>WinShutdownSystem</i> aufgerufen wird. Bei manchen Programmen
+nimmt ordnungsgem„áes Beenden eine gewisse Zeit in Anspruch. Im Falle
+von nicht-PM-Programmen kann sich dies negativ auf den Systemabschluá
+auswirken. Schl„gt der Systemabschluá fehl, weil eines oder mehrere
+Programme nicht rechtzeitig beendet wurden, muá dieser Wert ggf. erh”ht
+werden.</dd>
+<dt><b>WinShutdownSystem</b></dt>
+<dd>Dieser Wert verz”gert die Zerst”rung des Fensters <i>Fensterliste</i>
+und h„lt so die Ausfhrung des <i>WinShutdownSystem</i>-API auf.<br>
+Strzt das System w„hrend des Systemabschlusses ab, empfiehlt es sich,
+diesen Wert herabzusetzen.<br>
+Werden beim Abschalten oder Neustarten die Einstellungen oder der Status
+der Arbeitsoberfl„che nicht ordnungsgem„á gesichert, empfiehlt es sich,
+den Wert zu erh”hen.
+</dd>
+<dt><b>DosShutdown</b></dt>
+<dd>Diese Einstellungen ist nur relevant, wenn dem Best„tigungsdialog
+der normale Systemabschluá hinzugefgt wurde (als <i>Systemabschluá</i>
+aufgefhrt).<br>
+Der Wert gibt die Zeitspanne an, die bis zur Anzeige der Meldung gewartet
+wird, daá der Systemabschluá beendet wurde und das System ausgeschaltet
+werden kann.<br>
+Bei schnellen Systemen kann dieser Wert bis auf das Minimum herabgesetzt
+werden.</dd>
+<dt><b>Ausschalten</b></dt>
+<dd>Mit Hilfe dieses Wertes wird sichergestellt, daá s„mtliche Systemeinstellungen
+und der Status der Arbeitsoberfl„che vor dem Ausschalten des Systems
+gesichert wurden.<br>
+Bei schnellen Systemen kann dieser Wert herabgesetzt werden.</dd>
+<dt><b>OK</b></dt>
+<dd>Sichert die aktuellen Einstellungen und schlieát den Dialog.</dd>
+<dt><b>Abbruch</b></dt>
+<dd>Schlieát den Dialog ohne die aktuellen Einstellungen zu sichern.</dd>
+<dt><b>Standard</b></dt>
+<dd>Setzt alle Verz”gerungswerte auf die Voreinstellung zurck.</dd>
+</dl>
+</body>
+</html>

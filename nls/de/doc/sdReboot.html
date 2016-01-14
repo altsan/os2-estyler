@@ -1,0 +1,69 @@
+<html>
+<head>
+   <title>Systemabschluá - Systemneustart</title>
+</head>
+<body>
+
+<br>
+Die Funktion <b>Systemneustart</b> erm”glicht einen Systemabschluá mit
+anschlieáendem Neustart des gewnschten Volumens.
+<p>
+Untersttzt wird sowohl der IBM Boot Manager als auch
+<a href="sdAiRBOOT.html">AiRBOOT</a> von Martin Kiewitz.
+<p>
+Mit Hilfe der Seite Systemneustart l„át sich die Liste der startf„higen
+Volumen festlegen, die im erweiterten Systemabschluádialog angezeigt
+werden sollen.<br>
+Die Liste der Volumen kann sowohl von Hand als auch automatisch erstellt
+werden.
+<p>
+<h3>Manuelle Erstellung</h3><p>
+Im Eingabefeld <b>Volumenname</b> ist der Volumenname so anzugeben, wie
+er im Men des IBM Bootmanagers oder AiRBOOT-Men angezeigt wird. Das
+Eingabefeld <b>Volumenbeschreibung</b> erm”glicht die Angabe einer l„ngeren,
+genaueren Beschreibung.<br>
+Im Best„tigungsdialog fr den Systemabschluá werden dann in einem Listenfenster
+nur die Volumenbeschreibungen in der Reihenfolge angezeigt, wie sie im
+Listenfeld <i>Neustart von folgenden Volumen erlauben</i> vorgegeben ist.<br>
+Mit Hilfe der beiden <b>Pfeilkn”pfe</b> zur Linken des Listenfelds l„át
+sich der ausgew„hlte Eintrag auf- und abbewegen und so die Reihenfolge
+anpassen.
+<p>
+Der Druckknopf <b>Hinzufgen</b> wird aktiviert, wenn beide Eingabefelder
+Text enthalten. Durch Drcken wird der Inhalt dem Ende der Liste in 
+folgendem Format hinzugefgt:<br>
+<tt>Volumenbeschreibung (Volumenname)</tt><br>
+Drcken von <b>Entfernen</b> entfernt den ausgew„hlten Eintrag aus der Liste.<br>
+Drcken von <b>Bearbeiten</b> erm”glicht die Bearbeitung von Beschreibung
+und Name des ausgew„hlten Eintrags. Durch Drcken werden die Daten in die
+Eingabefelder bernommen. Wird eine nderung vorgenommen, k”nnen die
+neuen Daten durch Drcken von <b>Hinzufgen</b> wieder gesichert werden.
+<p>
+<h3>Automatische Erstellung</h3><p>
+Drcken von <b>Suchen</b> liest die Liste der startf„higen Volumen direkt
+von der Festplatte, falls AiRBOOT installiert ist, oder fragt die
+LVM-Schnittstelle ab. Noch nicht in der Liste vorhandene, startf„hige
+Volumen werden ihr dann in folgendem Format hinzugefgt:<br>
+<tt>Volumenname (Volumenname)</tt></br>
+D.h. der Volumenname wird auch fr die Volumenbeschreibung verwendet.
+Anschlieáend kann der Anwender durch Drcken von <i>Bearbeiten</i> eine
+bessere Beschreibung nachtragen.
+<p>
+<b>Hinweis:</b><br>
+Ist AiRBOOT installiert, kann die automatische Erkennung startf„higer
+Volumen fehlschlagen, falls gerade erst ber LVM neue Volumen erstellt
+oder vorhandene gel”scht wurden, da AiRBOOT seine Volumentabelle nur
+bei einem Systemneustart aktualisiert.
+<p>
+<h3>Standarddruckkn”pfe</h3><p>
+Drcken von <b>Anwenden</b> sichert die Liste in der Datei eStyler.ini.
+<p>
+<b>Widerrufen</b> stellt den Zustand der Liste vor dem ™ffnen des
+Einstellungsnotizbuchs wieder her.
+<p>
+<b>Hinweis:</b><br>
+Der erweiterte Systemabschluádialog speichert die vom Anwender beim letzten
+Best„tigen des Dialogs mit OK gew„hlten Einstellungen bezglich der Option
+und des startf„higen Volumens und nimmt eine entsprechende Vorauswahl vor.
+</body>
+</html>

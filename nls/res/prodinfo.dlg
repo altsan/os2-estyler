@@ -1,0 +1,23 @@
+// Product information page -------------------------------------------------
+
+DLGTEMPLATE DLG_PRODINFO LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "", DLG_PRODINFO, 0, 0, CX_PAGEDLG, CY_PAGEDLG,
+            NOT FS_DLGBORDER | WS_VISIBLE
+            PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+    BEGIN
+        ICON            1, ICO_PRODINFO, 10, 102, 27, 20, WS_GROUP
+        LTEXT           SZ_PRODUCT, TXT_PIPRODUCT, 62, 116, 160, 10, DT_VCENTER
+                        PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans Bold"
+        LTEXT           "", TXT_PIVERSION, 62, 104, 160, 10, DT_VCENTER
+        CONTROL         "", BAR_PRODINFO, 62, 99, 176, 1, WC_3DBOX,
+                        BOXS_HBAR | WS_GROUP | WS_VISIBLE
+        LTEXT           SZ_PICPYRIGHT, TXT_PICPYRIGHT, 62, 85, 160, 10,
+                        DT_VCENTER
+        PUSHBUTTON      SZ_PIURL, BTN_PIURL, 58, 71, -1, -1,
+                        BS_NOBORDER | BS_AUTOSIZE
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x000000FFL
+                        PRESPARAMS PP_BACKGROUNDCOLOR, 0x00FF0000L
+                        PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans.Underlined"
+    END
+END

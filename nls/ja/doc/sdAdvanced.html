@@ -1,0 +1,94 @@
+<html>
+<head>
+   <title>Shutdown - advanced options</title>
+</head>
+<body>
+
+<br>
+<b>Warning:</b><br>
+This dialog is only provided for trouble shooting purposes.
+<p>
+The enhanced shutdown features are performed by hooking in a standard
+system shutdown to execute some extra functions.<br>
+A proper shutdown may sometimes depend on the delays set
+to allow the execution of the enhancements.<br>
+In case the system does not succesfully complete the shutdown
+it might be necessary to modify some delay values.<br>
+In most cases, anyway, a failing shutdown is caused by a program
+which doesn't respond correctly to the system shutdown and refuses
+to quit. In such case you have to find the name of the offending
+program and put it into the <a href="sdTerm.html">termination</a> list.<br>
+As a rule of thumb, if the system shutdown hangs even if
+the shutdown enhancements have been disabled,
+then the problem lies with a single program,
+otherwise the cause is the shutdown enhancements themselves.
+<p>
+<b>Note:</b><br>
+All the delays are in tenth of seconds (e.g. a value of 80
+means 8 seconds).
+<dl>
+<dt><b>Lockup and suspend</b></dt>
+<dd>various motherboards are not fully compatible with the
+eComStation advanced power management, so the system may
+hang if a suspend command is issued while the mouse is moved.
+The lockup and suspend delay ensures that the system is fully
+locked up before being suspended.<br>
+If you want to get a faster lockup and suspend just try to
+set a lower delay until the system behaves correctly.<br>
+If you do not use this feature you can ignore this setting.</dd>
+<dt><b>Suspend</b></dt>
+<dd>if your system hangs after you select <i>Suspend</i>
+try to increase the delay to 20-30 or more.<br>
+If you do not use this feature you can ignore this setting.</dd>
+<dt><b>Save WarpCenter settings</b>
+<dd>This delay lets the system save the warp center settings.
+If the system is quite fast this delay can be safely lowered to 3-4
+or less.<br>
+If you do not use the WarpCenter you can ignore this setting.</dd>
+<dt><b>Unroll windows</b></dt>
+<dd>This delay allows any rolled windows to be unrolled on system
+shutdown.<br>
+Ignore this setting if you are not a Styler/2 user.<br>
+If you do not use the Styler/2 roll-windows feature or have
+a fast system you can safely lower this value to the minimum.</dd>
+<dt><b>System shutdown message boxes</b></dt>
+<dd>This delay prevents the system default shutdown boxes to appear
+allowing for the substitution with the enhanced dialogs.<br>
+If the system hangs on shutdown, you may try to change this value
+by increasing or decreasing it.</dd>
+<dt><b>DosKillProcess</b></dt>
+<dd>This delay represents the interval that eStyler will wait after
+executing <i>DosKillProcess</i> to stop all programs in the termination
+list, before calling <i>WinShutdownSystem</i>. Some programs may take
+a few moments to terminate properly; if this occurs with non-PM programs,
+they may interfere with the system shutdown.  You may have to increase
+this value if the shutdown fails because one or more programs is not
+being terminated in time.</dd>
+<dt><b>WinShutdownSystem</b></dt>
+<dd>This item delays the destruction of the <i>Window List</i>
+window suspending so the execution of the <i>WinShutdownSystem</i> API.<br>
+If the systems hangs on shutdown, try to reduce this value.<br>
+If the systems doesn't correctly save its settings or desktop state
+on power off or reboot, try to increase the value.
+</dd>
+<dt><b>DosShutdown</b></dt>
+<dd>This settings applies only if you choosed to add the ordinary
+shutdown feature (listed just as <i>Shut down</i>) to the confirmation
+dialog.<br>
+This is the time to wait before displaying the box saying that the shutdown
+is complete and that it is safe to switch off the system.<br>
+If your machine is fast you can lower this value to the minimum.</dd>
+<dt><b>Power off</b></dt>
+<dd>This delay ensures that all the system settings and desktop
+state are saved before the system is powered off.<br>
+Owners of fast modern machines can lower this value.</dd>
+<dt><b>Ok</b></dt>
+<dd>This button saves the current settings and dismisses the dialog.</dd>
+<dt><b>Cancel</b></dt>
+<dd>This button dismisses the dialog without saving the current
+settings.</dd>
+<dt><b>Default</b></dt>
+<dd>This button resets all the delay options to the default values.</dd>
+</dl>
+</body>
+</html>

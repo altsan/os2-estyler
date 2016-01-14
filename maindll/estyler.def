@@ -1,0 +1,29 @@
+LIBRARY ESTLRL11 INITGLOBAL
+
+DESCRIPTION '@#AlessandroCantatore:1.1#@eStylerLite V.1.1.96 (debug) - (c) 1998-2004 Alessandro Cantatore'
+
+PROTMODE
+
+DATA SINGLE SHARED
+
+SEGMENTS
+   STLRINSTANCE_DATA    CLASS 'DATA' LOADONCALL NOIOPL NONSHARED READWRITE
+
+EXPORTS
+   stlrProcessInit                 @1     NONAME
+   stlrGetVer                      @2     NONAME
+   stlrOpenProfile                 @3     NONAME
+   stlrGetOptionsDataAddress       @4     NONAME
+   stlrGetWorkerThreadHandle       @5     NONAME
+   stlrQryScreenRes                @6     NONAME
+   stlrSetTitlebarGeneralDefaults  @7     NONAME
+   stlrSetTitlebarHiliteDefaults   @8     NONAME
+   stlrSetButtonDefaults           @9     NONAME
+   stlrSetDlgDefaults              @10    NONAME
+   stlrSetShutdownDefaults         @11    NONAME
+   stlrSetShutdownTimingDefaults   @12    NONAME
+   stlrShadeHBmp                   @13    NONAME
+   stlrHBmpFromBmpData             @14    NONAME
+   stlrHBmpFromModule              @15    NONAME
+   stlrMakeGlobalBitmap            @16    NONAME
+   stlrFreeGlobalBitmap            @17    NONAME

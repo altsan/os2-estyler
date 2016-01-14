@@ -1,0 +1,71 @@
+* eStyler v.1.1 - command line enhanced shutdown for eComStation *
+* (c) 2004 Alessandro Cantatore - Italy                          *
+Synopsis:
+SHUTDOWN [command] [option]
+Valid commands are:
+[ ? | D | L | S | O | R [:ItemIndex] ]
+   : (no command - default) works as the default system shutdown
+ ? : shows this help screen
+ D : will show the shutdown dialog
+ L : locks the desktop and puts the system in suspend mode
+ S : puts the system in suspend mode
+ O : powers the system off
+ R : Reboots the current volume or the nth volume specified through
+     the eStylerLite settings notebook
+The following options are only valid with the O and R commands and if
+no command has been entered:
+/E : execute programs listed through the eStylerLite settings notebook
+/N : don't execute the programs
+default action: as for the current eStylerLite settings
+
+note: commands and options are case insensitive and must not be
+      prefixed by a dash (-) or a slash (/).
+
+
+eStyler v.1.1 - command line enhanced shutdown for eComStation
+Command syntax:
+SHUTDOWN [command] [options]
+
+Note:
+All the command and options are case insensitive and can be prefixed by
+a dash (-), a slash (/) or can be entered without any prefix.
+Only the first letter is taken into account.
+
+Valid commands are:
+
+[ [ / | - ] ? | D | L | S | C | O | R [:ItemIndex | VolName ] ]
+
+? or H     show a short help screen
+D          show the shutdown dialog to let the user select what type
+           of shutdown has to be performed.
+L          lock up the desktop and put the system in suspend mode
+S          put the system in suspend mode
+C          close the system (the machine must be switched off or rebooted
+           manually)
+O          power off the system
+R          reboot the current volume.
+           When followed by :n the nth volume (starting from 0, as specified
+           in the reboot list) is rebooted.
+           When followed by a volume name the matching volume name is rebooted.
+
+The options are valid only with the C, O or R commands.
+Valid options are:
+
+[ [ / | - ] E | N ]
+
+E          execute the the shutdown programs defined via the Shutdown settings
+           notebook.
+N          do not execute the shutdown programs
+no option  shutdown programs execution depends on the current eStylerLite
+           settings
+
+Examples:
+
+SHUTDOWN /RWIN2000 /N
+SHUTDWON -rWIN2000 -n
+SHUTDOWN rWIN2000 n
+           reboots the volume whose name is "WIN2000" without executing the
+           shutdown programs.
+SHUTDOWN -r:0 -e
+           reboots the first volume in the list of re-bootable volumes and
+           execute the shutdown programs (is any program is listed).
