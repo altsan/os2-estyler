@@ -143,6 +143,8 @@
 #define BAR_PRODINFO             103
 #define TXT_PICPYRIGHT           104
 #define BTN_PIURL                105
+#define TXT_PICPYRIGHT2          106
+#define TXT_LICENSE              107
 
 /* --------------------------------------------------------------------------
  SHUTDOWNGEN       shutdown - general options dialog
@@ -385,9 +387,10 @@
 #define IDS_CLRSHADBOTTOM         62    // "~Bottom"
 #define IDS_CLRSHADINNER          63    // "~Inner"
 #define IDS_DEFIMAGE              64    // "Default image"
+#define IDS_DIALOGFONT            65    // "Dialog font"
 
 // change this when adding further string IDs
-#define IDS_LAST                  IDS_DEFIMAGE
+#define IDS_LAST                  IDS_DIALOGFONT
 
 /* --------------------------------------------------------------------------
  ERRMSGSSTRIDS     error messages string IDs

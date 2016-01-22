@@ -10,11 +10,14 @@ BEGIN
         LTEXT           SZ_PRODUCT, TXT_PIPRODUCT, 62, 116, 160, 10, DT_VCENTER
                         PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans Bold"
         LTEXT           "", TXT_PIVERSION, 62, 104, 160, 10, DT_VCENTER
-        CONTROL         "", BAR_PRODINFO, 62, 99, 176, 1, WC_3DBOX,
-                        BOXS_HBAR | WS_GROUP | WS_VISIBLE
-        LTEXT           SZ_PICPYRIGHT, TXT_PICPYRIGHT, 62, 85, 160, 10,
-                        DT_VCENTER
-        PUSHBUTTON      SZ_PIURL, BTN_PIURL, 58, 71, -1, -1,
+#ifdef USE_APIEX
+        CONTROL         "", BAR_PRODINFO, 62, 99, 176, 1, WC_3DBOX, BOXS_HBAR | WS_GROUP | WS_VISIBLE
+#else
+        CONTROL         "", BAR_PRODINFO, 62, 99, 176, 1, WC_BAR, WS_GROUP | WS_VISIBLE
+#endif
+        LTEXT           SZ_PICPYRIGHT, TXT_PICPYRIGHT, 62, 85, 160, 10, DT_VCENTER
+        LTEXT           SZ_PICPYRIGHT2, TXT_PICPYRIGHT2, 62, 75, 160, 10, DT_VCENTER
+        PUSHBUTTON      SZ_PIURL, BTN_PIURL, 58, 51, -1, -1,
                         BS_NOBORDER | BS_AUTOSIZE
                         PRESPARAMS PP_FOREGROUNDCOLOR, 0x000000FFL
                         PRESPARAMS PP_BACKGROUNDCOLOR, 0x00FF0000L

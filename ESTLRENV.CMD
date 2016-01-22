@@ -1,5 +1,4 @@
 /* ESTLRENV.CMD - set up estyler build environment
-   $Id$ ESTLRENV.CMD,v 1.4 2011/08/25 22:26:46 shl Exp $
 
    Uses ECSINSTSRC from environment if available.
    Otherwise finds guidproc sources assuming well-known location.
@@ -29,7 +28,7 @@ do 1
     leave
   end
   /* Give up and use hard-coded value - EDITTHIS */
-  ECSINSTSRC = topdir || "\shared"
+  ECSINSTSRC = topdir || "shared"
 end /* do */
 
 /* Try to guess location of ACPI toolkit */
@@ -38,14 +37,14 @@ do 1
   ACPITKDIR = value("ACPITKDIR",, "OS2ENVIRONMENT")
   if ACPITKDIR \== '' then leave
   /* Give up and use hard-coded value - EDITTHIS */
-  ACPITKDIR = topdir || "\acpitk"
+  ACPITKDIR = topdir || "shared\acpi_tk"
 end /* do */
 
 /* ---------------- end of edit section ------------------- */
 
 APIEXINCL = ECSINSTSRC"\headers"
-/* APIEXLIB  = ECSINSTSRC"\APIexDLL\apiex000.lib"*/
-APIEXLIB  = ""
+/*APIEXLIB  = ECSINSTSRC"\APIexDLL\apiex000.lib"*/
+APIEXLIB  = ECSINSTSRC"\util\afcutl05.lib"
 LVMTKINCL = ECSINSTSRC"\lvm_tk"
 LVMLIB    = LVMTKINCL"\lvm.lib"
 ACPIINCL  = ACPITKDIR"\h;"ACPITKDIR"\h\platform"

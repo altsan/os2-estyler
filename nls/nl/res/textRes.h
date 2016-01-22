@@ -334,6 +334,7 @@
 #define SZ_CLRSHADRIGHT     "~Rechts"
 #define SZ_CLRSHADBOTTOM    "~Onderkant"
 #define SZ_CLRSHADINNER     "B~innenkant"
+#define SZ_DIALOGFONT       "Dialoogvensters lettertype"
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

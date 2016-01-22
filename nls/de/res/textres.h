@@ -333,6 +333,7 @@
 #define SZ_CLRSHADRIGHT     "~Rechte"
 #define SZ_CLRSHADBOTTOM    "~Untere"
 #define SZ_CLRSHADINNER     "~Innere"
+#define SZ_DIALOGFONT       "Schriftart Dialoge"
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

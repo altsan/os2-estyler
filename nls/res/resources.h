@@ -19,6 +19,10 @@
    #include "clrButton.h"
    #include "selColor.h"
    #include "resID.h"
+#ifdef USE_APIEX
    #include "boxclass.h"
    #include "stfv.h"
+#else
+   #include "apixwrap.h"
+#endif
 #endif // #ifndef _STLR_RESOURCES_H_

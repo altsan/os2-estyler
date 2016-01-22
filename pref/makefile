@@ -15,6 +15,13 @@ RB = rc.exe
 
 # compiler and linker flags
 
+EXTRAFLAGS =
+# To build with APIEX000.DLL set the following and remove apixwrap.obj from
+# both the dependencies and the link file below (there should be a better way to
+# automate this). Also define %ECSINSTSRC%, pointing to the GuidProc source dir,
+# and change APIEXLIB in ESTLRENV.CMD to APIEX000.LIB (full path).
+# EXTRAFLAGS = /DUSE_APIEX=1
+
 # Debug version
 !ifdef DEBUG
 
@@ -24,12 +31,12 @@ LFLAGS = /DE /E:2 /PM:PM /PACKD /A:4 /OPTF /NOL /M /L
 !else
 # RELEASE version
 
-CFLAGS = /I..\\headers /I$(APIEXINCL) /I$(LVMTKINCL) /Ss /O /Oc /Ol /Rn /G5 /C /Q
+CFLAGS = /I..\\headers /I$(APIEXINCL) /I$(LVMTKINCL) /Ss /O /Oc /Ol /Rn /G5 /C /Q $(EXTRAFLAGS)
 LFLAGS = /E:2 /PM:PM /PACKD /A:4 /OPTF /NOL /M /L
 
 !endif
 
-RCFLAGS = -r
+RCFLAGS = -r $(EXTRAFLAGS)
 RBFLAGS = -x2
 
 .rc.res:
@@ -63,6 +70,7 @@ eStyler.exe:         \
    pageUITbarGen.obj \
    pageWinKeys.obj   \
    dlgSDtiming.obj   \
+   apixwrap.obj      \
    eStyler.res       \
    $(APIEXLIB)       \
    $(LVMLIB)         \
@@ -95,6 +103,7 @@ eStyler.exe:         \
       pageUITbarGen.obj
       pageWinKeys.obj
       dlgSDtiming.obj
+      apixwrap.obj
 <<
     $(RB) $(RBFLAGS) eStyler.res eStyler.exe
 

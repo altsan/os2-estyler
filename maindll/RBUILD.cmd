@@ -101,6 +101,7 @@ parse arg deffile, hdrfile
          say " failed to get the build number from "deffile
          return 0;
       end /* do */
+   parse var buildver buildver dbg .
 
    /* get build no from the header file */
    buildVer2 = ""
@@ -118,8 +119,12 @@ parse arg deffile, hdrfile
       buildVer = buildVer2
 
    /* update the build no. in both the files */
+/*
    defData = defStart""deftag1""buildVer + 1""deftag2""defEnd;
    hdrData = hdrStart""hdrtag1""buildVer + 1""hdrtag2""hdrEnd;
+*/
+   defData = defStart""deftag1""buildVer""deftag2""defEnd;
+   hdrData = hdrStart""hdrtag1""buildVer""hdrtag2""hdrEnd;
 
    /* write the new data to the files */
    if \writeFile(deffile, defData) then

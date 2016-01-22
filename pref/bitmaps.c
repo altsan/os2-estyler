@@ -57,7 +57,8 @@ ULONG getBitmapDataJob(PGETBMPDATA pgb) {
    rc = (NULLHANDLE == pgb->bmpp.hbmp) ? GETBMP_ERR_BMPHANDLE : GETBMP_SUCCESS;
    WinReleasePS(hps);
 exit_0:
-   if (pData) gpFreeReadFile(pData);
+    if (pData)
+      gpFreeReadFile(pData);
    return rc;
 }
 
@@ -213,6 +214,7 @@ static ULONG readBmpFile(PSZ pszFile, PBITMAPFILEHEADER pBmp, PULONG pCbBmp) {
    RGB2* prgb2;
    if (NULL == (pData = (PBYTE)gpReadFile(pszFile)))
       return APPLYBMP_ERR_READFILE;
+
    // if the file is a bitmap array find the first BITMAPFILEHEADER structure
    pbfh = (*((PUSHORT)(pData)) == BFT_BITMAPARRAY)?
              &((PBITMAPARRAYFILEHEADER2)(pData))->bfh2:

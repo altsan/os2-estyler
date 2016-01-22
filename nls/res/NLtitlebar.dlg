@@ -65,8 +65,11 @@ BEGIN
 //                        122, 98, 78, 13, NOT WS_VISIBLE
         PUSHBUTTON      SZ_ADDIMAGE, BTN_TBADDIMAGE,
                         122, 91, 94, 13, NOT WS_VISIBLE
-        CONTROL         "", BAR_TB1, 0, 80, 250, 1, WC_3DBOX,
-                        BOXS_HBAR | WS_GROUP | WS_VISIBLE
+#ifdef USE_APIEX
+        CONTROL         "", BAR_TB1, 0, 80, 250, 1, WC_3DBOX, BOXS_HBAR | WS_GROUP | WS_VISIBLE
+#else
+        CONTROL         "", BAR_TB1, 0, 80, 250, 1, WC_BAR, WS_GROUP | WS_VISIBLE
+#endif
         // border controls ------------------------------------------------
         AUTOCHECKBOX    SZ_SHOWBORDER, CHK_TBBORDER, 10, 69, 110, 10
         PUSHBUTTON      SZ_SWAPCOLORS, BTN_TBSWAPBORDER, 30, 50, 78, 13,
@@ -79,8 +82,11 @@ BEGIN
                         DT_MNEMONIC | WS_DISABLED
         CONTROL         "", BTN_TBRIGHTBTM, 224, 43, 16, 12, WC_CLRBUTTON,
                         WS_VISIBLE | WS_DISABLED | WS_TABSTOP
-        CONTROL         "", BAR_TB2, 0, 39, 250, 1, WC_3DBOX,
-                        BOXS_HBAR | WS_GROUP | WS_VISIBLE
+#ifdef USE_APIEX
+        CONTROL         "", BAR_TB2, 0, 39, 250, 1, WC_3DBOX, BOXS_HBAR | WS_GROUP | WS_VISIBLE
+#else
+        CONTROL         "", BAR_TB2, 0, 39, 250, 1, WC_BAR, WS_GROUP | WS_VISIBLE
+#endif
         // text options controls ------------------------------------------
         AUTOCHECKBOX    SZ_TEXTSHADOW, CHK_TBSHADOW, 10, 28, 114, 10
         PUSHBUTTON      SZ_SWAPCOLORS, BTN_TBSWAPTXT, 30, 9, 78, 13,

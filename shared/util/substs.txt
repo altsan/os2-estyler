@@ -1,0 +1,10 @@
+Use AFCUTL05.DLL:
+ - Replace WC_3DBOX with WC_BAR
+ - xpFree   --> tsfree
+ - xpMalloc --> tsmalloc
+
+Reimplement using adapted code from AFCUTL05:
+  gpFreeReadFile
+  gpReadFile
+  gpStartApp
+  xpStrdup?

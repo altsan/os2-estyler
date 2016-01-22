@@ -89,8 +89,8 @@
  put '\x00' after each program name and modify CB_DEFKILLPRG!
 */
 #define SZPRO_DEFKILLPRG \
-"CHAT.EXE\x00" "CLKBASIC.EXE\x00" "CAD_POP.EXE\x00"
-#define CB_DEFKILLPRG  35        // lenght of previous data + termination
+"CHAT.EXE\x00" "CLKBASIC.EXE\x00" "CAD_POP.EXE\x00" "WPA_SUPPLICANT.EXE\x00"
+#define CB_DEFKILLPRG  54        // length of previous data + termination
 
 /* --------------------------------------------------------------------------
  SCREEN_RES        application/key names to get the screen res from OS2.INI

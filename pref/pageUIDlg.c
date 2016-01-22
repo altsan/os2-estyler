@@ -308,7 +308,7 @@ static VOID defaultOptions(HWND hwnd) {
  VOID
 -------------------------------------------------------------------------- */
 static VOID selectFont(HWND hwnd) {
-   if (fontDlg(hwnd, IDS_TITLEBARFONT, IDS_FONTDLGSAMPLE,
+   if (fontDlg(hwnd, IDS_DIALOGFONT, IDS_FONTDLGSAMPLE,
                g.pUiData->pOpts->dlg.achFont)) {
       setCtrlTextParm(hwnd, TXT_DLGFONT, IDS_FONT_, g.pUiData->pOpts->dlg.achFont);
       checkOptionsChanged();

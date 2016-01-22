@@ -155,7 +155,11 @@ BOOL initApplication(VOID) {
    // register the classes used by the application
 //   if (!STFVRegister(g.appl.hab))
 //      return handleError(ISERR_REGSTFVCLASS, FALSE);
+#ifdef USE_APIEX
    if (!BoxClassRegister(g.appl.hab))
+#else
+    if (!EDBarReg(g.appl.hab))
+#endif
       return handleError(ISERR_REGBOXCLASS, FALSE);
    if (!xComboBoxRegister(g.appl.hab))
       return handleError(ISERR_REGXCOMBOCLASS, FALSE);

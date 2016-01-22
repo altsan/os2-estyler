@@ -332,6 +332,7 @@
 #define SZ_CLRSHADRIGHT     "¥k(~R)"
 #define SZ_CLRSHADBOTTOM    "©³(~B)"
 #define SZ_CLRSHADINNER     "¤º¼h(~I)"
+#define SZ_DIALOGFONT       "Dialog font"
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

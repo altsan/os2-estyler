@@ -276,14 +276,14 @@ VOID stlrSetTitlebarHiliteDefaults(PTBARHILITE ptbh, BOOL bActive) {
    if (bActive) {
       if (ptbh->bkgnd) {
          ptbh->clrLeftTop = 0xcccccc;
-         ptbh->clrRghtBtm = 0x2020a4;
+         ptbh->clrRghtBtm = 0x004080;
       } else {
          ptbh->clrLeftTop = 0x80;
          ptbh->clrRghtBtm = 0xcccccc;
       } /* endif */
       ptbh->clrTopLeftBorder = 0;
       ptbh->clrRightBottomBorder = 0xffffff;
-      ptbh->clrFgTxt = 0xffffcc;
+      ptbh->clrFgTxt = 0xffffff;
       ptbh->clrBgTxt = 0;
    } else {
       ptbh->clrLeftTop = 0xcccccc;
@@ -343,7 +343,7 @@ VOID stlrSetShutdownDefaults(HINI hini, PSDGENERAL psd) {
       PrfWriteProfileData(hini, SZPRO_SHUTDWON, SZPRO_KILLPROGS,
                           SZPRO_DEFKILLPRG, CB_DEFKILLPRG);
    psd->steps = 100;
-   psd->on = 1;
+   psd->on = 0;
    psd->lksusp = 0;
    psd->susp = 0;
    psd->off = 0;
@@ -369,7 +369,7 @@ VOID stlrSetShutdownTimingDefaults(PSDTIMING psdt) {
    psdt->sysShutdown = 3000;
    psdt->switchOffMsg = 2000;
    psdt->onPowerOff = 3000;
-   psdt->killProcs = 1500;
+   psdt->killProcs = 3500;
 }
 
 

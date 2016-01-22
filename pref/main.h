@@ -32,9 +32,11 @@
    #include <stdio.h>
    #include <string.h>
 
+// ../headers directory
+#ifdef USE_APIEX
    #include "ApiEx.h"
    #include "APIexPM.h"
-// ../headers directory
+#endif
    #include "stlrDefs.h"          // common usage data types and constants
    #include "stlrGraphics.h"
    #include "stlrOptions.h"
@@ -51,6 +53,7 @@
    #include "shutdownData.h"
    #include "winKeyData.h"
    #include "worker.h"
+#ifdef USE_APIEX
 // eCS installer - headers directory
    #include "boxclass.h"
    #include "stfv.h"
@@ -59,7 +62,10 @@
    #include "GuidProc.h"
    #include "gpExport.h"
    #include "ClibWrap.h"
-
+#else
+   #include "memxwrap.h"
+   #include "apixwrap.h"
+#endif
    #ifndef RC_INVOKED
    #endif
 

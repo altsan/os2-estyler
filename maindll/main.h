@@ -21,9 +21,14 @@
    #define INCL_WIN
    #define INCL_WINWORKPLACE
    #include <os2.h>
+   #include <stdio.h>
    #include <string.h>
+#ifdef USE_APIEX
    #include "ApiExPM.h"
    #include "ctrlutil.h"
+#else
+   #include "apixwrap.h"
+#endif
    #include "stlrVersion.h"       // version number
    #include "stlrDefs.h"          // common usage data types and constants
    #include "types.h"             // innner usage data types
