@@ -25,7 +25,7 @@ EXTRAFLAGS =
 # Debug version
 !ifdef DEBUG
 
-CFLAGS = /I..\\headers /I$(APIEXINCL) /I$(LVMTKINCL) /Ss /Ti /Rn /G5 /C /Q
+CFLAGS = /I..\\headers /I$(APIEXINCL) /I$(LVMTKINCL) /Ss /Ti /Rn /G5 /C /Q $(EXTRAFLAGS)
 LFLAGS = /DE /E:2 /PM:PM /PACKD /A:4 /OPTF /NOL /M /L
 
 !else

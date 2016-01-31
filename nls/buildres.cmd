@@ -18,6 +18,7 @@ srcFile   = "estylerRes"     /* main rc file               */
 /* these paths are relative to the path of this script !!! */
 hPath1    = "..\headers"     /* eStylerLite common headers */
 hPath2    = value("APIEXINCL",,"OS2ENVIRONMENT") /* GUIDPROC/APIexDLL headers  */
+if hPath2 == '' then hPath2 = "..\shared\headers"
 
 arg lang
 lang = filespec(name, lang)

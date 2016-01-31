@@ -16,7 +16,7 @@ module    = "ESTLRLRS"       /* module name                */
 srcFile   = "estylerRes"     /* main rc file               */
 /* these paths are relative to the path of this script !!! */
 hPath1    = "..\headers"     /* eStylerLite common headers */
-hPath2    = "..\APIexH"      /* GUIDPROC/APIexDLL headers  */
+hPath2    = "..\shared\headers"          /* other headers  */
 
 arg lang
 lang = filespec(name, lang)
@@ -63,7 +63,7 @@ makeDLL: procedure
 
    /* call the resource compiler to create the resource file */
    call directory srcPath
-   "@WRC2 "rcOptions" "rcname".rc "targetPath"\"rcname".res"
+   "@WRC "rcOptions" "rcname".rc "targetPath"\"rcname".res"
 
    call directory targetPath
    /* aggiunge le risorse alla DLL */

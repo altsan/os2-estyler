@@ -4,6 +4,10 @@
 #.SUFFIXES: \
 #    .C .obj .rc .res
 
+EXTRAFLAGS =
+# To build using the APIEX000 headers set the following:
+# EXTRAFLAGS = /DUSE_APIEX=1
+
 # compiler, linker, resource compiler, resource binder MACRO
 
 CC = icc.exe
@@ -15,12 +19,12 @@ RB = rc.exe
 
 # Debug version
 !ifdef DEBUG
-CFLAGS = /I..\headers /I$(APIEXINCL) /Ss /Q /Ti /Rn /Ge- /G5 /C /DDEBUGGING=2
+CFLAGS = /I..\headers /I$(APIEXINCL) /Ss /Q /Ti /Rn /Ge- /G5 /C /DDEBUGGING=2 $(EXTRAFLAGS)
 LFLAGS = /DE /E:2 /PM:PM /PACKD /A:4 /OPTF /NOL /M /L
 
 !else
 # RELEASE version
-CFLAGS = /I..\headers /I$(APIEXINCL) /Ss /Q /O /Oc /Rn /Ge- /G5 /C
+CFLAGS = /I..\headers /I$(APIEXINCL) /Ss /Q /O /Oc /Rn /Ge- /G5 /C $(EXTRAFLAGS)
 LFLAGS = /E:2 /PM:PM /PACKD /A:4 /OPTF /NOL /M /L
 
 !endif

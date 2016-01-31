@@ -170,6 +170,10 @@ BOOL APIENTRY EDStbReg(HAB hab);
 #define CtrlUpdate(hwnd, f) \
     (WinIsWindowShowing(hwnd) ? WinInvalidateRect((hwnd), NULL, (f)) : 0)
 
+#define CtrlUpdateRect(hwnd, prec, f) \
+    (WinIsWindowShowing(hwnd) ? WinInvalidateRect((hwnd), (prec), (f)) : 0)
+
+
 typedef struct {
     LONG x, y, cx, cy;
 } WPOSSIZE, *PWPOSSIZE;
