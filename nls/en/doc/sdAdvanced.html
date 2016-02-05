@@ -29,8 +29,8 @@ means 8 seconds).
 <dl>
 <dt><b>Lockup and suspend</b></dt>
 <dd>various motherboards are not fully compatible with the
-eComStation advanced power management, so the system may
-hang if a suspend command is issued while the mouse is moved.
+OS/2 advanced power management, so the system may hang if a
+suspend command is issued while the mouse is moved.
 The lockup and suspend delay ensures that the system is fully
 locked up before being suspended.<br>
 If you want to get a faster lockup and suspend just try to
@@ -48,7 +48,8 @@ If you do not use the eComCenter (WarpCenter) you can ignore this setting.</dd>
 <dt><b>Unroll windows</b></dt>
 <dd>This delay allows any rolled windows to be unrolled on system
 shutdown.<br>
-Ignore this setting if you are not a Styler/2 user.<br>
+Ignore this setting if you do not have the separate Styler/2 product
+installed.<br>
 If you do not use the Styler/2 roll-windows feature or have
 a fast system you can safely lower this value to the minimum.</dd>
 <dt><b>System shutdown message boxes</b></dt>
@@ -57,13 +58,13 @@ allowing for the substitution with the enhanced dialogs.<br>
 If the system hangs on shutdown, you may try to change this value
 by increasing or decreasing it.</dd>
 <dt><b>DosKillProcess</b></dt>
-<dd>This delay represents the interval that eStyler will wait after
-executing <i>DosKillProcess</i> to stop all programs in the termination
-list, before calling <i>WinShutdownSystem</i>. Some programs may take
-a few moments to terminate properly; if this occurs with non-PM programs,
-they may interfere with the system shutdown.  You may have to increase
-this value if the shutdown fails because one or more programs is not
-being terminated in time.</dd>
+<dd>This delay controls the interval that the enhanced shutdown
+procedure will wait after executing <i>DosKillProcess</i> to stop
+all programs in the termination list, before it calls <i>WinShutdownSystem</i>.
+Some programs may take a few moments to terminate properly; if this occurs
+with non-PM programs, they may interfere with the system shutdown.  You may
+have to increase this value if the shutdown fails because one or more programs
+is not being terminated in time.</dd>
 <dt><b>WinShutdownSystem</b></dt>
 <dd>This item delays the destruction of the <i>Window List</i>
 window suspending so the execution of the <i>WinShutdownSystem</i> API.<br>
