@@ -10,7 +10,7 @@
 
 call "..\estlrenv.cmd"
 author    = "Alessandro Cantatore";
-applVer   = "1.1";
+applVer   = "1.1.200";
 applStart = "eStylerLite";
 applEnd   = "resources v. 1.1 - (c) 1998-2004 "author;
 module    = "ESTLRLRS"       /* module name                */

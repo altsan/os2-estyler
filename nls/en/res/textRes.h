@@ -141,7 +141,7 @@
 #define SZ_PIVERSION             "Version %d.%d - build no. %d"
 #define SZ_PICPYRIGHT            "(c) 1998-2004 Alessandro Felice Cantatore"
 #define SZ_PICPYRIGHT2           "Portions (c) 2008-2016 Alexander Taylor"
-#define SZ_PIURL                 "http://xoomer.virgilio.it/acantato"
+#define SZ_PIURL                 "https://github.com/altsan/os2-estyler"
 #define SZ_PILICENSE             "Licensed under the GNU General Public License version 3"
 
 /* --------------------------------------------------------------------------
