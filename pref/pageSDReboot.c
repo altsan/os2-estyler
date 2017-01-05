@@ -19,30 +19,30 @@
 #define CHECK_UNDOSTATE      2
 
 // prototypes ---------------------------------------------------------------
-BOOL onDlgInit(HWND hwnd);
-VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
-VOID onCmdMsg(HWND hwnd, ULONG id);
-VOID onWorkerJobEnd(HWND hwnd, ULONG jobId, ULONG rc);
-VOID fillBootableVolumesList(HWND hwnd);
-VOID handleEntryFieldContentChange(HWND hwnd);
-VOID checkOptionsChanged(HWND hwnd, ULONG fl);
-VOID applyOptions(HWND hwnd);
-VOID undoOptions(HWND hwnd);
-VOID addItem(HWND hwnd);
-VOID delItem(HWND hwnd);
-VOID editItem(HWND hwnd);
-PSZ getListContent(HWND hwnd, PULONG pCb);
-BOOL getBootList(HWND hwnd);
-MRESULT EXPENTRY waitDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
-ULONG getBootListJob(PGETBOOTLIST pgbl);
-VOID freeBootListData(PGETBOOTLIST pgbl);
-ULONG checkAirBoot(PGETBOOTLIST pgbl);
-ULONG getVolList(HFILE hDrive, PAIRBOOTVOLREC pVolRec,
+static BOOL onDlgInit(HWND hwnd);
+static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
+static VOID onCmdMsg(HWND hwnd, ULONG id);
+static VOID onWorkerJobEnd(HWND hwnd, ULONG jobId, ULONG rc);
+static VOID fillBootableVolumesList(HWND hwnd);
+static VOID handleEntryFieldContentChange(HWND hwnd);
+static VOID checkOptionsChanged(HWND hwnd, ULONG fl);
+static VOID applyOptions(HWND hwnd);
+static VOID undoOptions(HWND hwnd);
+static VOID addItem(HWND hwnd);
+static VOID delItem(HWND hwnd);
+static VOID editItem(HWND hwnd);
+static PSZ getListContent(HWND hwnd, PULONG pCb);
+static BOOL getBootList(HWND hwnd);
+static MRESULT EXPENTRY waitDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
+static ULONG getBootListJob(PGETBOOTLIST pgbl);
+static VOID freeBootListData(PGETBOOTLIST pgbl);
+static ULONG checkAirBoot(PGETBOOTLIST pgbl);
+static ULONG getVolList(HFILE hDrive, PAIRBOOTVOLREC pVolRec,
                  PGETBOOTLIST pgbl, ULONG cVols);
-ULONG readDiskSector(HFILE hDrive, ULONG sector, PBYTE buf);
-BOOL isValidAirBootVersion(PAIRBOOTMAIN pabm);
-ULONG checkLVM(PGETBOOTLIST pgbl);
-VOID addFoundVolumes(HWND hwnd, PGETBOOTLIST pgbl);
+static ULONG readDiskSector(HFILE hDrive, ULONG sector, PBYTE buf);
+static BOOL isValidAirBootVersion(PAIRBOOTMAIN pabm);
+static ULONG checkLVM(PGETBOOTLIST pgbl);
+static VOID addFoundVolumes(HWND hwnd, PGETBOOTLIST pgbl);
 
 // global variables ---------------------------------------------------------
 static BOOL g_edit = FALSE;

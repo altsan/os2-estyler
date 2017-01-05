@@ -10,17 +10,20 @@
 // includes -----------------------------------------------------------------
 #include "main.h"
 #include "error.h"
+#ifdef __KLIBC__
+#include <386/builtin.h>
+#endif
 #include <umalloc.h>
 #include <stdlib.h>
 
 
 // prototypes ---------------------------------------------------------------
-VOID APIENTRY processExitHandler(ULONG ul);
-BOOL isException(PSZ pszModule);
-BOOL meminit(VOID);
-BOOL memterm(VOID);
-void* heapIncrease(Heap_t uhp, size_t* plen, int* pfl);
-void heapDecrease(Heap_t uhp, PVOID p, size_t size);
+static VOID APIENTRY processExitHandler(ULONG ul);
+static BOOL isException(PSZ pszModule);
+static BOOL meminit(VOID);
+static BOOL memterm(VOID);
+static void* heapIncrease(Heap_t uhp, size_t* plen, int* pfl);
+static void heapDecrease(Heap_t uhp, PVOID p, size_t size);
 PVOID memLkRealloc(PVOID p, ULONG cb);
 VOID memHeapMin(VOID);
 

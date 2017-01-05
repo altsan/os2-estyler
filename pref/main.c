@@ -19,16 +19,16 @@
 
 
 // prototypes ---------------------------------------------------------------
-VOID runApplication(VOID);
-MRESULT EXPENTRY mainDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
-VOID onDlgInit(HWND hwnd);
-BOOL onDlgDeferredInit(HWND hwnd, HWND hwndPrevious);
-BOOL addToWinList(HWND hwnd);
-VOID restoreWinPos(HWND hwnd);
-BOOL setNotebookPages(HWND hwnd);
-VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, PPAGESELECTNOTIFY ppsn);
+static VOID runApplication(VOID);
+static MRESULT EXPENTRY mainDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
+static VOID onDlgInit(HWND hwnd);
+static BOOL onDlgDeferredInit(HWND hwnd, HWND hwndPrevious);
+static BOOL addToWinList(HWND hwnd);
+static VOID restoreWinPos(HWND hwnd);
+static BOOL setNotebookPages(HWND hwnd);
+static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, PPAGESELECTNOTIFY ppsn);
 BOOL onSaveApplication(HWND hwnd);
-BOOL insertPage(ULONG idx, ULONG idStatusText,
+static BOOL insertPage(ULONG idx, ULONG idStatusText,
                 ULONG idMajTabText, ULONG idMinTabText,
                 PFNWP pfnDlg, ULONG dlgID,
                 ULONG BFAflag, ULONG BKAflag);

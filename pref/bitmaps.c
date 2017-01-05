@@ -17,12 +17,12 @@
 
 
 // prototypes ---------------------------------------------------------------
-ULONG readBmpFile(PSZ pszFile, PBITMAPFILEHEADER pBmp, PULONG pCbBmp);
-BOOL saveBmpData(PAPPLYBMP pa);
-BOOL isValidBmpFile(PSZ pszFileName, PBMPLIMITS pbl);
-ULONG calcBmpDataSize(ULONG cx, ULONG cy, ULONG cClrs);
-BOOL addImageJob(PADDBMPFILE pabf);
-VOID freeAddImageRes(PADDBMPFILE pabf);
+static ULONG readBmpFile(PSZ pszFile, PBITMAPFILEHEADER pBmp, PULONG pCbBmp);
+static BOOL saveBmpData(PAPPLYBMP pa);
+static BOOL isValidBmpFile(PSZ pszFileName, PBMPLIMITS pbl);
+static ULONG calcBmpDataSize(ULONG cx, ULONG cy, ULONG cClrs);
+static BOOL addImageJob(PADDBMPFILE pabf);
+static VOID freeAddImageRes(PADDBMPFILE pabf);
 
 // global variables ---------------------------------------------------------
 

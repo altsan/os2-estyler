@@ -13,22 +13,22 @@
 #include "error.h"
 
 // prototypes ---------------------------------------------------------------
-BOOL initialize(ULONG hmod);
-BOOL terminate(VOID);
-BOOL keyPressedToAbortLoading(VOID);
-VOID readProfile(VOID);
-VOID setUserInterfaceDefaults(VOID);
-BOOL cacheSysVals(VOID);
-BOOL stlrQueryScreenCaps(PSCRRES pScreenData);
-VOID handleColorDepthChange(HINI hini, ULONG cclrs);
-VOID migrateImageName(HINI hini, PSZ pOldApp, PSZ pNewApp, PSZ pKey, PSZ pBuf);
-VOID migrateImageData(HINI hini, PSZ pOldApp, PSZ pNewApp, PSZ pKey, PSZ pBuf);
-BOOL superclassMainPMclasses(VOID);
-BOOL stlrSuperclass(PSZ pszClass, PCLASSDATA pcd, PFNWP pfnwpNew,
+static BOOL initialize(ULONG hmod);
+static BOOL terminate(VOID);
+static BOOL keyPressedToAbortLoading(VOID);
+static VOID readProfile(VOID);
+static VOID setUserInterfaceDefaults(VOID);
+static BOOL cacheSysVals(VOID);
+static BOOL stlrQueryScreenCaps(PSCRRES pScreenData);
+static VOID handleColorDepthChange(HINI hini, ULONG cclrs);
+static VOID migrateImageName(HINI hini, PSZ pOldApp, PSZ pNewApp, PSZ pKey, PSZ pBuf);
+static VOID migrateImageData(HINI hini, PSZ pOldApp, PSZ pNewApp, PSZ pKey, PSZ pBuf);
+static BOOL superclassMainPMclasses(VOID);
+static BOOL stlrSuperclass(PSZ pszClass, PCLASSDATA pcd, PFNWP pfnwpNew,
                     LONG cbWin, ULONG id1, ULONG id2);
-TID initWorkerThreads(VOID);
-BOOL initHooks(HMODULE hmod);
-VOID checkWarpCenterClass(VOID);
+static TID initWorkerThreads(VOID);
+static BOOL initHooks(HMODULE hmod);
+static VOID checkWarpCenterClass(VOID);
 
 // global variables ---------------------------------------------------------
 GLOBAL g;
@@ -42,6 +42,9 @@ OPTIONS o;
 
 #pragma entry(eStylerInitTerm)
 
+#ifdef __KLIBC__
+#define eStylerInitTerm _DLL_InitTerm
+#endif
 
 /* --------------------------------------------------------------------------
  DLL initialization/termination routine
@@ -73,6 +76,11 @@ ULONG _System eStylerInitTerm(ULONG hmod, ULONG flag) {
 -------------------------------------------------------------------------- */
 static BOOL initialize(ULONG hmod) {
    TID tid;
+#ifdef __KLIBC__
+   if (_CRT_init() != 0)
+       return;
+   __ctordtorInit();
+#endif
    m_setVersion(&g.version);     // set version number
    dbgInit();                    // debug initialization
    if (g.pid.protshell) return FALSE; // abort if DLL is already loaded
@@ -122,6 +130,10 @@ error0:
  BOOL : TRUE/FALSE (success/error)
 -------------------------------------------------------------------------- */
 static BOOL terminate(VOID) {
+#ifdef __KLIBC__
+    __ctordtorTerm();
+    _CRT_term();
+#endif
    return TRUE;
 }
 

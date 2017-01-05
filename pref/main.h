@@ -285,5 +285,9 @@ MRESULT EXPENTRY sdProgsPageProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
 MRESULT EXPENTRY sdKillPageProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
 MRESULT EXPENTRY wkPageProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
 
+#ifdef __KLIBC__
+#define WinShowControl(hwndDlg, id, fShow) \
+WinShowWindow(WinWindowFromID(hwndDlg, id), fShow)
+#endif
 
 #endif // #ifndef _STLRPREF_H_

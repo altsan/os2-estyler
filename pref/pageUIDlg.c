@@ -18,19 +18,19 @@
 
 
 // prototypes ---------------------------------------------------------------
-BOOL onDlgInit(HWND hwnd);
-VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
-VOID onCmdMsg(HWND hwnd, ULONG id);
-VOID setControlsState(HWND hwnd);
-VOID setEnableDependencies(HWND hwnd);
-VOID checkOptionsChanged(VOID);
-VOID checkApplyState(VOID);
-VOID checkUndoState(VOID);
-VOID checkDefaultState(VOID);
-VOID applyOptions(HWND hwnd);
-VOID undoOptions(HWND hwnd);
-VOID defaultOptions(HWND hwnd);
-VOID selectFont(HWND hwnd);
+static BOOL onDlgInit(HWND hwnd);
+static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
+static VOID onCmdMsg(HWND hwnd, ULONG id);
+static VOID setControlsState(HWND hwnd);
+static VOID setEnableDependencies(HWND hwnd);
+static VOID checkOptionsChanged(VOID);
+static VOID checkApplyState(VOID);
+static VOID checkUndoState(VOID);
+static VOID checkDefaultState(VOID);
+static VOID applyOptions(HWND hwnd);
+static VOID undoOptions(HWND hwnd);
+static VOID defaultOptions(HWND hwnd);
+static VOID selectFont(HWND hwnd);
 
 // global variables ---------------------------------------------------------
 

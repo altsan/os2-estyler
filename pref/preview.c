@@ -20,28 +20,33 @@
 // definitions --------------------------------------------------------------
 
 // prototypes ---------------------------------------------------------------
-VOID showPreviewWindow(BOOL bShow, BOOL bSetFlag);
-BOOL createPreviewWindow(VOID);
-MRESULT EXPENTRY mainClientProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
-VOID mainClientPaint(HWND hwnd);
-VOID mainClientSize(HWND hwnd, ULONG cx, ULONG cy);
-MRESULT EXPENTRY activeDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
-VOID rearrangeControls(HWND hwnd, PSWP pswp);
-MRESULT EXPENTRY inactiveDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
-VOID subClassTitlebar(HWND hwnd, PTBARHILITE ptbo);
-VOID subClassButtons(HWND hwnd);
-VOID setDialogFont(HWND hwnd);
-MRESULT EXPENTRY newTitlebarProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
-MRESULT EXPENTRY newFrameProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
-VOID handleTitlebarPaintEvent(HWND hwnd);
-VOID paintTitlebar(HWND hwnd, HPS hps, PTBARHILITE ptbo, PSIZEL pSize);
-MRESULT EXPENTRY newBtnProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
-VOID handlePaintRequest(HWND hwnd);
-VOID paintBtn(HWND hwnd, HPS hps);
-BOOL drawDisabledRect(HPS hps, PRECTL prcl, LONG color);
-VOID getBtnColors(HWND hwnd, HPS hps, PPVBTN pbtn);
-LONG getCtlClr(HWND hwnd, HPS hps, ULONG ulid1, ULONG ulid2, LONG ldef);
-MRESULT overrideBtnProc(HWND hwnd, ULONG msg, MPARAM mp1);
+static VOID showPreviewWindow(BOOL bShow, BOOL bSetFlag);
+static BOOL createPreviewWindow(VOID);
+static MRESULT EXPENTRY mainClientProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
+static VOID mainClientPaint(HWND hwnd);
+static VOID mainClientSize(HWND hwnd, ULONG cx, ULONG cy);
+static MRESULT EXPENTRY activeDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
+static VOID rearrangeControls(HWND hwnd, PSWP pswp);
+static MRESULT EXPENTRY inactiveDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
+static VOID subClassTitlebar(HWND hwnd, PTBARHILITE ptbo);
+static VOID subClassButtons(HWND hwnd);
+static VOID setDialogFont(HWND hwnd);
+static MRESULT EXPENTRY newTitlebarProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
+static MRESULT EXPENTRY newFrameProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
+static VOID handleTitlebarPaintEvent(HWND hwnd);
+static VOID paintTitlebar(HWND hwnd, HPS hps, PTBARHILITE ptbo, PSIZEL pSize);
+static MRESULT EXPENTRY newBtnProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
+static VOID handlePaintRequest(HWND hwnd);
+static VOID paintBtn(HWND hwnd, HPS hps);
+static BOOL drawDisabledRect(HPS hps, PRECTL prcl, LONG color);
+static VOID getBtnColors(HWND hwnd, HPS hps, PPVBTN pbtn);
+static LONG getCtlClr(HWND hwnd, HPS hps, ULONG ulid1, ULONG ulid2, LONG ldef);
+static MRESULT overrideBtnProc(HWND hwnd, ULONG msg, MPARAM mp1);
+
+#ifdef __KLIBC__
+#define min( __a, __b) ((__a < __b) ? __a : __b)
+#define max( __a, __b) ((__a > __b) ? __a : __b)
+#endif
 
 // global variables ---------------------------------------------------------
 PFNWP defTitlebarProc;

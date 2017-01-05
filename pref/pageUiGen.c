@@ -18,15 +18,15 @@
 
 
 // prototypes ---------------------------------------------------------------
-BOOL onDlgInit(HWND hwnd);
-VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
-VOID onCmdMsg(HWND hwnd, ULONG id);
-VOID enablePageControls(HWND hwnd, BOOL flag);
-BOOL initExceptionsList(HWND hwnd);
-BOOL saveExceptions(HWND hwnd);
-VOID addExe(HWND hwnd);
-VOID remExe(HWND hwnd);
-VOID findExe(HWND hwnd);
+static BOOL onDlgInit(HWND hwnd);
+static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
+static VOID onCmdMsg(HWND hwnd, ULONG id);
+static VOID enablePageControls(HWND hwnd, BOOL flag);
+static BOOL initExceptionsList(HWND hwnd);
+static BOOL saveExceptions(HWND hwnd);
+static VOID addExe(HWND hwnd);
+static VOID remExe(HWND hwnd);
+static VOID findExe(HWND hwnd);
 
 // global variables ---------------------------------------------------------
 

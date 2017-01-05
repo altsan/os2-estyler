@@ -18,18 +18,18 @@
 
 
 // prototypes ---------------------------------------------------------------
-BOOL importProcedures(VOID);
-BOOL getCurrentSettings(VOID);
-BOOL getBmpFileNamesAndData(VOID);
-BOOL getStlrBmpDetails(HINI hini, PBMPFILEDATA p, PSZ pszNameKey, PSZ pszDataKey,
+static BOOL importProcedures(VOID);
+static BOOL getCurrentSettings(VOID);
+static BOOL getBmpFileNamesAndData(VOID);
+static BOOL getStlrBmpDetails(HINI hini, PBMPFILEDATA p, PSZ pszNameKey, PSZ pszDataKey,
                        ULONG idRes, ULONG flPreview, ULONG updateMsg);
-BOOL getPrfData(HINI hini, PSZ pszApp, PSZ pszKey, PULONG pCb, PBYTE* ppData);
-BOOL getShutdownData(VOID);
-BOOL getWinPos(VOID);
-BOOL initBitmapHandles(VOID);
-VOID initFileSelDlgBuffer(VOID);
-VOID resetBmpHandles(PUIOPTIONS pOpts);
-VOID endHelp(VOID);
+static BOOL getPrfData(HINI hini, PSZ pszApp, PSZ pszKey, PULONG pCb, PBYTE* ppData);
+static BOOL getShutdownData(VOID);
+static BOOL getWinPos(VOID);
+static BOOL initBitmapHandles(VOID);
+static VOID initFileSelDlgBuffer(VOID);
+static VOID resetBmpHandles(PUIOPTIONS pOpts);
+static VOID endHelp(VOID);
 
 // global variables ---------------------------------------------------------
 

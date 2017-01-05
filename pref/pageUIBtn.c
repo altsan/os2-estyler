@@ -18,23 +18,23 @@
 
 
 // prototypes ---------------------------------------------------------------
-BOOL onDlgInit(HWND hwnd);
-VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
-VOID onCmdMsg(HWND hwnd, ULONG id);
-VOID onWorkerJobEnd(HWND hwnd, ULONG jobId, ULONG rc);
-VOID setControlsState(HWND hwnd, PSZ pszBmpFile);
-VOID setEnableDependencies(HWND hwnd);
-VOID checkApplyState(VOID);
-VOID checkUndoState(VOID);
-VOID checkDefaultState(VOID);
-VOID applyOptions(HWND hwnd);
-BOOL deferredApplyOptions(HWND hwnd, ULONG rc, PAPPLYBMP pa);
-VOID addButtonImage(HWND hwnd);
-BOOL deferredApplyOptions(HWND hwnd, ULONG rc, PAPPLYBMP pa);
-VOID undoOptions(HWND hwnd);
-VOID defaultOptions(HWND hwnd);
-BOOL getBtnImageData(HWND hwnd, HWND hCtrl);
-VOID setNewBtnBackground(HWND hwnd, PGETBMPDATA pgb, ULONG rc);
+static BOOL onDlgInit(HWND hwnd);
+static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
+static VOID onCmdMsg(HWND hwnd, ULONG id);
+static VOID onWorkerJobEnd(HWND hwnd, ULONG jobId, ULONG rc);
+static VOID setControlsState(HWND hwnd, PSZ pszBmpFile);
+static VOID setEnableDependencies(HWND hwnd);
+static VOID checkApplyState(VOID);
+static VOID checkUndoState(VOID);
+static VOID checkDefaultState(VOID);
+static VOID applyOptions(HWND hwnd);
+static BOOL deferredApplyOptions(HWND hwnd, ULONG rc, PAPPLYBMP pa);
+static VOID addButtonImage(HWND hwnd);
+static BOOL deferredApplyOptions(HWND hwnd, ULONG rc, PAPPLYBMP pa);
+static VOID undoOptions(HWND hwnd);
+static VOID defaultOptions(HWND hwnd);
+static BOOL getBtnImageData(HWND hwnd, HWND hCtrl);
+static VOID setNewBtnBackground(HWND hwnd, PGETBMPDATA pgb, ULONG rc);
 
 // global variables ---------------------------------------------------------
 

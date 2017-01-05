@@ -17,7 +17,7 @@
 
 
 // prototypes ---------------------------------------------------------------
-VOID EXPENTRY workerThreadProc(ULONG ul);
+static VOID EXPENTRY workerThreadProc(ULONG ul);
 
 // global variables ---------------------------------------------------------
 

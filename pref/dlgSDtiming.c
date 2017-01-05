@@ -18,13 +18,13 @@
 
 
 // prototypes ---------------------------------------------------------------
-BOOL onDlgInit(HWND hwnd);
-VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
-VOID checkSpin(HWND hwnd, HWND hSpin, ULONG event, PLONG pVal, PUSHORT pus);
-BOOL onCmdMsg(HWND hwnd, ULONG id);
-VOID setControlsState(HWND hwnd);
-VOID checkDefaultState(HWND hwnd);
-VOID defaultOptions(HWND hwnd);
+static BOOL onDlgInit(HWND hwnd);
+static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
+static VOID checkSpin(HWND hwnd, HWND hSpin, ULONG event, PLONG pVal, PUSHORT pus);
+static BOOL onCmdMsg(HWND hwnd, ULONG id);
+static VOID setControlsState(HWND hwnd);
+static VOID checkDefaultState(HWND hwnd);
+static VOID defaultOptions(HWND hwnd);
 
 // global variables ---------------------------------------------------------
 

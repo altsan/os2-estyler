@@ -27,31 +27,31 @@ extern PID pid;
 #define WPMENUID_SHUTDOWN  704
 
 // prototypes ---------------------------------------------------------------
-BOOL setBtnText(HWND hwnd, PCREATESTRUCT pCreateParm, PBTNDATA p);
-BOOL initBtnColors(HWND hwnd, PBTNDATA p);
-VOID resetDefBtnWndProc(HWND hwnd, PBTNDATA p);
-BOOL updatePresParms(HWND hwnd, ULONG idPresParm, PBTNDATA p);
-BOOL handleSysColorChange(HWND hwnd, PBTNDATA p);
-MRESULT overrideBtnProc(HWND hwnd, ULONG msg,
+static BOOL setBtnText(HWND hwnd, PCREATESTRUCT pCreateParm, PBTNDATA p);
+static BOOL initBtnColors(HWND hwnd, PBTNDATA p);
+static VOID resetDefBtnWndProc(HWND hwnd, PBTNDATA p);
+static BOOL updatePresParms(HWND hwnd, ULONG idPresParm, PBTNDATA p);
+static BOOL handleSysColorChange(HWND hwnd, PBTNDATA p);
+static MRESULT overrideBtnProc(HWND hwnd, ULONG msg,
                         MPARAM mp1, MPARAM mp2, PBTNDATA p);
-BOOL handlePaintRequest(HWND hwnd, PBTNDATA p);
-VOID paintBtn(HWND hwnd, PBTNDATA p, PBTNDRAW pbd);
-VOID drawTempBitmap(PBTNDATA p, PBTNDRAW pbd);
+static BOOL handlePaintRequest(HWND hwnd, PBTNDATA p);
+static VOID paintBtn(HWND hwnd, PBTNDATA p, PBTNDRAW pbd);
+static VOID drawTempBitmap(PBTNDATA p, PBTNDRAW pbd);
 VOID stlrSetBtnPalette(PBMPHDR pbh, PCLR pClrBkgnd);
-BOOL setFgndClipRectangle(HPS hps, PRECTL pr);
-VOID drawFgndBitmap(PBTNDATA p, PBTNDRAW pbd);
-VOID drawFgndMiniIcon(PBTNDATA p, PBTNDRAW pbd);
-VOID drawFgndIcon(PBTNDATA p, PBTNDRAW pbd);
-ULONG drawBtnText(PBTNDATA p, PBTNDRAW pbd, ULONG cyimg);
-VOID drawBorder(HWND hwnd, PBTNDATA p, PBTNDRAW pbd);
-BOOL drawDisabledRect(HPS hps, PRECTL prcl, LONG color);
-VOID getBtnColors(HWND hwnd, PBTNDATA p, HPS hps);
-LONG getCtlClr(HWND hwnd, HPS hps, ULONG ulid1, ULONG ulid2, LONG ldef);
-VOID deferWarpCenterSubclassing(HWND hwnd);
-BOOL EXPENTRY hookWcProc(HAB hab, PQMSG pqmsg, USHORT fs);
-MRESULT EXPENTRY newWcProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
-VOID warpCenterCmd(ULONG fl);
-VOID openWCProcessList(ULONG cyWarpCenter);
+static BOOL setFgndClipRectangle(HPS hps, PRECTL pr);
+static VOID drawFgndBitmap(PBTNDATA p, PBTNDRAW pbd);
+static VOID drawFgndMiniIcon(PBTNDATA p, PBTNDRAW pbd);
+static VOID drawFgndIcon(PBTNDATA p, PBTNDRAW pbd);
+static ULONG drawBtnText(PBTNDATA p, PBTNDRAW pbd, ULONG cyimg);
+static VOID drawBorder(HWND hwnd, PBTNDATA p, PBTNDRAW pbd);
+static BOOL drawDisabledRect(HPS hps, PRECTL prcl, LONG color);
+static VOID getBtnColors(HWND hwnd, PBTNDATA p, HPS hps);
+static LONG getCtlClr(HWND hwnd, HPS hps, ULONG ulid1, ULONG ulid2, LONG ldef);
+static VOID deferWarpCenterSubclassing(HWND hwnd);
+static BOOL EXPENTRY hookWcProc(HAB hab, PQMSG pqmsg, USHORT fs);
+static MRESULT EXPENTRY newWcProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
+static VOID warpCenterCmd(ULONG fl);
+static VOID openWCProcessList(ULONG cyWarpCenter);
 
 
 /* --------------------------------------------------------------------------

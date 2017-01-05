@@ -22,13 +22,13 @@
 
 // prototypes ---------------------------------------------------------------
 VOID processWkey(ULONG fl, HWND hwnd);
-VOID eCenterECSmenu(BOOL bottomCenter);
-VOID eCenterTrayList(VOID);
-VOID eCenterTrayNext(VOID);
-VOID eCenterSwitchToTray(ULONG iTray);
-VOID eCenterZorder(VOID);
-BOOL eCenterHandle(ULONG fl, PHWND phwnd);
-HWND eCenterTrayHandle(VOID);
+static VOID eCenterECSmenu(BOOL bottomCenter);
+static VOID eCenterTrayList(VOID);
+static VOID eCenterTrayNext(VOID);
+static VOID eCenterSwitchToTray(ULONG iTray);
+static VOID eCenterZorder(VOID);
+static BOOL eCenterHandle(ULONG fl, PHWND phwnd);
+static HWND eCenterTrayHandle(VOID);
 
 /* --------------------------------------------------------------------------
  Input hook procedure: intercept windows keys events.

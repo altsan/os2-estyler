@@ -19,15 +19,15 @@
 
 
 // prototypes ---------------------------------------------------------------
-BOOL onDlgInit(HWND hwnd);
-VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
-VOID onCmdMsg(HWND hwnd, ULONG id);
-VOID setControlsState(HWND hwnd, BOOL bSetRebootPage);
-VOID checkUndoState(VOID);
-VOID checkDefaultState(VOID);
-VOID undoOptions(HWND hwnd);
-VOID defaultOptions(HWND hwnd);
-BOOL setRebootPage(HWND hwnd, BOOL bShow);
+static BOOL onDlgInit(HWND hwnd);
+static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
+static VOID onCmdMsg(HWND hwnd, ULONG id);
+static VOID setControlsState(HWND hwnd, BOOL bSetRebootPage);
+static VOID checkUndoState(VOID);
+static VOID checkDefaultState(VOID);
+static VOID undoOptions(HWND hwnd);
+static VOID defaultOptions(HWND hwnd);
+static BOOL setRebootPage(HWND hwnd, BOOL bShow);
 
 // global variables ---------------------------------------------------------
 

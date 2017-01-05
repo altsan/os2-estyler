@@ -20,10 +20,10 @@
 #define WC_ESTLRWORKER          "eStylerWorker"
 
 // prototypes ---------------------------------------------------------------
-MRESULT EXPENTRY fnwpWorker(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
-HAPP runShutdownProgrListItem(PSHDWNPRGLIST pProgramList);
-BOOL systemShutdown(VOID);
-VOID setNextBootVolume(VOID);
+static MRESULT EXPENTRY fnwpWorker(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
+static HAPP runShutdownProgrListItem(PSHDWNPRGLIST pProgramList);
+static BOOL systemShutdown(VOID);
+static VOID setNextBootVolume(VOID);
 
 // global variables ---------------------------------------------------------
 static PSHDWNPRGLIST psdpl;

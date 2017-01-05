@@ -19,7 +19,7 @@
 
 
 // prototypes ---------------------------------------------------------------
-VOID setUserInterfaceDefaults(POPTIONS pOpts);
+static VOID setUserInterfaceDefaults(POPTIONS pOpts);
 
 // global variables ---------------------------------------------------------
 

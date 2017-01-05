@@ -20,20 +20,20 @@
 #define CHECK_UNDOSTATE      2
 
 // prototypes ---------------------------------------------------------------
-BOOL onDlgInit(HWND hwnd);
-VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
-VOID onCmdMsg(HWND hwnd, ULONG id);
-VOID fillRunProgramList(HWND hwnd);
-VOID setControlsState(HWND hwnd);
-VOID setEnableDependencies(HWND hwnd);
-VOID handleEntryFieldContentChange(HWND hwnd, HWND hCtrl);
-VOID checkOptionsChanged(HWND hwnd, ULONG fl);
-VOID applyOptions(HWND hwnd);
-VOID undoOptions(HWND hwnd);
-VOID addItem(HWND hwnd);
-VOID delItem(HWND hwnd);
-VOID editItem(HWND hwnd);
-PSZ getListContent(HWND hwnd, PULONG pCb);
+static BOOL onDlgInit(HWND hwnd);
+static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
+static VOID onCmdMsg(HWND hwnd, ULONG id);
+static VOID fillRunProgramList(HWND hwnd);
+static VOID setControlsState(HWND hwnd);
+static VOID setEnableDependencies(HWND hwnd);
+static VOID handleEntryFieldContentChange(HWND hwnd, HWND hCtrl);
+static VOID checkOptionsChanged(HWND hwnd, ULONG fl);
+static VOID applyOptions(HWND hwnd);
+static VOID undoOptions(HWND hwnd);
+static VOID addItem(HWND hwnd);
+static VOID delItem(HWND hwnd);
+static VOID editItem(HWND hwnd);
+static PSZ getListContent(HWND hwnd, PULONG pCb);
 
 // global variables ---------------------------------------------------------
 static BOOL g_edit = FALSE;

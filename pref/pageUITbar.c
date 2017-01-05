@@ -21,32 +21,32 @@
 
 
 // prototypes ---------------------------------------------------------------
-BOOL onDlgInit(HWND hwnd);
-VOID setControlsState(HWND hwnd, PTBARHILITE ptbo, PSZ pszBmpFile);
-VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
-VOID onCmdMsg(HWND hwnd, ULONG id);
-VOID onWorkerJobEnd(HWND hwnd, ULONG jobId, ULONG rc);
-VOID setBkgndControls(HWND hwnd, ULONG flBkgnd);
-VOID setBorderControls(HWND hwnd, BOOL bEnable);
-VOID setTextControls(HWND hwnd, BOOL bEnable);
-BOOL handleBkgndOptionChange(HWND hwnd, HWND hCtrl, PTBARHILITESETS p);
-VOID setShadeList(HWND hwnd, PTBARHILITE ptbo);
-VOID setShadeControls(HWND hwnd, INT index);
-BOOL handleShadeOptionChange(HWND hwnd, HWND hCtrl, PTBARHILITESETS p);
-BOOL handleBkgndImageChange(HWND hwnd, HWND hCtrl, PTBARHILITESETS p);
-VOID checkApplyState(PTBARHILITESETS p);
-VOID checkUndoState(PTBARHILITESETS p);
-VOID checkDefaultState(PTBARHILITESETS p);
-VOID applyOptions(HWND hwnd, PTBARHILITESETS p);
-BOOL deferredApplyOptions(HWND hwnd, ULONG rc, PAPPLYBMP pa);
-BOOL applyBkgndBitmap(HWND hwnd, PAPPLYBMP pa);
-BOOL applyBkgndShade(HWND hwnd, PAPPLYBMP pa);
-VOID applyBkgndColor(HWND hwnd, PAPPLYBMP pa);
-VOID undoOptions(HWND hwnd, PTBARHILITESETS p);
-VOID defaultOptions(HWND hwnd, PTBARHILITESETS p);
-VOID swapColors(HWND hwnd, ULONG id1, ULONG id2);
-BOOL getTitlebarBitmapData(HWND hwnd, PTBARHILITESETS p);
-VOID setNewTitlebarBackground(HWND hwnd, PTBARHILITESETS p,
+static BOOL onDlgInit(HWND hwnd);
+static VOID setControlsState(HWND hwnd, PTBARHILITE ptbo, PSZ pszBmpFile);
+static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
+static VOID onCmdMsg(HWND hwnd, ULONG id);
+static VOID onWorkerJobEnd(HWND hwnd, ULONG jobId, ULONG rc);
+static VOID setBkgndControls(HWND hwnd, ULONG flBkgnd);
+static VOID setBorderControls(HWND hwnd, BOOL bEnable);
+static VOID setTextControls(HWND hwnd, BOOL bEnable);
+static BOOL handleBkgndOptionChange(HWND hwnd, HWND hCtrl, PTBARHILITESETS p);
+static VOID setShadeList(HWND hwnd, PTBARHILITE ptbo);
+static VOID setShadeControls(HWND hwnd, INT index);
+static BOOL handleShadeOptionChange(HWND hwnd, HWND hCtrl, PTBARHILITESETS p);
+static BOOL handleBkgndImageChange(HWND hwnd, HWND hCtrl, PTBARHILITESETS p);
+static VOID checkApplyState(PTBARHILITESETS p);
+static VOID checkUndoState(PTBARHILITESETS p);
+static VOID checkDefaultState(PTBARHILITESETS p);
+static VOID applyOptions(HWND hwnd, PTBARHILITESETS p);
+static BOOL deferredApplyOptions(HWND hwnd, ULONG rc, PAPPLYBMP pa);
+static BOOL applyBkgndBitmap(HWND hwnd, PAPPLYBMP pa);
+static BOOL applyBkgndShade(HWND hwnd, PAPPLYBMP pa);
+static VOID applyBkgndColor(HWND hwnd, PAPPLYBMP pa);
+static VOID undoOptions(HWND hwnd, PTBARHILITESETS p);
+static VOID defaultOptions(HWND hwnd, PTBARHILITESETS p);
+static VOID swapColors(HWND hwnd, ULONG id1, ULONG id2);
+static BOOL getTitlebarBitmapData(HWND hwnd, PTBARHILITESETS p);
+static VOID setNewTitlebarBackground(HWND hwnd, PTBARHILITESETS p,
                               PGETBMPDATA pgb, ULONG rc);
 
 // global variables ---------------------------------------------------------

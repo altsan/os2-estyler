@@ -17,7 +17,7 @@
 #include "stlrGraphics.h"
 
 // prototypes ---------------------------------------------------------------
-BOOL isWinOS2Window(HWND hwnd, PTBDATA p);
+static BOOL isWinOS2Window(HWND hwnd, PTBDATA p);
 ULONG copyStripReturns(PSZ target, PSZ source);
 VOID drawTitlebar(HPS hps, PTBDATA p);
 

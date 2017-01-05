@@ -30,19 +30,19 @@
 // prototypes ---------------------------------------------------------------
 PREBOOTLIST getRebootList(VOID);
 ULONG selectShutdownMode(HAB hab, PDOSHUTDOWN p);
-MRESULT EXPENTRY shutdownScreenProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
-VOID animateShutdownScreen(HWND hwnd, PDOSHUTDOWN p);
-VOID blockMouse(HWND hwnd, INT x, INT y);
-MRESULT EXPENTRY shutdownSelProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
-MRESULT initShutdownSelDlg(HWND hwnd, PDOSHUTDOWN p);
-INT formatShutdownSelControls(HWND hwnd, PDOSHUTDOWN p);
-BOOL setCtrlPos(HWND hwnd, ULONG id, PPOINTL ppt,
+static MRESULT EXPENTRY shutdownScreenProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
+static VOID animateShutdownScreen(HWND hwnd, PDOSHUTDOWN p);
+static VOID blockMouse(HWND hwnd, INT x, INT y);
+static MRESULT EXPENTRY shutdownSelProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
+static MRESULT initShutdownSelDlg(HWND hwnd, PDOSHUTDOWN p);
+static INT formatShutdownSelControls(HWND hwnd, PDOSHUTDOWN p);
+static BOOL setCtrlPos(HWND hwnd, ULONG id, PPOINTL ppt,
                 LONG x, LONG y, LONG cx, LONG cy, ULONG fl);
-VOID handleCommand(HWND hwnd, ULONG idCmd);
-BOOL fillRebootList(HWND hwnd, PDOSHUTDOWN p);
-VOID handleCtrlMsgs(HWND hwnd, ULONG idCtrl, ULONG idEvent, HWND hCtrl);
-VOID runSysClosingBox(HAB hab, PDOSHUTDOWN p);
-MRESULT EXPENTRY sysTermMsgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
+static VOID handleCommand(HWND hwnd, ULONG idCmd);
+static BOOL fillRebootList(HWND hwnd, PDOSHUTDOWN p);
+static VOID handleCtrlMsgs(HWND hwnd, ULONG idCtrl, ULONG idEvent, HWND hCtrl);
+static VOID runSysClosingBox(HAB hab, PDOSHUTDOWN p);
+static MRESULT EXPENTRY sysTermMsgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
 VOID ForceCommitFn( PFN pAddress );
 
 // global variables ---------------------------------------------------------

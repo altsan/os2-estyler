@@ -18,8 +18,8 @@
 
 
 // prototypes ---------------------------------------------------------------
-BOOL onDlgInit(HWND hwnd);
-VOID onCmdMsg(HWND hwnd, ULONG id);
+static BOOL onDlgInit(HWND hwnd);
+static VOID onCmdMsg(HWND hwnd, ULONG id);
 
 // global variables ---------------------------------------------------------
 
