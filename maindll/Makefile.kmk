@@ -1,0 +1,32 @@
+#
+#
+#
+
+SUB_DEPTH = ..
+include $(KBUILD_PATH)/subheader.kmk
+
+DLLS                        = eStylerLite
+
+eStylerLite_TEMPLATE        = eStylerDLL
+eStylerLite_NAME            = estlrl11
+eStylerLite_SOURCES         = \
+                                main.c \
+                                bitmaps.c \
+                                process.c \
+                                button.c \
+                                debug.c \
+                                export.c \
+                                frame.c \
+                                hooks.c \
+                                shutdown.c \
+                                titlebar.c \
+                                utils.c \
+                                workthread.c \
+                                estyler.def
+
+eStylerLite_DEFS            = ACPI_ENABLED
+eStylerLite_INCS            = $(PATH_SDK_ACPI)/h
+eStylerLite_LIBS            =
+eStylerLite_CLEAN           =
+
+include $(FILE_KBUILD_SUB_FOOTER)

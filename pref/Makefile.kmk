@@ -1,0 +1,60 @@
+#
+#
+#
+
+SUB_DEPTH = ..
+include $(KBUILD_PATH)/subheader.kmk
+
+PROGRAMS                   += estylerUI
+INSTALLS                   += estylerUI-bkground estylerUI-button
+
+estylerUI_TEMPLATE          = eStyler
+estylerUI_NAME              = estyler
+estylerUI_SOURCES           = \
+                                main.c          \
+                                initend.c       \
+                                pmctrls.c       \
+                                selColor.c      \
+                                worker.c        \
+                                util.c          \
+                                bitmaps.c       \
+                                fontdlg.c       \
+                                preview.c       \
+                                test.c          \
+                                pageProdinfo.c  \
+                                pageSDGen.c     \
+                                pageSDKill.c    \
+                                pageSDProgs.c   \
+                                pageSDReboot.c  \
+                                pageUIBtn.c     \
+                                pageUIDlg.c     \
+                                pageUIGen.c     \
+                                pageUITbar.c    \
+                                pageUITbarGen.c \
+                                pageWinKeys.c   \
+                                dlgSDtiming.c   \
+                                apixwrap.c      \
+                                eStyler.def     \
+                                eStyler.rc
+
+estylerUI_CFLAGS            =
+estylerUI_LDFLAGS           =
+
+#estylerUI_DEFS              = _STLR_TEST_MODE_
+estylerUI_INCS              = ../shared/lvm_tk
+estylerUI_LIBS              = $(PATH_ROOT)/shared/util/afcutl05.lib $(PATH_ROOT)/shared/lvm_tk/lvm.lib
+estylerUI_CLEAN             =
+
+estylerUI-button_INST       = $(INST_BIN)/bitmap/button/
+estylerUI-button_SOURCES    = $(wildcard $(PATH_SUB_CURRENT)/pref/bitmap/button/*)
+estylerUI-button_CLEAN      =
+
+estylerUI-bkground_INST     = $(INST_BIN)/bitmap/tbkgnds/
+estylerUI-bkground_SOURCES  = $(wildcard $(PATH_SUB_CURRENT)/pref/bitmap/tbkgnds/*)
+estylerUI-bkground_CLEAN    =
+
+#build other files (e.g. help)
+OTHERS +=
+OTHER_CLEAN +=
+
+include $(FILE_KBUILD_SUB_FOOTER)

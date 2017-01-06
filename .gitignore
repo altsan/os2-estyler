@@ -16,3 +16,6 @@
 *.ZIP
 *.bak
 *.BAK
+
+# ignore output directory
+out/

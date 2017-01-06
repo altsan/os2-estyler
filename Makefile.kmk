@@ -1,0 +1,30 @@
+#
+# Top-level makefile
+#
+
+SUB_DEPTH = .
+include $(KBUILD_PATH)/subheader.kmk
+
+# local overrides
+PATH_TOOL_VAC308_LIB        = $(PATH_TOOL_VAC308)/lib;$(TOOLKIT)/lib
+PATH_TOOL_VAC308_HELP       = $(PATH_TOOL_VAC308)/help;$(TOOLKIT)/msg
+TOOL_VAC308_RC              = wrc.exe
+
+#
+# Include sub-makefiles.
+#
+
+# main dll
+include $(PATH_SUB_CURRENT)/maindll/Makefile.kmk
+
+# nls dll
+include $(PATH_SUB_CURRENT)/nls/Makefile.kmk
+
+# ui
+include $(PATH_SUB_CURRENT)/pref/Makefile.kmk
+
+#
+# The End.
+#
+
+include $(FILE_KBUILD_SUB_FOOTER)

@@ -1,0 +1,33 @@
+
+#
+# Include a site-specific config for local overrides
+#
+ifndef LOCALCFG
+ LOCALCFG := $(wildcard $(PATH_ROOT)/LocalConfig.kmk)
+ ifneq ($(LOCALCFG),)
+  include $(LOCALCFG)
+ endif
+endif
+
+#
+# Build templates
+#
+TEMPLATE_eStyler                    = eStyler NSL template
+TEMPLATE_eStyler_TOOL               = VAC308
+TEMPLATE_eStyler_RCTOOL             = OPENWATCOM
+TEMPLATE_eStyler_INCS               = ../shared/headers ../headers $(TOOLKIT)/h
+TEMPLATE_eStyler_CFLAGS             = /Ss /Q /C /Rn
+TEMPLATE_eStyler_CFLAGS.release     = /G5 /Oc
+TEMPLATE_eStyler_CFLAGS.debug       = /Ti
+TEMPLATE_eStyler_DEFS               =
+TEMPLATE_eStyler_DEFS.release       =
+TEMPLATE_eStyler_DEFS.debug         = DEBUGGING
+TEMPLATE_eStyler_LDFLAGS            = /B"/E:2" /B"/PM:PM" /B"/PACKD" /B"/A:4" \
+                                      /B"/OPTF" /B"/NOL" /B"/M" /B"/L"
+TEMPLATE_eStyler_LDFLAGS.release    =
+TEMPLATE_eStyler_LDFLAGS.debug      = /B"/DE"
+
+TEMPLATE_eStylerDLL                 = eStyler DLL template
+TEMPLATE_eStylerDLL_EXTENDS         = eStyler
+TEMPLATE_eStylerDLL_CFLAGS.debug   += /Ge-
+TEMPLATE_eStylerDLL_CFLAGS.release += /Ge-

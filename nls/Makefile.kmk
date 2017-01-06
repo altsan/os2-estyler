@@ -1,0 +1,80 @@
+#
+#
+#
+
+SUB_DEPTH = ..
+include $(KBUILD_PATH)/subheader.kmk
+
+DLLS                       += estylerEN estylerDE estylerJA
+INSTALLS                   += estylerEN-docs estylerDE-docs estylerJA-docs
+
+estylerEN_TEMPLATE          = eStylerDLL
+estylerEN_NAME              = estlrlrs
+estylerEN_INST              = $(INST_BIN)/en/
+estylerEN_SOURCES           = \
+                              res/@.c \
+                              res/estylerRes.rc \
+                              en/res/estlrlrs.def
+estylerEN_INCS              = en/res res
+
+estylerEN-docs_INST         = $(INST_BIN)/en/
+estylerEN-docs_SOURCES      = $(PATH_OBJ)/en/estyler.hlp
+estylerEN-docs_CLEAN        = $(PATH_OBJ)/en/estyler.hlp nls/en/doc/estyler.ipf
+
+estylerDE_TEMPLATE          = eStylerDLL
+estylerDE_NAME              = estlrlrs
+estylerDE_INST              = $(INST_BIN)/de/
+estylerDE_SOURCES           = \
+                              res/@.c \
+                              res/estylerRes.rc \
+                              de/res/estlrlrs.def
+estylerDE_INCS              = de/res res
+
+estylerDE-docs_INST         = $(INST_BIN)/de/
+estylerDE-docs_SOURCES      = $(PATH_OBJ)/de/estyler.hlp
+estylerDE-docs_CLEAN        = $(PATH_OBJ)/de/estyler.hlp nls/de/doc/estyler.ipf
+
+estylerJA_TEMPLATE          = eStylerDLL
+estylerJA_NAME              = estlrlrs
+estylerJA_INST              = $(INST_BIN)/ja/
+estylerJA_SOURCES           = \
+                              res/@.c \
+                              res/estylerRes.rc \
+                              ja/res/estlrlrs.def
+estylerJA_INCS              = ja/res res
+
+estylerJA-docs_INST         = $(INST_BIN)/ja/
+estylerJA-docs_SOURCES      = $(PATH_OBJ)/ja/estyler.hlp
+estylerJA-docs_CLEAN        = $(PATH_OBJ)/ja/estyler.hlp nls/ja/doc/estyler.ipf
+
+#
+include $(FILE_KBUILD_SUB_FOOTER)
+
+# here follows standard gnu make inference rules
+
+#
+# compile help files
+#
+$(PATH_OBJ)/en/estyler.hlp: nls/en/doc/estyler.lst
+	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/en
+	$(REDIRECT) -C $(PATH_ROOT)/nls/en/doc \
+		-E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' \
+		-- $(PATH_ROOT)/nls/tools/ipfbld estyler.lst
+	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' \
+		-- $(TOOLKIT)/bin/ipfc.exe -s -D:001 -C:850 -L:ENU $(PATH_ROOT)/nls/en/doc/estyler.ipf $@
+
+$(PATH_OBJ)/de/estyler.hlp: nls/de/doc/estyler.lst
+	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/de
+	$(REDIRECT) -C $(PATH_ROOT)/nls/de/doc \
+		-E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' \
+		-- $(PATH_ROOT)/nls/tools/ipfbld estyler.lst
+	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' \
+		-- $(TOOLKIT)/bin/ipfc.exe -s -D:049 -C:850 -L:DEU $(PATH_ROOT)/nls/de/doc/estyler.ipf $@
+
+$(PATH_OBJ)/ja/estyler.hlp: nls/ja/doc/estyler.lst
+	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/ja
+	$(REDIRECT) -C $(PATH_ROOT)/nls/ja/doc \
+		-E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' \
+		-- $(PATH_ROOT)/nls/tools/ipfbld estyler.lst
+	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' \
+		-- $(TOOLKIT)/bin/ipfc.exe -s -D:081 -C:932 -L:JPN $(PATH_ROOT)/nls/de/doc/estyler.ipf $@

@@ -140,7 +140,9 @@
 #define SZ_PRODUCT               "eStyler fÅr eComStation"
 #define SZ_PIVERSION             "Version %d.%d - Build-Nr. %d"
 #define SZ_PICPYRIGHT            "∏ 1998-2004 Alessandro Felice Cantatore"
-#define SZ_PIURL                 "http://xoomer.virgilio.it/acantato"
+#define SZ_PICPYRIGHT2           "Portions (c) 2008-2016 Alexander Taylor"
+#define SZ_PIURL                 "https://github.com/altsan/os2-estyler"
+#define SZ_PILICENSE             "Licensed under the GNU General Public License version 3"
 
 /* --------------------------------------------------------------------------
  SHUTDOWNGEN       shutdown - general options dialog
