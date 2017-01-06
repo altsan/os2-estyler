@@ -19,3 +19,7 @@
 
 # ignore output directory
 out/
+
+# ignore local configuration files
+eStyler.creator.user
+LocalConfig.kmk
