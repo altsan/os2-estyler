@@ -10,6 +10,40 @@ ifndef LOCALCFG
 endif
 
 #
+# Handler for .def files to add bldlevel info to them
+#
+define def_src_handler_def
+local type := DEF
+ $(kb-src-one 2)
+#.NOTPARALLEL: $(obj) # BldLevelInf.cmd can't open files in parallel
+endef
+
+#
+# Add support for DEF file bldlevel info generator
+#
+VER_HEADER  = $(PATH_ROOT)/headers/stlrVersion.h
+VER_MAJ     = $(shell $(SED) -nre 's/^\#define VERMAJ[[:space:]]+([0-9]+).*$$/\1/p' < $(VER_HEADER))
+VER_MIN     = $(shell $(SED) -nre 's/^\#define VERMIN[[:space:]]+([0-9]+).*$$/\1/p' < $(VER_HEADER))
+VER_BUILD   = $(shell $(SED) -nre 's/^\#define VERBUILD[[:space:]]+([0-9.]+).*$$/\1/p' < $(VER_HEADER))
+
+GIT_TAG     = $(shell git describe --tags --long)
+
+TOOL_VAC308_DEF                    = $(PATH_ROOT)/shared/util/BldLevelInf.cmd
+TOOL_VAC308_DEFOBJSUFF             = .bldlevel.def
+TOOL_VAC308_COMPILE_DEF_OUTPUT     =
+TOOL_VAC308_COMPILE_DEF_DEPEND     = $(VER_HEADER)
+TOOL_VAC308_COMPILE_DEF_DEPORD     =
+define TOOL_VAC308_COMPILE_DEF_CMDS
+	$(QUIET)cmd /c 'set BUILD_QUIET=1 && $(TOOL_VAC308_DEF)\
+		$(source) $(outbase).bldlevel.def\
+		-R"$(source)" \
+		-V"$(VER_MAJ).$(VER_MIN)" \
+		-M"$(VER_BUILD)" \
+		-N"$(VENDOR)"' \
+		-P"$(GIT_TAG)"
+endef
+
+#
 # Build templates
 #
 TEMPLATE_eStyler                    = eStyler NSL template
@@ -26,6 +60,7 @@ TEMPLATE_eStyler_LDFLAGS            = /B"/E:2" /B"/PM:PM" /B"/PACKD" /B"/A:4" \
                                       /B"/OPTF" /B"/NOL" /B"/M" /B"/L"
 TEMPLATE_eStyler_LDFLAGS.release    =
 TEMPLATE_eStyler_LDFLAGS.debug      = /B"/DE"
+TEMPLATE_eStyler_SRC_HANDLERS       = .def:def_src_handler_def
 
 TEMPLATE_eStylerDLL                 = eStyler DLL template
 TEMPLATE_eStylerDLL_EXTENDS         = eStyler

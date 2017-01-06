@@ -8,9 +8,9 @@
 #ifndef _STLRVER_H_
    #define _STLRVER_H_
 
-#define VERMAJ     1
-#define VERMIN     1
-#define VERBUILD  /*<buildno>*/ 200 /*</buildno>*/
+#define VERMAJ      1
+#define VERMIN      1
+#define VERBUILD    200
 
 #define CURINIVER   110
 

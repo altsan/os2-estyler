@@ -15,6 +15,10 @@
 #
 
 #
+# Vendor name
+# VENDOR :=
+
+#
 # ACPI TOOLKIT
 # PATH_SDK_ACPI =
 
