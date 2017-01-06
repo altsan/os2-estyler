@@ -1,0 +1,12 @@
+CLI-shutdown
+headers
+maindll
+nls/de/res
+nls/en/res
+nls/ja/res
+nls/nl/res
+nls/res
+nls/tw/res
+pref
+shared/headers
+shared/lvm_tk
