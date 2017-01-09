@@ -60,6 +60,7 @@ TEMPLATE_eStyler_LDFLAGS            = /B"/E:2" /B"/PM:PM" /B"/PACKD" /B"/A:4" \
                                       /B"/OPTF" /B"/NOL" /B"/M" /B"/L"
 TEMPLATE_eStyler_LDFLAGS.release    =
 TEMPLATE_eStyler_LDFLAGS.debug      = /B"/DE"
+TEMPLATE_eStyler_LIBPATH            = $(PATH_TOOL_VAC308_LIB)
 TEMPLATE_eStyler_SRC_HANDLERS       = .def:def_src_handler_def
 
 TEMPLATE_eStylerDLL                 = eStyler DLL template
