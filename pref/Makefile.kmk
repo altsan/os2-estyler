@@ -38,11 +38,13 @@ estylerUI_SOURCES           = \
                                 eStyler.rc
 
 estylerUI_CFLAGS            =
-estylerUI_LDFLAGS           =
+estylerUI_LDFLAGS           = /B"/STACK:1048576"
 
 #estylerUI_DEFS              = _STLR_TEST_MODE_
 estylerUI_INCS              = ../shared/lvm_tk
-estylerUI_LIBS              = $(PATH_ROOT)/shared/util/afcutl05.lib $(PATH_ROOT)/shared/lvm_tk/lvm.lib
+estylerUI_LIBS              = $(PATH_ROOT)/shared/util/afcutl05.lib \
+                              $(PATH_ROOT)/shared/lvm_tk/lvm.lib \
+                              cairo_dll.lib
 estylerUI_CLEAN             =
 
 estylerUI-button_INST       = $(INST_BIN)/bitmap/button/

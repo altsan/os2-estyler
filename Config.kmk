@@ -49,8 +49,9 @@ endef
 TEMPLATE_eStyler                    = eStyler NSL template
 TEMPLATE_eStyler_TOOL               = VAC308
 TEMPLATE_eStyler_RCTOOL             = OPENWATCOM
-TEMPLATE_eStyler_INCS               = ../shared/headers ../headers $(TOOLKIT)/h
-TEMPLATE_eStyler_CFLAGS             = /Ss /Q /C /Rn
+TEMPLATE_eStyler_INCS               = ../shared/headers ../headers \
+                                      $(TOOLKIT)/h $(PATH_SDK_CAIRO)/include/cairo
+TEMPLATE_eStyler_CFLAGS             = /Ss /Q /C /Rn /Mc
 TEMPLATE_eStyler_CFLAGS.release     = /G5 /Oc
 TEMPLATE_eStyler_CFLAGS.debug       = /Ti
 TEMPLATE_eStyler_DEFS               =
@@ -60,7 +61,7 @@ TEMPLATE_eStyler_LDFLAGS            = /B"/E:2" /B"/PM:PM" /B"/PACKD" /B"/A:4" \
                                       /B"/OPTF" /B"/NOL" /B"/M" /B"/L"
 TEMPLATE_eStyler_LDFLAGS.release    =
 TEMPLATE_eStyler_LDFLAGS.debug      = /B"/DE"
-TEMPLATE_eStyler_LIBPATH            = $(PATH_TOOL_VAC308_LIB)
+TEMPLATE_eStyler_LIBPATH            = $(PATH_TOOL_VAC308_LIB) $(PATH_SDK_CAIRO)/lib
 TEMPLATE_eStyler_SRC_HANDLERS       = .def:def_src_handler_def
 
 TEMPLATE_eStylerDLL                 = eStyler DLL template

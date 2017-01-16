@@ -26,7 +26,7 @@ eStylerLite_SOURCES         = \
 
 eStylerLite_DEFS            = ACPI_ENABLED
 eStylerLite_INCS            = $(PATH_SDK_ACPI)/h
-eStylerLite_LIBS            =
+eStylerLite_LIBS            = cairo_dll.lib
 eStylerLite_CLEAN           =
 
 include $(FILE_KBUILD_SUB_FOOTER)
