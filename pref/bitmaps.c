@@ -13,6 +13,10 @@
 // includes -----------------------------------------------------------------
 #include "main.h"
 
+// since cairo includes os2.h, put after default headers
+#include <cairo.h>
+#include <cairo-os2.h>
+
 // definitions --------------------------------------------------------------
 
 
@@ -37,10 +41,11 @@ static VOID freeAddImageRes(PADDBMPFILE pabf);
  ULONG : 0 (success) or error code.
 -------------------------------------------------------------------------- */
 ULONG getBitmapDataJob(PGETBMPDATA pgb) {
-   ULONG rc;
+   ULONG rc = 0;
    HPS hps;
    PBMPDAT pbd;
    PBYTE pData;
+#if 0
    pbd = pgb->cbData ? (PBMPDAT)pgb->ab: NULL;
    // if a bitmap file get the data from the file
    if (*pgb->achFile) {
@@ -59,6 +64,8 @@ ULONG getBitmapDataJob(PGETBMPDATA pgb) {
 exit_0:
     if (pData)
       gpFreeReadFile(pData);
+#endif
+
    return rc;
 }
 
@@ -118,11 +125,17 @@ BOOL applyBitmap(HWND hwnd, PSZ pszPath, PSZ pszFile, PAPPLYBMP pa) {
       return handleError(ISERR_ALLOCATION, FALSE);
    memcpy(pApplyBmp, pa, sizeof(APPLYBMP));
    if (*pszFile) {
-      makeFullPathName(pApplyBmp->achBmpFile, pszPath);
-      strcat(pApplyBmp->achBmpFile, pszFile);
+      //makeFullPathName(pApplyBmp->achBmpFile, pszPath);
+      //strcat(pApplyBmp->achBmpFile, pszFile);
+       strcpy( pApplyBmp->achBmpFile, pszFile);
    } else {
       *pApplyBmp->achBmpFile = '\x00';
    } /* endif */
+
+   // from worker thread code:
+   // save the bitmap name and data in OS2.INI
+   //if (!saveBmpData(pApplyBmp)) return APPLYBMP_ERR_SAVEDATA;
+
    return workerJobAdd(hwnd, STLRWID_APPLYBMP,
                        (PTHREADJOBFN)applyBitmapJob,
                        (PDELJOBFN)freeApplyBitmapRes, pApplyBmp);
@@ -141,6 +154,7 @@ BOOL applyBitmap(HWND hwnd, PSZ pszPath, PSZ pszFile, PAPPLYBMP pa) {
  ULONG : 0 (success), 1 (cannot read the file),
 -------------------------------------------------------------------------- */
 ULONG applyBitmapJob(PAPPLYBMP pa) {
+#if 0
    ULONG rc;
    // if a non-default bitmap is set read the bitmap file
    if (*pa->achBmpFile
@@ -150,6 +164,8 @@ ULONG applyBitmapJob(PAPPLYBMP pa) {
           (rc = readBmpFile(pa->achBmpFile,
                             (PBITMAPFILEHEADER)pa->aBmpData, &pa->cbData))))
       return rc;
+#endif
+
    // save the bitmap name and data in OS2.INI
    if (!saveBmpData(pa)) return APPLYBMP_ERR_SAVEDATA;
    return APPLYBMP_SUCCESS;
@@ -300,7 +316,7 @@ static BOOL saveBmpData(PAPPLYBMP pa) {
    ULONG cbData = 0;
    if (NULLHANDLE != (hini = stlrOpenProfile())) {
       if (*pa->achBmpFile) {
-         pszFile = strrchr(pa->achBmpFile, '\\') + 1;
+         pszFile = pa->achBmpFile; // strrchr(pa->achBmpFile, '\\') + 1;
          pData = pa->aBmpData;
          cbData = pa->cbData;
       } else {
@@ -309,10 +325,10 @@ static BOOL saveBmpData(PAPPLYBMP pa) {
       } /* endif */
       // save the bitmap name and data in OS2.INI
       if (setProfileString(hini, SZPRO_OPTIONS, pa->pBmp->pszNameKey,
-                                pszFile)
-          &&
-          setProfileData(hini, SZPRO_OPTIONS, pa->pBmp->pszDataKey,
-                         pData, cbData)) {
+                                pszFile)) {
+          //&&
+          //setProfileData(hini, SZPRO_OPTIONS, pa->pBmp->pszDataKey,
+          //               pData, cbData)) {
          rc = TRUE;
       } /* endif */
       PrfCloseProfile(hini);
@@ -361,14 +377,19 @@ ULONG listBitmapsJob(PLISTBMPFILES plbf) {
    ULONG cFiles = 0;
    ULONG ulRet = ERROR_LISTBMPFILES;
    PSZ pEndPath = plbf->achPath + strlen(plbf->achPath);
+   cairo_surface_t *image = NULL;
+
    p = (PBMPFILEITEM)&plbf->pBmpFile; // to auto-initialize the list items
-   strcpy(pEndPath, "*.bmp");
+   strcpy(pEndPath, "*.png");
    if (DosFindFirst(plbf->achPath, &hDir, ANYFILE,
                     &ff, sizeof(ff), &ul, FIL_STANDARD))
       return 0;
+
    do {
       strcpy(pEndPath, ff.achName);
-      if (isValidBmpFile(plbf->achPath, &plbf->limit)) {
+      // load image from disk
+      image = cairo_image_surface_create_from_png( plbf->achPath);
+      if (cairo_surface_status( image) == CAIRO_STATUS_SUCCESS) {
          // add a BMPFILEITEM structure to the list
          if (NULL == (p->pnext = malloc(5 + ff.cchName))) goto exit_0;
          p = p->pnext;
@@ -376,8 +397,10 @@ ULONG listBitmapsJob(PLISTBMPFILES plbf) {
          memcpy(p->achFile, ff.achName, ff.cchName + 1);
          cFiles++;
       } /* endif */
+      cairo_surface_destroy( image);
    } while (!DosFindNext (hDir, &ff, sizeof(ff), &ul)); /* enddo */
    ulRet = cFiles;
+
 exit_0:
    DosFindClose(hDir);
    return ulRet;
@@ -491,13 +514,18 @@ VOID freeBitmapsList(PLISTBMPFILES plbf) {
 VOID fillBitmapList(HWND hLbox, PLISTBMPFILES plbf, BOOL bEnable) {
    PBMPFILEITEM p;
    CHAR buf[256];
+   char* pszCur;
    g.state |= STLRIS_SKIPNOTIFICATION;
    for (p = plbf->pBmpFile; p; p = p->pnext) {
       wLbxItemIns(hLbox, LIT_SORTASCENDING, p->achFile);
    } /* endfor */
    loadString(IDS_DEFIMAGE, buf);
    wLbxItemIns(hLbox, 0, buf);
-   selectListItem(hLbox, plbf->pszCurBmpFile);
+   pszCur = strrchr( plbf->pszCurBmpFile, '\\');
+   if (pszCur == NULL)
+      selectListItem(hLbox, plbf->pszCurBmpFile);
+   else
+      selectListItem(hLbox, pszCur + 1);
 //   WinSetWindowText(hLbox, *plbf->pszCurBmpFile ? plbf->pszCurBmpFile: buf);
    if (bEnable) WinEnableWindow(hLbox, TRUE);
    g.state &= ~STLRIS_SKIPNOTIFICATION;
@@ -563,7 +591,8 @@ VOID freeGlobalBitmap(HWND hwnd, HBITMAP hbmp) {
 -------------------------------------------------------------------------- */
 BOOL getTitlebarHbmp(HPS hps, PBYTE pData,
                      PTBARHILITE ptbh, PSHDCREATE pshc, ULONG idRes) {
-   BOOL rc = FALSE;
+   BOOL rc = TRUE;
+#if 0
    ULONG fl = 0;
    if (!hps) {
       if (NULLHANDLE == (hps = WinGetScreenPS(HWND_DESKTOP)))
@@ -586,6 +615,7 @@ BOOL getTitlebarHbmp(HPS hps, PBYTE pData,
 exit_0:
    if (fl & 0x01) WinReleasePS(hps);
    if (fl & 0x02) free(pshc);
+#endif
    return rc;
 }
 
@@ -635,7 +665,7 @@ BOOL getBtnHbmp(HPS hps, PBYTE pData, PBTNOPT pbtno) {
 BOOL addImage(HWND hwnd, PSZ pszPath, PBMPLIMITS pBmpLimit) {
    PADDBMPFILE pabf;
    PSZ pEndPath;
-   if (addFileDlg(hwnd, "*.BMP")) {
+   if (addFileDlg(hwnd, "*.png")) {
       if (NULL == (pabf = malloc(sizeof(ADDBMPFILE))))
          return handleError(ISERR_ALLOCATION, FALSE);
       memset(pabf, 0, sizeof(ADDBMPFILE));
@@ -680,7 +710,7 @@ static BOOL addImageJob(PADDBMPFILE pabf) {
    // get the name of the bitmap file (excluding the extension)
    strcpy(bmpFileName, p + 1);
    if (NULL != (p = strrchr(bmpFileName, '.'))) *p = 0;
-   sprintf(pabf->achFileName, "%s.BMP", bmpFileName);
+   sprintf(pabf->achFileName, "%s.png", bmpFileName);
    // copy the bitmap file changing the destination name if the file
    // already exists or if the target path doesn't support long file
    // names and the file name is longer than 8 characters
@@ -690,16 +720,16 @@ static BOOL addImageJob(PADDBMPFILE pabf) {
       if (rc == ERROR_ACCESS_DENIED) {            // file already exists
          if (i == 999) break;
          if (bLimitName) {
-            sprintf(pabf->achFileName, "%.5s%03d.BMP", bmpFileName, i++);
+            sprintf(pabf->achFileName, "%.5s%03d.png", bmpFileName, i++);
          } else {
-            sprintf(pabf->achFileName, "%s_%03d.BMP", bmpFileName, i++);
+            sprintf(pabf->achFileName, "%s_%03d.png", bmpFileName, i++);
          } /* endif */
       } else if (rc == ERROR_INVALID_NAME) {
          if (i > 999) break;
-         sprintf(pabf->achFileName, "FILE_%03d.BMP", i++);
+         sprintf(pabf->achFileName, "FILE_%03d.png", i++);
       } else if (rc == ERROR_FILENAME_EXCED_RANGE) {
          bLimitName = TRUE;
-         sprintf(pabf->achFileName, "%s.8s.BMP", bmpFileName);
+         sprintf(pabf->achFileName, "%s.8s.png", bmpFileName);
       } else {
          break;
       } /* endif */

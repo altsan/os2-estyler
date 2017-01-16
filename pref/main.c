@@ -39,7 +39,7 @@ GLOBAL g;
 
 // entry point --------------------------------------------------------------
 
-INT main(INT argc, PSZ* argv) {
+INT _Optlink main(INT argc, PSZ* argv) {
    parseArgs(argc, argv);
    if (initApplication()) {
       g.appl.hwnd = WinLoadDlg(HWND_DESKTOP,  // parent

@@ -566,7 +566,10 @@ static BOOL handleBkgndImageChange(HWND hwnd, HWND hCtrl, PTBARHILITESETS p) {
       if (!iitem) {
          *p->pBmp->pszCur = 0;
       } else {
-         wLbxItemText(hCtrl, iitem, CCHMAXPATHCOMP, p->pBmp->pszCur);
+         CHAR pszCur[CCHMAXPATH];
+         wLbxItemText(hCtrl, iitem, CCHMAXPATHCOMP, pszCur);
+         makeFullPathName( p->pBmp->pszCur, SZ_BMPPATHTBAR);
+         strcat( p->pBmp->pszCur, pszCur);
       } /* endif */
       return getTitlebarBitmapData(hwnd, p);
    } /* endif */
@@ -722,7 +725,8 @@ static BOOL applyBkgndBitmap(HWND hwnd, PAPPLYBMP pa) {
    PBYTE pData;
    BMPPAINT bmpp;
    HPS hps;
-   BOOL rc = FALSE;
+   BOOL rc = TRUE;
+#if 0
    pData = *pa->achBmpFile ? pa->aBmpData: NULL;
    // get the new bitmap handle
    if (NULLHANDLE != (hps = WinGetPS(hwnd))) {
@@ -746,6 +750,7 @@ static BOOL applyBkgndBitmap(HWND hwnd, PAPPLYBMP pa) {
       errorBox(ISERR_APPLYBMP);
       resetCommonButton(BTN_APPLY, PGFL_APPLY_ENABLED, PGFL_APPLY_ENABLED);
    } /* endif */
+#endif
    return rc;
 }
 
@@ -919,6 +924,11 @@ static VOID setNewTitlebarBackground(HWND hwnd, PTBARHILITESETS p,
                                      PGETBMPDATA pgb, ULONG rc) {
    HBITMAP hBmpPrev;
    ULONG flUpdate;
+
+
+   // save full path name
+   //strcpy( g.pUiData->pOpts->tb.a.achImage, pgb->achFile);
+
    // if called as result of worker thread job end
    if (pgb) {
       if (rc) {
