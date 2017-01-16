@@ -27,3 +27,7 @@
 
 # IBM VaC++ 3.08
 # PATH_TOOL_VAC308 =
+
+#
+# Cairo TOOLKIT
+# PATH_SDK_CAIRO :=
