@@ -7,41 +7,6 @@
    #define STLR_FRAME_H
 
 #pragma pack(2)
-// struttura dati bitmap (senza palette):
-typedef struct {
-   ULONG      cbFix;            /*  Length of fixed portion of structure. */
-   ULONG      cx;               /*  Bitmap width in pels. */
-   ULONG      cy;               /*  Bitmap height in pels. */
-   USHORT     cPlanes;          /*  Number of bit planes. */
-   USHORT     cBitCount;        /*  Number of bits per pel within a plane. */
-} BMPINF, * PBMPINF;
-
-// struttura dati bitmap:
-typedef struct {
-   ULONG      cbFix;            /*  Length of fixed portion of structure. */
-   ULONG      cx;               /*  Bitmap width in pels. */
-   ULONG      cy;               /*  Bitmap height in pels. */
-   USHORT     cPlanes;          /*  Number of bit planes. */
-   USHORT     cBitCount;        /*  Number of bits per pel within a plane. */
-   RGB2       argbColor[256];   /*  Array of RGB values. */
-} BMPHDR, * PBMPHDR;
-
-// struttura dati titlebar
-typedef struct {
-   PSZ psz;               // testo titlebar
-   SIZEL s;               // dimensioni titlebar
-   HBITMAP ash;              // handle bitmap shade attiva
-   HBITMAP ish;              // handle bitmap shade inattiva
-   SHORT yfont;
-   SHORT cyfont;
-   SHORT cxfont;
-   USHORT cbtxt;          // lunghezza testo
-   UINT xshift    : 8;    // distanza da sinistra del testo
-   UINT hilited   : 1;    // flag titlebar attiva(1)/inattiva(0)
-   UINT actpp     : 1;    // ACTIVETITLE persparm presente
-   UINT ictpp     : 1;    // INACTIVETITLE persparm presente
-   UINT chkclass  : 1;    // flag controllo classe non winos2
-} TBDATA, * PTBDATA;
 
 // dati bottoni
 // stile immagine (bitmap, icon, miniicon
@@ -106,11 +71,5 @@ typedef struct {
 
 #pragma pack()
 
-
-// FLAG stato frame window
-
-typedef struct {
-   PPIB ppib;
-} PROCDATA, *PPROCDATA;
 
 #endif

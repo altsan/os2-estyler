@@ -22,8 +22,8 @@ static VOID APIENTRY processExitHandler(ULONG ul);
 static BOOL isException(PSZ pszModule);
 static BOOL meminit(VOID);
 static BOOL memterm(VOID);
-static void* heapIncrease(Heap_t uhp, size_t* plen, int* pfl);
-static void heapDecrease(Heap_t uhp, PVOID p, size_t size);
+static void* _Optlink heapIncrease(Heap_t uhp, size_t* plen, int* pfl);
+static void _Optlink heapDecrease(Heap_t uhp, PVOID p, size_t size);
 PVOID memLkRealloc(PVOID p, ULONG cb);
 VOID memHeapMin(VOID);
 
@@ -205,7 +205,7 @@ static BOOL memterm(VOID) {
 - Return value -----------------------------------------------------------
  PVOID newly allocated additional heap
 -------------------------------------------------------------------------- */
-static void* heapIncrease(Heap_t uhp, size_t* plen, int* pfl) {
+static void* _Optlink heapIncrease(Heap_t uhp, size_t* plen, int* pfl) {
    PVOID p = NULL;
    *plen = (size_t)RNDUP(*plen, CB_HEAPBLOCK);
    *pfl = _BLOCK_CLEAN;
@@ -219,7 +219,7 @@ static void* heapIncrease(Heap_t uhp, size_t* plen, int* pfl) {
 - Return value -----------------------------------------------------------
  VOID
 -------------------------------------------------------------------------- */
-static void heapDecrease(Heap_t uhp, PVOID p, size_t size) {
+static void _Optlink heapDecrease(Heap_t uhp, PVOID p, size_t size) {
    DosFreeMem(p);
 }
 

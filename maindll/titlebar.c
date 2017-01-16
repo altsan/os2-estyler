@@ -11,15 +11,19 @@
 
 #pragma strings(readonly)
 
+#include <stdlib.h>
+#include <string.h>
+
 // includes -----------------------------------------------------------------
 #include "main.h"
 #include "stlrTitlebar.h"
 #include "stlrGraphics.h"
+#include "stlrExport.h"
 
 // prototypes ---------------------------------------------------------------
 static BOOL isWinOS2Window(HWND hwnd, PTBDATA p);
 ULONG copyStripReturns(PSZ target, PSZ source);
-VOID drawTitlebar(HPS hps, PTBDATA p);
+static VOID drawTitlebar(HWND hwnd, HPS hps, PTBDATA p);
 
 // global variables ---------------------------------------------------------
 extern PID pid;
@@ -46,7 +50,7 @@ MRESULT EXPENTRY stlrTitleBarProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) 
                   if (WinIsWindowShowing(hwnd)
                       &&
                       (NULLHANDLE != (hps = WinGetPS(hwnd)))) {
-                     drawTitlebar(hps, p);
+                     drawTitlebar(hwnd, hps, p);
                      WinReleasePS(hps);
                   } /* endif */
                   return MRTRUE;
@@ -62,7 +66,7 @@ MRESULT EXPENTRY stlrTitleBarProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) 
          if (mMustProcessWMpaint(p)) {
             HPS hps;
             if (NULLHANDLE != (hps = WinBeginPaint(hwnd, NULLHANDLE, NULL))) {
-               drawTitlebar(hps, p);
+               drawTitlebar(hwnd, hps, p);
                WinEndPaint(hps);
             } /* endif */
             return (MRESULT)FALSE;
@@ -224,77 +228,187 @@ ULONG copyStripReturns(PSZ target, PSZ source) {
 - Return value -----------------------------------------------------------
  VOID:
 -------------------------------------------------------------------------- */
-VOID drawTitlebar(HPS hps, PTBDATA p) {
-   PTBARHILITE ptbo = p->hilited? &o.ui.tb.a: &o.ui.tb.i;
-   POINTL aptl[4];
-   INT i;
-   GpiCreateLogColorTable(hps, 0, LCOLF_RGB, 0, 0, NULL);
-   switch (ptbo->bkgnd) {
-      // gradient background ---------------------------------------------
-      case TBARBKGNDSHADE:
-         if (ptbo->fl & TBO_VERTSHADE) {             // vertical gradient
-            mScaleBmpToRect(hps, ptbo->bmpp.hbmp,
-                            aptl, 0, 0, p->size.cx, p->size.cy);
-         } else {
-            RectSet(aptl, 0, 0, p->size.cx, SHADEH_CY);
-            for (i = 0; i < p->size.cy; i += 2) {
-               mScaleBitmap(hps, ptbo->bmpp.hbmp, NULL, aptl);
-               ((PRECTL)aptl)->yBottom += SHADEH_CY;
-               ((PRECTL)aptl)->yTop += SHADEH_CY;
-            } /* endfor */
-         } /* endif */
-         break;
-      // bitmap background -----------------------------------------------
-      case TBARBKGNDBMP:
-         // scaled bitmap
-         if (ptbo->fl & TBO_STRETCHBMP) {
-            mScaleBmpToRect(hps, ptbo->bmpp.hbmp,
-                            aptl, 0, 0, p->size.cx, p->size.cy);
-         // tiled bitmap
-         } else {
-            mSetBmpSrcRectDestPos(aptl, 0, 0, p->size.cx, p->size.cy, 0, 0);
-            while (aptl[2].x <= p->size.cx) {
-               mDrawBitmap(hps, ptbo->bmpp.hbmp, aptl, aptl + 2);
-               aptl[2].x += ptbo->bmpp.cx;
-               aptl[1].x = p->size.cx - aptl[2].x;
-            } /* endwhile */
-         } /* endif */
-         break;
-      // solid color background ------------------------------------------
-      default:
-         PointSet(aptl, p->size.cx - 1, p->size.cy - 1);
-         GpiSetColor(hps, ptbo->clrLeftTop);
-         GpiBox(hps, DRO_OUTLINEFILL, aptl, 0L, 0L);
-         break;
-   } /* endswitch */
-   // titlebar text ------------------------------------------------------
-   if (!p->cyfont) { // the text has to be measured again
-      GpiQueryTextBox(hps, p->cbText, p->pszText, 3, aptl);
-      p->yfont = - aptl[1].y;
-      p->cyfont = aptl[2].y - aptl[1].y;
-      p->cxfont = aptl[2].x - aptl[1].x;
-   } /* endif */
-   // if the text is wider than the window it is anyway left aligned
-   p->xshift = (p->cxfont <= p->size.cx)? 8: 0;
-   aptl[0].x = (o.ui.tb.center && p->xshift)?
-               (p->size.cx - p->cxfont) / 2 + 1: p->xshift + 3;
-   aptl[0].y = (p->size.cy + 1 - p->cyfont) / 2 + p->yfont;
-   aptl[1].x = 0;
-   aptl[1].y = 0;
-   aptl[2].x = p->size.cx - 1;
-   aptl[2].y = p->size.cy - 1;
-   if (ptbo->fl & TBO_TEXTSHADOW) {      // draw a shadow behind the text
-      GpiSetColor(hps, ptbo->clrBgTxt);
-      GpiCharStringPosAt(hps, aptl, (PRECTL)(aptl + 1), CHS_CLIP,
-                         p->cbText, p->pszText, NULL);
-   } // end if
-   aptl[0].x--;
-   aptl[0].y++;
-   GpiSetColor(hps, ptbo->clrFgTxt);
-   GpiCharStringPosAt(hps, aptl, (PRECTL)(aptl + 1), CHS_CLIP,
-                      p->cbText, p->pszText, NULL);
-   // titlebar border ----------------------------------------------------
-   if (ptbo->fl & TBO_BORDER)
-      draw3Dborder(hps, (PRECTL)(aptl+1), ptbo->clrTopLeftBorder,
-                   ptbo->clrRightBottomBorder, 1);
+static VOID drawTitlebar(HWND hwnd, HPS hps, PTBDATA p)
+{
+    PTBARHILITE ptbo = p->hilited ? &o.ui.tb.a: &o.ui.tb.i;
+    POINTL aptl[4];
+    INT i;
+    cairo_surface_t *surface = NULL;
+    cairo_t *cr = NULL;
+    cairo_text_extents_t font_extents;
+    char* dot, *size, *face;
+    int     fx, fy;
+    HINI hini = NULLHANDLE;
+    CHAR achPath[CCHMAXPATH];
+    CHAR    font[CCH_FONTDATA];
+    cairo_pattern_t *pattern;
+
+    // initialize cairo surface
+    surface = cairo_os2_surface_create_for_window( hwnd, p->size.cx, p->size.cy);
+    cr = cairo_create( surface);
+
+#define RED(a) ((a >> 16) & 0xff)
+#define GREEN(a) ((a >> 8) & 0xff)
+#define BLUE(a) ((a) & 0xff)
+
+    // draw background
+    switch (ptbo->bkgnd) {
+        // gradient background
+    case TBARBKGNDSHADE:
+        if (ptbo->fl & TBO_VERTSHADE) { // vertical gradient
+            pattern = cairo_pattern_create_linear( 0.0, 0.0, 0, p->size.cy);
+        } else {
+            pattern = cairo_pattern_create_linear(0.0, 0.0, p->size.cx, 0);
+        }
+        cairo_pattern_add_color_stop_rgb( pattern, 0.1,
+                                          RED(ptbo->clrLeftTop) / 255.0,
+                                          GREEN(ptbo->clrLeftTop) / 255.0,
+                                          BLUE(ptbo->clrLeftTop) / 255.0);
+        if (ptbo->fl & TBO_SHADEDOUBLE) {
+            cairo_pattern_add_color_stop_rgb( pattern, 0.5,
+                                              RED(ptbo->clrRghtBtm) / 255.0,
+                                              GREEN(ptbo->clrRghtBtm) / 255.0,
+                                              BLUE(ptbo->clrRghtBtm) / 255.0);
+            cairo_pattern_add_color_stop_rgb( pattern, 0.9,
+                                              RED(ptbo->clrLeftTop) / 255.0,
+                                              GREEN(ptbo->clrLeftTop) / 255.0,
+                                              BLUE(ptbo->clrLeftTop) / 255.0);
+        } else {
+            cairo_pattern_add_color_stop_rgb( pattern, 0.9,
+                                              RED(ptbo->clrRghtBtm) / 255.0,
+                                              GREEN(ptbo->clrRghtBtm) / 255.0,
+                                              BLUE(ptbo->clrRghtBtm) / 255.0);
+        }
+        cairo_rectangle( cr, 0.0, 0.0, p->size.cx, p->size.cy);
+        cairo_set_source( cr, pattern);
+        cairo_fill( cr);
+        cairo_pattern_destroy( pattern);
+        break;
+        // bitmap background -----------------------------------------------
+    case TBARBKGNDBMP:
+        // get file name full path from ini file if image is NULL
+        if (p->image == NULL) {
+            // get file name full path from ini file
+            if (NULLHANDLE == (hini = stlrOpenProfile()))
+                break;
+            if (PrfQueryProfileString(hini, SZPRO_OPTIONS,
+                                      p->hilited ? SZPRO_BMPATBAR: SZPRO_BMPITBAR,
+                                      NULL, achPath, CCHMAXPATHCOMP)) {
+                p->image = cairo_image_surface_create_from_png( achPath);
+                p->image_fx = cairo_image_surface_get_width( p->image);
+                p->image_fy = cairo_image_surface_get_height( p->image);
+            }
+            PrfCloseProfile( hini);
+        }
+        // scaling is local to bitmap transformation only
+        cairo_save( cr);
+        if (ptbo->fl & TBO_STRETCHBMP) {
+            // scaled bitmap
+            cairo_scale( cr, (double) p->size.cx / p->image_fx,
+                         (double) p->size.cy / p->image_fy);
+            cairo_set_source_surface( cr, p->image, 0, 0);
+            cairo_paint( cr);
+        } else {
+            // tiled bitmap
+            pattern = cairo_pattern_create_for_surface( p->image);
+            cairo_pattern_set_extend( pattern, CAIRO_EXTEND_REPEAT);
+            cairo_set_source( cr, pattern);
+            cairo_paint( cr);
+            cairo_pattern_destroy( pattern);
+        }
+        cairo_restore( cr);
+        break;
+        // solid color background ------------------------------------------
+    default:
+        // fill background
+        cairo_set_source_rgb( cr,
+                              RED(ptbo->clrLeftTop) / 255.0,
+                              GREEN(ptbo->clrLeftTop) / 255.0,
+                              BLUE(ptbo->clrLeftTop) / 255.0);
+        cairo_rectangle( cr, 0, 0, p->size.cx, p->size.cy);
+        cairo_fill( cr);
+        break;
+    }
+
+    // select a default font
+    cairo_select_font_face( cr, "Sans", CAIRO_FONT_SLANT_NORMAL,
+                            CAIRO_FONT_WEIGHT_NORMAL);
+    cairo_set_font_size( cr, 14);
+
+    // using strchr() on o.ui.tb.achFont crashes this code...
+    memset( font, 0, sizeof(font));
+    memcpy( font, o.ui.tb.achFont, sizeof(font));
+    //dbgPrintf4( "drawTitlebar hwnd %x hps %x, font '%s'\n", hwnd, hps, font);
+
+    // use font if defined
+    if (strchr( font, '.')) {
+        dot = strchr( font, '.');
+        face = dot + 1;
+        *dot = 0;
+        //dbgPrintf4( "drawTitlebar hwnd %x hps %x, face '%s'\n", hwnd, hps, face);
+        //dbgPrintf4( "drawTitlebar hwnd %x hps %x, size '%s'\n", hwnd, hps, font);
+        //dbgPrintf4( "drawTitlebar hwnd %x hps %x, size %d\n", hwnd, hps, atoi(font));
+        // set size of font
+        cairo_set_font_size( cr, atoi(font) * 1.5);
+        // set font name
+        cairo_select_font_face( cr, face, CAIRO_FONT_SLANT_NORMAL,
+                                CAIRO_FONT_WEIGHT_NORMAL);
+    }
+
+    // set title position
+    fx = 8;
+    fy = p->size.cy - 5;
+    if (o.ui.tb.center) {
+        cairo_text_extents(cr, p->pszText, &font_extents);
+        // if the text is wider than the window it is anyway left aligned
+        if (font_extents.width < p->size.cx)
+            fx = (p->size.cx - font_extents.width) / 2;
+    }
+
+    // draw a shadow behind the text
+    if (ptbo->fl & TBO_TEXTSHADOW) {
+        cairo_set_source_rgb( cr, RED(ptbo->clrBgTxt) / 255.0,
+                              GREEN(ptbo->clrBgTxt) / 255.0,
+                              BLUE(ptbo->clrBgTxt) / 255.0);
+        cairo_move_to( cr, fx + 1, fy + 1);
+        cairo_show_text( cr, p->pszText);
+    }
+
+    // draw text
+    cairo_set_source_rgb( cr, RED(ptbo->clrFgTxt) / 255.0,
+                          GREEN(ptbo->clrFgTxt) / 255.0,
+                          BLUE(ptbo->clrFgTxt) / 255.0);
+    cairo_move_to( cr, fx, fy);
+    cairo_show_text( cr, p->pszText);
+
+    // titlebar border
+    if (ptbo->fl & TBO_BORDER) {
+        // top/left border
+        cairo_set_line_width(cr, 1.0);
+        cairo_set_source_rgb( cr, RED(ptbo->clrTopLeftBorder) / 255.0,
+                              GREEN(ptbo->clrTopLeftBorder) / 255.0,
+                              BLUE(ptbo->clrTopLeftBorder) / 255.0);
+        cairo_move_to( cr, 0, p->size.cy);
+        cairo_line_to( cr, 0, 0);
+        cairo_line_to( cr, p->size.cx, 0);
+        cairo_stroke (cr);
+        // right/bottom
+        cairo_set_source_rgb( cr, RED(ptbo->clrRightBottomBorder) / 255.0,
+                              GREEN(ptbo->clrRightBottomBorder) / 255.0,
+                              BLUE(ptbo->clrRightBottomBorder) / 255.0);
+        cairo_move_to( cr, p->size.cx, 0);
+        cairo_line_to( cr, p->size.cx, p->size.cy);
+        cairo_line_to( cr, 0, p->size.cy);
+        cairo_stroke (cr);
+    }
+
+    // render surface on entire window
+    cairo_os2_surface_paint_window( surface, hps, NULL, 0);
+
+    // destroy cairo surface
+    if (cr)
+        cairo_destroy (cr);
+    if (surface)
+        cairo_surface_destroy (surface);
+
 }

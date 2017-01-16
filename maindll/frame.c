@@ -14,6 +14,7 @@
 #include "main.h"
 #include "frame.h"
 #include "stlrShutdown.h"
+#include "stlrTitlebar.h"
 
 
 // global variables ---------------------------------------------------------
@@ -33,6 +34,8 @@ BOOL isWinInScreen(HWND hwnd);
 -------------------------------------------------------------------------- */
 MRESULT EXPENTRY stlrFrameProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
 //**/  return (MRESULT)g.cd.frame.pfnwp(hwnd, msg, mp1, mp2);
+   PTBDATA p;
+
    switch (msg) {
       case WM_ADJUSTWINDOWPOS:
          if (
@@ -66,6 +69,14 @@ dbgPrintf3("WM_QUERYFRAMEINFO hwnd = %08x - mp1 = %08x\n", hwnd, mp1);
             HWND hTbar = WinWindowFromID(hwnd, FID_TITLEBAR);
             if ((ULONG)mp2 & MODIF_FONT)
                m_setFont(hTbar, o.ui.tb.achFont);
+
+            // destroy cairo image
+            if ((p = mTitlebarData( hTbar)) != NULL) {
+               cairo_surface_destroy( p->image);
+               // force reloading
+               p->image = NULL;
+            }
+
             if (WinIsWindowShowing(hTbar))
                WinInvalidateRect(hTbar, NULL, FALSE);
          // deferred subclassing of the frame of the desktop folder

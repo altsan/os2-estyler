@@ -14,6 +14,9 @@
 #ifndef _STLR_WC_TITLEBAR_H_
    #define _STLR_WC_TITLEBAR_H_
 
+#include <cairo.h>
+#include <cairo-os2.h>
+
 /* --------------------------------------------------------------------------
 
 */
@@ -32,6 +35,9 @@ typedef struct {
    UINT actpp     : 1;    // ACTIVETITLE persparm detected
    UINT ictpp     : 1;    // INACTIVETITLE persparm detected
    UINT chkclass  : 1;    // to check this is not a WinOS2 titlebar
+   cairo_surface_t *image;      // cairo bitmap handle
+   int              image_fx;
+   int              image_fy;
 } TBDATA, * PTBDATA;
 #pragma pack()
 
