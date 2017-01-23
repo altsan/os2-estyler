@@ -24,6 +24,11 @@ extern PID pid;
 MRESULT EXPENTRY newDeskProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
 MRESULT EXPENTRY newLnchpProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
 BOOL isWinInScreen(HWND hwnd);
+static VOID setDefFrameCtrlsImage( HWND);
+
+// change the bitmap used to paint a frame window control -------------------
+#define _setFrameCtrlBmp(_hmenu_, _id_, _hbmp_) \
+(g.cd.menu.pfnwp((_hmenu_), MM_SETITEMHANDLE, (MPARAM)(_id_), (MPARAM)(_hbmp_)))
 
 /* --------------------------------------------------------------------------
  Enhanced WC_FRAME procedure.
@@ -58,6 +63,11 @@ MRESULT EXPENTRY stlrFrameProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
 dbgPrintf3("Styler font initialized - hwnd:%08x, xframeflag: %08x\n",
            hwnd, mExFrameFlag(hwnd));
             msg = WM_ADJUSTWINDOWPOS;
+
+            // it is not necessary to superclass to replace bitmaps
+            // update menu bitmap buttons
+            setDefFrameCtrlsImage( WinHWND( hwnd, FID_MINMAX));
+
          } /* endif */
          break;
       // inner messages sent via WM_QUERYFRAMINFO special parameters
@@ -77,8 +87,13 @@ dbgPrintf3("WM_QUERYFRAMEINFO hwnd = %08x - mp1 = %08x\n", hwnd, mp1);
                p->image = NULL;
             }
 
+            // it is not necessary to superclass to replace bitmaps
+            // update menu bitmap buttons
+            setDefFrameCtrlsImage( WinHWND( hwnd, FID_MINMAX));
+
             if (WinIsWindowShowing(hTbar))
                WinInvalidateRect(hTbar, NULL, FALSE);
+
          // deferred subclassing of the frame of the desktop folder
          } else if (mp1 == STLRM_SUBCLDESKFLDR) {
             g.pfn.desktopFolder = WinSubclassWindow(hwnd, newDeskProc);
@@ -153,6 +168,7 @@ dbgPrintf2("   ******* isSystemShutdownBox - wait=%u\n", o.sd.wait.closeBox);
             DosSleep(o.sd.wait.closeBox);
             return MRTRUE;
          } /* endif */
+
          // store the window list window handle
          if (!g.hwnd.winList) g.hwnd.winList = hwnd;
          if (pid) {
@@ -191,6 +207,8 @@ dbgPrintf1("   - lockup frame\n");
             return MRFALSE;
          } /* endif */
          break;
+
+
       case WM_DESTROY:
 dbgPrintf2("!!! DESTROY WND: %08x\n", hwnd);
          // if this is the windows list window do power-off or reboot
@@ -214,6 +232,7 @@ dbgPrintf3("*** destroy winlist - g.hwnd.shutdown=%08x mode=%c\n",
          } /* endif */
          break;
    } /* endswitch */
+
    return (MRESULT)g.cd.frame.pfnwp(hwnd, msg, mp1, mp2);
 }
 
@@ -277,4 +296,27 @@ BOOL isWinInScreen(HWND hwnd) {
                && (r.yBottom > -r.yTop)
                && (r.yBottom < g.scr.cy)
             );
+}
+
+//===========================================================================
+// Change the image used by FID_SYSMENU and FID_MINMAX.
+// Parameters --------------------------------------------------------------
+// PSTLRFRAME p : WC_FRAME data.
+// Return value ------------------------------------------------------------
+// VOID.
+//===========================================================================
+static
+VOID setDefFrameCtrlsImage( HWND hMinMax) {
+
+    _setFrameCtrlBmp( hMinMax, SC_MINIMIZE,
+                      (o.ui.tb.bmp.min ? o.ui.tb.bmp.min : g.bmpDef.min));
+    _setFrameCtrlBmp( hMinMax, SC_HIDE,
+                      (o.ui.tb.bmp.hide ? o.ui.tb.bmp.hide : g.bmpDef.hide));
+    _setFrameCtrlBmp( hMinMax, SC_MAXIMIZE,
+                      (o.ui.tb.bmp.max ? o.ui.tb.bmp.max : g.bmpDef.max));
+    _setFrameCtrlBmp( hMinMax, SC_RESTORE,
+                      (o.ui.tb.bmp.rest ? o.ui.tb.bmp.rest : g.bmpDef.rest));
+    _setFrameCtrlBmp( hMinMax, SC_CLOSE,
+                      (o.ui.tb.bmp.close ? o.ui.tb.bmp.close : g.bmpDef.cls));
+
 }

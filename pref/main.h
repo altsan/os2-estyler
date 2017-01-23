@@ -169,7 +169,7 @@ typedef struct {
    ULONG aNBpageIDs[NBP_MAXCOUNT]; // notebook page IDs
    UCHAR aNBpageFlags[NBP_MAXCOUNT]; // page flags (buttons state)
    SCRRES scr;            // current screen resolution and color depth
-   POPTIONS pCurOpts;     // current options
+   POPTIONS pCurOpts;     // current options from DLL code
    union {
       PUIOPTIONS pUndoUiOpts;// undo user interface options
       PSHUTDOWN pUndoSdOpts; // undo shutdown options
@@ -220,6 +220,7 @@ BOOL getBtnHbmp(HPS hps, PBYTE pData, PBTNOPT pbtno);
 BOOL addImage(HWND hwnd, PSZ pszPath, PBMPLIMITS pBmpLimit);
 VOID handleAddImageJobError(ULONG rc, PADDBMPFILE pabf);
 VOID addImageJobEnd(HWND hwnd, ULONG rc, PADDBMPFILE pabf);
+HBITMAP loadThemeBitmap( HWND hwnd, PSZ type, PSZ theme);
 
 // editcol.c
 LONG editColorDlg(HWND hOwner, LONG lColor);

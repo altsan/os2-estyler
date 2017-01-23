@@ -74,14 +74,30 @@ typedef struct {
  TITLEBAR          structure used to store the overall titlebar options
 */
 #define CCH_FONTDATA 128
+
+typedef struct {
+   HBITMAP sysmenu;         // dati bitmap system menu
+   HBITMAP close;           // bitmap bottone chiusura
+   HBITMAP hide;            // bitmap bottone per nascondere
+   HBITMAP min;             // bitmap bottone minimizzazione
+   HBITMAP rest;            // bitmap bottone ripristino
+   HBITMAP max;             // bitmap bottone massimizzazione
+   HBITMAP htbar;           // bitmap bott. titlebar hide
+   HBITMAP unhtbar;         // bitmap bott. titlebar unhide
+   HBITMAP roll;            // bitmap bott. arrotolamento finestre
+   HBITMAP unroll;          // bitmap bott. srotolamento finestre
+} TBBBMPS, * PTBBBMPS;
+
 typedef struct {
    TBARHILITE a;               // active titlebar options
    TBARHILITE i;               // inactive titlebar options
+   TBBBMPS bmp;                // handle of the bitmaps used to draw titlebar buttons
    CHAR achFont[CCH_FONTDATA]; // default titlebar font
    UINT on            : 1;     // 1/0 titlebar enhancements on/off
    UINT overridePP    : 1;     // 1/0 titlebar override presentation parameters
    UINT center        : 1;     // 1/0 align text to center/left
    UINT               : 0;
+   UINT theme;                 // button theme index
 } TITLEBAR, * PTITLEBAR;       // variable name o.ui.tb
 
 /* --------------------------------------------------------------------------

@@ -14,6 +14,10 @@ BEGIN
         CONTROL         SZ_LEFTCENTER, COMBO_TBALIGN, 122, 55, 118, 27,
                         WC_XCOMBOBOX2, CBS_DROPDOWNLIST | WS_GROUP |
                         WS_TABSTOP | WS_VISIBLE
+        LTEXT           "Button theme:", TXT_THEME, 20, 54, 100, 8, DT_MNEMONIC
+        CONTROL         SZ_BUTTONTHEME, COMBO_THEME, 122, 37, 118, 27,
+                        WC_XCOMBOBOX2, CBS_DROPDOWNLIST | WS_GROUP |
+                        WS_TABSTOP | WS_VISIBLE
     END
 END
 

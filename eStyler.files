@@ -206,3 +206,4 @@ nls/en/res/ESTLRLRS.def
 nls/de/res/ESTLRLRS.def
 nls/ja/res/ESTLRLRS.def
 shared/util/BldLevelInf.cmd
+maindll/menu.c

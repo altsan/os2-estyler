@@ -82,6 +82,8 @@ VOID setGlobalBitmaps(HINI hini);
 MRESULT EXPENTRY stlrButtonProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
 // frame.c
 MRESULT EXPENTRY stlrFrameProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
+// menu.c
+MRESULT EXPENTRY stlrMenuProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
 // hooks.c
 BOOL EXPENTRY postMsgHook(HAB hab, PQMSG pqmsg, USHORT fs);
 // process.c

@@ -71,6 +71,8 @@
 #define BTN_TBFONT               103
 #define TXT_TBALIGN              104
 #define COMBO_TBALIGN            105
+#define TXT_THEME                106
+#define COMBO_THEME              107
 
 /* --------------------------------------------------------------------------
  TITLEBAR          active/inactive titlebar options page - ID of the controls

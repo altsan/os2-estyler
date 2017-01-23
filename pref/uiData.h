@@ -69,6 +69,7 @@ typedef struct {
    ULONG idRes;               // resource ID of the default bitmap
    USHORT flPreview;          // update preview window flag
    USHORT updateMsg;          // update message to be sent to the runtime DLL
+   HBITMAP hbitmap;
 } BMPFILEDATA, *PBMPFILEDATA;
 #pragma pack()
 
@@ -100,6 +101,11 @@ typedef struct {
    BMPFILEDATA tba;           // active titlebar bitmap data
    BMPFILEDATA tbi;           // inactive titlebar bitmap data
    BMPFILEDATA btn;           // button bitmap data
+   BMPFILEDATA close;         // close button bitmap data
+   BMPFILEDATA hide;          // hide button bitmap data
+   BMPFILEDATA rest;          // restore button bitmap data
+   BMPFILEDATA min;           // min button bitmap data
+   BMPFILEDATA max;           // max button bitmap data
    PREVIEWWND preview;        // preview window data
    PUIOPTIONS pOpts;          // temp user interface options
 } UIDATA, *PUIDATA;

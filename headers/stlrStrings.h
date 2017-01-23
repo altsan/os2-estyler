@@ -66,6 +66,18 @@
 #define SZPRO_BMPITBARDATA "BmpDataITBar"   // key : inactive titlebar image data
 #define SZPRO_BMPBTNDATA   "BmpDataPushBtn" // key : pushbutton image data
 
+// titlebar bitmap buttons
+#define SZPRO_BMPCLOSE     "BMPCLOSE"
+#define SZPRO_BMPCLOSEDATA "BMPCLOSEDATA"
+#define SZPRO_BMPHIDE      "BMPHIDE"
+#define SZPRO_BMPHIDEDATA  "BMPHIDEDATA"
+#define SZPRO_BMPREST      "BMPREST"
+#define SZPRO_BMPRESTDATA  "BMPRESTDATA"
+#define SZPRO_BMPMIN       "BMPMIN"
+#define SZPRO_BMPMINDATA   "BMPMINDATA"
+#define SZPRO_BMPMAX       "BMPMAX"
+#define SZPRO_BMPMAXDATA   "BMPMAXDATA"
+
 #define SZPRO_SIZEPOS      "Sizepos"        // appl: size and position
 #define SZPRO_WINKEYS      "WinKeys"        // key : win-keys options dialog
 #define SZPRO_SHUTDWON     "Shutdown"       // appl: (key too) shutdown options
@@ -128,6 +140,7 @@
 */
 #define SZ_BMPPATHTBAR            "BITMAP\\TBKGNDS\\"
 #define SZ_BMPPATHBTN             "BITMAP\\BUTTON\\"
+#define SZ_BMPPATHXGA             "BITMAP\\XGA\\"
 
 /* --------------------------------------------------------------------------
  DEFDLGFONT        default dialog font

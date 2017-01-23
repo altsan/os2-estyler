@@ -78,6 +78,7 @@
 #define SZ__FONT                 "Schri~ftart:"
 #define SZ_TEXTATLIGN            "~Textausrichtung:"
 #define SZ_LEFTCENTER            "Links\tZentriert\t"
+#define SZ_BUTTONTHEME           "3d\t3dcrack\tblack\tblackhi\tblue\tbtn0\tbtn1\tbtn2\tbtn3\tcrack\tdon\tlinux\tlite\tlitehi\tmath\tsfera\twarp4\twin9x"
 
 /* --------------------------------------------------------------------------
  TITLEBAR          titlebar background and text options

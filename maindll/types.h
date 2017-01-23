@@ -60,12 +60,25 @@ typedef struct {
 } SHELL_PIDS, * PSHELL_PIDS;
 
 /* --------------------------------------------------------------------------
+ FRAMECTLBMPS default frame controls bitmap handles
+*/
+typedef struct {
+   HBITMAP sys;        // system menu bitmap handle
+   HBITMAP cls;        // close window bitmap handle
+   HBITMAP min;        // minimize window bitmap handle
+   HBITMAP hide;       // hide window bitmap handle
+   HBITMAP rest;       // restore window bitmap handle
+   HBITMAP max;        // maximize window bitmap handle
+} FRAMECTLBMPS, * PFRAMECTLBMPS;
+
+/* --------------------------------------------------------------------------
  SUPERCLASSDATA    structure storing all the data of the superclassed windows
 */
 typedef struct {
    CLASSDATA frame;   // WC_FRAME data
    CLASSDATA tbar;    // WC_TITLEBAR data
    CLASSDATA btn;     // WC_BUTTON data
+   CLASSDATA menu;    // WC_MENU data
 } SUPERCLASSDATA, * PSUPERCLASSDATA;
 
 /* --------------------------------------------------------------------------
@@ -163,6 +176,7 @@ typedef struct {
 #endif
    ULONG cyIco;        // height of the titlebar
    SCRRES scr;         // screen resolution and color depth
+   FRAMECTLBMPS bmpDef;// default bitmaps used by the titlebar buttons
 } GLOBAL, * PGLOBAL;
 
 /* --------------------------------------------------------------------------

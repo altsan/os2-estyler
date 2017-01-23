@@ -16,6 +16,9 @@ enum {IDERR_NULL,
       IDERR_CREATEINPUTHOOK,// 10 errore creazione input hook
       IDERR_CREATESNMSGHOOK,// 11 errore creazione send message hook
       IDERR_GETRESMOD,      // 12 errore richiesta handle DLL risorse
+      IDERR_MENUCLASS,      // errore rilevazione dati classe menu
+      IDERR_NEWMENU,        // errore registrazione nuova classe menu
+      IDERR_BMPMINMAX,      // errore rilevazione handle default minmax e sysmenu
       // errori inizializzazione per processo
       IDERR_INITPROCHEAP = 100,   // errore inizializzazione heap processo
 //      IDERR_ALLOCPROCDATA,  // 1 errore allocazione memoria dati processo

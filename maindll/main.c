@@ -23,6 +23,7 @@ static BOOL stlrQueryScreenCaps(PSCRRES pScreenData);
 static VOID handleColorDepthChange(HINI hini, ULONG cclrs);
 static VOID migrateImageName(HINI hini, PSZ pOldApp, PSZ pNewApp, PSZ pKey, PSZ pBuf);
 static VOID migrateImageData(HINI hini, PSZ pOldApp, PSZ pNewApp, PSZ pKey, PSZ pBuf);
+static BOOL getDefFrameCtlsBmpHnds(VOID);
 static BOOL superclassMainPMclasses(VOID);
 static BOOL stlrSuperclass(PSZ pszClass, PCLASSDATA pcd, PFNWP pfnwpNew,
                     LONG cbWin, ULONG id1, ULONG id2);
@@ -94,6 +95,8 @@ dbgPrintf1("system values cached\n");
    // read the initialization file
    readProfile();
 dbgPrintf1("profile read\n");
+   // get the default frame controls bitmap handles
+   if (!getDefFrameCtlsBmpHnds()) goto error0;
    // superclasses various PM window classes
    if (!superclassMainPMclasses()) goto error0;
 dbgPrintf1("mainPMclass-succesfully superclassed\n");
@@ -114,6 +117,10 @@ error1:
    stlrSuperclass(WC_BUTTON, NULL, g.cd.btn.pfnwp, -4, 0, 0);
    stlrSuperclass(WC_TITLEBAR, NULL, g.cd.tbar.pfnwp, -4, 0, 0);
    stlrSuperclass(WC_FRAME, NULL, g.cd.frame.pfnwp, -4, 0, 0);
+#if 0
+   // only for owner drawing...
+   stlrSuperclass(WC_MENU, NULL, g.cd.menu.pfnwp, -4, 0, 0);
+#endif
 error0:
    // free the global bitmaps
    stlrFreeGlobalBitmaps(0, 0, 0, MODIF_ALLBMPS);
@@ -201,11 +208,10 @@ static VOID readProfile(VOID) {
           !((g.scr.cclr == cclrs) || ((g.scr.cclr > 256) && (cclrs > 256))))
          handleColorDepthChange(hini, cclrs);
    } // end if
-   // if any bitmap image is required load it as a global bitmap
-   if ((o.ui.tb.on && (o.ui.tb.a.bkgnd || o.ui.tb.i.bkgnd))
-       ||
-       (o.ui.btn.on && !o.ui.btn.solid))
-      setGlobalBitmaps(hini);
+
+   // always load bitmaps
+   setGlobalBitmaps(hini);
+
    if (hini) PrfCloseProfile(hini);
    // check if there are any user defined exceptions
    rc = PrfQueryProfileSize(HINI_USER, SZPRO_APP, SZEXC_GENERAL, &ul);
@@ -548,6 +554,71 @@ static VOID migrateImageData(HINI hini,
 }
 
 
+//===========================================================================
+// Get the handles used for the default bitmaps used to paint the frame
+// controls.
+// Parameters --------------------------------------------------------------
+// VOID
+// Return value ------------------------------------------------------------
+// BOOL : TRUE/FALSE (success/error)
+//===========================================================================
+static
+BOOL getDefFrameCtlsBmpHnds(VOID) {
+    HMQ hmq;
+    HAB hab;
+    BOOL rc = FALSE;
+    CLASSINFO ci;
+    HWND hwnd, hmn;
+    FRAMECDATA fcd = {0};
+    MENUITEM mi;
+
+    dbgPrintf1("getDefFrameCtlsBmpHnds\n");
+
+    // crea finestra fittizia x ricavare handle bmp controlli default finestra
+    hmq = WinCreateMsgQueue((hab = WinInitialize(0)), 0);
+
+    // dati classe menu
+    if (!WinQueryClassInfo(NULLHANDLE, WC_MENU, &ci)) {
+        WinDestroyMsgQueue(hmq);
+        WinTerminate(hab);
+        if (!rc) stlrlog(IDERR_BMPMINMAX);
+        return rc;
+    }
+
+    g.cd.menu.pfnwp = ci.pfnWindowProc;
+    g.cd.menu.cbData = ci.cbWindowData;
+    // crea finestra fittizia
+    fcd.cb = sizeof(FRAMECDATA);
+    fcd.flCreateFlags = FCF_SYSMENU | FCF_MINMAX | FCF_HIDEBUTTON;
+    if ((hwnd = WinCreateWindow(HWND_DESKTOP, WC_FRAME, "", 0, 0, 0, 0, 0, 0,
+                                HWND_BOTTOM, 0, &fcd, NULL)) != NULLHANDLE) {
+        // ricava handle bitmap titlebar button default
+        hmn = WinWindowFromID(hwnd, FID_SYSMENU);
+        g.cd.menu.pfnwp(hmn, MM_QUERYITEM, (MPARAM)SC_SYSMENU, (MPARAM)&mi);
+        g.bmpDef.sys = mi.hItem;
+        hmn = WinWindowFromID(hwnd, FID_MINMAX);
+        g.cd.menu.pfnwp(hmn, MM_QUERYITEM, (MPARAM)SC_CLOSE, (MPARAM)&mi);
+        g.bmpDef.cls = mi.hItem;
+        g.cd.menu.pfnwp(hmn, MM_QUERYITEM, (MPARAM)SC_MINIMIZE, (MPARAM)&mi);
+        g.bmpDef.min = mi.hItem;
+        g.cd.menu.pfnwp(hmn, MM_QUERYITEM, (MPARAM)SC_HIDE, (MPARAM)&mi);
+        g.bmpDef.hide = mi.hItem;
+        g.cd.menu.pfnwp(hmn, MM_QUERYITEM, (MPARAM)SC_MAXIMIZE, (MPARAM)&mi);
+        g.bmpDef.max = mi.hItem;
+        WinSetWindowPos(hwnd, 0, 0, 0, 0, 0, SWP_MAXIMIZE);
+        g.cd.menu.pfnwp(hmn, MM_QUERYITEM, (MPARAM)SC_RESTORE, (MPARAM)&mi);
+        g.bmpDef.rest = mi.hItem;
+        WinDestroyWindow(hwnd);
+        rc = TRUE;
+    }
+
+    WinDestroyMsgQueue(hmq);
+    WinTerminate(hab);
+    if (!rc) stlrlog(IDERR_BMPMINMAX);
+    return rc;
+}
+
+
 /* --------------------------------------------------------------------------
  Superclass WC_FRAME, WC_TITLEBAR and WC_BUTTON.
 - Parameters -------------------------------------------------------------
@@ -556,6 +627,9 @@ static VOID migrateImageData(HINI hini,
  BOOL TRUE/FALSE (success/error)
 -------------------------------------------------------------------------- */
 static BOOL superclassMainPMclasses(VOID) {
+
+   dbgPrintf1("getDefFrameCtlsBmpHnds\n");
+
    if (!stlrSuperclass(WC_FRAME, &g.cd.frame, stlrFrameProc, 4,
                           IDERR_FRAMECLASS, IDERR_NEWFRAME))
       return FALSE;
@@ -565,10 +639,19 @@ static BOOL superclassMainPMclasses(VOID) {
    if (!stlrSuperclass(WC_BUTTON, &g.cd.btn, stlrButtonProc, 4,
                           IDERR_BTNCLASS, IDERR_NEWBTN))
       goto restoreWC_TITLEBAR;
-//return FALSE;
+#if 0
+   // MENU subclassing is not required for replacing bitmap buttons,
+   // but it will be necessary for control ownerdrawing
+   if (!stlrSuperclass(WC_MENU, &g.cd.menu, stlrMenuProc, 4,
+                          IDERR_MENUCLASS, IDERR_NEWMENU))
+      goto restoreWC_BUTTON;
+#endif
+
    return TRUE;
 
    // in case of error restore the original window classes procedures
+restoreWC_BUTTON:
+   stlrSuperclass(WC_BUTTON, NULL, g.cd.btn.pfnwp, -4, 0, 0);
 restoreWC_TITLEBAR:
    stlrSuperclass(WC_TITLEBAR, NULL, g.cd.tbar.pfnwp, -4, 0, 0);
 restoreWC_FRAME :

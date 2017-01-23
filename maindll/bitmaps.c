@@ -48,6 +48,9 @@ VOID setGlobalBitmaps(HINI hini) {
    PSZ pBuf = NULL;
    HMODULE hModRes = NULLHANDLE;
    HPS hps;
+
+   dbgPrintf1("setGlobalBitmaps\n");
+
    // allocate the needed resources --------------------------------------
    // the function called safely handle allocations errors
    hps = WinGetScreenPS(HWND_DESKTOP);
@@ -96,6 +99,19 @@ VOID setGlobalBitmaps(HINI hini) {
    // in case of failure set to use solid color
    if (o.ui.btn.solid && !o.ui.btn.bmpp.hbmp)
       o.ui.btn.solid = TRUE;
+
+   // titlebar buttons
+   o.ui.tb.bmp.close = stlrGlobalHBmp(hini, SZPRO_BMPCLOSEDATA, pBuf, hps,
+                                      NULL, hModRes, 0, NULL);
+   o.ui.tb.bmp.rest = stlrGlobalHBmp(hini, SZPRO_BMPRESTDATA, pBuf, hps,
+                                      NULL, hModRes, 0, NULL);
+   o.ui.tb.bmp.min = stlrGlobalHBmp(hini, SZPRO_BMPMINDATA, pBuf, hps,
+                                      NULL, hModRes, 0, NULL);
+   o.ui.tb.bmp.max = stlrGlobalHBmp(hini, SZPRO_BMPMAXDATA, pBuf, hps,
+                                      NULL, hModRes, 0, NULL);
+   o.ui.tb.bmp.hide = stlrGlobalHBmp(hini, SZPRO_BMPHIDEDATA, pBuf, hps,
+                                      NULL, hModRes, 0, NULL);
+
    // free the resources -------------------------------------------------
    if (hModRes) DosFreeModule(hModRes);
    if (pBuf) m_sysMemFree(pBuf);

@@ -11,6 +11,7 @@ eStylerLite_TEMPLATE        = eStylerDLL
 eStylerLite_NAME            = estlrl11
 eStylerLite_SOURCES         = \
                                 main.c \
+                                menu.c \
                                 bitmaps.c \
                                 process.c \
                                 button.c \

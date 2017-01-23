@@ -23,6 +23,12 @@
 
 // definitions --------------------------------------------------------------
 
+// change the bitmap used to paint a frame window control -------------------
+#define _setActiveDlgCtrlBmp(_hmenu_, _id_, _hbmp_) \
+(activeDlgProc((_hmenu_), MM_SETITEMHANDLE, (MPARAM)(_id_), (MPARAM)(_hbmp_)))
+#define _setInactiveDlgCtrlBmp(_hmenu_, _id_, _hbmp_) \
+(inactiveDlgProc((_hmenu_), MM_SETITEMHANDLE, (MPARAM)(_id_), (MPARAM)(_hbmp_)))
+
 // prototypes ---------------------------------------------------------------
 static VOID showPreviewWindow(BOOL bShow, BOOL bSetFlag);
 static BOOL createPreviewWindow(VOID);
@@ -136,6 +142,20 @@ VOID updatePreviewWindow(ULONG updateFlag) {
       mUpdatePreviewControl(hwndActive, ID_PVBTNDISABLED);
    if (updateFlag & PVUPD_DLGFONT)
       setDialogFont(hwndActive);
+   // set titlebar bitmap buttons
+   _setActiveDlgCtrlBmp( WinHWND( hwndActive, FID_MINMAX), SC_MINIMIZE,
+                     g.pUiData->min.hbitmap);
+   _setActiveDlgCtrlBmp( WinHWND( hwndActive, FID_MINMAX), SC_MAXIMIZE,
+                     g.pUiData->max.hbitmap);
+   _setActiveDlgCtrlBmp( WinHWND( hwndActive, FID_MINMAX), SC_CLOSE,
+                     g.pUiData->close.hbitmap);
+   _setInactiveDlgCtrlBmp( WinHWND( hwndInactive, FID_MINMAX), SC_MINIMIZE,
+                     g.pUiData->min.hbitmap);
+   _setInactiveDlgCtrlBmp( WinHWND( hwndInactive, FID_MINMAX), SC_MAXIMIZE,
+                     g.pUiData->max.hbitmap);
+   _setInactiveDlgCtrlBmp( WinHWND( hwndInactive, FID_MINMAX), SC_CLOSE,
+                     g.pUiData->close.hbitmap);
+
 }
 
 
@@ -152,6 +172,7 @@ static BOOL createPreviewWindow(VOID) {
    HWND hwnd;
    SWP swp;
    SIZEL border;
+
    loadString(IDS_PREVIEWTITLE, achTitle);
    // register the window classes
    if (!WinRegisterClass(g.appl.hab, WC_MAINPVCLIENT,

@@ -132,10 +132,6 @@ BOOL applyBitmap(HWND hwnd, PSZ pszPath, PSZ pszFile, PAPPLYBMP pa) {
       *pApplyBmp->achBmpFile = '\x00';
    } /* endif */
 
-   // from worker thread code:
-   // save the bitmap name and data in OS2.INI
-   //if (!saveBmpData(pApplyBmp)) return APPLYBMP_ERR_SAVEDATA;
-
    return workerJobAdd(hwnd, STLRWID_APPLYBMP,
                        (PTHREADJOBFN)applyBitmapJob,
                        (PDELJOBFN)freeApplyBitmapRes, pApplyBmp);
@@ -154,20 +150,20 @@ BOOL applyBitmap(HWND hwnd, PSZ pszPath, PSZ pszFile, PAPPLYBMP pa) {
  ULONG : 0 (success), 1 (cannot read the file),
 -------------------------------------------------------------------------- */
 ULONG applyBitmapJob(PAPPLYBMP pa) {
-#if 0
    ULONG rc;
-   // if a non-default bitmap is set read the bitmap file
-   if (*pa->achBmpFile
-       &&
-       (APPLYBMP_SUCCESS
-          !=
-          (rc = readBmpFile(pa->achBmpFile,
-                            (PBITMAPFILEHEADER)pa->aBmpData, &pa->cbData))))
-      return rc;
-#endif
 
-   // save the bitmap name and data in OS2.INI
-   if (!saveBmpData(pa)) return APPLYBMP_ERR_SAVEDATA;
+   // if a non-default bitmap is set read the bitmap file
+   if (*pa->achBmpFile && strstr( pa->achBmpFile, ".bmp")) {
+       rc = readBmpFile(pa->achBmpFile,
+                        (PBITMAPFILEHEADER)pa->aBmpData, &pa->cbData);
+       if (rc != APPLYBMP_SUCCESS)
+          return rc;
+   }
+
+   // save the bitmap name and data in ESTYLER.INI
+   if (!saveBmpData(pa))
+       return APPLYBMP_ERR_SAVEDATA;
+
    return APPLYBMP_SUCCESS;
 }
 
@@ -301,6 +297,41 @@ static ULONG readBmpFile(PSZ pszFile, PBITMAPFILEHEADER pBmp, PULONG pCbBmp) {
 }
 
 
+/*
+  load theme bitmap
+*/
+HBITMAP loadThemeBitmap( HWND hwnd, PSZ type, PSZ theme)
+{
+    HPS hps = WinGetPS(hwnd);
+    PAPPLYBMP pApplyBmp;
+    ULONG cb, rc;
+    HBITMAP hbitmap = 0;
+
+    // load bitmap using selected theme and store to ini file
+    // if a non-default bitmap is being set allocate storage for the bitmap data
+    cb = sizeof(APPLYBMP) + 0x10000;
+    pApplyBmp = calloc( cb, 1);
+    makeFullPathName( pApplyBmp->achBmpFile, SZ_BMPPATHXGA);
+    strcat( pApplyBmp->achBmpFile, type);
+    strcat( pApplyBmp->achBmpFile, "/");
+    strcat( pApplyBmp->achBmpFile, theme);
+    strcat( pApplyBmp->achBmpFile, ".bmp");
+
+    //pApplyBmp->pBmp = pBmp;
+    // load bitmap into memory
+    rc = readBmpFile( pApplyBmp->achBmpFile,
+                      (PBITMAPFILEHEADER)pApplyBmp->aBmpData, &pApplyBmp->cbData);
+    if (rc == APPLYBMP_SUCCESS) {
+        // create new bitmap
+        hbitmap = stlrHBmp( hps, pApplyBmp->aBmpData, NULL, 0, NULL);
+    }
+
+    free( pApplyBmp);
+    WinReleasePS( hps);
+    return hbitmap;
+}
+
+
 /* --------------------------------------------------------------------------
  Save the bitmap data to the ini files.
 - Parameters -------------------------------------------------------------
@@ -314,6 +345,7 @@ static BOOL saveBmpData(PAPPLYBMP pa) {
    PSZ pszFile = NULL;
    PBYTE pData = NULL;
    ULONG cbData = 0;
+
    if (NULLHANDLE != (hini = stlrOpenProfile())) {
       if (*pa->achBmpFile) {
          pszFile = pa->achBmpFile; // strrchr(pa->achBmpFile, '\\') + 1;
@@ -323,16 +355,25 @@ static BOOL saveBmpData(PAPPLYBMP pa) {
          pszFile = pData = NULL;
          cbData = 0;
       } /* endif */
-      // save the bitmap name and data in OS2.INI
-      if (setProfileString(hini, SZPRO_OPTIONS, pa->pBmp->pszNameKey,
-                                pszFile)) {
-          //&&
-          //setProfileData(hini, SZPRO_OPTIONS, pa->pBmp->pszDataKey,
-          //               pData, cbData)) {
-         rc = TRUE;
-      } /* endif */
+
+      // save the bitmap name in ESTYLER.INI
+      if (!setProfileString(hini, SZPRO_OPTIONS, pa->pBmp->pszNameKey,
+                            pszFile)) {
+          PrfCloseProfile(hini);
+          return FALSE;
+      }
+
+      // save the bitmap data (if present) in ESTYLER.INI
+      rc = TRUE;
+      if (pData) {
+          if (!setProfileData(hini, SZPRO_OPTIONS, pa->pBmp->pszDataKey,
+                              pData, cbData)) {
+              rc = FALSE;
+          }
+      }
       PrfCloseProfile(hini);
    } /* endif */
+
    return rc;
 }
 

@@ -445,7 +445,23 @@ static BOOL getBmpFileNamesAndData(VOID) {
                           SZPRO_BMPBUTTON, SZPRO_BMPBTNDATA,
                           ((g.scr.cclr > 256) ? IDBMP_BTN: IDBMP_BTN8),
                           PVUPD_BTNALL, MODIF_PUSHBTN)
-        ;
+        && getStlrBmpDetails(hini, &g.pUiData->close,
+                          SZPRO_BMPCLOSE, SZPRO_BMPCLOSEDATA,
+                          0, PVUPD_TITLEACTIVE | PVUPD_TITLEINACTIVE, 0)
+        && getStlrBmpDetails(hini, &g.pUiData->hide,
+                             SZPRO_BMPHIDE, SZPRO_BMPHIDEDATA,
+                             0, PVUPD_TITLEACTIVE | PVUPD_TITLEINACTIVE, 0)
+        && getStlrBmpDetails(hini, &g.pUiData->rest,
+                             SZPRO_BMPREST, SZPRO_BMPRESTDATA,
+                             0, PVUPD_TITLEACTIVE | PVUPD_TITLEINACTIVE, 0)
+        && getStlrBmpDetails(hini, &g.pUiData->min,
+                             SZPRO_BMPMIN, SZPRO_BMPMINDATA,
+                             0, PVUPD_TITLEACTIVE | PVUPD_TITLEINACTIVE, 0)
+        && getStlrBmpDetails(hini, &g.pUiData->max,
+                             SZPRO_BMPMAX, SZPRO_BMPMAXDATA,
+                             0, PVUPD_TITLEACTIVE | PVUPD_TITLEINACTIVE, 0)
+
+           ;
    PrfCloseProfile(hini);
    return rc;
 }

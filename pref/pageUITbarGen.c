@@ -36,6 +36,7 @@ static BOOL setSubPages(HWND hwnd, BOOL bIns);
 static ULONG insertPage(ULONG idIns, ULONG idStatusText, ULONG idMinTabText,
                  HWND hwndPage);
 static VOID updateStatusLineText(ULONG idPage, ULONG idText);
+static VOID loadTheme( HWND hwnd);
 
 // global variables ---------------------------------------------------------
 
@@ -96,6 +97,7 @@ static VOID setControlsState(HWND hwnd, BOOL bSetSubPages) {
    dBtnCheckSet(hwnd, CHK_OVERRIDEPP, g.pUiData->pOpts->tb.overridePP);
    setCtrlTextParm(hwnd, TXT_TBFONT, IDS_FONT_, g.pUiData->pOpts->tb.achFont);
    dLbxItemSelect(hwnd, COMBO_TBALIGN, g.pUiData->pOpts->tb.center);
+   dLbxItemSelect(hwnd, COMBO_THEME, g.pUiData->pOpts->tb.theme);
    g.state &= ~STLRIS_SKIPNOTIFICATION;
 }
 
@@ -138,6 +140,20 @@ static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl) {
             } /* endif */
          } /* endif */
          break;
+   case COMBO_THEME:
+      if (event == LN_SELECT) {
+         INT iitem;
+         if (LIT_NONE != (iitem = wLbxItemSelected(hCtrl))) {
+            g.pUiData->pOpts->tb.theme = iitem;
+
+            // load new titlebar button theme
+            loadTheme( hwnd);
+
+            bSettingsChanged = TRUE;
+            updatePreviewWindow(PVUPD_TITLEBARS);
+         } /* endif */
+      } /* endif */
+      break;
    } /* endswitch */
    if (bSettingsChanged) checkOptionsChanged();
 }
@@ -184,6 +200,8 @@ static VOID enablePageControls(HWND hwnd, BOOL flag) {
    WinEnableControl(hwnd, BTN_TBFONT, flag);
    WinEnableControl(hwnd, TXT_TBALIGN, flag);
    WinEnableControl(hwnd, COMBO_TBALIGN, flag);
+   WinEnableControl(hwnd, TXT_THEME, flag);
+   WinEnableControl(hwnd, COMBO_THEME, flag);
 }
 
 
@@ -217,6 +235,8 @@ static VOID checkApplyState(VOID) {
              (g.pUiData->pOpts->tb.overridePP != g.pCurOpts->ui.tb.overridePP)
               ||
               (g.pUiData->pOpts->tb.center != g.pCurOpts->ui.tb.center)
+              ||
+              (g.pUiData->pOpts->tb.theme != g.pCurOpts->ui.tb.theme)
               ||
               strcmp(g.pUiData->pOpts->tb.achFont, g.pCurOpts->ui.tb.achFont)
              );
@@ -274,6 +294,60 @@ static VOID checkDefaultState(VOID) {
                         (bEnable ? PGFL_DEFAULT_ENABLED : 0));
 }
 
+/*
+  Apply theme bitmap
+*/
+static HBITMAP applyThemeBitmap( HWND hwnd, PSZ type, PSZ theme, PBMPFILEDATA pBmp,
+                              HBITMAP *hbmp)
+{
+    HPS hps = WinGetPS(hwnd);
+    PID pid;
+    PAPPLYBMP pApplyBmp;
+    ULONG cb;
+
+    WinQueryWindowProcess( hwnd, &pid, NULL);
+
+    // load bitmap using selected theme and store to ini file
+    // if a non-default bitmap is being set allocate storage for the bitmap data
+    cb = sizeof(APPLYBMP) + 0x10000;
+    pApplyBmp = calloc( cb, 1);
+    makeFullPathName( pApplyBmp->achBmpFile, SZ_BMPPATHXGA);
+    strcat( pApplyBmp->achBmpFile, type);
+    strcat( pApplyBmp->achBmpFile, "/");
+    strcat( pApplyBmp->achBmpFile, theme);
+    strcat( pApplyBmp->achBmpFile, ".bmp");
+
+    pApplyBmp->pBmp = pBmp;
+    // load bitmap into memory, save to ini
+    if (applyBitmapJob( pApplyBmp) == 0) {
+        // release current bitmap
+        if (*hbmp)
+            stlrFreeGlobalBitmap( hps, *hbmp, pid);
+        // create new global bitmap
+        *hbmp = stlrHBmp( hps, pApplyBmp->aBmpData, NULL, 0, NULL);
+        stlrMakeGlobalBitmap( hps, *hbmp);
+    }
+
+    free( pApplyBmp);
+    WinReleasePS( hps);
+}
+
+/*
+  load theme for preview window
+*/
+static VOID loadTheme( HWND hwnd)
+{
+    HWND hwndTheme = DlgItemHwnd(hwnd, COMBO_THEME);
+    char theme[ 64];
+
+    // get theme name
+    wLbxItemText( hwndTheme, g.pUiData->pOpts->tb.theme, sizeof(theme), theme);
+
+    // load bitmap using selected theme
+    g.pUiData->close.hbitmap = loadThemeBitmap( hwnd, "close", theme);
+    g.pUiData->min.hbitmap = loadThemeBitmap( hwnd, "minimize", theme);
+    g.pUiData->max.hbitmap = loadThemeBitmap( hwnd, "maximize", theme);
+}
 
 /* --------------------------------------------------------------------------
  Apply the current settings.
@@ -283,10 +357,31 @@ static VOID checkDefaultState(VOID) {
  VOID
 -------------------------------------------------------------------------- */
 static VOID applyOptions(HWND hwnd) {
+   HWND hwndTheme = DlgItemHwnd(hwnd, COMBO_THEME);
+   char theme[ 64];
+
+   // get theme name
+   wLbxItemText( hwndTheme, g.pUiData->pOpts->tb.theme, sizeof(theme), theme);
+
    g.pCurOpts->ui.tb.on = g.pUiData->pOpts->tb.on;
    g.pCurOpts->ui.tb.overridePP = g.pUiData->pOpts->tb.overridePP;
    g.pCurOpts->ui.tb.center = g.pUiData->pOpts->tb.center;
    strcpy(g.pCurOpts->ui.tb.achFont, g.pUiData->pOpts->tb.achFont);
+
+   // load bitmap using selected theme and store to ini file
+   applyThemeBitmap( hwnd, "close", theme, &g.pUiData->close,
+                     &g.pCurOpts->ui.tb.bmp.close);
+   applyThemeBitmap( hwnd, "hide", theme, &g.pUiData->hide,
+                     &g.pCurOpts->ui.tb.bmp.hide);
+   applyThemeBitmap( hwnd, "restore", theme, &g.pUiData->rest,
+                     &g.pCurOpts->ui.tb.bmp.rest);
+   applyThemeBitmap( hwnd, "minimize", theme, &g.pUiData->min,
+                     &g.pCurOpts->ui.tb.bmp.min);
+   applyThemeBitmap( hwnd, "maximize", theme, &g.pUiData->max,
+                     &g.pCurOpts->ui.tb.bmp.max);
+   g.pCurOpts->ui.tb.theme = g.pUiData->pOpts->tb.theme;
+
+   // redraw title bar
    m_stlrMsgBroadcast(STLRM_REDRAWTITLE, MODIF_FONT);
    resetCommonButton(BTN_APPLY, PGFL_APPLY_ENABLED, 0);
 }

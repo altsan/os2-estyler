@@ -76,6 +76,7 @@ BOOL APIENTRY EDStbReg(HAB hab);
 #define WinParent(hwnd)             WinQueryWindow((hwnd), QW_PARENT)
 #define WinStyle(hwnd)              WinQueryWindowULong((hwnd), QWL_STYLE)
 #define WinSysVal(val)              WinQuerySysValue(HWND_DESKTOP, (val))
+#define WinHWND(_hwnd_, _id_)       WinWindowFromID(_hwnd_, _id_)
 
 
 #define dBtnCheckSet(hwnd, id, state) \
