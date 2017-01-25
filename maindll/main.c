@@ -117,7 +117,7 @@ error1:
    stlrSuperclass(WC_BUTTON, NULL, g.cd.btn.pfnwp, -4, 0, 0);
    stlrSuperclass(WC_TITLEBAR, NULL, g.cd.tbar.pfnwp, -4, 0, 0);
    stlrSuperclass(WC_FRAME, NULL, g.cd.frame.pfnwp, -4, 0, 0);
-#if 0
+#if 1
    // only for owner drawing...
    stlrSuperclass(WC_MENU, NULL, g.cd.menu.pfnwp, -4, 0, 0);
 #endif
@@ -639,7 +639,7 @@ static BOOL superclassMainPMclasses(VOID) {
    if (!stlrSuperclass(WC_BUTTON, &g.cd.btn, stlrButtonProc, 4,
                           IDERR_BTNCLASS, IDERR_NEWBTN))
       goto restoreWC_TITLEBAR;
-#if 0
+#if 1
    // MENU subclassing is not required for replacing bitmap buttons,
    // but it will be necessary for control ownerdrawing
    if (!stlrSuperclass(WC_MENU, &g.cd.menu, stlrMenuProc, 4,
