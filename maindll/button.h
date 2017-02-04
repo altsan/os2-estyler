@@ -223,4 +223,6 @@ typedef struct {
 // stile immagine (bitmap, icon, miniicon
 #define BS_IMAGE          (BS_BITMAP | BS_ICON | BS_MINIICON)
 
+VOID cairoPaintButton(HWND hwnd, PBTNDATA p, PBTNDRAW pbd);
+
 #endif // #ifndef _STLR_BUTTONS_H_

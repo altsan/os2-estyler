@@ -15,6 +15,7 @@ eStylerLite_SOURCES         = \
                                 bitmaps.c \
                                 process.c \
                                 button.c \
+                                button_cairo.c \
                                 debug.c \
                                 export.c \
                                 frame.c \

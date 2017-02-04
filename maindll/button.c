@@ -16,6 +16,8 @@
 #include "main.h"
 #include "button.h"
 
+#include <stlrCommon.h>
+
 // prototypes ---------------------------------------------------------------
 
 // global variables ---------------------------------------------------------
@@ -45,8 +47,6 @@ static VOID drawFgndIcon(PBTNDATA p, PBTNDRAW pbd);
 static ULONG drawBtnText(PBTNDATA p, PBTNDRAW pbd, ULONG cyimg);
 static VOID drawBorder(HWND hwnd, PBTNDATA p, PBTNDRAW pbd);
 static BOOL drawDisabledRect(HPS hps, PRECTL prcl, LONG color);
-static VOID getBtnColors(HWND hwnd, PBTNDATA p, HPS hps);
-static LONG getCtlClr(HWND hwnd, HPS hps, ULONG ulid1, ULONG ulid2, LONG ldef);
 static VOID deferWarpCenterSubclassing(HWND hwnd);
 static BOOL EXPENTRY hookWcProc(HAB hab, PQMSG pqmsg, USHORT fs);
 static MRESULT EXPENTRY newWcProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
@@ -204,7 +204,7 @@ static BOOL setBtnText(HWND hwnd, PCREATESTRUCT pCreateParm, PBTNDATA p) {
 static BOOL initBtnColors(HWND hwnd, PBTNDATA p) {
    HPS hps;
    if (NULLHANDLE != (hps = WinGetPS(hwnd))) {
-      getBtnColors(hwnd, p, hps);
+      getBtnColors(hwnd, hps, p);
       WinReleasePS(hps);
       return TRUE;
    } /* endif */
@@ -292,7 +292,7 @@ static BOOL handleSysColorChange(HWND hwnd, PBTNDATA p) {
    HPS hps;
    BOOL handled = FALSE;
    if (NULLHANDLE == (hps = WinGetPS(hwnd))) return FALSE;
-   getBtnColors(hwnd, p, hps);
+   getBtnColors(hwnd, hps, p);
    WinReleasePS(hps);
    if (mStlrBtnOn() && mHasBorder(hwnd)) {
       handled = TRUE;
@@ -400,6 +400,15 @@ static VOID paintBtn(HWND hwnd, PBTNDATA p, PBTNDRAW pbd) {
    } else {
       pbd->bcd.fsHiliteState = mBtnHiliteState(hwnd);
    } /* endif */
+
+   // use cairo only for text buttons
+   if ((pbd->flStyle & BS_IMAGE) == 0) {
+       paintCairoButton( hwnd, p, pbd, &o.ui);
+       return;
+   }
+
+   // use PM for image/icon buttons
+
    GpiCreateLogColorTable(pbd->hps, 0, LCOLF_RGB, 0, 0, NULL);
    // background ---------------------------------------------------------
    // initialize the size of the background rectangle
@@ -727,26 +736,6 @@ static BOOL drawDisabledRect(HPS hps, PRECTL prcl, LONG color) {
                                           PATSYM_DENSE5: PATSYM_HALFTONE)) &&
           GpiSetColor(hps, color) &&
           GpiBox(hps, DRO_FILL, (PPOINTL)&rcl + 1, 0L, 0L);
-}
-
-
-/* --------------------------------------------------------------------------
- Get the colors to be used to paint the button.
-- Parameters -------------------------------------------------------------
- HWND hwnd  : button window handle.
- PBTNDATA p : button data
- HPS hps    : presentation space handle.
-- Return value -----------------------------------------------------------
- VOID
--------------------------------------------------------------------------- */
-static VOID getBtnColors(HWND hwnd, PBTNDATA p, HPS hps) {
-   p->lbk.l = mBkgndColor(hwnd, hps);
-   p->lfgnd = mFgndColor(hwnd, hps);
-   p->ldis = mDisabledBkgndColor(hwnd, hps);
-   p->ldisf = mDisabledFgndColor(hwnd, hps);
-   p->ldef = mDefaultBorderColor(hwnd, hps);
-   p->llite = mHiliteBorderColor(hwnd, hps);
-   p->lshadow = mDarkBorderColor(hwnd, hps);
 }
 
 

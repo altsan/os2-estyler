@@ -45,7 +45,4 @@
 #define handleError(_msg_, _rc_) \
    errorBox(_msg_), (_rc_)
 
-#define mSysColor(_iClr_) \
-   (WinQuerySysColor(HWND_DESKTOP, (_iClr_), 0))
-
 #endif // _STLRPREF_MACROS_H_

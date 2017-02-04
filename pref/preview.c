@@ -16,10 +16,9 @@
 #include "preview.h"
 #include "stlrTitlebar.h"
 #include "stlrGraphics.h"
+#include "button.h"
 
-// since cairo includes os2.h, put after default headers
-#include <cairo.h>
-#include <cairo-os2.h>
+#include <stlrCommon.h>
 
 // definitions --------------------------------------------------------------
 
@@ -49,8 +48,6 @@ static MRESULT EXPENTRY newBtnProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2)
 static VOID handlePaintRequest(HWND hwnd);
 static VOID paintBtn(HWND hwnd, HPS hps);
 static BOOL drawDisabledRect(HPS hps, PRECTL prcl, LONG color);
-static VOID getBtnColors(HWND hwnd, HPS hps, PPVBTN pbtn);
-static LONG getCtlClr(HWND hwnd, HPS hps, ULONG ulid1, ULONG ulid2, LONG ldef);
 static MRESULT overrideBtnProc(HWND hwnd, ULONG msg, MPARAM mp1);
 
 #ifdef __KLIBC__
@@ -600,23 +597,26 @@ VOID paintTitlebar(HWND hwnd, HPS hps, PTBARHILITE ptbo, PSIZEL pSize) {
    INT cbText;
    cairo_surface_t *surface = NULL;
    cairo_t *cr = NULL;
-   cairo_text_extents_t font_extents;
-   char* dot, *size, *face;
    int     fx, fy;
-   HINI hini = NULLHANDLE;
-   CHAR achPath[CCHMAXPATH];
    cairo_pattern_t *pattern = NULL;
    cairo_surface_t *image = NULL;
+   int     flags;
+   RECTL r;
 
+   // query window rect
+   WinQueryWindowRect( hwnd, &r);
+   // adjust rect, cairo starts from 1,1
+   r.xLeft = 1;
+   r.yBottom = 1;
+
+   // query window title
    cbText = WinQueryWindowText(hwnd, sizeof(achText), achText);
 
    // initialize cairo surface
    surface = cairo_os2_surface_create_for_window( hwnd, pSize->cx, pSize->cy);
    cr = cairo_create( surface);
-
-#define RED(a) ((a >> 16) & 0xff)
-#define GREEN(a) ((a >> 8) & 0xff)
-#define BLUE(a) ((a) & 0xff)
+   // disable aliasing for rendering primitives, but still used for fonts
+   cairo_set_antialias( cr, CAIRO_ANTIALIAS_NONE);
 
    // draw background
    switch (ptbo->bkgnd) {
@@ -688,71 +688,17 @@ VOID paintTitlebar(HWND hwnd, HPS hps, PTBARHILITE ptbo, PSIZEL pSize) {
        break;
    }
 
-   // select a default font
-   cairo_select_font_face( cr, "Sans", CAIRO_FONT_SLANT_NORMAL,
-                           CAIRO_FONT_WEIGHT_NORMAL);
-   cairo_set_font_size( cr, 14);
-
-   // use font if defined
-   if (strchr( g.pUiData->pOpts->tb.achFont, '.')) {
-       size = strdup( g.pUiData->pOpts->tb.achFont);
-       dot = strchr( size, '.');
-       face = dot + 1;
-       *dot = 0;
-       // set size of font
-       cairo_set_font_size( cr, atoi(size) * 1.5);
-       // set font name
-       cairo_select_font_face( cr, face, CAIRO_FONT_SLANT_NORMAL,
-                               CAIRO_FONT_WEIGHT_NORMAL);
-       free( size);
-   }
-
-   // set title position
-   fx = 8;
-   fy = pSize->cy - 5;
-   if (g.pUiData->pOpts->tb.center) {
-       cairo_text_extents(cr, achText, &font_extents);
-       // if the text is wider than the window it is anyway left aligned
-       if (font_extents.width < pSize->cx)
-           fx = (pSize->cx - font_extents.width) / 2;
-   }
-
-   // draw a shadow behind the text
-   if (ptbo->fl & TBO_TEXTSHADOW) {
-       cairo_set_source_rgb( cr, RED(ptbo->clrBgTxt) / 255.0,
-                             GREEN(ptbo->clrBgTxt) / 255.0,
-                             BLUE(ptbo->clrBgTxt) / 255.0);
-       cairo_move_to( cr, fx + 1, fy + 1);
-       cairo_show_text( cr, achText);
-   }
-
-   // draw text
-   cairo_set_source_rgb( cr, RED(ptbo->clrFgTxt) / 255.0,
-                         GREEN(ptbo->clrFgTxt) / 255.0,
-                         BLUE(ptbo->clrFgTxt) / 255.0);
-   cairo_move_to( cr, fx, fy);
-   cairo_show_text( cr, achText);
+   // draw title
+   flags = DT_VCENTER
+           | (g.pUiData->pOpts->tb.center ? DT_CENTER : 0)
+           | (ptbo->fl & TBO_TEXTSHADOW ? DT_3D : 0);
+   drawCairoTitle( cr, g.pUiData->pOpts->tb.achFont, &r, ptbo->clrFgTxt,
+                   ptbo->clrBgTxt, achText, flags);
 
    // titlebar border
-   if (ptbo->fl & TBO_BORDER) {
-       // top/left border
-       cairo_set_line_width(cr, 1.0);
-       cairo_set_source_rgb( cr, RED(ptbo->clrTopLeftBorder) / 255.0,
-                             GREEN(ptbo->clrTopLeftBorder) / 255.0,
-                             BLUE(ptbo->clrTopLeftBorder) / 255.0);
-       cairo_move_to( cr, 0, pSize->cy);
-       cairo_line_to( cr, 0, 0);
-       cairo_line_to( cr, pSize->cx, 0);
-       cairo_stroke (cr);
-       // right/bottom
-       cairo_set_source_rgb( cr, RED(ptbo->clrRightBottomBorder) / 255.0,
-                             GREEN(ptbo->clrRightBottomBorder) / 255.0,
-                             BLUE(ptbo->clrRightBottomBorder) / 255.0);
-       cairo_move_to( cr, pSize->cx, 0);
-       cairo_line_to( cr, pSize->cx, pSize->cy);
-       cairo_line_to( cr, 0, pSize->cy);
-       cairo_stroke (cr);
-   }
+   if (ptbo->fl & TBO_BORDER)
+       drawCairo3Dborder( cr, &r, ptbo->clrTopLeftBorder,
+                          ptbo->clrRightBottomBorder, 1);
 
    // render surface on entire window
    cairo_os2_surface_paint_window( surface, hps, NULL, 0);
@@ -817,120 +763,31 @@ static VOID handlePaintRequest(HWND hwnd) {
  VOID
 -------------------------------------------------------------------------- */
 static VOID paintBtn(HWND hwnd, HPS hps) {
-   RECTL r;
-   SIZEL size;
-   ULONG flHilite;
    CHAR buf[64];
    ULONG cbText;
-   POINTL aptl[2];
-   ULONG cyText;
-   LONG color;
-   ULONG style;
-   PVBTN btn;
+   BTNDATA bdata;
+   BTNDRAW bdraw;
+
    // initialization -----------------------------------------------------
    switch (WinID(hwnd)) {
-      case ID_PVBTNNORMAL:   style = 0;           break;
-      case ID_PVBTNDEFAULT:  style = BS_DEFAULT;  break;
-      case ID_PVBTNDISABLED: style = WS_DISABLED; break;
+      case ID_PVBTNNORMAL:   bdraw.flStyle = 0;           break;
+      case ID_PVBTNDEFAULT:  bdraw.flStyle = BS_DEFAULT;  break;
+      case ID_PVBTNDISABLED: bdraw.flStyle = WS_DISABLED; break;
    } /* endswitch */
-   if (g.pUiData->pOpts->btn.on) {
-      btn.border = g.pUiData->pOpts->btn.border;
-      btn.flat = g.pUiData->pOpts->btn.flat;
-      btn.overPP = g.pUiData->pOpts->btn.overPP;
-      btn.def3D = g.pUiData->pOpts->btn.def3D;
-      btn.dis3D = g.pUiData->pOpts->btn.dis3D;
-      btn.solid = g.pUiData->pOpts->btn.solid;
-   } else {
-      btn.border = 1;
-      btn.flat = 0;
-      btn.overPP = 0;
-      btn.def3D = 0;
-      btn.dis3D = 0;
-      btn.flat = 1;
-      btn.solid = 1;
-   } /* endif */
-   WinQueryWindowRect(hwnd, &r);
-   size.cx = r.xRight;
-   size.cy = r.yTop;
-   // get the hilite state
-   flHilite = (ULONG)defBtnProc(hwnd, BM_QUERYHILITE, MPVOID, MPVOID);
-   getBtnColors(hwnd, hps, &btn);
-   GpiCreateLogColorTable(hps, 0, LCOLF_RGB, 0, 0, NULL);
-   // background ---------------------------------------------------------
-   // initialize the size of the background rectangle
-   mSetBtnBkgndRect(&r, &size, -3 - btn.border, -3 - btn.border);
-   // solid color button --------------
-   if (btn.solid) {
-      WinFillRect(hps, &r, btn.lbk.l);
-   // image background ----------------
-   } else {
-      WinDrawBitmap(hps, g.pUiData->pOpts->btn.bmpp.hbmp, NULL, (PPOINTL)&r,
-                    0, 0, DBM_STRETCH);
-   } /* endif */
-   // foreground ---------------------------------------------------------
-   // calculate the text height
+
+   // get button text
    cbText = WinQueryWindowText(hwnd, sizeof(buf), buf);
-   if (flHilite) RectShift(&r, 1, -1);
-   if (style & WS_DISABLED) {
-      // stile disabilitato 3D (usa colori bordo chiaro e scuro
-      if (btn.dis3D) {
-         RectShift(&r, 1, -1);
-         WinDrawText(hps, cbText, buf, &r, btn.llite, 0,
-                     DT_CENTER | DT_VCENTER | DT_MNEMONIC);
-         RectShift(&r, -1, 1);
-         color = btn.lshadow;
-      } else {
-         color = btn.ldisf;
-      } /* endif */
-   } else {
-      color = btn.lfgnd;
-   } /* endif */
-   WinDrawText(hps, cbText, buf, &r, color, 0,
-               DT_CENTER | DT_VCENTER | DT_MNEMONIC);
-   if (flHilite) RectShift(&r, -1, 1);
-   // set the border rectangle
-   mSetBtnBorderRect(&r, &size, 1, 1, -3, -3);
-   // if the button is in pressed state
-   if (flHilite) {
-      // draw the outer border first
-      if (btn.flat)                  // flat style button
-         draw3Dborder(hps, &r, btn.lshadow, btn.llite, 1);
-      else                             // non-flat style button
-         draw3Dborder(hps, &r, 0, btn.lshadow, 1);
-      // draw the inner border
-      draw3Dborder(hps, &r, btn.lshadow, btn.llite, 1 + btn.border);
-   // normal state button
-   } else {
-      // outer border
-      if (btn.flat)                  // flat style button
-         draw3Dborder(hps, &r, btn.lshadow, btn.llite, 1);
-      else                      // non-flat style button
-         draw3Dborder(hps, &r, btn.lshadow, 0, 1);
-      // draw the inner border
-      draw3Dborder(hps, &r, btn.llite, btn.lshadow, 1 + btn.border);
-   } /* endif */
-   mSetBtnBorderRect(&r, &size, 0, 0, -1, -1);
-   // the button has the BS_DEFAULT style (draw a 3D or a thick black frame)
-   if (style & BS_DEFAULT) {
-      if (btn.def3D) {               // 3D style
-         draw3Dborder(hps, &r, 0, 0xffffff, 1);
-         draw3Dborder(hps, &r, btn.lbk.l, btn.lbk.l, 1);
-      } else {                // normal (thick black) style
-         draw3Dborder(hps, &r, btn.ldef, btn.ldef, 2);
-      } /* endif */
-   // the BS_DEFAULT emphasis is painted outside the button rectangle
-   // so when the button does not have the BS_DEFAULT emphasis a frame
-   // with the color of the button parent background must be painted
-   // around the button to erase a possible previous BS_DEFAULT emphasis
-   } else {
-      color = mParentBkgndColor(hwnd, hps);
-      draw3Dborder(hps, &r, color, color, 1);
-   } /* endif */
-   // draw a halftoned pattern to show the WS_DISABLED style
-   if ((style & WS_DISABLED) && !btn.dis3D) {
-      mSetBtnBorderRect(&size, &r, 0, 0, -1, -1);
-      drawDisabledRect(hps, &r, btn.ldis);
-   } /* endif */
+
+   // setup data structures for preview
+   bdata.pszText = buf;
+   bdraw.hps = hps;
+   bdraw.bcd.fsHiliteState = (ULONG)defBtnProc(hwnd, BM_QUERYHILITE,
+                                               MPVOID, MPVOID);
+   getBtnColors(hwnd, hps, &bdata);
+
+   // do painting
+   paintCairoButton( hwnd, &bdata, &bdraw, g.pUiData->pOpts);
+
 }
 
 
@@ -952,50 +809,6 @@ static BOOL drawDisabledRect(HPS hps, PRECTL prcl, LONG color) {
                                           PATSYM_DENSE5: PATSYM_HALFTONE)) &&
           GpiSetColor(hps, color) &&
           GpiBox(hps, DRO_FILL, (PPOINTL)&rcl + 1, 0L, 0L);
-}
-
-
-/* --------------------------------------------------------------------------
- Get the colors to be used to paint the button.
-- Parameters -------------------------------------------------------------
- HWND hwnd  : button window handle.
- PBTNDATA p : button data
- HPS hps    : presentation space handle.
-- Return value -----------------------------------------------------------
- VOID
--------------------------------------------------------------------------- */
-static VOID getBtnColors(HWND hwnd, HPS hps, PPVBTN pbtn) {
-   pbtn->lbk.l = mBkgndColor(hwnd, hps);
-   pbtn->lfgnd = mFgndColor(hwnd, hps);
-   pbtn->ldis = mDisabledBkgndColor(hwnd, hps);
-   pbtn->ldisf = mDisabledFgndColor(hwnd, hps);
-   pbtn->ldef = mDefaultBorderColor(hwnd, hps);
-   pbtn->llite = mHiliteBorderColor(hwnd, hps);
-   pbtn->lshadow = mDarkBorderColor(hwnd, hps);
-}
-
-
-/* --------------------------------------------------------------------------
- Get a color value checking the presentation parameter and the system
- colors.
-- Parameters -------------------------------------------------------------
- HWND hwnd : button window handle.
- HPS hps   : presentation space handle.
- ULONG ulid1 : presentation parameter index of pure RGB color.
- ULONG ulid2 : presentation parameter index of color index.
- LONG ldef   : default color as SYSCLR_* or RGB value.
-- Return value -----------------------------------------------------------
- LONG : color as 24 bit RGB value.
--------------------------------------------------------------------------- */
-static LONG getCtlClr(HWND hwnd, HPS hps, ULONG ulid1, ULONG ulid2, LONG ldef) {
-   LONG lclr;
-   if (WinQueryPresParam(hwnd, ulid1, ulid2, NULL, 4UL, (PVOID)&lclr,
-                         QPF_NOINHERIT | QPF_PURERGBCOLOR |
-                         QPF_PURERGBCOLOR | QPF_ID2COLORINDEX))
-      return lclr;
-   if ((ldef >= SYSCLR_SHADOWHILITEBGND) && (ldef <= SYSCLR_HELPHILITE))
-      return mSysColor(ldef);
-   return ldef;
 }
 
 

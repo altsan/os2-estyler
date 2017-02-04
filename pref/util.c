@@ -294,41 +294,6 @@ VOID selectColor(HWND hwnd, ULONG id, LONG lColor) {
 }
 
 
-/* --------------------------------------------------------------------------
- Draw a 3D border within the rectangle pr the bottom/left corner of the
- rectangle is moved up and right of 'cpBorder' pixels, while the upper/right
- corner is moved down and left, so the resulting rectangle width and height
- are decreased of cpBorder * 2 pixels.
-- Parameters -------------------------------------------------------------
- HPS hps     : presentation space handle
- PRECTL pr   : address of rectangle to be drawn with a 3D border
- ULONG clrul : upper-left border color
- ULONG clrbr : bottom-right border color
- ULONG cpbrd : border thickness in pixels
-- Return value -----------------------------------------------------------
- VOID
--------------------------------------------------------------------------- */
-VOID draw3Dborder(HPS hps, PRECTL pr, LONG clrul, LONG clrbr, ULONG cpBorder) {
-   POINTL apt[2];
-   while (cpBorder--) {
-      // bordo sinistro e superiore
-      GpiSetColor(hps, clrul);
-      PointSet(apt, pr->xLeft, pr->yBottom);
-      GpiMove(hps, apt);
-      PointSet(apt, pr->xLeft, pr->yTop);
-      PointSet(apt + 1, pr->xRight, pr->yTop);
-      GpiPolyLine(hps, 2, apt);
-      // bordo destro e inferiore
-      GpiSetColor(hps, clrbr);
-      PointSet(apt, apt[1].x, apt[1].y);
-      GpiMove(hps, apt);
-      PointSet(apt, pr->xRight, pr->yBottom);
-      PointSet(apt + 1, pr->xLeft + 1, pr->yBottom);
-      GpiPolyLine(hps, 2, apt);
-      RectInflate(pr, -1, -1);
-   } /* endfor */
-}
-
 
 /* --------------------------------------------------------------------------
  Show an "Add to the list" file dialog.

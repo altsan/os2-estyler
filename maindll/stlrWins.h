@@ -6,7 +6,6 @@
 #ifndef STLR_FRAME_H
    #define STLR_FRAME_H
 
-#pragma pack(2)
 
 // dati bottoni
 // stile immagine (bitmap, icon, miniicon
@@ -28,48 +27,6 @@
 #define SCBTN_DEF        SYSCLR_BUTTONDEFAULT
 #define SCBTN_LIT        SYSCLR_BUTTONLIGHT
 #define SCBTN_DRK        SYSCLR_BUTTONDARK
-
-#pragma pack(1)
-// struttura dati bottone
-// colori bottone
-typedef struct {
-   PSZ pszText;                 // testo bottone incluso mnemonico
-   USHORT cbText;               // lunghezza testo
-   SHORT mnemOffset;            // offset carattere mnemonico
-   SIZEL size;                     // dimensioni bottone
-   CLR lbk;                     // colore background
-   LONG lfgnd;                  // colore foreground
-   LONG ldis;                   // colore disabilitato
-   LONG ldisf;                  // disabled foreground color
-   LONG ldef;                   // bordo bottone default
-   LONG llite;                  // bordo superiore e sinistro
-   LONG lshadow;                // bordo inferiore destro
-} BTNDATA, * PBTNDATA;
-
-// struttura dati per disegnare bottone
-typedef struct {
-   BMPHDR bh;                   // per patching palette
-   BTNCDATA bcd;                // hilite state e handle eventuale immagine
-   RECTL rd;                    // rettangolo usato da funzioni grafiche
-   ULONG uls;                   // stile bottone
-   HBITMAP hbkgnd;              // handle bitmap background
-   LONG lr, lg, lb;             // usati per patchare palette in memoria e altro
-   // i seguenti dati sono utilizzati per risolvere il bug dei driver GRADD
-   WNDPARAMS wp;                // window parameters
-#ifndef GRADDBUG
-   POINTL aptl[2];              // usati per calcolare coordinate testo
-#else
-   POINTL aptl[6];              // usati per calcolare coordinate testo
-                                // E PER BUG DRIVER GRADD
-   BMPHDRM bhm;
-   HDC hdc;
-   HPS hpsm;
-   SIZEL sizl;
-   HBITMAP hbmpm;
-#endif
-} BTNDRAW, * PBTNDRAW;
-
-#pragma pack()
 
 
 #endif

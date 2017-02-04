@@ -19,6 +19,7 @@
 #include "stlrTitlebar.h"
 #include "stlrGraphics.h"
 #include "stlrExport.h"
+#include "stlrCommon.h"
 
 // prototypes ---------------------------------------------------------------
 static BOOL isWinOS2Window(HWND hwnd, PTBDATA p);
@@ -242,14 +243,20 @@ static VOID drawTitlebar(HWND hwnd, HPS hps, PTBDATA p)
     CHAR achPath[CCHMAXPATH];
     CHAR    font[CCH_FONTDATA];
     cairo_pattern_t *pattern;
+    int     flags;
+    RECTL r;
+
+    // query window rect
+    WinQueryWindowRect( hwnd, &r);
+    // adjust rect, cairo starts from 1,1
+    r.xLeft = 1;
+    r.yBottom = 1;
 
     // initialize cairo surface
     surface = cairo_os2_surface_create_for_window( hwnd, p->size.cx, p->size.cy);
     cr = cairo_create( surface);
-
-#define RED(a) ((a >> 16) & 0xff)
-#define GREEN(a) ((a >> 8) & 0xff)
-#define BLUE(a) ((a) & 0xff)
+    // disable aliasing for rendering primitives, but still used for fonts
+    cairo_set_antialias( cr, CAIRO_ANTIALIAS_NONE);
 
     // draw background
     switch (ptbo->bkgnd) {
@@ -330,77 +337,17 @@ static VOID drawTitlebar(HWND hwnd, HPS hps, PTBDATA p)
         break;
     }
 
-    // select a default font
-    cairo_select_font_face( cr, "Sans", CAIRO_FONT_SLANT_NORMAL,
-                            CAIRO_FONT_WEIGHT_NORMAL);
-    cairo_set_font_size( cr, 14);
-
-    // using strchr() on o.ui.tb.achFont crashes this code...
-    memset( font, 0, sizeof(font));
-    memcpy( font, o.ui.tb.achFont, sizeof(font));
-    //dbgPrintf4( "drawTitlebar hwnd %x hps %x, font '%s'\n", hwnd, hps, font);
-
-    // use font if defined
-    if (strchr( font, '.')) {
-        dot = strchr( font, '.');
-        face = dot + 1;
-        *dot = 0;
-        //dbgPrintf4( "drawTitlebar hwnd %x hps %x, face '%s'\n", hwnd, hps, face);
-        //dbgPrintf4( "drawTitlebar hwnd %x hps %x, size '%s'\n", hwnd, hps, font);
-        //dbgPrintf4( "drawTitlebar hwnd %x hps %x, size %d\n", hwnd, hps, atoi(font));
-        // set size of font
-        cairo_set_font_size( cr, atoi(font) * 1.5);
-        // set font name
-        cairo_select_font_face( cr, face, CAIRO_FONT_SLANT_NORMAL,
-                                CAIRO_FONT_WEIGHT_NORMAL);
-    }
-
-    // set title position
-    fx = 8;
-    fy = p->size.cy - 5;
-    if (o.ui.tb.center) {
-        cairo_text_extents(cr, p->pszText, &font_extents);
-        // if the text is wider than the window it is anyway left aligned
-        if (font_extents.width < p->size.cx)
-            fx = (p->size.cx - font_extents.width) / 2;
-    }
-
-    // draw a shadow behind the text
-    if (ptbo->fl & TBO_TEXTSHADOW) {
-        cairo_set_source_rgb( cr, RED(ptbo->clrBgTxt) / 255.0,
-                              GREEN(ptbo->clrBgTxt) / 255.0,
-                              BLUE(ptbo->clrBgTxt) / 255.0);
-        cairo_move_to( cr, fx + 1, fy + 1);
-        cairo_show_text( cr, p->pszText);
-    }
-
-    // draw text
-    cairo_set_source_rgb( cr, RED(ptbo->clrFgTxt) / 255.0,
-                          GREEN(ptbo->clrFgTxt) / 255.0,
-                          BLUE(ptbo->clrFgTxt) / 255.0);
-    cairo_move_to( cr, fx, fy);
-    cairo_show_text( cr, p->pszText);
+    // draw title
+    flags = DT_VCENTER
+            | (o.ui.tb.center ? DT_CENTER : 0)
+            | (ptbo->fl & TBO_TEXTSHADOW ? DT_3D : 0);
+    drawCairoTitle( cr, o.ui.tb.achFont, &r, ptbo->clrFgTxt,
+                    ptbo->clrBgTxt, p->pszText, flags);
 
     // titlebar border
-    if (ptbo->fl & TBO_BORDER) {
-        // top/left border
-        cairo_set_line_width(cr, 1.0);
-        cairo_set_source_rgb( cr, RED(ptbo->clrTopLeftBorder) / 255.0,
-                              GREEN(ptbo->clrTopLeftBorder) / 255.0,
-                              BLUE(ptbo->clrTopLeftBorder) / 255.0);
-        cairo_move_to( cr, 0, p->size.cy);
-        cairo_line_to( cr, 0, 0);
-        cairo_line_to( cr, p->size.cx, 0);
-        cairo_stroke (cr);
-        // right/bottom
-        cairo_set_source_rgb( cr, RED(ptbo->clrRightBottomBorder) / 255.0,
-                              GREEN(ptbo->clrRightBottomBorder) / 255.0,
-                              BLUE(ptbo->clrRightBottomBorder) / 255.0);
-        cairo_move_to( cr, p->size.cx, 0);
-        cairo_line_to( cr, p->size.cx, p->size.cy);
-        cairo_line_to( cr, 0, p->size.cy);
-        cairo_stroke (cr);
-    }
+    if (ptbo->fl & TBO_BORDER)
+        drawCairo3Dborder( cr, &r, ptbo->clrTopLeftBorder,
+                           ptbo->clrRightBottomBorder, 1);
 
     // render surface on entire window
     cairo_os2_surface_paint_window( surface, hps, NULL, 0);

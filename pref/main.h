@@ -74,6 +74,10 @@
    #include "test.h"
 #endif
 
+// since cairo includes os2.h, put after default headers
+#include <cairo.h>
+#include <cairo-os2.h>
+
 /* --------------------------------------------------------------------------
  PMTHREAD          data needed to initialize a PM thread.
 */
@@ -251,7 +255,6 @@ VOID enableNotebookTabs(HWND hwndNoteBook, BOOL bEnable);
 PSZ makeFullPathName(PSZ pszBuf, PSZ pszFile);
 BOOL handleSpinbtnEvent(HWND hwnd, ULONG ulEvent, PLONG pVal, LONG lCurVal);
 VOID selectColor(HWND hwnd, ULONG id, LONG lColor);
-VOID draw3Dborder(HPS hps, PRECTL pr, LONG clrul, LONG clrbr, ULONG cpBorder);
 BOOL addFileDlg(HWND hwnd, PSZ pszFileMask);
 VOID dlgItemMultiEnable(HWND hwnd, ULONG id1st, ULONG idLast, BOOL fl);
 PBYTE dataDup(PBYTE pData, ULONG cbData, PULONG pCbDup);

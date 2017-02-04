@@ -297,7 +297,7 @@ static VOID checkDefaultState(VOID) {
 /*
   Apply theme bitmap
 */
-static HBITMAP applyThemeBitmap( HWND hwnd, PSZ type, PSZ theme, PBMPFILEDATA pBmp,
+static VOID applyThemeBitmap( HWND hwnd, PSZ type, PSZ theme, PBMPFILEDATA pBmp,
                               HBITMAP *hbmp)
 {
     HPS hps = WinGetPS(hwnd);
