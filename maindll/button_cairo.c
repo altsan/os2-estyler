@@ -101,6 +101,7 @@ VOID paintCairoButton( HWND hwnd,
     RectInflate(&r, -1, -1);
 
     flags = DT_CENTER | DT_VCENTER
+            | DT_MNEMONIC
             | (o->btn.dis3D ? DT_3D : 0)
             | (pbd->bcd.fsHiliteState ? DT_HILITE : 0);
     drawCairoTitle( cr, o->dlg.achFont, &r, color, p->llite, p->pszText,
@@ -237,9 +238,18 @@ void drawCairoTitle( cairo_t* cr, char* fontFace, PRECTL pr,
                      char* title, int fl)
 {
     cairo_text_extents_t font_extents;
+    cairo_text_extents_t font_extents1, font_extents2;
     CHAR    font[CCH_FONTDATA];
     char*   dot, *face;
     int     fx, fy;
+    int     underline = 0;
+    double  px, py;
+    char*   tilde = NULL;
+    char*   title2 = NULL;
+
+    // return immediately
+    if (title == NULL || title[0] == 0)
+        return;
 
     // select a default font
     cairo_select_font_face( cr, "Sans", CAIRO_FONT_SLANT_NORMAL,
@@ -261,8 +271,41 @@ void drawCairoTitle( cairo_t* cr, char* fontFace, PRECTL pr,
                                 CAIRO_FONT_WEIGHT_NORMAL);
     }
 
+    // compute underline position if required
+    memset( font, 0, sizeof(font));
+    memcpy( font, title, strlen(title) > sizeof(font) ? sizeof(font)-1
+                                                      : strlen(title));
+
+    if (fl & DT_MNEMONIC && (tilde = strchr( font, '~'))) {
+        char buffer[2];
+        memset( buffer, 0, sizeof(buffer));
+        // store text after tilde
+        title2 = tilde + 1;
+        // truncate text on tilde
+        tilde[0] = 0;
+        // get size of first char
+        buffer[0] = title2[0];
+        cairo_text_extents(cr, buffer, &font_extents);
+        underline = font_extents.width;
+
+        // get width of text without tilde
+        cairo_text_extents(cr, font, &font_extents1);
+        cairo_text_extents(cr, title2, &font_extents2);
+        font_extents.width = font_extents1.width + font_extents2.width;
+        font_extents.height = font[0] != 0 ?
+                    font_extents1.height : font_extents2.height;
+        font_extents.x_bearing = font[0] != 0 ?
+                    font_extents1.x_bearing : font_extents2.x_bearing;
+        font_extents.y_bearing = font[0] != 0 ?
+                    font_extents1.y_bearing : font_extents2.y_bearing;
+
+    } else {
+
+        // get width of full text
+        cairo_text_extents(cr, font, &font_extents);
+    }
+
     // calculate the text position
-    cairo_text_extents(cr, title, &font_extents);
     if (fl & DT_CENTER)
         fx = (pr->xRight - pr->xLeft) / 2 - (font_extents.width / 2 + font_extents.x_bearing);
     else
@@ -284,7 +327,16 @@ void drawCairoTitle( cairo_t* cr, char* fontFace, PRECTL pr,
         cairo_set_source_rgb( cr, RED(colorShadow) / 255.0,
                               GREEN(colorShadow) / 255.0,
                               BLUE(colorShadow) / 255.0);
-        cairo_show_text( cr, title);
+        cairo_show_text( cr, font);
+        if (underline > 0) {
+            cairo_get_current_point( cr, &px, &py);
+            cairo_set_line_width(cr, 1.0);
+            cairo_rel_move_to( cr, 1, 3);
+            cairo_rel_line_to( cr, underline, 0);
+            cairo_stroke (cr);
+            cairo_move_to( cr, px, py);
+        }
+        cairo_show_text( cr, title2);
     }
 
     // draw text
@@ -292,7 +344,16 @@ void drawCairoTitle( cairo_t* cr, char* fontFace, PRECTL pr,
     cairo_set_source_rgb( cr, RED(colorText) / 255.0,
                           GREEN(colorText) / 255.0,
                           BLUE(colorText) / 255.0);
-    cairo_show_text( cr, title);
+    cairo_show_text( cr, font);
+    if (underline > 0) {
+        cairo_get_current_point( cr, &px, &py);
+        cairo_rel_move_to( cr, 1, 3);
+        cairo_rel_line_to( cr, underline, 0);
+        cairo_stroke (cr);
+        cairo_move_to( cr, px, py);
+    }
+    cairo_show_text( cr, title2);
+
 }
 
 
