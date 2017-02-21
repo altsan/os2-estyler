@@ -18,8 +18,8 @@ estylerEN_SOURCES           = \
 estylerEN_INCS              = en/res res
 
 estylerEN-docs_INST         = $(INST_BIN)/en/
-estylerEN-docs_SOURCES      = $(PATH_OBJ)/en/estyler.hlp
-estylerEN-docs_CLEAN        = $(PATH_OBJ)/en/estyler.hlp nls/en/doc/estyler.ipf
+estylerEN-docs_SOURCES      = $(PATH_OBJ)/en/styler.hlp
+estylerEN-docs_CLEAN        = $(PATH_OBJ)/en/styler.hlp nls/en/doc/estyler.ipf
 
 estylerDE_TEMPLATE          = eStylerDLL
 estylerDE_NAME              = estlrlrs
@@ -31,8 +31,8 @@ estylerDE_SOURCES           = \
 estylerDE_INCS              = de/res res
 
 estylerDE-docs_INST         = $(INST_BIN)/de/
-estylerDE-docs_SOURCES      = $(PATH_OBJ)/de/estyler.hlp
-estylerDE-docs_CLEAN        = $(PATH_OBJ)/de/estyler.hlp nls/de/doc/estyler.ipf
+estylerDE-docs_SOURCES      = $(PATH_OBJ)/de/styler.hlp
+estylerDE-docs_CLEAN        = $(PATH_OBJ)/de/styler.hlp nls/de/doc/estyler.ipf
 
 estylerJA_TEMPLATE          = eStylerDLL
 estylerJA_NAME              = estlrlrs
@@ -44,8 +44,8 @@ estylerJA_SOURCES           = \
 estylerJA_INCS              = ja/res res
 
 estylerJA-docs_INST         = $(INST_BIN)/ja/
-estylerJA-docs_SOURCES      = $(PATH_OBJ)/ja/estyler.hlp
-estylerJA-docs_CLEAN        = $(PATH_OBJ)/ja/estyler.hlp nls/ja/doc/estyler.ipf
+estylerJA-docs_SOURCES      = $(PATH_OBJ)/ja/styler.hlp
+estylerJA-docs_CLEAN        = $(PATH_OBJ)/ja/styler.hlp nls/ja/doc/estyler.ipf
 
 #
 include $(FILE_KBUILD_SUB_FOOTER)
@@ -55,7 +55,7 @@ include $(FILE_KBUILD_SUB_FOOTER)
 #
 # compile help files
 #
-$(PATH_OBJ)/en/estyler.hlp: nls/en/doc/estyler.lst
+$(PATH_OBJ)/en/styler.hlp: nls/en/doc/estyler.lst
 	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/en
 	$(REDIRECT) -C $(PATH_ROOT)/nls/en/doc \
 		-E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' \
@@ -63,7 +63,7 @@ $(PATH_OBJ)/en/estyler.hlp: nls/en/doc/estyler.lst
 	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' \
 		-- $(TOOLKIT)/bin/ipfc.exe -s -D:001 -C:850 -L:ENU $(PATH_ROOT)/nls/en/doc/estyler.ipf $@
 
-$(PATH_OBJ)/de/estyler.hlp: nls/de/doc/estyler.lst
+$(PATH_OBJ)/de/styler.hlp: nls/de/doc/estyler.lst
 	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/de
 	$(REDIRECT) -C $(PATH_ROOT)/nls/de/doc \
 		-E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' \
@@ -71,10 +71,10 @@ $(PATH_OBJ)/de/estyler.hlp: nls/de/doc/estyler.lst
 	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' \
 		-- $(TOOLKIT)/bin/ipfc.exe -s -D:049 -C:850 -L:DEU $(PATH_ROOT)/nls/de/doc/estyler.ipf $@
 
-$(PATH_OBJ)/ja/estyler.hlp: nls/ja/doc/estyler.lst
+$(PATH_OBJ)/ja/styler.hlp: nls/ja/doc/estyler.lst
 	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/ja
 	$(REDIRECT) -C $(PATH_ROOT)/nls/ja/doc \
 		-E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' \
 		-- $(PATH_ROOT)/nls/tools/ipfbld estyler.lst
 	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' \
-		-- $(TOOLKIT)/bin/ipfc.exe -s -D:081 -C:932 -L:JPN $(PATH_ROOT)/nls/de/doc/estyler.ipf $@
+		-- $(TOOLKIT)/bin/ipfc.exe -s -D:081 -C:932 -L:JPN $(PATH_ROOT)/nls/ja/doc/estyler.ipf $@

@@ -137,10 +137,10 @@
 /* --------------------------------------------------------------------------
  PRODINFO          product information dialog
 */
-#define SZ_PRODUCT               "eStyler for OS/2"
+#define SZ_PRODUCT               "Styler for OS/2"
 #define SZ_PIVERSION             "Version %d.%d - build no. %d"
 #define SZ_PICPYRIGHT            "(c) 1998-2004 Alessandro Felice Cantatore"
-#define SZ_PICPYRIGHT2           "Portions (c) 2008-2016 Alexander Taylor"
+#define SZ_PICPYRIGHT2           "Portions (c) 2008-2017 Alexander Taylor"
 #define SZ_PIURL                 "https://github.com/altsan/os2-estyler"
 #define SZ_PILICENSE             "Licensed under the GNU General Public License version 3"
 
@@ -359,7 +359,7 @@
    "Failed to allocate memory."
 
 #define SZERR_OPENPRF \
-   "Failed to open ESTYLER.INI."
+   "Failed to open STYLER.INI."
 
 #define SZERR_READPRFDATA \
    "Failed to read INI file data."
@@ -403,7 +403,7 @@
    "The bitmap : %s exceeds the 64 KBs limit."
 
 #define SZERR_SAVEDATA \
-   "Failed to save data to ESTYLER.INI."
+   "Failed to save data to STYLER.INI."
 
 #define SZERR_APPLYBMP \
    "Failed to set the selected bitmap image."
@@ -476,6 +476,6 @@
    "Failed to get LVM volume data"SZERR_LVMCODE
 
 #define SZERR_INITHELP \
-   "Failed to load the application help file eStyler.hlp."
+   "Failed to load the application help file STYLER.HLP."
 
 #endif // #ifndef _TEXT_RES_H_

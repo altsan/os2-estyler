@@ -53,7 +53,7 @@
  MAINWINDOW        text displayed by the settings notebook parent
 */
 // help title
-#define SZ_APPNAME               "eStyler fÅr eComStation"
+#define SZ_APPNAME               "Styler fÅr OS/2"
 #define SZ_APPLY                 "Anwenden"
 #define SZ_UNDO                  "~Widerrufen"
 #define SZ__DEFAULT              "~Standard"
@@ -137,10 +137,10 @@
 /* --------------------------------------------------------------------------
  PRODINFO          product information dialog
 */
-#define SZ_PRODUCT               "eStyler fÅr eComStation"
+#define SZ_PRODUCT               "Styler fÅr OS/2"
 #define SZ_PIVERSION             "Version %d.%d - Build-Nr. %d"
 #define SZ_PICPYRIGHT            "∏ 1998-2004 Alessandro Felice Cantatore"
-#define SZ_PICPYRIGHT2           "Portions (c) 2008-2016 Alexander Taylor"
+#define SZ_PICPYRIGHT2           "Portions (c) 2008-2017 Alexander Taylor"
 #define SZ_PIURL                 "https://github.com/altsan/os2-estyler"
 #define SZ_PILICENSE             "Licensed under the GNU General Public License version 3"
 
@@ -247,7 +247,7 @@
 /* --------------------------------------------------------------------------
  PREVIEW           preview window
 */
-#define SZ_PREVIEWTITLE     "eStyler - Vorschaufenster"
+#define SZ_PREVIEWTITLE     "Styler - Vorschaufenster"
 #define SZ_STATICSAMPLE     "Beispiel fÅr statischen Text"
 #define SZ_BTNSAMPLES       "Beispiele fÅr Druckknîpfe: "
 #define SZ__NORMAL          "~Normal"
@@ -327,7 +327,7 @@
 #define SZ_WKEYITEM28       "eCenter-Fach 10 anzeigen"
 #define SZ_WKEYITEM29       "eCenter hinter/vor andere Fenster bewegen"
 #define SZ_TITLEBARFONT     "Schriftart Titelleiste"
-#define SZ_FONTDLGSAMPLE    "eStyler - Beispieltext"
+#define SZ_FONTDLGSAMPLE    "Styler - Beispieltext"
 #define SZ_GRADIENTCOLOR    "%s Verlaufsfarbe"
 #define SZ_CLRSHADELEFT     "~Linke"
 #define SZ_CLRSHADTOP       "~Obere"
@@ -354,13 +354,13 @@
    "Importieren der Prozeduren des Laufzeitmodus fehlgeschlagen."
 
 #define SZERR_GETCUROPTIONS \
-   "Abfragen der aktuellen eStyler-Optionen fehlgeschlagen."
+   "Abfragen der aktuellen Styler-Optionen fehlgeschlagen."
 
 #define SZERR_ALLOCATION \
    "Zuordnen von Speicher fehlgeschlagen."
 
 #define SZERR_OPENPRF \
-   "ôffnen der Datei ESTYLER.INI fehlgeschlagen."
+   "ôffnen der Datei STYLER.INI fehlgeschlagen."
 
 #define SZERR_READPRFDATA \
    "Lesen der Daten der INI-Datei fehlgeschlagen."
@@ -404,7 +404,7 @@
    "Die Bitmap: %s Åberschreitet die Grenze von 64 KB."
 
 #define SZERR_SAVEDATA \
-   "Sichern der Daten in ESTYLER.INI fehlgeschlagen."
+   "Sichern der Daten in STYLER.INI fehlgeschlagen."
 
 #define SZERR_APPLYBMP \
    "Festlegen der ausgewÑhlten Bitmap fehlgeschlagen."
@@ -477,6 +477,6 @@
    "Abfrage der LVM-Volumendaten fehlgeschlagen"SZERR_LVMCODE
 
 #define SZERR_INITHELP \
-   "Laden der Anwendungshilfedatei eStyler.hlp fehlgeschlagen."
+   "Laden der Anwendungshilfedatei STYLER.HLP fehlgeschlagen."
 
 #endif // #ifndef _TEXT_RES_H_

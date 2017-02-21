@@ -17,6 +17,9 @@
 *.bak
 *.BAK
 
+# ignore rel directory
+rel/
+
 # ignore output directory
 out/
 

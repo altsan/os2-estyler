@@ -25,15 +25,15 @@
 */
 #define SZ_MODULENAME    "ESTLRL11"         // ESTLRL11 (runtime module)
 #define SZ_RESMODULE     "ESTLRLRS"         // ESTLRLRS (resources module)
-#define SZ_LOGFILE       ":\\eStylerL.log"  // errors log file
-#define SZPRO_PROFNAME   "ESTYLER.INI"      // profile name
-#define SZ_HLPFILE       "ESTYLER.HLP"
+#define SZ_LOGFILE       ":\\Styler.log"    // errors log file
+#define SZPRO_PROFNAME   "STYLER.INI"       // profile name
+#define SZ_HLPFILE       "STYLER.HLP"
 
 /* --------------------------------------------------------------------------
  OS2INI            application / key names stored in OS2.INI
 */
 #define SZ_ENVINI        "USER_INI"         // environment name of OS2.INI
-#define SZPRO_APP        "eStylerLite"      // application name
+#define SZPRO_APP        "DesktopStyler"    // application name
 #define SZEXC_GENERAL    "Exceptions"       // exceptions
 #define SZPRO_ILAST      "LastShutdown"     // last shutdown selection
 #define SZPRO_SYSFONT    "PM_SystemFonts"   // PM font application
@@ -43,10 +43,10 @@
 // alias used in the exception names to exclude all command line windows
 #define SZXCPT_PROTSHELL          "<PROTSHELL>"
 
-// ESTYLER.INI application / key names
+// STYLER.INI application / key names
 
 /* --------------------------------------------------------------------------
- ESTYLER_INI       application / key names stored in ESTYLER.INI
+ STYLER_INI       application / key names stored in STYLER.INI
 */
 #define SZPRO_CLRDEPTH     "ColorDepth"     // appl: color depth
 #define SZPRO_CURRENT      "Current"        // key : current color depth

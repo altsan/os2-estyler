@@ -4,9 +4,10 @@
 "mode co80,102"
 call "..\ESTLRENV.CMD"
 
-/* update the build number in estyler.def and stlrVersion.h                 */
+/* update the build number in estyler.def and stlrVersion.h
 if \ updateBuildNo("estyler.def", "..\headers\stlrVersion.h") then
    exit
+*/
 
 /* if the flag file doesn't exist create it and touch all the sources */
 if "" \= fileExists("@debug@") then
@@ -99,7 +100,7 @@ parse arg deffile, hdrfile
    if buildVer = "" then
       do
          say " failed to get the build number from "deffile
-         return 0;
+         buildVer = 0;
       end /* do */
    parse var buildver buildver dbg .
 

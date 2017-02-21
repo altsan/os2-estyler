@@ -1,6 +1,6 @@
 LIBRARY ESTLRL11 INITGLOBAL
 
-DESCRIPTION 'eStylerLite hook library'
+DESCRIPTION 'Styler hook library'
 
 PROTMODE
 

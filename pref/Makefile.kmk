@@ -9,7 +9,7 @@ PROGRAMS                   += estylerUI
 INSTALLS                   += estylerUI-bkground estylerUI-button
 
 estylerUI_TEMPLATE          = eStyler
-estylerUI_NAME              = estyler
+estylerUI_NAME              = styler
 estylerUI_SOURCES           = \
                                 main.c          \
                                 initend.c       \
