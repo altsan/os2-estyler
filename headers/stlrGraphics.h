@@ -27,6 +27,9 @@
    #define STLR_SHDDRAW_H_
 
 
+
+#define ROUND_BORDER 4
+
 /* --------------------------------------------------------------------------
  CLR               union of color as LONG and RGB color structure.
 */

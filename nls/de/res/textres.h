@@ -122,6 +122,7 @@
 #define SZ_BTNON                 "Erweiterungen fÅr Druck~knîpfe aktivieren"
 #define SZ_BTNTHICK              "Bre~iter Rand"
 #define SZ_BTNFLAT               "~Flacher Rand"
+#define SZ_BTNROUND              "~Round border"
 #define SZ_BTNOVRCLR             "Farben ~Åbersteuern"
 #define SZ_BTN3DDEF              "~3D-Stil fÅr Standarddruckknopf"
 #define SZ_BTN3DDIS              "3~D-Stil fÅr deaktivierte Druckknîpfe"

@@ -117,6 +117,14 @@ static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl) {
             updatePreviewWindow(PVUPD_BTNALL);
          } /* endif */
          break;
+      case CHK_BTNROUND:
+         if ((event == BN_CLICKED) || (event == BN_DBLCLICKED)) {
+            g.pUiData->pOpts->btn.radius = wBtnCheckState(hCtrl)
+                    ? ROUND_BORDER : 0;
+            bSettingsChanged = TRUE;
+            updatePreviewWindow(PVUPD_BTNALL);
+         } /* endif */
+      break;
       case CHK_BTNOVRCLR:
          if ((event == BN_CLICKED) || (event == BN_DBLCLICKED)) {
             g.pUiData->pOpts->btn.overPP = wBtnCheckState(hCtrl);
@@ -255,6 +263,7 @@ static VOID setControlsState(HWND hwnd, PSZ pszBmpFile) {
    dBtnCheckSet(hwnd, CHK_BTNON, g.pUiData->pOpts->btn.on);
    dBtnCheckSet(hwnd, CHK_BTNTHICK, g.pUiData->pOpts->btn.border);
    dBtnCheckSet(hwnd, CHK_BTNFLAT, g.pUiData->pOpts->btn.flat);
+   dBtnCheckSet(hwnd, CHK_BTNROUND, g.pUiData->pOpts->btn.radius>0 ? 1 : 0);
    dBtnCheckSet(hwnd, CHK_BTNOVRCLR, g.pUiData->pOpts->btn.overPP);
    dBtnCheckSet(hwnd, CHK_BTN3DDEF, g.pUiData->pOpts->btn.def3D);
    dBtnCheckSet(hwnd, CHK_BTN3DDIS, g.pUiData->pOpts->btn.dis3D);
@@ -339,6 +348,8 @@ static VOID checkDefaultState(VOID) {
               g.pUiData->pOpts->btn.border != (g.scr.cx > 1280)
               ||
               g.pUiData->pOpts->btn.flat
+              ||
+              g.pUiData->pOpts->btn.radius
               ||
               g.pUiData->pOpts->btn.overPP
               ||

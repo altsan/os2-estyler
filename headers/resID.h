@@ -125,6 +125,7 @@
 #define BTN_BTNADDIMAGE          109
 #define TXT_BTNBKGNDCLR          110
 #define BTN_BTNBKGNDCLR          111
+#define CHK_BTNROUND             112
 
 /* --------------------------------------------------------------------------
  DIALOG            dialog font options page - ID of the controls

@@ -346,8 +346,8 @@ static VOID drawTitlebar(HWND hwnd, HPS hps, PTBDATA p)
 
     // titlebar border
     if (ptbo->fl & TBO_BORDER)
-        drawCairo3Dborder( cr, &r, ptbo->clrTopLeftBorder,
-                           ptbo->clrRightBottomBorder, 1);
+        drawCairo3DBorder( cr, &r, ptbo->clrTopLeftBorder,
+                           ptbo->clrRightBottomBorder, 1, 0);
 
     // render surface on entire window
     cairo_os2_surface_paint_window( surface, hps, NULL, 0);

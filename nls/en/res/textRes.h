@@ -123,6 +123,7 @@
 #define SZ_BTNON                 "~Pushbuttons enhancements"
 #define SZ_BTNTHICK              "~Thick border"
 #define SZ_BTNFLAT               "~Flat border"
+#define SZ_BTNROUND              "~Round border"
 #define SZ_BTNOVRCLR             "~Override non-default colors"
 #define SZ_BTN3DDEF              "~3D style default buttons"
 #define SZ_BTN3DDIS              "3~D style disabled buttons"

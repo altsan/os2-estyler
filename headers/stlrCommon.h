@@ -5,6 +5,10 @@
 #include <cairo.h>
 #include <cairo-os2.h>
 
+#ifndef M_PI
+#define M_PI    3.14159265358979323846
+#endif
+
 #define RED(a) ((a >> 16) & 0xff)
 #define GREEN(a) ((a >> 8) & 0xff)
 #define BLUE(a) ((a) & 0xff)
@@ -24,8 +28,8 @@ VOID getBtnColors(HWND hwnd, HPS hps, PBTNDATA p);
 LONG getCtlClr(HWND hwnd, HPS hps, ULONG ulid1, ULONG ulid2, LONG ldef);
 
 VOID paintCairoButton( HWND hwnd, PBTNDATA p, PBTNDRAW pbd, PUIOPTIONS o);
-VOID drawCairo3Dborder(cairo_t *cr, PRECTL pr, LONG clrul,
-                       LONG clrbr, ULONG cpBorder);
+VOID drawCairo3DBorder(cairo_t *cr, PRECTL pr, LONG clrul,
+                       LONG clrbr, ULONG cpBorder, LONG radius);
 void drawCairoTitle( cairo_t* cr, char* font, PRECTL pr,
                      ULONG colorText, ULONG colorShadow,
                      char* title, int fl);

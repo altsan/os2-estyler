@@ -116,6 +116,9 @@ typedef struct {
 //   UINT gradd   : 1;           // driver GRADD bug option
    UINT         : 0;
    LONG color;                 // default background color
+   UINT radius;                // button border radius
+   // do not add new fields below this line, CheckApplyState() will
+   // ignore them
    BMPPAINT bmpp;              // bitmap paint data
 } BTNOPT, * PBTNOPT;           // variable name o.ui.btn
 

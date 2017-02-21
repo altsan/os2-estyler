@@ -15,6 +15,7 @@
 
 
 
+
 /*
 * Paint the button.
 */
@@ -44,7 +45,9 @@ VOID paintCairoButton( HWND hwnd,
     surface = cairo_os2_surface_create_for_window( hwnd, size.cx, size.cy);
     cr = cairo_create( surface);
     // disable aliasing for rendering primitives, but still used for fonts
-    cairo_set_antialias( cr, CAIRO_ANTIALIAS_NONE);
+    // but only for rectangular borders
+    if (o->btn.radius == 0)
+        cairo_set_antialias( cr, CAIRO_ANTIALIAS_NONE);
 
     // background ---------------------------------------------------------
 
@@ -55,10 +58,13 @@ VOID paintCairoButton( HWND hwnd,
                               RED(p->lbk.l) / 255.0,
                               GREEN(p->lbk.l) / 255.0,
                               BLUE(p->lbk.l) / 255.0);
+#if DEBUGGING__
+        // set yellow background on debugging
         cairo_set_source_rgb( cr,
                               RED(0xffff00) / 255.0,
                               GREEN(0xffff00) / 255.0,
                               BLUE(0xffff00) / 255.0);
+#endif
         cairo_rectangle( cr, 0, 0, size.cx, size.cy);
         cairo_fill( cr);
     } else {
@@ -108,23 +114,23 @@ VOID paintCairoButton( HWND hwnd,
 
         // draw the outer border first
         if (o->btn.flat)                  // flat style button
-            drawCairo3Dborder( cr, &r, p->lshadow, p->llite, 1);
+            drawCairo3DBorder( cr, &r, p->lshadow, p->llite, 1, o->btn.radius);
         else                             // non-flat style button
-            drawCairo3Dborder( cr, &r, 0, p->lshadow, 1);
+            drawCairo3DBorder( cr, &r, 0, p->lshadow, 1, o->btn.radius);
         // draw the inner border
-        drawCairo3Dborder( cr, &r, p->lshadow, p->llite, 1 + o->btn.border);
+        drawCairo3DBorder( cr, &r, p->lshadow, p->llite, 1 + o->btn.border, o->btn.radius-1);
 
     } else {
 
         // normal state button
         // outer border
         if (o->btn.flat)                  // flat style button
-            drawCairo3Dborder( cr, &r, p->lshadow, p->llite, 1);
+            drawCairo3DBorder( cr, &r, p->lshadow, p->llite, 1, o->btn.radius);
         else                      // non-flat style button
-            drawCairo3Dborder( cr, &r, p->lshadow, 0, 1);
+            drawCairo3DBorder( cr, &r, p->lshadow, 0, 1, o->btn.radius);
 
         // draw the inner border
-        drawCairo3Dborder( cr, &r, p->llite, p->lshadow, 1 + o->btn.border);
+        drawCairo3DBorder( cr, &r, p->llite, p->lshadow, 1 + o->btn.border, o->btn.radius-1);
 
     }
 
@@ -136,10 +142,10 @@ VOID paintCairoButton( HWND hwnd,
     // the button has the BS_DEFAULT style (draw a 3D or a thick black frame)
     if (pbd->flStyle & BS_DEFAULT) {
         if (o->btn.def3D) {               // 3D style
-            drawCairo3Dborder( cr, &r, 0, 0xffffff, 1);
-            drawCairo3Dborder( cr, &r, p->lbk.l, p->lbk.l, 1);
+            drawCairo3DBorder( cr, &r, 0, 0xffffff, 1, o->btn.radius);
+            drawCairo3DBorder( cr, &r, p->lbk.l, p->lbk.l, 1, o->btn.radius-1);
         } else {                // normal (thick black) style
-            drawCairo3Dborder( cr, &r, p->ldef, p->ldef, 2);
+            drawCairo3DBorder( cr, &r, p->ldef, p->ldef, 2, o->btn.radius);
         } /* endif */
         // the BS_DEFAULT emphasis is painted outside the button rectangle
         // so when the button does not have the BS_DEFAULT emphasis a frame
@@ -147,7 +153,7 @@ VOID paintCairoButton( HWND hwnd,
         // around the button to erase a possible previous BS_DEFAULT emphasis
     } else {
         color = mParentBkgndColor(hwnd, pbd->hps);
-        drawCairo3Dborder( cr, &r, color, color, 1);
+        drawCairo3DBorder( cr, &r, color, color, 1, o->btn.radius);
     }
 
     // draw a halftoned pattern to show the WS_DISABLED style
@@ -180,29 +186,46 @@ VOID paintCairoButton( HWND hwnd,
 - Return value -----------------------------------------------------------
  VOID
 -------------------------------------------------------------------------- */
-VOID drawCairo3Dborder(cairo_t *cr, PRECTL pr, LONG clrul, LONG clrbr, ULONG cpBorder) {
-   POINTL apt[2];
+VOID drawCairo3DBorder(cairo_t *cr, PRECTL pr, LONG clrul, LONG clrbr,
+                            ULONG cpBorder, LONG radius) {
 
-   while (cpBorder--) {
-       // top/left border
-       cairo_set_line_width(cr, 1.0);
-       cairo_set_source_rgb( cr, RED(clrul) / 255.0,
-                             GREEN(clrul) / 255.0,
-                             BLUE(clrul) / 255.0);
-       cairo_move_to( cr, pr->xLeft, pr->yTop);
-       cairo_line_to( cr, pr->xLeft, pr->yBottom);
-       cairo_line_to( cr, pr->xRight, pr->yBottom);
-       cairo_stroke (cr);
-       // right/bottom
-       cairo_set_source_rgb( cr, RED(clrbr) / 255.0,
-                             GREEN(clrbr) / 255.0,
-                             BLUE(clrbr) / 255.0);
-       cairo_move_to( cr, pr->xRight, pr->yBottom);
-       cairo_line_to( cr, pr->xRight, pr->yTop);
-       cairo_line_to( cr, pr->xLeft + 0, pr->yTop);
-       cairo_stroke (cr);
-       RectInflate(pr, -1, -1);
-   }
+    if (radius < 0)
+        radius = 0;
+
+    while (cpBorder--) {
+        // top/left border
+        cairo_set_line_width(cr, 1.0);
+        cairo_set_source_rgb( cr, RED(clrul) / 255.0,
+                              GREEN(clrul) / 255.0,
+                              BLUE(clrul) / 255.0);
+        cairo_move_to( cr, pr->xLeft + radius, pr->yTop);
+        if (radius>0)
+            cairo_arc( cr, pr->xLeft + radius, pr->yTop - radius,
+                       radius, 90.0  * (M_PI/180.0), 180.0  * (M_PI/180.0));
+        //cairo_line_to( cr, pr->xLeft, pr->yTop - radius);
+        cairo_line_to( cr, pr->xLeft, pr->yBottom + radius);
+        if (radius>0)
+            cairo_arc( cr, pr->xLeft + radius, pr->yBottom + radius,
+                       radius, 180.0  * (M_PI/180.0), 270.0  * (M_PI/180.0));
+        //cairo_line_to( cr, pr->xLeft + radius, pr->yBottom);
+        cairo_line_to( cr, pr->xRight - radius, pr->yBottom);
+        cairo_stroke (cr);
+        // right/bottom
+        cairo_set_source_rgb( cr, RED(clrbr) / 255.0,
+                              GREEN(clrbr) / 255.0,
+                              BLUE(clrbr) / 255.0);
+        cairo_move_to( cr, pr->xRight - radius, pr->yBottom);
+        if (radius>0)
+            cairo_arc( cr, pr->xRight - radius, pr->yBottom + radius,
+                       radius, 270.0 * (M_PI/180.0), 0.0  * (M_PI/180.0));
+        cairo_line_to( cr, pr->xRight, pr->yTop - radius);
+        if (radius>0)
+            cairo_arc( cr, pr->xRight - radius - 1, pr->yTop - radius - 1,
+                       radius + 1, 0.0 * (M_PI/180.0), 90.0  * (M_PI/180.0));
+        cairo_line_to( cr, pr->xLeft + radius, pr->yTop);
+        cairo_stroke (cr);
+        RectInflate(pr, -1, -1);
+    }
 
 }
 
