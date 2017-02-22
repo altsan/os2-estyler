@@ -307,12 +307,12 @@ void drawCairoTitle( cairo_t* cr, char* fontFace, PRECTL pr,
 
     // calculate the text position
     if (fl & DT_CENTER)
-        fx = (pr->xRight - pr->xLeft) / 2 - (font_extents.width / 2 + font_extents.x_bearing);
+        fx = 2 + (pr->xRight - pr->xLeft) / 2 - (font_extents.width + font_extents.x_bearing)/2;
     else
         fx = pr->xLeft + 5;
 
     if (fl & DT_VCENTER)
-        fy = (pr->yTop - pr->yBottom) / 2 - (font_extents.height / 2 + font_extents.y_bearing);
+        fy = 2 + (pr->yTop - pr->yBottom) / 2 + abs(font_extents.y_bearing) / 2;
     else
         fy = pr->yTop - 5;
 
@@ -320,6 +320,32 @@ void drawCairoTitle( cairo_t* cr, char* fontFace, PRECTL pr,
         fx++;
         fy++;
     }
+
+#if DEBUGGING__
+    // draw helper lines to understand cairo
+    cairo_set_source_rgb( cr, RED(0xFFFFFF) / 255.0,
+                          GREEN(0xFFFFFF) / 255.0,
+                          BLUE(0xFFFFFF) / 255.0);
+    cairo_set_line_width(cr, 1.0);
+    cairo_move_to( cr, fx, 0);
+    cairo_line_to( cr, fx, pr->yTop);
+    cairo_move_to( cr, 0, fy);
+    cairo_line_to( cr, pr->xRight, fy);
+    cairo_stroke (cr);
+    cairo_move_to( cr, fx+font_extents.width, 0);
+    cairo_line_to( cr, fx+font_extents.width, pr->yTop);
+    cairo_move_to( cr, 0, fy-font_extents.height);
+    cairo_line_to( cr, pr->xRight, fy-font_extents.height);
+    cairo_stroke (cr);
+    cairo_set_source_rgb( cr, RED(0xFF0000) / 255.0,
+                          GREEN(0xFF0000) / 255.0,
+                          BLUE(0xFF0000) / 255.0);
+    cairo_move_to( cr, fx+font_extents.x_bearing, 0);
+    cairo_line_to( cr, fx+font_extents.x_bearing, pr->yTop);
+    cairo_move_to( cr, 0, fy+font_extents.y_bearing);
+    cairo_line_to( cr, pr->xRight, fy+font_extents.y_bearing);
+    cairo_stroke (cr);
+#endif
 
     // draw text shadow
     if (fl & DT_3D) {
@@ -353,6 +379,18 @@ void drawCairoTitle( cairo_t* cr, char* fontFace, PRECTL pr,
         cairo_move_to( cr, px, py);
     }
     cairo_show_text( cr, title2);
+
+#if DEBUGGING__
+    // alpha background for text
+    cairo_set_source_rgba( cr,
+                          RED(0xffff00) / 255.0,
+                          GREEN(0xffff00) / 255.0,
+                          BLUE(0xffff00) / 255.0, 0.5);
+    cairo_rectangle( cr, fx, fy,
+                     font_extents.width + font_extents.x_bearing,
+                     -font_extents.height );//- font_extents.y_bearing);
+    cairo_fill( cr);
+#endif
 
 }
 
