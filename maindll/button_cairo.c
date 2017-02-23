@@ -265,7 +265,7 @@ void drawCairoTitle( cairo_t* cr, char* fontFace, PRECTL pr,
         face = dot + 1;
         *dot = 0;
         // set size of font
-        cairo_set_font_size( cr, atoi(font) * 1.5);
+        cairo_set_font_size( cr, atoi(font) * 1.4);
         // set font name
         cairo_select_font_face( cr, face, CAIRO_FONT_SLANT_NORMAL,
                                 CAIRO_FONT_WEIGHT_NORMAL);
@@ -312,7 +312,7 @@ void drawCairoTitle( cairo_t* cr, char* fontFace, PRECTL pr,
         fx = pr->xLeft + 5;
 
     if (fl & DT_VCENTER)
-        fy = 2 + (pr->yTop - pr->yBottom) / 2 + abs(font_extents.y_bearing) / 2;
+        fy = 1 + (pr->yTop - pr->yBottom) / 2 + abs(font_extents.y_bearing) / 2;
     else
         fy = pr->yTop - 5;
 
