@@ -297,7 +297,7 @@
 #define SZ_REBOOT           "Reboot"
 #define SZ_SHUTDOWNPROGS    "Programs"
 #define SZ_KILLLIST         "Termination list"
-#define SZ_VERSION          "Version: %d.%d.%d"
+#define SZ_VERSION          "Version: %s"
 #define SZ_WKEYITEM01       "Do not perform any action"
 #define SZ_WKEYITEM02       "Hide/show all windows"
 #define SZ_WKEYITEM03       "Show window list"

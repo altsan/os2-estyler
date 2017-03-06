@@ -343,7 +343,7 @@
 #define IDS_REBOOT                15    // "Reboot"
 #define IDS_SHUTDOWNPROGS         16    // "Programs"
 #define IDS_KILLLIST              17    // "Kill list"
-#define IDS_VERSION               18    // "Version: %d.%d build: %d"
+#define IDS_VERSION               18    // "Version: %s"
 #define IDS_WKEYITEM01            19    // "Do not perform any action"
 #define IDS_WKEYITEM02            20    // "Hide/show all windows"
 #define IDS_WKEYITEM03            21    // "Show window list"

@@ -58,7 +58,7 @@ static BOOL onDlgInit(HWND hwnd) {
    mResetStaticIcon(hwnd, ICO_PRODINFO, g.mode + 2);
    version = *(stlrGetVer());
    setCtrlTextParm(hwnd, TXT_PIVERSION, IDS_VERSION,
-                   version.major, version.minor, version.build);
+                   GIT_TAG);
    for (i = BTN_APPLY; i <= BTN_PREVIEW; ++i)
       WinEnableControl(g.appl.hwnd, i, FALSE);
    return TRUE;

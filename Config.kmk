@@ -54,7 +54,7 @@ TEMPLATE_eStyler_INCS               = ../shared/headers ../headers \
 TEMPLATE_eStyler_CFLAGS             = /Ss /Q /C /Rn /Mc
 TEMPLATE_eStyler_CFLAGS.release     = /G5 /Oc
 TEMPLATE_eStyler_CFLAGS.debug       = /Ti
-TEMPLATE_eStyler_DEFS               =
+TEMPLATE_eStyler_DEFS               = GIT_TAG="\"$(GIT_TAG)\""
 TEMPLATE_eStyler_DEFS.release       =
 TEMPLATE_eStyler_DEFS.debug         = DEBUGGING
 TEMPLATE_eStyler_LDFLAGS            = /B"/E:2" /B"/PM:PM" /B"/PACKD" /B"/A:4" \

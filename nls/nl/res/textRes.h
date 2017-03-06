@@ -295,7 +295,7 @@
 #define SZ_REBOOT           "Opnieuw opstarten"
 #define SZ_SHUTDOWNPROGS    "Programma's"
 #define SZ_KILLLIST         "Stoppen lijst"
-#define SZ_VERSION          "Versie: %d.%d.%d"
+#define SZ_VERSION          "Versie: %s"
 #define SZ_WKEYITEM01       "Voer geen enkele actie uit"
 #define SZ_WKEYITEM02       "Verberg/toon alle vensters"
 #define SZ_WKEYITEM03       "Toon vensterlijst"

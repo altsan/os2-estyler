@@ -293,7 +293,7 @@
 #define SZ_REBOOT           "重新開機"
 #define SZ_SHUTDOWNPROGS    "Programs"
 #define SZ_KILLLIST         "Termination list"
-#define SZ_VERSION          "Version: %d.%d.%d"
+#define SZ_VERSION          "Version: %s"
 #define SZ_WKEYITEM01       "不執行任何動作"
 #define SZ_WKEYITEM02       "隱藏／顯示所有視窗"
 #define SZ_WKEYITEM03       "顯示視窗清單"

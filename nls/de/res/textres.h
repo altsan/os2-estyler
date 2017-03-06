@@ -298,7 +298,7 @@
 #define SZ_REBOOT           "Systemneustart"
 #define SZ_SHUTDOWNPROGS    "Programme"
 #define SZ_KILLLIST         "Liste fÅr Beenden"
-#define SZ_VERSION          "Version: %d.%d.%d"
+#define SZ_VERSION          "Version: %s"
 #define SZ_WKEYITEM01       "Keine Aktion durchfÅhren"
 #define SZ_WKEYITEM02       "Alle Fenster anzeigen/verbergen"
 #define SZ_WKEYITEM03       "Fensterliste anzeigen"
