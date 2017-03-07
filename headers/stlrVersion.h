@@ -17,4 +17,7 @@
 // supported operating system version (must be greater or equal)
 #define VERSUPPORTED        45
 
+// current INI binary data format
+#define INI_VERSION_CURRENT "2"
+
 #endif // #ifndef _STLRVER_H_

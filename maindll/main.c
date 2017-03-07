@@ -180,6 +180,23 @@ static VOID readProfile(VOID) {
    PrfQueryProfileString(HINI_USER, SZPRO_APP, SZPRO_ILAST, "0", g.achsd, 24);
    // open ESTYLER.INI
    if (!(hini = stlrOpenProfile())) stlrlog(IDERR_INIOPEN);
+
+   if (hini) {
+       char version[16];
+       PrfQueryProfileString( hini, SZPRO_OPTIONS, SZPRO_VERSION, "",
+                              version, &ul);
+       dbgPrintf3("readProfile: current '%s', ini '%s'.\n",
+                  INI_VERSION_CURRENT, version);
+       // check if version is matching
+       if (strcmp( version, INI_VERSION_CURRENT)) {
+           // migration is currently not supported, close ini and load
+           // defaults
+           PrfCloseProfile(hini);
+           hini = NULL;
+           dbgPrintf1("readProfile: version mismatch, loading defaults.\n");
+       }
+   }
+
    // if cannot get the user interface options set the default values
    ul = sizeof(UIOPTIONS);
    if (!hini
@@ -329,7 +346,7 @@ VOID stlrSetButtonDefaults(PBTNOPT pbo) {
    pbo->overPP = 0;
    pbo->def3D = 0;
    pbo->dis3D = 1;
-   pbo->solid = (g.scr.cclr < 256); // solid color if screen res < 256 colors
+   pbo->solid = 1;                  // solid color always
    pbo->color = 0xcccccc;
 }
 

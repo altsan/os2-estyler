@@ -13,6 +13,7 @@
 // includes -----------------------------------------------------------------
 #include "main.h"
 #include "notebook.h"
+#include "stlrVersion.h"       // version number
 
 // definitions --------------------------------------------------------------
 
@@ -198,6 +199,11 @@ VOID endApplication(VOID) {
          swp.y = WinQueryWindowUShort(g.appl.hwnd, QWS_YRESTORE);
       } /* endif */
       g.winPos.x = swp.x, g.winPos.y = swp.y;
+
+      // store current ini version
+      PrfWriteProfileString( hini, SZPRO_OPTIONS, SZPRO_VERSION,
+                             INI_VERSION_CURRENT);
+
       switch (g.mode) {
          case IDX_USERINTERFACEPREF:
             if (g.pUiData->preview.hwnd) {
