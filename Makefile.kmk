@@ -24,7 +24,28 @@ include $(PATH_SUB_CURRENT)/nls/Makefile.kmk
 include $(PATH_SUB_CURRENT)/pref/Makefile.kmk
 
 #
+# Packing
+#
+STYLERL_PACK                = $(PATH_OUT)/pack
+STYLERL_BASE                = $(STYLERL_PACK)/StylerLite-$(subst .,_,$(GIT_TAG))-$(BUILD_TYPE)
+STYLERL_ZIP                 = $(STYLERL_BASE).zip
+
+PACKING                    += create_zips
+
+#
 # The End.
 #
 
 include $(FILE_KBUILD_SUB_FOOTER)
+
+create_zips:
+	@echo Preparing to create ZIP packages...
+	$(QUIET)$(RM) -Rf $(STYLERL_PACK)
+	$(QUIET)$(KMK) install PATH_INS=$(STYLERL_PACK)
+	$(MKDIR) -p $(STYLERL_PACK)/bin/bitmap/vga
+	$(MKDIR) -p $(STYLERL_PACK)/bin/bitmap/xga
+	cp -r pref/bitmap/vga/* $(STYLERL_PACK)/bin/bitmap/vga
+	cp -r pref/bitmap/xga/* $(STYLERL_PACK)/bin/bitmap/xga
+	@echo Packing to $(STYLERL_ZIP):
+	$(QUIET)$(REDIRECT) -C $(STYLERL_PACK)/$(INST_BIN) -- \
+		zip -r9 $(STYLERL_ZIP) .

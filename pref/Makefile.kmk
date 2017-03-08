@@ -6,7 +6,7 @@ SUB_DEPTH = ..
 include $(KBUILD_PATH)/subheader.kmk
 
 PROGRAMS                   += estylerUI
-INSTALLS                   += estylerUI-bkground estylerUI-button estylerUI-bitmap
+INSTALLS                   += estylerUI-bkground estylerUI-button
 
 estylerUI_TEMPLATE          = eStyler
 estylerUI_NAME              = estyler
@@ -52,10 +52,6 @@ estylerUI-button_INST       = $(INST_BIN)/bitmap/button/
 estylerUI-button_SOURCES    = $(wildcard $(PATH_SUB_CURRENT)/pref/bitmap/button/*)
 estylerUI-button_CLEAN      =
 
-estylerUI-bitmap_INST       = $(INST_BIN)/bitmap/
-estylerUI-bitmap_SOURCES    = $(PATH_INST_BIN)/vga.zip $(PATH_INST_BIN)/xga.zip
-estylerUI-bitmap_CLEAN      =
-
 estylerUI-bkground_INST     = $(INST_BIN)/bitmap/tbkgnds/
 estylerUI-bkground_SOURCES  = $(wildcard $(PATH_SUB_CURRENT)/pref/bitmap/tbkgnds/*)
 estylerUI-bkground_CLEAN    =
@@ -65,13 +61,3 @@ OTHERS +=
 OTHER_CLEAN +=
 
 include $(FILE_KBUILD_SUB_FOOTER)
-
-# archive VGA button bitmaps
-$(PATH_INST_BIN)/vga.zip:
-	$(QUIET)$(MKDIR) -p $(@D)
-	$(REDIRECT) -C pref/bitmap -- zip -X -r $@ vga
-
-# archive VGA button bitmaps
-$(PATH_INST_BIN)/xga.zip:
-	$(QUIET)$(MKDIR) -p $(@D)
-	$(REDIRECT) -C pref/bitmap -- zip -X -r $@ xga
