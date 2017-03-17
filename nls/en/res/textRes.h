@@ -76,7 +76,7 @@
 #define SZ_TBENABLE              "~Enable titlebar enhancements"
 #define SZ_TBOVERRIDEPP          "~Override presentation parameters"
 #define SZ__FONT                 "~Font:"
-#define SZ_TEXTATLIGN            "Text ~alignment:"
+#define SZ_TEXTATLIGN            "~Text alignment:"
 #define SZ_LEFTCENTER            "Left\tCenter\t"
 
 /* --------------------------------------------------------------------------
@@ -90,7 +90,7 @@
 #define SZ_SHADEDIRECTION        "~Gradient direction:"
 #define SZ_COMBOSHADE            "Horizontal\tVertical\t" \
                                  "Horizontal - double\tVertical - double\t"
-#define SZ_SWAPCOLORS            "~Swap colors =>"
+#define SZ_SWAPCOLORS            "S~wap colors =>"
 #define SZ_OUTERCOLOR            "~Outer color"
 #define SZ_INNERCOLOR            "~Inner color"
 #define SZ_LEFTCOLOR             "~Left color"
@@ -98,27 +98,27 @@
 #define SZ_TOPCOLOR              "~Top color"
 #define SZ_BOTTOMCOLOR           "~Bottom color"
 // image mode controls
-#define SZ_BKGNDIMAGE            "~Background image:"
+#define SZ_BKGNDIMAGE            "Background ~image:"
 
 // !!! NOTE !!! when translating the following string do not remove the
 // 3 leading blank spaces !!!!!!!!
 #define SZ_DEFIMAGE              "   Default image"
 #define SZ_SCALEIMAGE            "~Scale the image"
 //#define SZ_IMAGEOPTIONS          "~Image options..."
-#define SZ_ADDIMAGE              "~Add a new image..."
+#define SZ_ADDIMAGE              "Add a ~new image..."
 // border controls
-#define SZ_SHOWBORDER            "~Show the titlebar border"
+#define SZ_SHOWBORDER            "Sh~ow the titlebar border"
 #define SZ_LEFTTOPCLR            "~Left/top color"
 #define SZ_RIGHTBTMCLR           "~Right/bottom color"
 // text options controls
-#define SZ_TEXTSHADOW            "Text ~shadow"
-#define SZ_TEXTCOLOR             "~Text color"
-#define SZ_TEXTSHADOWCLR         "Text s~hadow color"
+#define SZ_TEXTSHADOW            "Te~xt shadow"
+#define SZ_TEXTCOLOR             "Text ~color"
+#define SZ_TEXTSHADOWCLR         "T~ext shadow color"
 
 /* --------------------------------------------------------------------------
  PUSHBUTTON        pushbutton options
 */
-#define SZ_BTNON                 "~Pushbuttons enhancements"
+#define SZ_BTNON                 "Push~buttons enhancements"
 #define SZ_BTNTHICK              "~Thick border"
 #define SZ_BTNFLAT               "~Flat border"
 #define SZ_BTNOVRCLR             "~Override non-default colors"

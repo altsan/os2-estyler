@@ -108,7 +108,9 @@ eStyler.exe:         \
     $(RB) $(RBFLAGS) eStyler.res eStyler.exe
 
 eStyler.res:        eStyler.rc        ..\\nls\\res\\Styler.ICO
-    $(RC) $(RCFLAGS) eStyler.rc eStyler.res
+    %cd ..
+    $(RC) $(RCFLAGS) pref\eStyler.rc
+    %cd $(MAKEDIR)
 
 main.obj          : main.c            *.h notebook.h ..\\headers\\*.h
 initend.obj       : initend.c         *.h test.h ..\\headers\\*.h
