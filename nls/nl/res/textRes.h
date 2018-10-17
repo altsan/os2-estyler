@@ -53,7 +53,7 @@
  MAINWINDOW        text displayed by the settings notebook parent
 */
 // help title
-#define SZ_APPNAME               "eStyler voor eComStation"
+#define SZ_APPNAME               "Styler"
 #define SZ_APPLY                 "~Toepassen"
 #define SZ_UNDO                  "~Ongedaan maken"
 #define SZ__DEFAULT              "Stan~daard"
@@ -137,10 +137,12 @@
 /* --------------------------------------------------------------------------
  PRODINFO          product information dialog
 */
-#define SZ_PRODUCT               "eStyler voor eComStation"
+#define SZ_PRODUCT               "Styler voor OS/2"
 #define SZ_PIVERSION             "Versie %d.%d - build nr. %d"
 #define SZ_PICPYRIGHT            "¸ 1998-2004 Alessandro Felice Cantatore"
-#define SZ_PIURL                 "http://xoomer.virgilio.it/acantato"
+#define SZ_PICPYRIGHT2           "Portions (c) 2008-2017 Alexander Taylor"
+#define SZ_PIURL                 "https://github.com/altsan/os2-estyler"
+#define SZ_PILICENSE             "Licensed under the GNU General Public License version 3"
 
 /* --------------------------------------------------------------------------
  SHUTDOWNGEN       shutdown - general options dialog
@@ -246,7 +248,7 @@
 /* --------------------------------------------------------------------------
  PREVIEW           preview window
 */
-#define SZ_PREVIEWTITLE     "eStyler - voorbeeldvenster"
+#define SZ_PREVIEWTITLE     "Styler - voorbeeldvenster"
 #define SZ_STATICSAMPLE     "Statisch tekstvoorbeeld"
 #define SZ_BTNSAMPLES       "Toets voorbeelden: "
 #define SZ__NORMAL          "~Normaal"
@@ -304,29 +306,29 @@
 #define SZ_WKEYITEM06       "Open de Stationsmap"
 #define SZ_WKEYITEM07       "Open de Instellingen map"
 #define SZ_WKEYITEM08       "Open een opdrachtregel venster"
-#define SZ_WKEYITEM09       "Toon het eComCenter Werkplekmenu"
-#define SZ_WKEYITEM10       "Toon de eComCenter vensterlijst"
-#define SZ_WKEYITEM11       "Toon de eComCenter proceslijst"
-#define SZ_WKEYITEM12       "Toon de eComCenter ladenlijst"
-#define SZ_WKEYITEM13       "Schakel over naar de volgende eComCenter lade"
-#define SZ_WKEYITEM14       "Toon het eComCenter informatiemenu"
-#define SZ_WKEYITEM15       "Toon het eCS menu (boven eCenter)"
-#define SZ_WKEYITEM16       "Toon het eCS menu (onder eCenter)"
-#define SZ_WKEYITEM17       "Toon de eCenter ladenlijst"
-#define SZ_WKEYITEM18       "Schakel over naar de volgende eCenter lade"
-#define SZ_WKEYITEM19       "Toon eCenter lade 1"
-#define SZ_WKEYITEM20       "Toon eCenter lade 2"
-#define SZ_WKEYITEM21       "Toon eCenter lade 3"
-#define SZ_WKEYITEM22       "Toon eCenter lade 4"
-#define SZ_WKEYITEM23       "Toon eCenter lade 5"
-#define SZ_WKEYITEM24       "Toon eCenter lade 6"
-#define SZ_WKEYITEM25       "Toon eCenter lade 7"
-#define SZ_WKEYITEM26       "Toon eCenter lade 8"
-#define SZ_WKEYITEM27       "Toon eCenter lade 9"
-#define SZ_WKEYITEM28       "Toon eCenter lade 10"
-#define SZ_WKEYITEM29       "Verplaats het eCenter achter/bovenop de andere vensters"
+#define SZ_WKEYITEM09       "Toon het WarpCenter Werkplekmenu"
+#define SZ_WKEYITEM10       "Toon de WarpCenter vensterlijst"
+#define SZ_WKEYITEM11       "Toon de WarpCenter proceslijst"
+#define SZ_WKEYITEM12       "Toon de WarpCenter ladenlijst"
+#define SZ_WKEYITEM13       "Schakel over naar de volgende WarpCenter lade"
+#define SZ_WKEYITEM14       "Toon het WarpCenter informatiemenu"
+#define SZ_WKEYITEM15       "Toon het XButton menu (boven XCenter)"
+#define SZ_WKEYITEM16       "Toon het XButton menu (onder XCenter)"
+#define SZ_WKEYITEM17       "Toon de XCenter ladenlijst"
+#define SZ_WKEYITEM18       "Schakel over naar de volgende XCenter lade"
+#define SZ_WKEYITEM19       "Toon XCenter lade 1"
+#define SZ_WKEYITEM20       "Toon XCenter lade 2"
+#define SZ_WKEYITEM21       "Toon XCenter lade 3"
+#define SZ_WKEYITEM22       "Toon XCenter lade 4"
+#define SZ_WKEYITEM23       "Toon XCenter lade 5"
+#define SZ_WKEYITEM24       "Toon XCenter lade 6"
+#define SZ_WKEYITEM25       "Toon XCenter lade 7"
+#define SZ_WKEYITEM26       "Toon XCenter lade 8"
+#define SZ_WKEYITEM27       "Toon XCenter lade 9"
+#define SZ_WKEYITEM28       "Toon XCenter lade 10"
+#define SZ_WKEYITEM29       "Verplaats het XCenter achter/bovenop de andere vensters"
 #define SZ_TITLEBARFONT     "Titelbalk lettertype"
-#define SZ_FONTDLGSAMPLE    "eStyler - voorbeeldtekst"
+#define SZ_FONTDLGSAMPLE    "Styler - voorbeeldtekst"
 #define SZ_GRADIENTCOLOR    "%s verloopkleur"
 #define SZ_CLRSHADELEFT     "~Links"
 #define SZ_CLRSHADTOP       "~Bovenkant"
@@ -353,13 +355,13 @@
    "Het is niet gelukt om de runtime module procedures te importeren."
 
 #define SZERR_GETCUROPTIONS \
-   "Het is niet gelukt om de huidige actieve eStyler opties te achterhalen."
+   "Het is niet gelukt om de huidige actieve Styler opties te achterhalen."
 
 #define SZERR_ALLOCATION \
    "Het is niet gelukt om geheugen te alloceren."
 
 #define SZERR_OPENPRF \
-   "Het is niet gelukt om ESTYLER.INI te openen."
+   "Het is niet gelukt om STYLER.INI te openen."
 
 #define SZERR_READPRFDATA \
    "Het is niet gelukt om de INI-bestand gegevens te laden."
@@ -403,7 +405,7 @@
    "De raster afbeelding %s is groter dan de 64 KB grens."
 
 #define SZERR_SAVEDATA \
-   "Het is niet gelukt gegevens op te slaan in ESTYLER.INI."
+   "Het is niet gelukt gegevens op te slaan in STYLER.INI."
 
 #define SZERR_APPLYBMP \
    "Het is niet gelukt om de geselecteerde raster afbeelding in te stellen."
@@ -476,6 +478,6 @@
    "Het is niet gelukt om LVM volume gegevens te achterhalen"SZERR_LVMCODE
 
 #define SZERR_INITHELP \
-   "Het is niet gelukt om het applicatie helpbestand eStyler.hlp te laden."
+   "Het is niet gelukt om het applicatie helpbestand STYLER.HLP te laden."
 
 #endif // #ifndef _TEXT_RES_H_

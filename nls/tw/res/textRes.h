@@ -53,7 +53,7 @@
  MAINWINDOW        text displayed by the settings notebook parent
 */
 // help title
-#define SZ_APPNAME               "eStyler for eComStation"
+#define SZ_APPNAME               "Styler"
 #define SZ_APPLY                 "套用(~A)"
 #define SZ_UNDO                  "回復(~U)"
 #define SZ__DEFAULT              "預設(~D)"
@@ -137,10 +137,12 @@
 /* --------------------------------------------------------------------------
  PRODINFO          product information dialog
 */
-#define SZ_PRODUCT               "eStyler for eComStation"
+#define SZ_PRODUCT               "Styler for OS/2"
 #define SZ_PIVERSION             "Version %d.%d - build no. %d"
 #define SZ_PICPYRIGHT            "(C) 1998-2004 Alessandro Felice Cantatore"
-#define SZ_PIURL                 "http://xoomer.virgilio.it/acantato"
+#define SZ_PICPYRIGHT2           "Portions (c) 2008-2017 Alexander Taylor"
+#define SZ_PIURL                 "https://github.com/altsan/os2-estyler"
+#define SZ_PILICENSE             "Licensed under the GNU General Public License version 3"
 
 /* --------------------------------------------------------------------------
  SHUTDOWNGEN       shutdown - general options dialog
@@ -244,7 +246,7 @@
 /* --------------------------------------------------------------------------
  PREVIEW           preview window
 */
-#define SZ_PREVIEWTITLE     "eStyler - preview window"
+#define SZ_PREVIEWTITLE     "Styler - preview window"
 #define SZ_STATICSAMPLE     "Static text sample"
 #define SZ_BTNSAMPLES       "Push button samples: "
 #define SZ__NORMAL          "正常(~N)"
@@ -302,29 +304,29 @@
 #define SZ_WKEYITEM06       "開啟磁碟機資料夾"
 #define SZ_WKEYITEM07       "開啟系統設定資料夾"
 #define SZ_WKEYITEM08       "開啟一個命令列視窗"
-#define SZ_WKEYITEM09       "顯示 eComCenter 桌面選單"
-#define SZ_WKEYITEM10       "顯示 eComCenter 視窗清單"
-#define SZ_WKEYITEM11       "顯示 eComCenter 進程清單"
-#define SZ_WKEYITEM12       "顯示 eComCenter 置物匣清單"
-#define SZ_WKEYITEM13       "切換到下一個 eComCenter 置物匣"
-#define SZ_WKEYITEM14       "顯示 eComCenter 資訊選單"
-#define SZ_WKEYITEM15       "Show the eCS menu (top eCenter)"
-#define SZ_WKEYITEM16       "Show the eCS menu (bottom eCenter)"
-#define SZ_WKEYITEM17       "Show the eCenter tray list"
-#define SZ_WKEYITEM18       "Switch to the next eCenter tray"
-#define SZ_WKEYITEM19       "Show eCenter tray 1"
-#define SZ_WKEYITEM20       "Show eCenter tray 2"
-#define SZ_WKEYITEM21       "Show eCenter tray 3"
-#define SZ_WKEYITEM22       "Show eCenter tray 4"
-#define SZ_WKEYITEM23       "Show eCenter tray 5"
-#define SZ_WKEYITEM24       "Show eCenter tray 6"
-#define SZ_WKEYITEM25       "Show eCenter tray 7"
-#define SZ_WKEYITEM26       "Show eCenter tray 8"
-#define SZ_WKEYITEM27       "Show eCenter tray 9"
-#define SZ_WKEYITEM28       "Show eCenter tray 10"
-#define SZ_WKEYITEM29       "Move the eCenter behind/on-top-of the other windows"
+#define SZ_WKEYITEM09       "顯示 WarpCenter 桌面選單"
+#define SZ_WKEYITEM10       "顯示 WarpCenter 視窗清單"
+#define SZ_WKEYITEM11       "顯示 WarpCenter 進程清單"
+#define SZ_WKEYITEM12       "顯示 WarpCenter 置物匣清單"
+#define SZ_WKEYITEM13       "切換到下一個 WarpCenter 置物匣"
+#define SZ_WKEYITEM14       "顯示 WarpCenter 資訊選單"
+#define SZ_WKEYITEM15       "Show the XButton menu (top XCenter)"
+#define SZ_WKEYITEM16       "Show the XButton  menu (bottom XCenter)"
+#define SZ_WKEYITEM17       "Show the XCenter tray list"
+#define SZ_WKEYITEM18       "Switch to the next XCenter tray"
+#define SZ_WKEYITEM19       "Show XCenter tray 1"
+#define SZ_WKEYITEM20       "Show XCenter tray 2"
+#define SZ_WKEYITEM21       "Show XCenter tray 3"
+#define SZ_WKEYITEM22       "Show XCenter tray 4"
+#define SZ_WKEYITEM23       "Show XCenter tray 5"
+#define SZ_WKEYITEM24       "Show XCenter tray 6"
+#define SZ_WKEYITEM25       "Show XCenter tray 7"
+#define SZ_WKEYITEM26       "Show XCenter tray 8"
+#define SZ_WKEYITEM27       "Show XCenter tray 9"
+#define SZ_WKEYITEM28       "Show XCenter tray 10"
+#define SZ_WKEYITEM29       "Move the XCenter behind/on-top-of the other windows"
 #define SZ_TITLEBARFONT     "標題欄字型"
-#define SZ_FONTDLGSAMPLE    "eStyler - sample text"
+#define SZ_FONTDLGSAMPLE    "Styler - sample text"
 #define SZ_GRADIENTCOLOR    "%s gradient color"
 #define SZ_CLRSHADELEFT     "左(~L)"
 #define SZ_CLRSHADTOP       "頂(~T)"
@@ -351,13 +353,13 @@
    "Failed to import the runtime module procedures."
 
 #define SZERR_GETCUROPTIONS \
-   "Failed to get the current active eStyler options."
+   "Failed to get the current active Styler options."
 
 #define SZERR_ALLOCATION \
    "Failed to allocate memory."
 
 #define SZERR_OPENPRF \
-   "Failed to open ESTYLER.INI."
+   "Failed to open STYLER.INI."
 
 #define SZERR_READPRFDATA \
    "Failed to read INI file data."
@@ -401,7 +403,7 @@
    "The bitmap : %s exceeds the 64 KBs limit."
 
 #define SZERR_SAVEDATA \
-   "Failed to save data to ESTYLER.INI."
+   "Failed to save data to STYLER.INI."
 
 #define SZERR_APPLYBMP \
    "Failed to set the selected bitmap image."
@@ -474,6 +476,6 @@
    "Failed to get LVM volume data"SZERR_LVMCODE
 
 #define SZERR_INITHELP \
-   "Failed to load the application help file eStyler.hlp."
+   "Failed to load the application help file STYLER.HLP."
 
 #endif // #ifndef _TEXT_RES_H_
