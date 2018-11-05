@@ -1,3 +1,20 @@
+=====================================================
+IMPORTANT NOTICE
+=====================================================
+The current sources use kbuild. Create localConfig.kmk as
+appropriate and run 'kmk' to build. You must have kbuild, as
+well as the OS/2 Toolkit and the IBM C Compiler, installed.
+
+The instructions below describe the old build system as
+implemented by Alessandro Cantatore. They are officially 
+deprecated and should no longer be used (and in any event are
+unlikely to work with the current codebase).
+
+=====================================================
+ORIGINAL README.TXT TEXT FOLLOWS
+=====================================================
+
+
 -[ ESTLRENV.CMD ]------------------------------------------
 
 The preferences notebook of eStyler shares some headers and

@@ -1,5 +1,8 @@
-eStylerLite documentation
--------------------------
+eStyler National Language Support Components
+============================================
+
+eStyler documentation
+---------------------
 
 Needed tools:
 - IBM IPFC compiler
@@ -13,20 +16,22 @@ Instructions:
   using a plain text editor (do not modify the
   html tags).
 - translate the 2nd and 3rd lines of estyler.lst
-- run BUILDDOC.CMD <language>
-  (run the script without parameters to get an help
-  message)
+- performing a full build with 'kmk' from the top-level
+  directory will build all eStyler components for all
+  defined languages.  To build (only) the documentation
+  for a specific language, you can run:
+    BUILDDOC.CMD <language>
 - NOTE: all bitmaps resources (the one used for the
   default titlebar and pushbutton bitmaps) must be
   valid OS/2 bitmaps of version 1.x.
   If needed open them with the icon editor and save
   them as format 1.x.
 
-eStylerLite resources
----------------------
+eStyler resources
+-----------------
 
 Needed tools:
-- IBM RC.EXE version 4.x (there is no grant that the
+- IBM RC.EXE version 4.x (there is no guarantee that the
   resource scripts be interpreted correctly by a newer
   version)
 - IBM Visual Age ILINK.EXE
@@ -37,9 +42,11 @@ Instructions:
   IT (Italian), JA (Japanese), NL (Dutch), RU (Russian),
   TW (Chinese-Traditional).
 - translate the C header file textres.h
-- run BUILDRES.CMD <language>
-  (run the script without paraemeters to get an help
-  message)
+- performing a full build with 'kmk' from the top-level
+  directory will build all eStyler components for all
+  defined languages.  To build (only) the documentation
+  for a specific language, you can run:
+     BUILDRES.CMD <language>
 
 Important note:
 When the resources for the language XX are compiled,

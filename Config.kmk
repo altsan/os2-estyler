@@ -67,3 +67,28 @@ TEMPLATE_eStylerDLL                 = eStyler DLL template
 TEMPLATE_eStylerDLL_EXTENDS         = eStyler
 TEMPLATE_eStylerDLL_CFLAGS.debug   += /Ge-
 TEMPLATE_eStylerDLL_CFLAGS.release += /Ge-
+
+
+# From knut kbuild
+TOOL_VAC308_COMPILE_C_OUTPUT = $(obj).ii
+
+# From knut kbuild
+TOOL_VAC308_ENV_SETUP ?= $(REDIRECT) \
+	-E 'LIB=$1' \
+	-E 'INCLUDE=' \
+        $2 \
+	--
+
+# From knut kbuild
+# Needs override to avoid pipe
+override define TOOL_VAC308_COMPILE_C_CMDS
+	$(QUIET) $(call TOOL_VAC308_ENV_SETUP) $(TOOL_VAC308_CC) -c\
+		$(flags) $(addprefix -I, $(incs)) $(addprefix -D, $(defs))\
+		-Fo$(obj)\
+		$(abspath $(source))
+	$(QUIET) $(call TOOL_VAC308_ENV_SETUP,,-wo $(obj).ii) $(TOOL_VAC308_CC) -P+ -Pd+ \
+		$(flags) $(addprefix -I, $(incs)) $(addprefix -D, $(defs))\
+		$(abspath $(source))
+	$(QUIET)$(DEP_PRE) -f -s -o $(dep) -t $(obj) $(obj).ii
+endef
+
