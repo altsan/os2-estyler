@@ -46,7 +46,7 @@ endef
 #
 # Build templates
 #
-TEMPLATE_eStyler                    = eStyler NSL template
+TEMPLATE_eStyler                    = eStyler NLS template
 TEMPLATE_eStyler_TOOL               = VAC308
 TEMPLATE_eStyler_RCTOOL             = OPENWATCOM
 TEMPLATE_eStyler_INCS               = ../shared/headers ../headers $(TOOLKIT)/h
