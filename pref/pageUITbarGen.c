@@ -306,7 +306,7 @@ static VOID undoOptions(HWND hwnd) {
    g.pUiData->pOpts->tb.center = g.pUndoUiOpts->tb.center;
    strcpy(g.pUiData->pOpts->tb.achFont, g.pUndoUiOpts->tb.achFont);
    setControlsState(hwnd, TRUE);
-   updatePreviewWindow(PVUPD_TITLEBARS);
+   updatePreviewWindow(PVUPD_TITLEFONT | PVUPD_TITLEBARS);
    checkApplyState();
    checkDefaultState();
    resetCommonButton(BTN_UNDO, PGFL_UNDO_ENABLED, 0);
@@ -323,7 +323,7 @@ static VOID undoOptions(HWND hwnd) {
 static VOID defaultOptions(HWND hwnd) {
    stlrSetTitlebarGeneralDefaults(&g.pUiData->pOpts->tb);
    setControlsState(hwnd, TRUE);
-   updatePreviewWindow(PVUPD_TITLEBARS);
+   updatePreviewWindow(PVUPD_TITLEFONT | PVUPD_TITLEBARS);
    checkApplyState();
    checkUndoState();
    resetCommonButton(BTN_DEFAULT, PGFL_DEFAULT_ENABLED, 0);
