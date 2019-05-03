@@ -96,19 +96,19 @@ static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl) {
          } /* endif */
          break;
       case COMBO_WKLEFT:
-         if (event == CBN_ENTER) {
+         if (event == CBN_LBSELECT) {
             g.pCurOpts->wk.left = wLbxItemSelected(hCtrl);
             bSettingsChanged = TRUE;
          } /* endif */
          break;
       case COMBO_WKRIGHT:
-         if (event == CBN_ENTER) {
+         if (event == CBN_LBSELECT) {
             g.pCurOpts->wk.right = wLbxItemSelected(hCtrl);
             bSettingsChanged = TRUE;
          } /* endif */
          break;
       case COMBO_WKMENU:
-         if (event == CBN_ENTER) {
+         if (event == CBN_LBSELECT) {
             g.pCurOpts->wk.menu = wLbxItemSelected(hCtrl);
             bSettingsChanged = TRUE;
          } /* endif */
