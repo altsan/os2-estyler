@@ -1,13 +1,13 @@
-eStyler (also known as StylerLite) is a graphical UI enhancement for OS/2
-Presentation Manager.  It was originally written by Alessandro Cantatore,
-based in part on his Styler/2 product.  It is now maintained by Alexander
+Styler (also known as eStyler or StylerLite) is a graphical UI enhancement for 
+OS/2 Presentation Manager.  It was originally written by Alessandro Cantatore,
+based in part on his Styler/2 product.  It is now maintained by Alexander 
 Taylor.
 
-eStyler is licensed under the GNU GPL version 3:
+Styler is licensed under the GNU GPL version 3:
 
-  eStyler for OS/2
-  Copyright (C) 1998-2004 Alessandro Felice Cantatore
-  Copyright (C) 2009-2016 Alexander Taylor
+  Styler for OS/2  
+  Copyright (C) 1998-2004 Alessandro Felice Cantatore  
+  Copyright (C) 2009-2016 Alexander Taylor  
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
