@@ -1,5 +1,5 @@
 /* --------------------------------------------------------------------------
- shutdown.c : command line interface shutdonw for eStyler
+ shutdown.c : command line interface shutdown for eStyler
 
  2004-- - Alessandro Felice Cantatore
 
@@ -28,6 +28,7 @@ BOOL parseOption(PSZ pszArg, PULONG pMode);
 BOOL requestShudown(HWND hwndWorker, ULONG shutdownMode);
 VOID printMsg(HFILE hf, PSZ psz);
 VOID showHelp(VOID);
+VOID printHelp(VOID);
 
 // global variables ---------------------------------------------------------
 
@@ -326,7 +327,7 @@ static VOID printMsg(HFILE hf, PSZ psz) {
 
 
 /* --------------------------------------------------------------------------
- Open the eStyler.hlp page on SHUTDOWN.EXE usage.
+ Open the styler.hlp page on SHUTDOWN.EXE usage.
 - Parameters -------------------------------------------------------------
  VOID
 - Return value -----------------------------------------------------------
@@ -353,4 +354,33 @@ static VOID showHelp(VOID) {
       if (WinStartApp(NULLHANDLE, &pd, NULL, NULL, SAF_INSTALLEDCMDLINE))
          return;
    } /* endif */
+   // Print text help if help file could not be opened
+   printHelp();
+}
+
+/* --------------------------------------------------------------------------
+ Print summary help information to the console.
+- Parameters -------------------------------------------------------------
+ VOID
+- Return value -----------------------------------------------------------
+ VOID
+-------------------------------------------------------------------------- */
+static VOID printHelp(VOID) {
+    printf("SHUTDOWN - Command line enhanced shutdown (Styler v.1.1)\n");
+    printf("(c) 2004 Alessandro Cantatore\n\n");
+    printf("Syntax:\nSHUTDOWN [command] [option]\n\n");
+    printf("Valid commands are:  [ ? | D | L | S | O | R[:n] ]\n");
+    printf("   : (no command - default) works as the default system shutdown\n");
+    printf(" ? : shows this help screen\n");
+    printf(" D : shows the shutdown dialog\n");
+    printf(" L : locks the desktop and puts the system in suspend mode\n");
+    printf(" S : puts the system in suspend mode\n");
+    printf(" O : powers the system off\n");
+    printf(" R : Reboots the current volume, or the nth volume as defined in the shutdown\n");
+    printf("     settings notebook\n");
+    printf("\nOptions are valid only with O, R, or no command.\n");
+    printf(" /E : execute programs defined through the shutdown settings notebook\n");
+    printf(" /N : don't execute any defined programs\n");
+    printf("If no option is specified, the currently configured shutdown settings are used.\n");
+    printf("\nNote: commands and options are case insensitive.\n");
 }

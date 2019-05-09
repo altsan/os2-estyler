@@ -21,7 +21,7 @@
 
    #include <os2.h>
    #include <stdlib.h>
-//   #include <stdio.h>
+   #include <stdio.h>
    #include <string.h>
 
    #include "..\headers\stlrDefs.h"
