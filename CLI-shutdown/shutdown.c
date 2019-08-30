@@ -354,8 +354,9 @@ static VOID showHelp(VOID) {
       if (WinStartApp(NULLHANDLE, &pd, NULL, NULL, SAF_INSTALLEDCMDLINE))
          return;
    } /* endif */
-   // Print text help if help file could not be opened
-   printHelp();
+   else
+       // Print text help if help file is not available
+       printHelp();
 }
 
 /* --------------------------------------------------------------------------
