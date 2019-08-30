@@ -5,8 +5,8 @@
 SUB_DEPTH = ..
 include $(KBUILD_PATH)/subheader.kmk
 
-DLLS                       += estylerEN estylerDE estylerNL estylerJA estylerTW
-INSTALLS                   += estylerEN-docs estylerDE-docs estylerNL-docs estylerJA-docs
+DLLS                       += estylerEN estylerDE estylerNL estylerES estylerJA estylerTW
+INSTALLS                   += estylerEN-docs estylerDE-docs estylerNL-docs estylerES-docs estylerJA-docs
 
 estylerEN_TEMPLATE          = eStylerDLL
 estylerEN_NAME              = estlrlrs
@@ -47,6 +47,19 @@ estylerNL-docs_INST         = $(INST_BIN)/nl/
 estylerNL-docs_SOURCES      = $(PATH_OBJ)/nl/styler.hlp
 estylerNL-docs_CLEAN        = $(PATH_OBJ)/nl/styler.hlp nls/nl/doc/estyler.ipf
 
+estylerES_TEMPLATE          = eStylerDLL
+estylerES_NAME              = estlrlrs
+estylerES_INST              = $(INST_BIN)/es/
+estylerES_SOURCES           = \
+                              res/@.c \
+                              res/estylerRes.rc \
+                              es/res/estlrlrs.def
+estylerES_INCS              = es/res res
+
+estylerES-docs_INST         = $(INST_BIN)/es/
+estylerES-docs_SOURCES      = $(PATH_OBJ)/es/styler.hlp
+estylerES-docs_CLEAN        = $(PATH_OBJ)/es/styler.hlp nls/es/doc/estyler.ipf
+
 estylerJA_TEMPLATE          = eStylerDLL
 estylerJA_NAME              = estlrlrs
 estylerJA_INST              = $(INST_BIN)/ja/
@@ -73,6 +86,10 @@ estylerTW-docs_INST         = $(INST_BIN)/tw/
 estylerTW-docs_SOURCES      = $(PATH_OBJ)/tw/styler.hlp
 estylerTW-docs_CLEAN        = $(PATH_OBJ)/tw/styler.hlp nls/tw/doc/estyler.ipf
 
+
+### New language defs go above this line
+
+
 #
 include $(FILE_KBUILD_SUB_FOOTER)
 
@@ -95,6 +112,11 @@ $(PATH_OBJ)/nl/styler.hlp: nls/nl/doc/estyler.lst
 	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/nl
 	$(REDIRECT) -C $(PATH_ROOT)/nls/nl/doc -E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' -- $(PATH_ROOT)/nls/tools/ipfbld estyler.lst
 	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -s -D:031 -C:850 -L:NLD $(PATH_ROOT)/nls/nl/doc/estyler.ipf $@
+
+$(PATH_OBJ)/es/styler.hlp: nls/es/doc/estyler.lst
+	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/es
+	$(REDIRECT) -C $(PATH_ROOT)/nls/es/doc -E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' -- $(PATH_ROOT)/nls/tools/ipfbld estyler.lst
+	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -s -D:034 -C:850 -L:ESP $(PATH_ROOT)/nls/es/doc/estyler.ipf $@
 
 $(PATH_OBJ)/ja/styler.hlp: nls/ja/doc/estyler.lst
 	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/ja

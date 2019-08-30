@@ -1,6 +1,30 @@
 eStyler National Language Support Components
 ============================================
 
+NOTE: To build using kbuild, modify `Makefile.kmk` as follows:
+
+1) Copy the block of lines prefixed with estylerEN_ and estylerEN-docs_ 
+   to before the line `### New language defs go above this line`.  In
+   all of the newly-copied lines, change 'EN' to the new two-letter 
+   language code (same as the directory name, see below), in uppercase;
+   and all instances of the language code 'en' in the same way, but in
+   lowercase.  e.g.
+	estylerEN_INST              = $(INST_BIN)/en/
+   is copied to 
+	estylerDE_INST              = $(INST_BIN)/de/
+   etc.
+
+2) Under the 'compile help files' section, copy the definition block for
+   `$(PATH_OBJ)/en/styler.hlp` to the end of the file, and change the 'EN'
+   and 'en' language codes in the new block as above.
+
+3) In the `DLLS` line near the top of the file, add the target `estylerXX`
+   where 'XX' is the language code.
+
+4) In the `INSTALLS` line near the top of the file, add the target 
+   `estylerXX-docs` where 'XX' is the language code.
+
+
 eStyler documentation
 ---------------------
 
@@ -11,7 +35,7 @@ Instructions:
 - copy en\doc to the required language directory:
   DE (German), EN (English), ES (Spanish), FR (French),
   IT (Italian), JA (Japanese), NL (Dutch), RU (Russian),
-  TW (Chinese-Traditional).
+  TW (Chinese-Traditional), KO (Korean).
 - translate the .htm files in the doc directory
   using a plain text editor (do not modify the
   html tags).
