@@ -1,0 +1,81 @@
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=IBM850" />
+   <title>Concluir - lista de programas</title>
+</head>
+<body>
+El proceso de concluir mejorado permite ejecutar una lista de programas antes
+de cerrar el sistema.
+
+<p>
+Cuando se marca <b>Ejecutar los siguientes programas al concluir</b>, se
+ejecutan de uno en uno los programas listados debajo. S¢lo cuando termina la
+ejecuci¢n del £ltimo programa se cierran las ventanas abiertas previamente y se
+concluye el sistema.<br>
+Si la lista de programas est  vac¡a, la opci¢n simplemente se ignora.<br>
+<b>Nota:</b><br>
+El di logo de confirmar para concluir permite habilitar o inhabilitar
+temporalmente esta funci¢n mediante la casilla <b>Ejecutar programas de
+concluir</b>.
+
+<p>
+Los nombres de los programas se introducen a trav‚s del campo de entrada
+<b>Programa</b>.<br>
+Si un programa se ubica en alguno de los directorios listados en la variable de
+entorno <tt>PATH</tt> especificada en el archivo CONFIG.SYS, s¢lo es necesario
+el nombre del ejecutable, de otro modo hay que especificar la v¡a de acceso
+completa al programa.<br>
+Si no especifica la extensi¢n, se a¤ade autom ticamente .EXE al nombre del
+programa.<br>
+Si el programa es un archivo CMD de proceso por lotes o un programa REXX, se
+convierte autom ticamente el nombre a:<br>
+<tt>CMD.EXE /C archivo.cmd opciones</tt>
+
+<p>
+Si tal archivo por lotes o programa REXX llama a otros programas tendr  que
+hacerlo de forma s¡ncrona, es decir, sin utilizar los mandatos START ni DETACH,
+pues de lo contrario no ser  posible detectar cu ndo termina cada programa y
+podr¡an no guardarse correctamente algunos archivos.
+
+<p>
+Opcionalmente se puede especificar par metros para el programa en el campo
+<b>Par metros</b>. Este campo debe dejarse vac¡o si el programa no necesita
+ning£n par metro.
+
+<p>
+La visibilidad del programa (normal, maximizado u oculto) se puede establecer
+con la lista desplegable <b>Ventana</b>.
+
+<p>
+Los dos <b>botones con flechas</b> ordenan la lista de programas, moviendo
+arriba o abajo la entrada seleccionada. Los botones se habilitan e inhabilitan
+autom ticamente seg£n sea necesario.
+
+<p>
+El bot¢n <b>A¤adir</b> anexa al final de la lista el contenido actual de los
+campos de entrada.
+
+<p>
+<b>Quitar</b> elimina de la lista la entrada seleccionada.
+
+<p>
+Al pulsar <b>Editar</b>, se escribe en los campos de entrada los datos de la
+entrada seleccionada en la lista para permitir que el usuario la modifique. Una
+vez modificados los datos, se deber  pulsar otra vez el bot¢n <b>A¤adir</b>
+para sustituir con ellos los de la entrada seleccionada.
+
+<p>
+<b>Buscar</b> abre el di logo Abrir archivo est ndar permitiendo al
+usuario buscar y seleccionar un programa ejecutable.
+
+<p>
+<b>Aplicar</b> guarda la lista de cierre en el archivo STYLER.INI,
+mientras que <b>Deshacer</b> restablece la lista al estado que tuviera al abrir
+el cuaderno de opciones.
+
+<p>
+<b>Consulte tambi‚n:</b><br>
+Un <a href="sdProgExample.html">ejemplo pr ctico</a> de uso de la funci¢n de
+ejecutar programas al concluir.
+</body>
+</html>

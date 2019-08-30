@@ -1,0 +1,79 @@
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=IBM850" />
+   <title>Concluir - reiniciar</title>
+</head>
+<body>
+A trav‚s de la funci¢n <b>Reiniciar</b> se puede concluir el sistema y
+reiniciarlo desde el volumen seleccionado.
+
+<p>
+Se da soporte tanto al Gestor de Arranque de IBM como a
+<a href="sdAiRBOOT.html">AiRBOOT</a> de Martin Kiewitz.
+
+<p>
+La p gina Reiniciar del di logo permite definir la lista de vol£menes
+iniciables que mostrar en el di logo Concluir mejorado.<br>
+La lista de vol£menes se puede rellenar a mano o autom ticamente.
+
+<p>
+<h3>Rellenar manualmente</h3>
+
+<p>
+En el campo de entrada <b>Nombre del volumen</b> debe escribirse el nombre del
+volumen tal como aparece en el men£ de AiRBOOT o el Gestor de Arranque,
+mientras que el campo <b>Descripci¢n del volumen</b> permite asociar el volumen
+a una descripci¢n m s clara (y larga).<br>
+El di logo de confirmar concluir muestra en una lista desplegable s¢lo las
+descripciones de los vol£menes en el orden en el que aparecen en la lista
+<b>Permitir arrancar desde estos vol£menes tras reiniciar</b>.<br>
+Los dos <b>botones con flechas</b> a la izquierda de la lista permiten cambiar
+su orden moviendo arriba o abajo la entrada seleccionada.
+
+<p>
+El bot¢n <b>A¤adir</b> se habilita tan pronto como ambos campos de entrada
+contienen algo. Una vez que se pulsa el bot¢n se a¤ade el contenido de los
+campos al final de la lista as¡:<br>
+<tt>Descripci¢n del volumen (nombre del volumen)</tt><br>
+El bot¢n <b>Quitar</b> elimina una entrada de la lista.<br>
+El bot¢n <b>Editar</b> permite cambiar la descripci¢n o el nombre del volumen
+de la entrada seleccionada. Una vez que el bot¢n se pulsa, se colocan en los
+campos de entrada los datos de la entrada seleccionada y tan pronto como el
+contenido de uno de los campos cambia se habilita el bot¢n <i>A¤adir</i> para
+permitir que el usuario la actualice.
+
+<p>
+<h3>Rellenar autom ticamente</h3>
+
+<p>Cuando se pulsa el bot¢n <b>Buscar</b> se lee la lista de vol£menes
+arrancables directamente del disco si est  instalado AiRBOOT o a trav‚s de la
+interfaz LVM. Entonces, cada volumen que a£n no est‚ en la lista se le anexa al
+final con el siguiente formato:<br>
+<tt>Nombre del volumen (nombre del volumen)</tt></br>
+es decir, el nombre del volumen se usa tambi‚n como descripci¢n y el usuario
+tendr  que usar el bot¢n <i>Editar</i> para proporcionarle otra m s clara.
+
+<p>
+<b>Nota:</b><br>
+Si AiRBOOT est  instalado, la detecci¢n autom tica de los vol£menes arrancables
+puede fallar si se acaba de utilizar el Gestor de vol£menes LVM para a¤adir o
+eliminar alguno, ya que AiRBOOT s¢lo actualiza sus tablas de vol£menes cuando
+se inicia el sistema.
+
+<p>
+<h3>Botones comunes</h3>
+
+<p>
+El bot¢n <b>Aplicar</b> guarda la nueva lista en STYLER.INI.
+
+<p>
+<b>Deshacer</b> restablece la lista al estado en el que estuviera cuando se
+abri¢ el cuaderno de opciones.
+
+<p>
+<b>Nota:</b><br>
+El di logo extendido de concluir preselecciona la opci¢n y el volumen iniciable
+que se utilizaran la £ltima vez que el propio di logo se cerrase mediante el
+bot¢n Bien.
+</body>
+</html>

@@ -1,0 +1,98 @@
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=IBM850" />
+   <title>SHUTDOWN.EXE - concluir desde el indicador de mandatos</title>
+</head>
+<body>
+Para permitir al usuario acceder a todas las funciones mejoradas de concluir
+con Styler, incluso cuando el sistema se debe concluir desde el indicador de
+mandatos o un programa por lotes, se suministra una <b>versi¢n mejorada de
+SHUTDOWN.EXE</b>.
+
+<p>La <b>sintaxis del mandato</b> es bastante simple:
+
+<pre>
+SHUTDOWN [mandato] [opciones]
+</pre>
+
+<b>Nota:</b><br> todos los mandatos y opciones ignoran las diferencias entre
+may£sculas y min£sculas y se pueden preceder de un gui¢n (<tt>-</tt>), una
+barra (<tt>/</tt>) o introducirse sin ning£n prefijo en absoluto. S¢lo cuenta
+la primera letra.<br>
+SHUTDOWN.EXE, ejecutado sin par metros, concluye el sistema de forma normal
+(equivalente al mandato ®C¯ - consulte m s abajo).
+
+<p>
+Los <b>mandatos</b> v lidos son:
+
+<pre>
+[ [ / | - ] ? | D | L | S | C | O | R [:N§Entrada | NombreVol ] ]
+</pre>
+
+<dl nobreak>
+<dt><b>?</b> o <b>H</b></dt>
+<dd>muestra una pantalla de ayuda breve</dd>
+<dt><b>D</b></dt>
+<dd>muestra el di logo Concluir para que el usuario pueda elegir el tipo de
+conclusi¢n que hay que realizar</dd>
+<dt><b>L</b></dt>
+<dd>bloquea el escritorio y pone el equipo en modo de suspensi¢n</dd>
+<dt><b>S</b></dt>
+<dd>pone el equipo en modo de suspensi¢n</dd>
+<dt><b>C</b></dt>
+<dd>concluye el sistema (el equipo debe apagarse o reiniciarse
+manualmente)</dd>
+<dt><b>O</b></dt>
+<dd>apaga el equipo</dd>
+<dt><b>R</b></dt>
+<dd>reinicia desde el volumen actual.<br>
+Cuando va seguido de <b>:n</b> se reinicia arrancando desde el en‚simo volumen
+(empezando desde 0, como se especifique en la lista de reinicio).<br>
+Cuando va seguido de un nombre de volumen se reinicia desde el volumen
+correspondiente.</dd>
+</dl>
+
+Las <b>opciones</b> s¢lo son v lidas con los mandatos <b>C</b>, <b>O</b> o
+<b>R</b>. Las opciones v lidas son:
+
+<pre>
+[ [ / | - ] E | N ]
+</pre>
+
+<dl nobreak>
+<dt><b>E</b></dt>
+<dd>ejecutar las tareas de cierre definidas en el cuaderno de opciones
+Concluir.
+</dd>
+<dt><b>N</b></dt>
+<dd>no ejecutar los programas de cierre</dd>
+<dt><b>sin opciones</b></dt>
+<dd>seg£n los par metros por omisi¢n actuales para concluir</dd>
+</dl>
+
+<b>Ejemplos:</b>
+<p>
+<tt>SHUTDOWN /RWIN2000 /N</tt><br>
+<tt>SHUTDWON -rWIN2000 -n</tt><br>
+<tt>SHUTDOWN rWIN2000 n</tt><br>
+<ul compact>
+reinicia desde el volumen llamado ®WIN2000¯ sin ejecutar programas al concluir.
+</ul>
+<br>
+<tt>SHUTDOWN -r:0 -e</tt>
+<ul compact>
+reinicia desde el primer volumen en la lista de vol£menes iniciables y ejecuta
+las tareas de cierre (si hay alg£n programa en la lista).
+</ul>
+<p>
+<b>C¢digos de retorno:</b>
+<dl nobreak>
+<dt>0</dt><dd>la operaci¢n ha tenido ‚xito.</dd>
+<dt>2</dt><dd>error: no se pudo obtener la referencia de la ventana del objeto
+de Styler.</dd>
+<dt>4</dt><dd>error: par metros inv lidos.</dd>
+<dt>6</dt><dd>error: no se pudo pasar la solicitud de concluir a la ventana del
+objeto de Styler.</dd>
+</dl>
+</body>
+</html>
