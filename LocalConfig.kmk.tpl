@@ -2,7 +2,7 @@
 # Local Project Configuration File (Template)
 #
 # The local project configuration file is used to specify local paths to
-# external tools and libraries and also to optioanlly override the global
+# external tools and libraries and also to optionally override the global
 # project configuration options.
 #
 # NOTES:
@@ -25,5 +25,5 @@
 # OS/2 SDK
 # TOOLKIT =
 
-# IBM VaC++ 3.08
+# IBM VAC++ 3.08
 # PATH_TOOL_VAC308 =

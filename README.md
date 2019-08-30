@@ -3,6 +3,9 @@ OS/2 Presentation Manager.  It was originally written by Alessandro Cantatore,
 based in part on his Styler/2 product.  It is now maintained by Alexander 
 Taylor.
 
+Building the source now requires kbuild and the IBM VisualAge C++ compiler; 
+see `README.txt` for more information.
+
 Styler is licensed under the GNU GPL version 3:
 
   Styler for OS/2  
