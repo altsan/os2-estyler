@@ -32,7 +32,7 @@
 /* --------------------------------------------------------------------------
  COMMON            text strings shared among multiple dialogs
 */
-#define SZ__ADD               "~A¤adir"
+#define SZ__ADD               "A~¤adir"
 #define SZ__REM               "~Quitar"
 #define SZ__EDIT              "~Editar"
 #define SZ__OK                "~Bien"
@@ -56,7 +56,7 @@
 #define SZ_APPNAME               "Styler"
 #define SZ_APPLY                 "~Aplicar"
 #define SZ_UNDO                  "~Deshacer"
-#define SZ__DEFAULT              "Por ~omisi¢n"
+#define SZ__DEFAULT              "~Por omisi¢n"
 #define SZ_PREVIEW               "~Vista previa"
 #define SZ_HELP                  "Ayuda"
 // settings notebook titles
@@ -73,7 +73,7 @@
 /* --------------------------------------------------------------------------
  TITLEBARGEN       general titlebar options
 */
-#define SZ_TBENABLE              "~Habilitar mejoras a la barra de t¡tulo"
+#define SZ_TBENABLE              "~Habilitar mejoras a las barras de t¡tulo"
 #define SZ_TBOVERRIDEPP          "~Ignorar par metros de presentaci¢n"
 #define SZ__FONT                 "~Fuente:"
 #define SZ_TEXTATLIGN            "Alineaci¢n del ~texto:"
@@ -82,20 +82,20 @@
 /* --------------------------------------------------------------------------
  TITLEBAR          titlebar background and text options
 */
-#define SZ_TYPEOFBKGND           "~Tipo de fondo:"
-#define SZ_COMBOBKGND            "Color s¢lido\tGradiente\tImagen\t"
+#define SZ_TYPEOFBKGND           "Tipo de ~fondo:"
+#define SZ_COMBOBKGND            "Color s¢lido\tGradiente de color\tImagen\t"
 // solid color mode controls
 #define SZ_BKGNDCOLOR            "~Color de fondo"
 // gradient mode controls
 #define SZ_SHADEDIRECTION        "Direcci¢n del ~gradiente:"
 #define SZ_COMBOSHADE            "Horizontal\tVertical\t" \
                                  "Horizontal - doble\tVertical - doble\t"
-#define SZ_SWAPCOLORS            "Intercambiar ~colores =>"
+#define SZ_SWAPCOLORS            "~Intercambiar colores =>"
 #define SZ_OUTERCOLOR            "Color ~exterior"
-#define SZ_INNERCOLOR            "Color ~interior"
-#define SZ_LEFTCOLOR             "Color ~izquierdo"
-#define SZ_RIGHTCOLOR            "Color ~derecho"
-#define SZ_TOPCOLOR              "Color ~alto"
+#define SZ_INNERCOLOR            "Color i~nterior"
+#define SZ_LEFTCOLOR             "Color iz~quierdo"
+#define SZ_RIGHTCOLOR            "Color de~recho"
+#define SZ_TOPCOLOR              "Color a~lto"
 #define SZ_BOTTOMCOLOR           "Color ~bajo"
 // image mode controls
 #define SZ_BKGNDIMAGE            "~Imagen de fondo:"
@@ -103,28 +103,28 @@
 // !!! NOTE !!! when translating the following string do not remove the
 // 3 leading blank spaces !!!!!!!!
 #define SZ_DEFIMAGE              "   Imagen por omisi¢n"
-#define SZ_SCALEIMAGE            "~Reescalar la imagen"
+#define SZ_SCALEIMAGE            "~Redimensionar la imagen"
 //#define SZ_IMAGEOPTIONS          "~Image options..."
 #define SZ_ADDIMAGE              "A¤adir ~nueva imagen..."
 // border controls
-#define SZ_SHOWBORDER            "~Mostrar borde de la barra de t¡tulo"
-#define SZ_LEFTTOPCLR            "Color ~izquierda/arriba"
-#define SZ_RIGHTBTMCLR           "Color ~derecha/abajo"
+#define SZ_SHOWBORDER            "~Borde para la barra de t¡tulo"
+#define SZ_LEFTTOPCLR            "Color i~zquierda/arriba"
+#define SZ_RIGHTBTMCLR           "Color de~recha/abajo"
 // text options controls
-#define SZ_TEXTSHADOW            "Te~xto con sombra"
-#define SZ_TEXTCOLOR             "~Color del texto"
-#define SZ_TEXTSHADOWCLR         "C~olor de la sombra"
+#define SZ_TEXTSHADOW            "~Sombra para el texto"
+#define SZ_TEXTCOLOR             "Color del ~texto"
+#define SZ_TEXTSHADOWCLR         "Color de la s~ombra"
 
 /* --------------------------------------------------------------------------
  PUSHBUTTON        pushbutton options
 */
-#define SZ_BTNON                 "Mejoras a los ~botones de los di logos"
+#define SZ_BTNON                 "~Mejoras a los botones de los di logos"
 #define SZ_BTNTHICK              "Borde ~grueso"
-#define SZ_BTNFLAT               "Borde ~plano"
+#define SZ_BTNFLAT               "~Borde plano"
 #define SZ_BTNOVRCLR             "~Ignorar colores establecidos expl¡citamente"
-#define SZ_BTN3DDEF              "Botones por omisi¢n ~3D"
-#define SZ_BTN3DDIS              "Botones inactivos 3~D"
-#define SZ_BTNSOLID              "Color de fondo ~s¢lido"
+#define SZ_BTN3DDEF              "Botones por ~omisi¢n 3D"
+#define SZ_BTN3DDIS              "Botones inactivos ~3D"
+#define SZ_BTNSOLID              "~S¢lo color de fondo"
 //#define SZ_BKGNDIMAGE            "~Imagen de fondo:"
 //#define SZ_BKGNDCOLOR            "~Color de fondo"
 
@@ -140,7 +140,7 @@
 #define SZ_PRODUCT               "Styler para OS/2"
 #define SZ_PIVERSION             "Versi¢n %d.%d - compilaci¢n n§. %d"
 #define SZ_PICPYRIGHT            "¸ 1998-2004 Alessandro Felice Cantatore"
-#define SZ_PICPYRIGHT2           "Partes ¸ 2008-2019 Alexander Taylor"
+#define SZ_PICPYRIGHT2           "Partes ¸ 2008-2017 Alexander Taylor"
 #define SZ_PIURL                 "https://github.com/altsan/os2-estyler"
 #define SZ_PILICENSE             "Publicado bajo Licencia P£blica General de GNU versi¢n 3"
 
@@ -154,8 +154,8 @@
 #define SZ_SDWNOFF               "~Apagar"
 #define SZ_SDWNORD               "~Concluir"
 #define SZ_SDWNREBOOT            "~Reiniciar"
-#define SZ_SDWNANIMATE           "~Animar el di logo de concluir"
-#define SZ_SDWNSTEPS             "Pasos de la animaci¢n:"
+#define SZ_SDWNANIMATE           "A~nimar el di logo de concluir"
+#define SZ_SDWNSTEPS             "Pasos de la ani~maci¢n:"
 #define SZ_SDWNADVOPTS           "~Opciones avanzadas..."
 
 /* --------------------------------------------------------------------------
@@ -169,7 +169,7 @@
 #define SZ_SDTIMSUSPEND          "~Suspender :"
 #define SZ_SDTIMWARPCENTER       "Guardar opciones del ~WarpCenter :"
 #define SZ_SDTIMUNROLLWIN        "~Desenrollar ventanas :"
-#define SZ_SDTIMSYSMSGBOX        "~Cuadros de mensajes de concluir el sistema :"
+#define SZ_SDTIMSYSMSGBOX        "Cuadros de ~mensajes de concluir el sistema :"
 #define SZ_SDTIMWINSD            "WinS~hutdownSystem :"
 #define SZ_SDTIMDOSSD            "DosShu~tdown :"
 #define SZ_SDTIMOFF              "~Apagar :"
@@ -184,11 +184,11 @@
 */
 #define SZ_SDWNVOLLIST           "~Permitir arrancar desde estos vol£menes tras reiniciar:"
 #define SZ_SDWNVOLNAME           "Nombre del ~volumen:"
-#define SZ_SDWNVOLDDESCR         "~Descripci¢n del volumen:"
+#define SZ_SDWNVOLDDESCR         "Descripci¢n del vo~lumen:"
 #define SZ_SDWNREBOOTADD         SZ__ADD
 #define SZ_SDWNREBOOTREM         SZ__REM
 #define SZ_SDWNREBOOTEDIT        SZ__EDIT
-#define SZ_SDWNREBOOTFIND        "Buscar"
+#define SZ_SDWNREBOOTFIND        "~Buscar"
 
 /* --------------------------------------------------------------------------
  WAITGETBOOTLIST   wait-while-searching-bootable-volumes dialog
@@ -199,8 +199,8 @@
 /* --------------------------------------------------------------------------
  SHUTDOWNPROGRAMS  shutdown - shutdown programs list dialog
 */
-#define SZ_SDWNRUNPROG           "~Ejecutar los siguientes programas al concluir:"
-#define SZ_SDWNPROG              "~Programa:"
+#define SZ_SDWNRUNPROG           "Ejecutar los siguientes ~programas al concluir:"
+#define SZ_SDWNPROG              "P~rograma:"
 #define SZ_SDWNPARMS             "Par ~metros:"
 #define SZ_SDWNWIN               "~Ventana:"
 #define SZ_SDWNCOMBOWINS         "Normal\tMinimizada\tMaximizada\t"
@@ -232,7 +232,7 @@
 #define SZ_SSDWNCOMPLETE    "Concluir ha terminado."
 #define SZ_SSDWNREBOOTING   "El equipo se reiniciar  una vez concluido el sistema."
 #define SZ_SSDWNPWRINGOFF   "El equipo se apagar  cuando concluir termine."
-#define SZ_SSDWNSWTCHOFF    "Ya puede apagar el equipo con seguridad."
+#define SZ_SSDWNSWTCHOFF    "Ya es seguro apagar el equipo."
 
 /* --------------------------------------------------------------------------
  WINKEY            windows keys options dialog
@@ -283,17 +283,17 @@
 #define SZ_PAGE1OF3         "P gina 1 de 3"
 #define SZ_PAGE2OF3         "P gina 2 de 3"
 #define SZ_PAGE3OF3         "P gina 3 de 3"
-#define SZ_GENOPTIONS       "Opciones generales"
-#define SZ_TITLEBAR         "Barra de t¡tulo"
+#define SZ_GENOPTIONS       "~Opciones generales"
+#define SZ_TITLEBAR         "Barras de ~t¡tulo"
 #define SZ_ACTIVEWIN        "Ventana activa"
 #define SZ_INACTIVEWIN      "Ventana inactiva"
-#define SZ_PUSHBUTTON       "Botones"
-#define SZ_DIALOGOPTS       "Di logos"
-#define SZ_PRODINFO         "Informaci¢n del producto"
-#define SZ_SHUTDOWN         "Concluir"
-#define SZ_REBOOT           "Reiniciar"
-#define SZ_SHUTDOWNPROGS    "Programas"
-#define SZ_KILLLIST         "Lista de cierre"
+#define SZ_PUSHBUTTON       "~Botones"
+#define SZ_DIALOGOPTS       "~Di logos"
+#define SZ_PRODINFO         "~Informaci¢n del producto"
+#define SZ_SHUTDOWN         "~Concluir"
+#define SZ_REBOOT           "~Reiniciar"
+#define SZ_SHUTDOWNPROGS    "~Programas"
+#define SZ_KILLLIST         "~Lista de cierre"
 #define SZ_VERSION          "Versi¢n: %d.%d.%d"
 #define SZ_WKEYITEM01       "No realizar ninguna acci¢n"
 #define SZ_WKEYITEM02       "Ocultar/mostrar todas las ventanas"
@@ -326,13 +326,13 @@
 #define SZ_WKEYITEM29       "Mover el XCenter tras/sobre las otras ventanas"
 #define SZ_TITLEBARFONT     "Fuente de las barras de t¡tulo"
 #define SZ_FONTDLGSAMPLE    "Styler - texto de muestra"
-#define SZ_GRADIENTCOLOR    "Gradiente de color %s"
-#define SZ_CLRSHADELEFT     "de la ~izquierda"
-#define SZ_CLRSHADTOP       "de ~arriba"
+#define SZ_GRADIENTCOLOR    "Color %s del gradiente"
+#define SZ_CLRSHADELEFT     "iz~quierdo"
+#define SZ_CLRSHADTOP       "a~lto"
 #define SZ_CLRSHADOUTER     "~exterior"
-#define SZ_CLRSHADRIGHT     "de la ~derecha"
-#define SZ_CLRSHADBOTTOM    "de a~bajo"
-#define SZ_CLRSHADINNER     "~interior"
+#define SZ_CLRSHADRIGHT     "derec~ho"
+#define SZ_CLRSHADBOTTOM    "~bajo"
+#define SZ_CLRSHADINNER     "i~nterior"
 #define SZ_DIALOGFONT       "Fuente de los di logos"
 
 /* --------------------------------------------------------------------------
@@ -340,60 +340,60 @@
 */
 
 #define SZERR_WORKERSEMAPHORE \
-   "No se pudo crear el sem foro de sincronizaci¢n de hilos."
+   "No se ha podido crear el sem foro de sincronizaci¢n de hilos."
 
 #define SZERR_WORKERTHREAD \
-   "No se pudo crear el hilo de trabajo."
+   "No se ha podido crear el hilo de trabajo."
 
 #define SZERR_LOADRUNTIMEMODULE \
-   "No se pudo cargar la biblioteca de ejecuci¢n (®SZ_MODULENAME¯.DLL)."
+   "No se ha podido cargar la biblioteca de ejecuci¢n (®SZ_MODULENAME¯.DLL)."
 
 #define SZERR_QUERYPROCADDR \
-   "No se pudo importar los procedimientos del m¢dulo de ejecuci¢n."
+   "No se ha podido importar los procedimientos del m¢dulo de ejecuci¢n."
 
 #define SZERR_GETCUROPTIONS \
-   "No se pudo recabar las opciones de Styler activas actuales."
+   "No se ha podido recabar las opciones de Styler activas actuales."
 
 #define SZERR_ALLOCATION \
-   "No se pudo asignar memoria."
+   "No se ha podido asignar memoria."
 
 #define SZERR_OPENPRF \
-   "No se pudo abrir STYLER.INI."
+   "No se ha podido abrir STYLER.INI."
 
 #define SZERR_READPRFDATA \
-   "No se pudo leer los datos del archivo INI."
+   "No se ha podido leer los datos del archivo INI."
 
 #define SZERR_INITPM \
-   "No se pudo inicializar el Presentation Manager."
+   "No se ha podido inicializar el Presentation Manager."
 
 #define SZERR_REGBOXCLASS \
-   "No se pudo registrar el control de la clase de barras/cajas."
+   "No se ha podido registrar el control de la clase de barras/cajas."
 
 #define SZERR_REGXCOMBOCLASS \
-   "No se pudo registrar el control de la lista desplegable mejorada."
+   "No se ha podido registrar el control de la lista desplegable mejorada."
 
 #define SZERR_REGCLRBTNCLASS \
-   "No se pudo registrar el control de la clase de botones coloreados."
+   "No se ha podido registrar el control de la clase de botones coloreados."
 
 #define SZERR_GETBMPHANDLES \
-   "No se pudo encontrar los manejadores de imagen de la ventana de vistas previas."
+   "No se ha podido encontrar los manejadores de imagen de la ventana de vistas previas."
 
 #define SZERR_SETNOTEBOOKPAGES \
-   "No se pudo insertar las p ginas en el cuaderno de opciones."
+   "No se ha podido insertar las p ginas en el cuaderno de opciones."
 
 #define SZERR_REGEXITLIST \
-   "No se pudo registrar la rutina de salida que ejecutar al final de la aplicaci¢n."
+   "No se ha podido registrar la rutina de salida que ejecutar al final de la aplicaci¢n."
 
 #define SZERR_TOOMANYENTRIES \
    "No se puede guardar la lista en el archivo INI porque es demasiado "\
    "larga. Borre algunas entradas e int‚ntelo otra vez."
 
 #define SZERR_SAVEEXCPLIST \
-   "No se pudo guardar la lista de programas a los que no aplicar las "\
+   "No se ha podido guardar la lista de programas a los que no aplicar las "\
    "mejoras de la interfaz de usuario."
 
 #define SZERR_READFILE \
-   "No se pudo leer el archivo: %s."
+   "No se ha podido leer el archivo: %s."
 
 #define SZERR_INVALIDFILE \
    "El formato del archivo %s no es v lido."
@@ -402,19 +402,19 @@
    "El mapa de bits : %s excede el l¡mite de 64 KBs."
 
 #define SZERR_SAVEDATA \
-   "No se pudo guardar los datos en STYLER.INI."
+   "No se ha podido guardar los datos en STYLER.INI."
 
 #define SZERR_APPLYBMP \
-   "No se pudo aplicar la imagen seleccionada."
+   "No se ha podido aplicar la imagen seleccionada."
 
 #define SZERR_GETHPSFORHBMP \
-   "Error de datos de imagen: no se pudo obtener el espacio de presentaci¢n."
+   "Error de datos de imagen: no se ha podido obtener el espacio de presentaci¢n."
 
 #define SZERR_GETBMPHANDLE \
-   "Error de datos de la imagen: no se pudo obtener su manejador."
+   "Error de datos: no se ha podido obtener la referencia de la imagen."
 
 #define SZERR_COPYFILE \
-   "No se pudo copiar el archivo %s a %s."
+   "No se ha podido copiar el archivo %s a %s."
 
 #define SZERR_SOURCEEQDEST \
    "La v¡a de acceso de origen es igual a la de destino."
@@ -428,53 +428,53 @@
    "®.COM¯, ®.EXE¯)."
 
 #define SZERR_INSPAGE \
-   "No se pudo insertar una p gina en el cuaderno de opciones."
+   "No se ha podido insertar una p gina en el cuaderno de opciones."
 
 #define SZERR_DELPAGE \
-   "No se pudo borrar una p gina del cuaderno de opciones."
+   "No se ha podido borrar una p gina del cuaderno de opciones."
 
 #define SZERR_GETBOTTLIST \
-   "Recabar lista de vol£menes arrancables: no se pudo iniciar el hilo de trabajo."
+   "Lista de vol£menes arrancables: no se ha podido iniciar el hilo de trabajo."
 
 #define SZERR_HELPSYS \
    "\x0a" "Escriba HELPSYS%04u en el indicador de mandatos para m s informaci¢n."
 
 #define SZERR_GBLDISKHANDLE \
-   "No se pudo obtener el manejador de disco."SZERR_HELPSYS
+   "No se ha podido obtener el manejador de disco."SZERR_HELPSYS
 
 #define SZERR_GBLREADSECT1  \
-   "No se pudo leer el primer sector del disco duro."SZERR_HELPSYS
+   "No se ha podido leer el primer sector del disco duro."SZERR_HELPSYS
 
 #define SZERR_GBLAIRBOOTVER \
-   "Versi¢n de AiRBOOT inv lida. Por favor, instale una nueva."
+   "Versi¢n de AiRBOOT no soportada. Por favor, instale una nueva."
 
 #define SZERR_GBLREADSECT2  \
-   "No se pudo leer el sector de datos de configuraci¢n de AiRBOOT." \
+   "No se ha podido leer el sector de datos de configuraci¢n de AiRBOOT." \
    SZERR_HELPSYS
 
 #define SZERR_GBLINVALIDDATA \
    "Signatura inv lida en los datos de configuraci¢n de AiRBOOT."
 
 #define SZERR_GBLREADSECT3  \
-   "No se pudo leer los sectores de la lista de vol£menes arrancables " \
+   "No se ha podido leer los sectores de la lista de vol£menes arrancables " \
    "de AiRBOOT."SZERR_HELPSYS
 
 #define SZERR_LVMCODE \
    " (c¢digo de error de LVM: %d)."
 
 #define SZERR_GBLOPENLVM    \
-   "No se pudo abrir el motor LVM"SZERR_LVMCODE
+   "No se ha podido abrir el motor LVM"SZERR_LVMCODE
 
 #define SZERR_GBLLVMDRVLIST \
-   "No se pudo obtener la lista de discos"SZERR_LVMCODE
+   "No se ha podido obtener la lista de discos"SZERR_LVMCODE
 
 #define SZERR_GBLLVMPARTLIST \
-   "No se pudo obtener la lista de particiones"SZERR_LVMCODE
+   "No se ha podido obtener la lista de particiones"SZERR_LVMCODE
 
 #define SZERR_GBLLVMVOLINFO \
-   "No se pudo obtener los datos de vol£menes LVM"SZERR_LVMCODE
+   "No se ha podido obtener los datos de vol£menes LVM"SZERR_LVMCODE
 
 #define SZERR_INITHELP \
-   "No se pudo cargar el archivo de ayuda de la aplicaci¢n STYLER.HLP."
+   "No se ha podido cargar el archivo de ayuda de la aplicaci¢n STYLER.HLP."
 
 #endif // #ifndef _TEXT_RES_H_
