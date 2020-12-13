@@ -67,7 +67,7 @@ getIpfcParms: procedure
          call help
          return ""
       end /* do */
-   parms = "-s -x -D:"country" -C:"codepage" -L:"language
+   parms = "-x -D:"country" -C:"codepage" -L:"language
    return parms
 
 
