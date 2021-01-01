@@ -4,6 +4,7 @@ IMPORTANT NOTICE
 The current sources use kbuild. Create localConfig.kmk as
 appropriate and run 'kmk' to build. You must have kbuild, as
 well as the OS/2 Toolkit and the IBM C Compiler, installed.
+(The proper environment for ICC must be present.)
 
 The instructions below describe the old build system as
 implemented by Alessandro Cantatore. They are officially 

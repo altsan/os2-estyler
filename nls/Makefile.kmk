@@ -101,29 +101,29 @@ include $(FILE_KBUILD_SUB_FOOTER)
 $(PATH_OBJ)/en/styler.hlp: nls/en/doc/estyler.lst
 	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/en
 	$(REDIRECT) -C $(PATH_ROOT)/nls/en/doc -E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' -- $(PATH_ROOT)/nls/tools/ipfbld estyler.lst
-	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -s -D:001 -C:850 -L:ENU $(PATH_ROOT)/nls/en/doc/estyler.ipf $@
+	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -D:001 -C:850 -L:ENU $(PATH_ROOT)/nls/en/doc/estyler.ipf $@
 
 $(PATH_OBJ)/de/styler.hlp: nls/de/doc/estyler.lst
 	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/de
 	$(REDIRECT) -C $(PATH_ROOT)/nls/de/doc -E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' -- $(PATH_ROOT)/nls/tools/ipfbld estyler.lst
-	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -s -D:049 -C:850 -L:DEU $(PATH_ROOT)/nls/de/doc/estyler.ipf $@
+	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -D:049 -C:850 -L:DEU $(PATH_ROOT)/nls/de/doc/estyler.ipf $@
 
 $(PATH_OBJ)/nl/styler.hlp: nls/nl/doc/estyler.lst
 	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/nl
 	$(REDIRECT) -C $(PATH_ROOT)/nls/nl/doc -E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' -- $(PATH_ROOT)/nls/tools/ipfbld estyler.lst
-	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -s -D:031 -C:850 -L:NLD $(PATH_ROOT)/nls/nl/doc/estyler.ipf $@
+	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -D:031 -C:850 -L:NLD $(PATH_ROOT)/nls/nl/doc/estyler.ipf $@
 
 $(PATH_OBJ)/es/styler.hlp: nls/es/doc/estyler.lst
 	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/es
 	$(REDIRECT) -C $(PATH_ROOT)/nls/es/doc -E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' -- $(PATH_ROOT)/nls/tools/ipfbld estyler.lst
-	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -s -D:034 -C:850 -L:ESP $(PATH_ROOT)/nls/es/doc/estyler.ipf $@
+	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -D:034 -C:850 -L:ESP $(PATH_ROOT)/nls/es/doc/estyler.ipf $@
 
 $(PATH_OBJ)/ja/styler.hlp: nls/ja/doc/estyler.lst
 	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/ja
 	$(REDIRECT) -C $(PATH_ROOT)/nls/ja/doc -E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' -- $(PATH_ROOT)/nls/tools/ipfbld estyler.lst
-	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -s -D:081 -C:932 -L:JPN $(PATH_ROOT)/nls/ja/doc/estyler.ipf $@
+	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -D:081 -C:932 -L:JPN $(PATH_ROOT)/nls/ja/doc/estyler.ipf $@
 
 $(PATH_OBJ)/tw/styler.hlp: nls/tw/doc/estyler.lst
 	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/tw
 	$(REDIRECT) -C $(PATH_ROOT)/nls/tw/doc -E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' -- $(PATH_ROOT)/nls/tools/ipfbld estyler.lst
-	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -s -D:088 -C:950 -L:CHT $(PATH_ROOT)/nls/tw/doc/estyler.ipf $@
+	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -D:088 -C:950 -L:CHT $(PATH_ROOT)/nls/tw/doc/estyler.ipf $@
