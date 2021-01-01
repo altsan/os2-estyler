@@ -1,67 +1,67 @@
 <html>
 <head>
-   <title>SHUTDOWN.EXE - Systemabschluá von Befehlszeile</title>
+   <title>SHUTDOWN.EXE - Abschalten per Befehlszeile</title>
 </head>
 <body>
 
 <br>
-Um den Zugriff auf s„mtliche erweiterten Funktionen fr den Systemabschluá
-auch dann zu erm”glichen, wenn dieser ber die Befehlszeile oder eine
-Stapeldatei erfolgen muá, steht im Verzeichnis \ecs\bin eine <b>erweiterte
-Version von SHUTDOWN.EXE</b> zur Verfgung.
+Damit der Benutzer auf alle erweiterten Abschaltfunktionen zugreifen kann,
+auch wenn das System &uuml;ber die Befehlszeile oder mittels Batch-Datei
+geschlossen werden mu&szlig;, wird eine <b>erweiterte Version von SHUTDOWN.EXE</b>
+bereitgestellt.
 <p>
-Die <b>Befehlssyntax</b> lautet:
+Die <b>Befehlssyntax</b> ist recht einfach:
 <pre>
-SHUTDOWN [befehl] [optionen]
+SHUTDOWN [Befehl] [Optionen]
 </pre>
 <b>Hinweis:</b><br>
-Bei s„mtlichen Befehlen und Optionen wird keine Unterscheidung nach
-Groá-/Kleinschreibung vorgenommen. Als Parameterzeichen k”nnen der
-Bindestrich (<tt>-</tt>) und der Schr„gstrich (<tt>/</tt>) verwendet
-werden. Auch die Angabe ohne Parameterzeichen ist m”glich. Die Parameter
-werden nur nach dem ersten Buchstaben unterschieden.<br>
-Bei Aufruf ohne Parameter fhrt SHUTDOWN.EXE einen Standardsystemabschluá
-durch (entsprechend dem Befehl "C" - siehe unten).
+Alle Befehle und Optionen unterscheiden nicht zwischen Gro&szlig;- und
+Kleinschreibung. Auch k&ouml;nnen diese mit einem Bindestrich (<tt>-</tt>),
+einem Schr&auml;gstrich (<tt>/</tt>) oder ohne Pr&auml;fix eingegeben werden.
+Es wird nur der erste Buchstabe ber&uuml;cksichtigt.<br>
+SHUTDOWN.EXE, ohne Parameter ausgef&uuml;hrt, f&uuml;hrt einen gew&ouml;hnlichen
+Systemabschlu&szlig; durch (entspricht dem Befehl 'C' - siehe unten).
 <p>
-Gltige <b>Befehle</b> sind:
+G&uuml;ltig <b>Befehle</b> sind:
 <pre>
-[ [ / | - ] ? | D | L | S | C | O | R [:EintragsIndex | VolName ] ]
+[ [ / | - ] ? | D | L | S | C | O | R [:Artikel-Index | VolName ] ]
 </pre>
 <dl nobreak>
-<dt><b>?</b> oder <b>H</b></dt>
-<dd>Zeigt einen kurzen Hilfebildschirm an</dd>
+<dt><b>?</b> or <b>H</b></dt>
+<dd>zeigt die Kurzanleitung</dd><br>
 <dt><b>D</b></dt>
-<dd>Zeigt den Systemabschluádialog an, so daá der Anwender die
-gewnschte Art des Systemabschlusses ausw„hlen kann.</dd>
+<dd>Zeigt das Dialogfeld zum Herunterfahren an, damit der Benutzer
+ausw&auml;hlen kann, welche Art von Systemabschlu&szlig; durchgef&uuml;hrt werden soll.</dd><br>
 <dt><b>L</b></dt>
-<dd>Sperrt die Arbeitsoberfl„che und versetzt das System in den Wartemodus</dd>
+<dd>Sperrt den Desktop und versetzt das System in den Ruhemodus</dd><br>
 <dt><b>S</b></dt>
-<dd>Versetzt das System in den Wartemodus</dd>
+<dd>Versetzt das System in den Ruhemodus</dd><br>
 <dt><b>C</b></dt>
-<dd>F„hrt das System herunter (Ausschalten oder Neustarten muá von Hand erfolgen)</dd>
+<dd>Schlie&szlig;t das System. Die Maschine mu&szlig; manuell ausgeschaltet
+oder neu gestartet werden)</dd><br>
 <dt><b>O</b></dt>
-<dd>Schaltet das System aus</dd>
+<dd>Das System ausschalten</dd><br>
 <dt><b>R</b></dt>
-<dd>Fhrt einen Systemneustart von derzeitigen Volumen aus.<br>
-Wird <b>:n</b> hinzugefgt, erfolgt der Systemneustart vom n-ten Volumen
-(beginnend mit 0, wie in der Systemneustartliste angegeben).<br>
-Wird ein Volumenname hinzugefgt, erfolgt der Systemneustart vom
-entsprechenden Volumen.</dd>
+<dd>Startet das aktuelle Volume neu.<br>
+Wenn gefolgt von <b>:n</b> wird das n-te Volume
+(beginnend bei 0, wie in der Reboot-Liste angegeben) neu gestartet.<br>
+Wenn ein Volume-Name folgt, wird neugestartet und daraufhin das passende
+Volume gestartet.</dd><br>
 </dl>
-Die <b>Optionen</b> stehen nur bei den Befehlen <b>C</b>, <b>O</b> und <b>R</b>
-zur Verfgung. Gltige Optionen sind:
+Die <b>Optionen</b> sind nur mit den Befehlen <b>C</b>, <b>O</b> oder
+<b>R</b> g&uuml;ltig. G&uuml;ltige Optionen sind:
 <pre>
 [ [ / | - ] E | N ]
 </pre>
 <dl nobreak>
 <dt><b>E</b></dt>
-<dd>Fhrt die ber das Einstellungsnotizbuch Systemabschluá festgelegten
-Programme aus
-</dd>
+<dd>F&uuml;hrt die &uuml;ber den Notizblock f&uuml;r die Systemabschlu&szlig;-Einstellungen
+definierten Programme aus.
+</dd><br>
 <dt><b>N</b></dt>
-<dd>Unterdrckt die Ausfhrung der Programme fr den Systemabschluá</dd>
-<dt><b>no option</b></dt>
-<dd>Verwendet die aktuellen eStyler-Einstellungen</dd>
+<dd>F&uuml;hrt die definierten Programme f&uuml;r den Abschlu&szlig; nicht aus</dd><br>
+<dt><b>keine Option angegeben</b></dt>
+<dd>Verf&auml;hrt nach den regul&auml;ren Regeln f&uuml;r den Systemabschlu&szlig;.</dd><br>
 </dl>
 <b>Beispiele:</b>
 <p>
@@ -69,23 +69,25 @@ Programme aus
 <tt>SHUTDWON -rWIN2000 -n</tt><br>
 <tt>SHUTDOWN rWIN2000 n</tt><br>
 <ul compact>
-Fhrt einen Systemneustart vom Volumen "WIN2000" ohne Aufhrung
-der Systemabschluáprogramme aus.
+Startet das Volume mit dem Namen "WIN2000" neu,
+ohne die definierten Anwendungen f&uuml;r den Abschlu&szlig; auszuf&uuml;hren.
 </ul>
 <br>
 <tt>SHUTDOWN -r:0 -e</tt>
 <ul compact>
-Fhrt einen Systemneustart vom ersten Volumen in der Liste der startf„higen
-Volumen mit Ausfhrung der Systemabschluáprogramme (sofern vorhanden) aus.
+Startet den ersten Datentr&auml;ger in der Liste der neustartbaren
+Datentr&auml;ger neu und f&uuml;hrt die definierten Anwendungen
+f&uuml;r den Abschlu&szlig; aus (sofern ein Programm aufgef&uuml;hrt ist).
 </ul>
 <p>
-<b>Rckgabewerte:</b>
+<br><br><b>R&uuml;ckgabewerte:</b>
 <dl nobreak>
-<dt>0</dt><dd>Ausfhrung erfolgreich.</dd>
-<dt>2</dt><dd>Fehler: Abfrage des Handles des eStyler-Objektfensters fehlgeschlagen.</dd>
-<dt>4</dt><dd>Fehler: Ungltige Parameter.</dd>
-<dt>6</dt><dd>Fehler: Senden der Anfrage zum Ausfhren des Systemabschlusses
-an das eStyler-Objektfenster fehlgeschlagen.</dd>
+<dt>0</dt><dd>Ausf&uuml;hrung erfolgreich.</dd><br>
+<dt>2</dt><dd>Fehler: das Handle des Styler-Objektfensters
+nicht erhalten.</dd><br>
+<dt>4</dt><dd>Fehler: fehlerhafte Parameter</dd><br>
+<dt>6</dt><dd>Fehler: Fehler bei der Weitergabe der Anforderung
+zum Systemabschlu&szlig; zum Styler-Objektfenster</dd><br>
 </dl>
 </body>
 </html>

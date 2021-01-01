@@ -1,104 +1,110 @@
 <html>
 <head>
-   <title>Systemabschlu· - Erweiterte Optionen</title>
+   <title>Systemabschlu&szlig; - Erweiterte Optionen</title>
 </head>
 <body>
 
 <br>
-<b>Warnung:</b><br>
-Dieser Dialog dient nur zum Zweck der Fehlerbehebung.
-<p>
-Die erweiterte FunktionalitÑt fÅr den Systemabschlu· wird durch Einklinken
-in den Standardsystemabschlu· und AusfÅhren bestimmter Sonderfunktionen
-implementiert.<br>
-Die ordnungsgemÑ·e DurchfÅhrung eines Systemabschlusses kann dabei davon
-abhÑngen, in welchen zeitlichen AbstÑnden diese Erweiterungen ausgefÅhrt
-werden.<br>
-Sollte der Systemabschlu· nicht erfolgreich durchgefÅhrt werden, kann daher
-eine Anpassung der Verzîgerungswerte erforderlich sein.<br>
-Gewîhnlich wird das Fehlschlagen des Systemabschlusses durch Programme
-verursacht, die nicht ordnungsgemÑ· reagieren und ein Beenden verweigern.
-In solchen FÑllen mu· das verursachende Programm ermittelt und in die
-Liste <a href="sdTerm.html">Beenden erzwingen</a> eingetragen werden.<br>
-Als Faustregel gilt: SchlÑgt der Systemabschlu· auch bei deaktivierten
-Erweiterungen fehl, wird dies von einem Programm verursacht, andernfalls
-von den Erweiterungen selbst.
-<p>
 <b>Hinweis:</b><br>
-Alle Verzîgerungswerte werden in Zehntelsekunden angegeben. Eine Wert von
-80 steht also fÅr 8 Sekunden.
+Dieser Dialog ist nur f&uuml;r die Fehlersuche vorgesehen.
+<p>
+Durch den erweiterten Systemabschlu&szlig; werden, gegen&uuml;ber dem regul&auml;ren,
+einige zus&auml;tzliche Funktionen verf&uuml;gbar.<br>
+Ein ordnungsgem&auml;&szlig;er Systemabschlu&szlig; kann manchmal von den Verz&ouml;gerungen
+abh&auml;ngen, die f&uuml;r die Ausf&uuml;hrung der Verbesserungen festgelegt wurden.<br>
+Falls das System die Abschaltung nicht erfolgreich abschlie&szlig;en kann,
+mag es notwendig sein, einige Verz&ouml;gerungswerte zu &auml;ndern.<br>
+In den meisten F&auml;llen wird ein fehlgeschlagener Systemabschlu&szlig; ohnehin durch
+ein Programm verursacht, das nicht korrekt auf selbigen reagiert.
+Das hat zur Folge da&szlig; der gesamte Proze&szlig; auf diesen einen wartet,
+und das System somit scheinbar h&auml;ngt. In einem solchen Fall m&uuml;ssen Sie
+den Namen des verursachenden Programms ermitteln, und ihn in die Liste
+zum <a href="sdTerm.html">automatischen Schlie&szlig;en</a> eintragen.<br>
+Als Faustregel gilt: Wenn das System beim Systemabschlu&szlig; h&auml;ngt, selbst wenn
+die Abschaltverbesserungen deaktiviert wurden, dann liegt das Problem
+bei einem einzelnen Programm. Andernfalls liegt die Ursache in den
+Abschaltverbesserungen selbst.<p>
+<b>Hinweis:</b><br>
+Alle Verz&ouml;gerungen werden in Zehntelsekunden angegeben (z.B. ein Wert
+von 80 bedeutet 8 Sekunden).
 <dl>
-<dt><b>Sperren und Wartemodus</b></dt>
-<dd>Viele Hauptplatinen sind nicht vollstÑndig mit dem Advanced Power
-Management von eComStation kompatibel, so da· es zu AbstÅrzen kommen kann,
-wenn ein Befehl zum Umschalten in den Wartemodus ausgefÅhrt wird, wÑhrend
-die Maus bewegt wird. Die Verzîgerung fÅr Sperren und Wartemodus stellt
-sicher, da· das System vor dem Umschalten in den Wartemodus vollstÑndig
-gesperrt wurde.<br>
-Wird ein schnelleres Sperren und Umschalten in den Wartemodus gewÅnscht,
-kann die Verzîgerung so lange verringert werden, wie sich das System
-ordnungsgemÑ· verhÑlt.<br>
-Wird die Funktion nicht genutzt, kann die Einstellung ignoriert werden.</dd>
-<dt><b>Wartemodus</b></dt>
-<dd>Sollte das System nach Auswahl von <i>Wartemodus</i> abstÅrzen, empfiehlt
-es sich, hier Verzîgerungswerte von 20-30 oder hîher zu testen.<br>
-Wird die Funktion nicht genutzt, kann die Einstellung ignoriert werden.</dd>
-<dt><b>eComCenter-Einstellungen sichern</b>
-<dd>Diese Verzîgerungseinstellung gibt dem System Zeit, die Einstellungen
-des eComCenter zu sichern. Bei schnellen Systemen kann die Einstellung
-problemlos auf 3-4 oder sogar geringere Werte herabgesetzt werden.<br>
-Wird das eComCenter nicht genutzt, kann die Einstellung ignoriert werden.</dd>
-<dt><b>Fenster ausklappen</b></dt>
-<dd>Dieser Verzîgerungswert gibt dem System Zeit, beim Systemabschlu·
-sÑmtliche Fenster auszuklappen.<br>
-Wird Styler/2 nicht eingesetzt, kann diese Einstellung ignoriert werden.<br>
-Wird die Styler/2-Funktion zum Einklappen von Fenstern nicht oder auf einem
-schnellen System verwendet, kann dieser Wert problemlos auf das Minimum
-herabgesetzt werden.</dd>
-<dt><b>Systemabschlu·meldungen</b></dt>
-<dd>Dieser Verzîgerungswert unterdrÅckt die Anzeige der Standardmeldungen
-des Systemabschlusses und ermîglicht das Ersetzen durch die erweiterten
-Dialoge.<br>
-Sollte das System wÑhrend des Systemabschlusses abstÅrzen, empfiehlt es
-sich, diesen Wert zu erhîhen oder herabzusetzen.</dd>
+<dt><b>Sperren und Ruhemodus</b></dt>
+<dd>Verschiedene Hauptplatinen sind nicht vollst&auml;ndig kompatibel mit der
+fortschrittlichen OS/2-Stromverwaltung, so da&szlig; sich das System aufh&auml;ngen
+kann, wenn ein Ruhe-Modus-Befehl ausgegeben wird,
+w&auml;hrend die Maus bewegt wird.
+Die Sperr- und Ruhemodusverz&ouml;gerung stellt sicher, da&szlig; das System
+vollst&auml;ndig angehalten ist, bevor es ausgesetzt wird.<br>
+Wenn Sie ein schnelleres Sperren und Aussetzen w&uuml;nschen,
+versuchen Sie, eine geringere Verz&ouml;gerung einzustellen, solange sich
+das System korrekt verh&auml;lt.<br>
+Wenn Sie diese Funktion nicht verwenden, k&ouml;nnen Sie diese
+Einstellung ignorieren.</dd><br>
+<dt><b>Ruhemodus</b></dt>
+<dd>Wenn Ihr System h&auml;ngt, nachdem Sie <i>Ruhemodus</i> gew&auml;hlt haben,
+versuchen Sie, die Verz&ouml;gerung auf 20-30 oder h&ouml;her zu setzen.<br>
+Wenn Sie diese Funktion nicht verwenden, k&ouml;nnen Sie diese
+Einstellung ignorieren.</dd><br>
+<dt><b>WarpCenter-Einstellungen sichern</b>
+<dd>Diese Verz&ouml;gerung erlaubt es dem System, die WarpCenter-Einstellungen
+zu sichern.
+Wenn das System recht schnell ist, kann diese Verz&ouml;gerung sicher
+auf 3-4 oder weniger gesenkt werden.<br>
+Wenn Sie das WarpCenter (SmartCenter) nicht verwenden, k&ouml;nnen Sie diese
+Einstellung ignorieren.</dd><br>
+<dt><b>Fenster aufrollen</b></dt>
+<dd>Diese Verz&ouml;gerung erm&ouml;glicht das Aufrollen aller eingerollten Fenster
+beim Systemabschlu&szlig;.<br>
+Ignorieren Sie diese Einstellung, wenn Sie das separate Styler/2-Produkt
+nicht installiert haben.<br>
+Wenn Sie die Styler/2-Rollfenster-Funktion nicht verwenden oder &uuml;ber ein
+schnelles System verf&uuml;gen, k&ouml;nnen Sie diesen Wert sicher
+auf ein Minimum reduzieren.</dd><br>
+<dt><b>Nachrichtenfenster beim Systemabschlu&szlig;</b></dt>
+<dd>Diese Verz&ouml;gerung verhindert, da&szlig; die standardm&auml;&szlig;igen
+Systemabschaltfelder angezeigt werden und erm&ouml;glicht die Ersetzung durch
+die verbesserten Dialoge.<br>
+Wenn sich das System beim Systemabschlu&szlig; aufh&auml;ngt, k&ouml;nnen Sie versuchen,
+diesen Wert durch Erh&ouml;hen oder Verringern zu &auml;ndern.</dd><br>
 <dt><b>DosKillProcess</b></dt>
-<dd>Dieser Verzîgerungswert legt die Zeit fest, die eStyler nach dem
-AusfÅhren von <i>DosKillProcess</i> zum Beenden aller Programme wartet,
-bis <i>WinShutdownSystem</i> aufgerufen wird. Bei manchen Programmen
-nimmt ordnungsgemÑ·es Beenden eine gewisse Zeit in Anspruch. Im Falle
-von nicht-PM-Programmen kann sich dies negativ auf den Systemabschlu·
-auswirken. SchlÑgt der Systemabschlu· fehl, weil eines oder mehrere
-Programme nicht rechtzeitig beendet wurden, mu· dieser Wert ggf. erhîht
-werden.</dd>
+<dd>Diese Verz&ouml;gerung steuert das Intervall, das die erweiterte Prozedur
+nach der Ausf&uuml;hrung von <i>DosKillProcess</i> wartet, um alle Programme
+in der Abbruchliste zu stoppen, bevor sie <i>WinShutdownSystem</i> aufruft.
+Bei einigen Programmen kann es einige Augenblicke dauern, bis sie
+ordnungsgem&auml;&szlig; beendet sind. Wenn dies bei Nicht-PM-Programmen der Fall ist,
+k&ouml;nnen diese den Proze&szlig; des Systemabschlu&szlig; st&ouml;ren. M&ouml;glicherweise m&uuml;ssen
+Sie diesen Wert erh&ouml;hen, wenn das selbiger fehlschl&auml;gt, weil ein oder
+mehrere Programme nicht rechtzeitig beendet werden.</dd><br>
 <dt><b>WinShutdownSystem</b></dt>
-<dd>Dieser Wert verzîgert die Zerstîrung des Fensters <i>Fensterliste</i>
-und hÑlt so die AusfÅhrung des <i>WinShutdownSystem</i>-API auf.<br>
-StÅrzt das System wÑhrend des Systemabschlusses ab, empfiehlt es sich,
-diesen Wert herabzusetzen.<br>
-Werden beim Abschalten oder Neustarten die Einstellungen oder der Status
-der ArbeitsoberflÑche nicht ordnungsgemÑ· gesichert, empfiehlt es sich,
-den Wert zu erhîhen.
-</dd>
+<dd>Dieser Punkt verz&ouml;gert die Zerst&ouml;rung des <i>Fensterliste</i>Fensters,
+wodurch die Ausf&uuml;hrung des <i>WinShutdownSystem</i> API ausgesetzt wird.<br>
+Wenn das System beim Abschlu&szlig; h&auml;ngen bleibt, versuchen Sie,
+diesen Wert zu reduzieren.<br>
+Wenn das System seine Einstellungen oder den Desktop-Status beim Ausschalten
+oder Neustart nicht korrekt speichert, versuchen Sie, den Wert zu erh&ouml;hen.
+</dd><br>
 <dt><b>DosShutdown</b></dt>
-<dd>Diese Einstellungen ist nur relevant, wenn dem BestÑtigungsdialog
-der normale Systemabschlu· hinzugefÅgt wurde (als <i>Systemabschlu·</i>
-aufgefÅhrt).<br>
-Der Wert gibt die Zeitspanne an, die bis zur Anzeige der Meldung gewartet
-wird, da· der Systemabschlu· beendet wurde und das System ausgeschaltet
-werden kann.<br>
-Bei schnellen Systemen kann dieser Wert bis auf das Minimum herabgesetzt
-werden.</dd>
-<dt><b>Ausschalten</b></dt>
-<dd>Mit Hilfe dieses Wertes wird sichergestellt, da· sÑmtliche Systemeinstellungen
-und der Status der ArbeitsoberflÑche vor dem Ausschalten des Systems
-gesichert wurden.<br>
-Bei schnellen Systemen kann dieser Wert herabgesetzt werden.</dd>
-<dt><b>OK</b></dt>
-<dd>Sichert die aktuellen Einstellungen und schlie·t den Dialog.</dd>
+<dd>Diese Einstellung gilt nur, wenn Sie sich daf&uuml;r entschieden haben,
+dem Best&auml;tigungsdialog den regul&auml;ren Systemabschlu&szlig;
+(aufgef&uuml;hrt wie <i>Abschalten</i>) hinzuzuf&uuml;gen.<br>
+Dies ist die Zeit, die es zu warten gilt, bevor das Statusfenster
+angezeigt wird, da&szlig; dar&uuml;ber informiert wenn die Abschaltung
+abgeschlossen ist, und es sicher ist, das System abzuschalten.<br>
+Wenn Ihre Maschine schnell ist, k&ouml;nnen Sie diesen Wert auf
+das Minimum senken.</dd><br>
+<dt><b>Abschalten</b></dt>
+<dd>Diese Verz&ouml;gerung stellt sicher, da&szlig; alle Systemeinstellungen und
+der Desktop-Status gespeichert werden, bevor das System abgeschalten wird.<br>
+Besitzer von schnellen Maschinen k&ouml;nnen diesen Wert senken.</dd><br>
+<dt><b>Ok</b></dt>
+<dd>Diese Schaltfl&auml;che speichert die aktuellen Einstellungen und
+schlie&szlig;t den Dialog.</dd><br>
 <dt><b>Abbruch</b></dt>
-<dd>Schlie·t den Dialog ohne die aktuellen Einstellungen zu sichern.</dd>
+<dd>Diese Schaltfl&auml;che schlie&szlig;t den Dialog, ohne die Einstellungen
+zu speichern.</dd><br>
 <dt><b>Standard</b></dt>
-<dd>Setzt alle Verzîgerungswerte auf die Voreinstellung zurÅck.</dd>
+<dd>Diese Schaltfl&auml;che setzt alle Verz&ouml;gerungsoptionen auf die
+Standardwerte zur&uuml;ck.</dd>
 </dl>
 </body>
 </html>

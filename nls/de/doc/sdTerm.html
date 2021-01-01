@@ -1,41 +1,49 @@
 <html>
 <head>
-   <title>Systemabschluá - Liste zu beendender Programme</title>
+   <title>Systemabschlu&szlig; - Programm-Terminierungs-Liste</title>
 </head>
 <body>
 
 <br>
-Beim Systemabschluá verhalten sich manche Programme nicht korrekt
-und verweigern die Beendigung. Damit ein ordnungsgem„áer Systemabschluá
-erfolgen kann, muá daher auf ein passendes Dienstprogramm (welches
-in die Liste <a href="sdPrograms.html">Auszufhrende Programme</a>
-einzutragen w„re) oder die Funktion <b>Zu beendende Programme</b> (welche
-zum Beenden die DosKillProcess()-API verwendet) zurckgegriffen werden.
+Beim Systemabschlu&szlig; verhalten sich einige Programme nicht korrekt und beenden
+sich nicht, oder erst nach einer Weile.<br>
+Das System wartet allerdings auf deren Beendigung, was zur Folge hat, da&szlig; die
+Geschwindigkeit des Systemabschlu&szlig; durch Anwendungen von Drittanbietern sehr
+verz&ouml;gert, manchmal sogar total verhindert wird.<br><br>
+Damit das System korrekt beendet werden kann, ist es notwendig, ein geeignetes
+Dienstprogramm zu verwenden, um solche Anwendungen z&uuml;gig zu schlie&szlig;en.
+In diesem Fall sollte das Dienstprogramm in der Liste
+<a href="sdProgramme.html">Programme beenden</a> eingetragen werden.
+Sie k&ouml;nnen auch die Liste <b>Beenden erzwingen</b> nutzen, um solche Programme
+&uuml;ber die DosKillProcess() API zu beenden.
 <p>
-Die Option <b>Bei Systemabschluá zu beendende Programme</b> aktiviert/deaktiviert
-die Beendigung der darunter aufgefhrten Programme.
+Das Kontrollk&auml;stchen <b>Beenden der folgenden Programme beim Herunterfahren</b>
+aktiviert bzw. deaktiviert die automatische Schlie&szlig;ung der darunter
+aufgef&uuml;hrten Anwendungen.
 <p>
-Standardm„áig umfaát diese Liste:
+Diese Liste enth&auml;lt standardm&auml;&szlig;ig:
 <ul compact>
 <li>CHAT.EXE
 <li>CLKBASIC.EXE
 <li>CAD_POP.EXE
 </ul>
-Neue Programmnamen k”nnen durch Eingabe in das <b>Eingabefeld</b> unter
-der Liste und Drcken von <b>Hinzufgen</b> der Liste hinzugefgt werden.
+Neue Anwendungen k&ouml;nnen hinzugef&uuml;gt werden, indem Sie diese in dem
+<b>Eingabefeld</b> unterhalb der Liste eintragen, und dies dann dann mit der
+Schaltfl&auml;che <b>Hinzuf&uuml;gen</b> best&auml;tigen.
 <p>
-<b>Entfernen</b> entfernt das ausgew„hlte Programm aus der Liste.
+<b>Entfernen</b> l&ouml;scht das ausgew&auml;hlte Programm aus der Liste.
 <p>
-Drcken von <b>Bearbeiten</b> bernimmt den Namen des ausgew„hlten
-Programms in das Eingabefeld, wo er angepaát werden kann. Anschlieáend
-kann durch Drcken von <b>Hinzufgen</b> der Name des ausgew„hlten Eintrags
-durch den neuen Namen ersetzt werden.
+Wenn <b>Bearbeiten</b> geklickt wird, wird der gew&auml;hlte Programmname in das
+Eingabefeld &uuml;bernommen, damit der Benutzer ihn &auml;ndern kann.<br>
+Nach der &Auml;nderung des Programmnamens best&auml;tigen Sie dies bitte mittels der
+Schaltfl&auml;che <b>Hinzuf&uuml;gen</b>.<br>Dadurch wird der Namen des gew&auml;hlten
+Programm-Elements durch den neuen Inhalt des Eingabefeldes zu ersetzt.
 <p>
-<b>Suchen</b> ”ffnet den Standarddateidialog und erlaubt die Auswahl
-einer ausfhrbaren Datei.
+<b>Suchen</b> &ouml;ffnet den Standard-Dateidialog, der es dem Benutzer erlaubt,
+einen ausf&uuml;hrbaren Dateinamen zu finden und auszuw&auml;hlen.
 <p>
-<b>Anwenden</b> speichert die Liste in der Datei eStyler.ini. <b>Widerrufen</b>
-stellt dagegen den Zustand der Liste von vor ™ffnen des Einstellungsnotizbuches
-wieder her.
+<b>Anwenden</b> sichert die gesamte Liste in der Datei STYLER.INI, w&auml;hrend
+<b>R&uuml;ckg&auml;ngig</b> die Liste in den Zustand zur&uuml;cksetzt, in dem sie sich beim
+&Ouml;ffnen des Einstellungsnotizblocks befand.
 </body>
 </html>

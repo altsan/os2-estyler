@@ -1,44 +1,50 @@
 <html>
 <head>
-   <title>Systemabschlu·programme - Beispiel</title>
+   <title>Programme beenden - Beispiele</title>
 </head>
 <body>
 
 <br>
-Die Funktion <b>Systemabschlu·programme</b> kann zum <b>Erstellen einer
-Sicherheitskopie aller Systemdateien</b> verwendet werden.
-Dazu erstellt man eine Textdatei mit einer Aufstellung aller relevanten
-Systemdateien.
-Z.B. (unter der Annahme, da· D: das Startlaufwerk ist):<pre>
+Die Funktion <b>Programme beenden</b> kann zum <b>Speichern aller
+Systemdateien</b> verwendet werden.<br>
+Erstellen Sie zu diesem Zweck eine Textdatei, die alle relevanten
+Systemdateien auflistet.<br><br>
+Zum Beispiel (angenommen, da&szlig; D: Ihr Startlaufwerk ist):
+<pre>
 d:\os2\*.ini
 d:\desktop
 d:\config.sys
 d:\autoexec.bat
 d:\os2\dll\*.cfg
 </pre>
-Nach Sichern der Datei als FILES.LST gibt man im Feld Program folgendes
-ein:<pre>
+Nachdem Sie die Datei z.B. als FILES.LST gespeichert haben,
+geben Sie in das Feld Programm ein:
+<pre>
 CMD.EXE
 </pre>
-Und im Feld Parameter:<pre>
+und im Feld Parameter:
+<pre>
 /C TYPE D:\FILES.LST | ZIP -rS9 D:\SYSTEM.SAV -@ 2>>D:\SYSSAV.LOG 1>>&amp;2
 </pre>
-Dadurch wird im Wurzelverzeichnis des Laufwerks D: eine ZIP-Datei mit Namen
-SYSTEM.SAV erstellt, welche alle in D:\FILES.LST angegebenen Dateien
-enthÑlt, wobei die Datei SYSSAV.LOG die Programmausgabe enthÑlt.
-<br>Nun kann eine einfach CMD-Datei im Wurzelverzeichnis des Startlaufwerks
-erstellt und als RECSYS.CMD gesichert werden:<pre>
+Dadurch wird im Stammverzeichnis des Laufwerks D: eine ZIP-Datei mit dem Namen
+SYSTEM.SAV erstellt, die alle in D:\FILES.LST angegebenen Dateien enth&auml;lt,
+w&auml;hrend die Datei SYSSAV.LOG die gesamte Befehlsausgabe registriert.
+<br><br>Jetzt k&ouml;nnen Sie eine einfache CMD-Datei im Stammverzeichnis
+des Startlaufwerks erstellen:
+<pre>
 @echo off
 d:
 cd\
 unzip -o d:\system.sav
 </pre>
-Sollte es nun vorkommen, da· das System aufgrund beschÑdigter Systemdateien
-nicht gestartet werden kann oder das eComCenter seine Konfigurationsdaten
-verlieren, mu· nur von einer Befehlszeile gestartet und RECSYS.CMD
-ausgefÅhrt werden, um die vorherige Systemkonfiguration wiederherzustellen.
-<p><b>Hinweis:</b> Hierdurch wird nicht notwendigerweise der letzte Stand
-des System gesichert, da manche Dateien (z.B. OS2.INI) nicht synchron
+Speichern Sie diese zum Beispiel als RECSYS.CMD.
+<br>Falls es jemals passieren sollte, da&szlig; Sie Ihr System nicht starten k&ouml;nnen,
+weil die Systemdateien besch&auml;digt sind oder das WarpCenter seine
+Konfigurationsdaten verloren hat, m&uuml;ssen Sie nur zu einer Befehlszeile booten
+und RECSYS.CMD ausf&uuml;hren, um Ihre vorherige Systemkonfiguration
+wiederherzustellen.
+<p><b>Hinweis:</b> Dadurch ist es nicht m&ouml;glich, genau den letzten Zustand des
+Systems zu speichern, da einige Dateien (z.B. OS2.INI) nicht synchron
 aktualisiert werden.
 </body>
 </html>

@@ -1,69 +1,68 @@
 <html>
 <head>
-   <title>Systemabschluá - Systemneustart</title>
+   <title>Systemabschlu&szlig; - Neustart</title>
 </head>
 <body>
 
 <br>
-Die Funktion <b>Systemneustart</b> erm”glicht einen Systemabschluá mit
-anschlieáendem Neustart des gewnschten Volumens.
+&Uuml;ber die Funktion <b>Neustart</b> kann ein Systemabschlu&szlig; durchgef&uuml;hrt,
+und dann automatisch auf dem ausgew&auml;hlten Volume neu gestartet werden.
 <p>
-Untersttzt wird sowohl der IBM Boot Manager als auch
-<a href="sdAiRBOOT.html">AiRBOOT</a> von Martin Kiewitz.
+Unterst&uuml;tzt werden der IBM Boot Manager und Martin Kiewitz's
+<a href="sdAiRBOOT.html">AiRBOOT</a>.
 <p>
-Mit Hilfe der Seite Systemneustart l„át sich die Liste der startf„higen
-Volumen festlegen, die im erweiterten Systemabschluádialog angezeigt
-werden sollen.<br>
-Die Liste der Volumen kann sowohl von Hand als auch automatisch erstellt
-werden.
+Der Neustart-Dialog erm&ouml;glicht es, die Liste der neu zu startenden
+Volumes zu definieren, die &uuml;ber den erweiterten Systemabschlu&szlig;-Dialog
+angezeigt werden sollen.<br>
+Die Volumenliste kann entweder manuell oder automatisch gef&uuml;llt werden.
 <p>
-<h3>Manuelle Erstellung</h3><p>
-Im Eingabefeld <b>Volumenname</b> ist der Volumenname so anzugeben, wie
-er im Men des IBM Bootmanagers oder AiRBOOT-Men angezeigt wird. Das
-Eingabefeld <b>Volumenbeschreibung</b> erm”glicht die Angabe einer l„ngeren,
-genaueren Beschreibung.<br>
-Im Best„tigungsdialog fr den Systemabschluá werden dann in einem Listenfenster
-nur die Volumenbeschreibungen in der Reihenfolge angezeigt, wie sie im
-Listenfeld <i>Neustart von folgenden Volumen erlauben</i> vorgegeben ist.<br>
-Mit Hilfe der beiden <b>Pfeilkn”pfe</b> zur Linken des Listenfelds l„át
-sich der ausgew„hlte Eintrag auf- und abbewegen und so die Reihenfolge
-anpassen.
+<h3>Manuelles Ausf&uuml;llen</h3><p>
+Das Eingabefeld <b>Volume-Name</b> mu&szlig; mit dem Volume-Namen gef&uuml;llt werden,
+wie er im BootManager oder AiRBOOT-Men&uuml; erscheint, w&auml;hrend das Feld
+<b>Volume-Beschreibung</b> eine ausf&uuml;hrlichere Beschreibung enthalten kann.<br>
+Der Best&auml;tigungsdialog zum Systemabschlu&szlig; zeigt in einer Combobox
+nur die Volume-Beschreibungen in der Reihenfolge an, in der sie in der
+Liste der erlaubten Volumes erscheinen.<br>
+Die beiden kleinen <b>Pfeilschaltfl&auml;chen</b> auf der linken Seite der Liste
+erlauben Ihnen, die Reihenfolge der Listen-Elemente zu &auml;ndern.
 <p>
-Der Druckknopf <b>Hinzufgen</b> wird aktiviert, wenn beide Eingabefelder
-Text enthalten. Durch Drcken wird der Inhalt dem Ende der Liste in 
-folgendem Format hinzugefgt:<br>
-<tt>Volumenbeschreibung (Volumenname)</tt><br>
-Drcken von <b>Entfernen</b> entfernt den ausgew„hlten Eintrag aus der Liste.<br>
-Drcken von <b>Bearbeiten</b> erm”glicht die Bearbeitung von Beschreibung
-und Name des ausgew„hlten Eintrags. Durch Drcken werden die Daten in die
-Eingabefelder bernommen. Wird eine nderung vorgenommen, k”nnen die
-neuen Daten durch Drcken von <b>Hinzufgen</b> wieder gesichert werden.
+Die Schaltfl&auml;che <b>Hinzuf&uuml;gen</b> wird aktiviert, sobald die beiden
+Eingabefelder Text enthalten. Sobald die Schaltfl&auml;che angeklickt wird,
+wird der Feldinhalt am Ende der Liste als hinzugef&uuml;gt:<br>
+<tt>Datentr&auml;gerbeschreibung (Datentr&auml;gername)</tt><br>
+Mit der Schaltfl&auml;che <b>Entfernen</b> wird ein Element aus der Liste entfernt.
+<br>Mit <b>Bearbeiten</b> k&ouml;nnen Sie den Namen oder die Beschreibung
+des ausgew&auml;hlten Elements &auml;ndern.
+Sobald angeklickt, werden die Daten des ausgew&auml;hlten Listen-Elements in die
+Eingabefelder versetzt und die Schaltfl&auml;che <i>Hinzuf&uuml;gen</i> wird aktiviert,
+damit der Benutzer des ausgew&auml;hlten Element aktualisieren kann.
 <p>
-<h3>Automatische Erstellung</h3><p>
-Drcken von <b>Suchen</b> liest die Liste der startf„higen Volumen direkt
-von der Festplatte, falls AiRBOOT installiert ist, oder fragt die
-LVM-Schnittstelle ab. Noch nicht in der Liste vorhandene, startf„hige
-Volumen werden ihr dann in folgendem Format hinzugefgt:<br>
-<tt>Volumenname (Volumenname)</tt></br>
-D.h. der Volumenname wird auch fr die Volumenbeschreibung verwendet.
-Anschlieáend kann der Anwender durch Drcken von <i>Bearbeiten</i> eine
-bessere Beschreibung nachtragen.
-<p>
-<b>Hinweis:</b><br>
-Ist AiRBOOT installiert, kann die automatische Erkennung startf„higer
-Volumen fehlschlagen, falls gerade erst ber LVM neue Volumen erstellt
-oder vorhandene gel”scht wurden, da AiRBOOT seine Volumentabelle nur
-bei einem Systemneustart aktualisiert.
-<p>
-<h3>Standarddruckkn”pfe</h3><p>
-Drcken von <b>Anwenden</b> sichert die Liste in der Datei eStyler.ini.
-<p>
-<b>Widerrufen</b> stellt den Zustand der Liste vor dem ™ffnen des
-Einstellungsnotizbuchs wieder her.
+<h3>Automatisches Ausf&uuml;llen</h3><p>
+Wenn Sie die Schaltfl&auml;che <b>Suchen</b> bet&auml;tigen, wird die Liste der
+startf&auml;higen Partitionen direkt vom Datentr&auml;ger gelesen, wenn AiRBOOT
+installiert ist, oder &uuml;ber die LVM-Schnittstelle.<br>
+Wenn sich das startf&auml;hige Volume noch nicht in der Liste befindet, wird es mit
+folgendem Format an das Ende der Liste angef&uuml;gt:<br>
+<tt>Datentr&auml;gername (Datentr&auml;gername)</tt></br>
+D.h. der Datentr&auml;gername wird auch als Volumenname verwendet und der Nutzer
+mu&szlig; die Schaltfl&auml;che <i>Bearbeiten</i> nutzen, um eine aussagekr&auml;ftigere
+Beschreibung zu erhalten.
 <p>
 <b>Hinweis:</b><br>
-Der erweiterte Systemabschluádialog speichert die vom Anwender beim letzten
-Best„tigen des Dialogs mit OK gew„hlten Einstellungen bezglich der Option
-und des startf„higen Volumens und nimmt eine entsprechende Vorauswahl vor.
+Wenn AiRBOOT installiert ist, kann die automatische Erkennung der startf&auml;higen
+Volumes fehlschlagen, wenn gerade neue Volumes &uuml;ber das LVM-Programm
+hinzugef&uuml;gt oder gel&ouml;scht wurden, da AiRBOOT seine Volume-Tabellen erst nach
+einem Neustart aktualisiert.
+<p>
+<h3>&Uuml;bliche Schaltfl&auml;chen</h3><p>
+Mit der Schaltfl&auml;che <b>Anwenden</b> wird die neue Liste in der STYLER.INI
+gespeichert.
+<p>
+<b>R&uuml;ckg&auml;ngig</b> stellt die Liste auf den Zustand zur&uuml;ck, in dem sie sich
+befand, als der Einstellungsnotizblock ge&ouml;ffnet wurde.
+<p>
+<b>Hinweis:</b><br>
+Der erweiterte Systemabschlu&szlig;-Dialog w&auml;hlt die Option und das neu zu startende
+Volume vor, die beim letzten Mal ausgew&auml;hlt wurden.
 </body>
 </html>

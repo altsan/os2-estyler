@@ -1,71 +1,70 @@
 <html>
 <head>
-   <title>Systemabschlu· - Bei Systemabschlu· auszufÅhrende Programme</title>
+   <title>Anwendungen beim Systemabschlu&szlig; ausf&uuml;hren</title>
 </head>
 <body>
 
 <br>
-Mit Hilfe des erweiterten Systemabschlusses von eComStation kann vor
-dem eigentlichen Systemabschlu· eine Auswahl von Programmen ausgefÅhrt
-werden.
+Der erweiterte Systemabschlu&szlig; erm&ouml;glicht die Ausf&uuml;hrung einer Liste von
+Anwendungen bevor das System beendet wird.
 <p>
-Ist <b>Bei Systemabschlu· auszufÅhrende Programme</b> ausgewÑhlt,
-werden die nachstehenden Programmen nacheinander ausgefÅhrt. Erst nach
-Beendigung des letzten der Programme werden die zuvor geîffneten Fenster
-geschlossen und ein Systemabschlu· durchgefÅhrt.<br>
-Sind in der Liste keine Programme eingetragen, wird die Option ignoriert.<br>
-<b>Hinweis:</b><br>
-Diese Funktion kann im BestÑtigungsdialog fÅr den Systemabschlu· Åber
-das Markierungsfeld <b>Systemabschlu·programme ausfÅhren</b>
-temporÑr deaktiviert werden.
+Wenn <b>F&uuml;hren Sie die folgenden Programme beim Systemstart aus</b>
+aktiviert ist, werden die unten aufgef&uuml;hrten Anwendungen nacheinander
+ausgef&uuml;hrt. Erst wenn die Ausf&uuml;hrung des letzten Programms endet,
+werden die zuvor ge&ouml;ffneten Fenster geschlossen und
+der Systemabschlu&szlig; durchgef&uuml;hrt.<br>
+Wenn die Programmliste leer ist, wird die Option schlicht ignoriert.<br>
+<br><b>Hinweis:</b><br>
+Der Best&auml;tigungsdialog f&uuml;r den Systemabschlu&szlig; erlaubt es, diese Funktion
+&uuml;ber ein Kontrollk&auml;stchen <b>Anwendungen beim Systemabschlu&szlig; ausf&uuml;hren</b>
+zeitweise zu deaktivieren oder zu aktivieren.
 <p>
-Die Programmnamen werden Åber das Eingabefeld <b>Programm</b> eingetragen.<br>
-Befindet sich ein Programm im <tt>PATH</tt> (d.h. in einem Verzeichnis,
-welches in der Umgebungsvariable PATH der Datei CONFIG.SYS genannt ist),
-mu· nur der Programmname angegeben werden. Andernfalls ist der vollqualifizierte
-Programmpfad erforderlich.<br>
-Wird keine Erweiterung angegeben, wird automatisch die Erweiterung .EXE
-hinzugefÅgt.
-<br>Handelt es sich bei dem Programm um ein REXX-Skript oder eine
-Stapeldatei mit der Erweiterung .CMD, wird der Name automatisch in folgendes
-Format konvertiert:<br>
-<tt>CMD.EXE /C filename.cmd options</tt><p>
-FÅhrt das REXX-Skript oder die Stapeldatei andere Programme aus, so mu·
-dies auf synchrone Weise erfolgen, also nicht Åber die Befehle START und
-DETACH, da es andernfalls nicht mîglich ist festzustellen, ob die Programme
-beendet wurden, und es zu Datenverlusten kommen kînnte.
+Die Programmnamen werden &uuml;ber das Eingabefeld <b>Anwendung</b> eingegeben.<br>
+Befindet sich ein Programm im <tt>PATH</tt> (d.h. in einem Verzeichnis, das
+in der in der Datei CONFIG.SYS gesetzten Umgebungsvariablen PATH aufgelistet
+ist), wird nur der Programmname ben&ouml;tigt, ansonsten ist die Angabe des
+vollst&auml;ndigen Programmpfades erforderlich.<br><br>
+Wenn keine Erweiterung angegeben wird, wird die Erweiterung .EXE automatisch
+an den Programmnamen angeh&auml;ngt.
+<br>Wenn es sich bei dem Programm um ein REXX-Skript oder eine
+Stapel-CMD-Datei handelt, wird der Name automatisch angepa&szlig;t in:<br>
+<tt>CMD.EXE /C Dateiname.cmd Optionen</tt><p>
+Wenn die REXX- oder Batch-Datei andere Programme aufruft, mu&szlig; sie dies
+synchron tun, d.h. nicht durch einen START- oder DETACH-Befehl, da sonst nicht
+erkannt werden kann, wann jedes Programm beendet wird, und einige Dateien
+m&ouml;glicherweise nicht richtig gespeichert werden.
 <p>
-Optinal kînnen Parameter fÅr die Programme im Feld <b>Parameter</b>
-angegeben werden. Bei Programmen, die keine Parameter erfordern, ist
-dieses Feld leer zu lassen.
+Optionale Programmparameter k&ouml;nnen &uuml;ber das Feld <b>Parameter</b> eingegeben
+werden. Dieses Feld mu&szlig; leer gelassen werden, wenn das Programm
+keine Parameter ben&ouml;tigt.
 <p>
-Die Sichtbarkeit des Programms (normal, maximiert oder verborgen) kann
-Åber das Listenfenster <b>Fenster</b> festgelegt werden.
+Die Sichtbarkeit des Programms (normal, maximiert oder verdeckt) kann &uuml;ber
+die Dropdown-Box <b>Fenster</b> eingestellt werden.
 <p>
-Der Inhalt der Programmliste kann mit Hilfe der <b>Pfeilknîpfe</b> durch
-Verschieben des ausgewÑhlten Eintrags nach oben und unten sortiert werden. 
-Die Pfeilknîpfe werden entsprechend der jeweiligen Situation aktiviert und
-deaktiviert.
+Die beiden <b>Pfeilschaltfl&auml;chen</b> ordnen den Inhalt der Programmliste an
+und verschieben das ausgew&auml;hlte Element nach oben oder unten.<br>
+Sie werden bei Bedarf automatisch aktiviert/deaktiviert.
 <p>
-DrÅcken von <b>HinzufÅgen</b> fÅgt den aktuellen Inhalt der Eingabefelder
-als neuen Eintrag am Ende der Liste hinzu.
+Mit der Schaltfl&auml;che <b>Hinzuf&uuml;gen</b> wird der Inhalt des aktuellen
+Eingabefeldes an das Ende der Liste angef&uuml;gt.
 <p>
-<b>Entfernen</b> entfernt den ausgewÑhlten Eintrag aus der Liste.
+<b>Entfernen</b> l&ouml;scht das ausgew&auml;hlte Element aus der Liste.
 <p>
-<b>Bearbeiten</b> Åbernimmt die Daten des ausgewÑhlten Eintrags in die
-Eingabefelder, so da· die bearbeitet werden kînnen. Nach Anpassen der
-Daten kann der Eintrag durch DrÅcken von <b>HinzufÅgen</b> aktualisert
-werden.
+<b>Bearbeiten</b> f&uuml;llt die Eingabefelder mit den Daten des
+ausgew&auml;hlten Elements, damit Sie die &Auml;nderung vornehmen k&ouml;nnen.<br>
+Sobald die Daten ge&auml;ndert worden sind, wird die Schaltfl&auml;che
+<b>Hinzuf&uuml;gen</b> benutzt, um das gew&auml;hlte Element durch die neuen Daten
+zu ersetzen.
 <p>
-<b>Suchen</b> îffnet den Standarddateidialog, mit dem eine ausfÅhrbare
-Datei ausgewÑhlt werden kann.
+<b>Suchen</b> &ouml;ffnet den Standard-Dateidialog, damit der Benutzer
+einen ausf&uuml;hrbaren Dateinamen w&auml;hlen kann.
 <p>
-<b>Anwenden</b> sichert die Daten der Liste in der Datei eStyler.ini.
-<b>Widerrufen</b> setzt die Werte auf den Zustand vor ôffnen des
-Einstellungsnotizbuches zurÅck.
+<b>Anwenden</b> sichert die Listendaten in der Datei STYLER.INI, w&auml;hrend
+<b>R&uuml;ckg&auml;ngig</b> den Listeninhalt in den Zustand zur&uuml;cksetzt, in dem er
+sich im Einstellungsnotizbuch befand.
 <p>
 <b>Siehe auch:</b><br>
-Ein <a href="sdProgExample.html">Praxisbeispiel</a> fÅr den Einsatz
-der Funktion Systemabschlu·programme.
+Ein <a href="sdProgExample.html">praktisches Beispiel</a> f&uuml;r
+die Funktionalit&auml;t der Programmausf&uuml;hrung beim Systemabschlu&szlig;.
 </body>
 </html>
