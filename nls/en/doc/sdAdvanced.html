@@ -9,15 +9,15 @@
 This dialog is only provided for trouble shooting purposes.
 <p>
 The enhanced shutdown features are performed by hooking in a standard
-system shutdown to execute some extra functions.<br>
+system shutdown to execute some extra functions.
 A proper shutdown may sometimes depend on the delays set
-to allow the execution of the enhancements.<br>
-In case the system does not succesfully complete the shutdown
-it might be necessary to modify some delay values.<br>
+to allow the execution of the enhancements.<p>
+In case the system does not succesfully complete the shutdown,
+it might be necessary to modify some delay values.
 In most cases, anyway, a failing shutdown is caused by a program
 which doesn't respond correctly to the system shutdown and refuses
 to quit. In such case you have to find the name of the offending
-program and put it into the <a href="sdTerm.html">termination</a> list.<br>
+program and put it into the <a href="sdTerm.html">termination</a> list.<p>
 As a rule of thumb, if the system shutdown hangs even if
 the shutdown enhancements have been disabled,
 then the problem lies with a single program,
@@ -28,7 +28,7 @@ All the delays are in tenth of seconds (e.g. a value of 80
 means 8 seconds).
 <dl>
 <dt><b>Lockup and suspend</b></dt>
-<dd>various motherboards are not fully compatible with the
+<dd>Various motherboards are not fully compatible with the
 OS/2 advanced power management, so the system may hang if a
 suspend command is issued while the mouse is moved.
 The lockup and suspend delay ensures that the system is fully
@@ -37,7 +37,7 @@ If you want to get a faster lockup and suspend just try to
 set a lower delay until the system behaves correctly.<br>
 If you do not use this feature you can ignore this setting.</dd>
 <dt><b>Suspend</b></dt>
-<dd>if your system hangs after you select <i>Suspend</i>
+<dd>If your system hangs after you select <i>Suspend</i>
 try to increase the delay to 20-30 or more.<br>
 If you do not use this feature you can ignore this setting.</dd>
 <dt><b>Save WarpCenter settings</b>
