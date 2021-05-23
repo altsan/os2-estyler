@@ -5,7 +5,7 @@
 SUB_DEPTH = ..
 include $(KBUILD_PATH)/subheader.kmk
 
-DLLS                       += estylerEN estylerDE estylerNL estylerES estylerJA estylerTW
+DLLS                       += estylerEN estylerDE estylerNL estylerES estylerRU estylerJA estylerTW
 INSTALLS                   += estylerEN-docs estylerDE-docs estylerNL-docs estylerES-docs estylerJA-docs
 
 estylerEN_TEMPLATE          = eStylerDLL
@@ -59,6 +59,19 @@ estylerES_INCS              = es/res res
 estylerES-docs_INST         = $(INST_BIN)/es/
 estylerES-docs_SOURCES      = $(PATH_OBJ)/es/styler.hlp
 estylerES-docs_CLEAN        = $(PATH_OBJ)/es/styler.hlp nls/es/doc/estyler.ipf
+
+estylerRU_TEMPLATE          = eStylerDLL
+estylerRU_NAME              = estlrlrs
+estylerRU_INST              = $(INST_BIN)/ru/
+estylerRU_SOURCES           = \
+                              res/@.c \
+                              res/estylerRes.rc \
+                              ru/res/estlrlrs.def
+estylerRU_INCS              = ru/res res
+
+estylerRU-docs_INST         = $(INST_BIN)/ru/
+estylerRU-docs_SOURCES      = $(PATH_OBJ)/ru/styler.hlp
+estylerRU-docs_CLEAN        = $(PATH_OBJ)/ru/styler.hlp nls/ru/doc/estyler.ipf
 
 estylerJA_TEMPLATE          = eStylerDLL
 estylerJA_NAME              = estlrlrs
@@ -117,6 +130,11 @@ $(PATH_OBJ)/es/styler.hlp: nls/es/doc/estyler.lst
 	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/es
 	$(REDIRECT) -C $(PATH_ROOT)/nls/es/doc -E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' -- $(PATH_ROOT)/nls/tools/ipfbld estyler.lst
 	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -D:034 -C:850 -L:ESP $(PATH_ROOT)/nls/es/doc/estyler.ipf $@
+
+$(PATH_OBJ)/ru/styler.hlp: nls/ru/doc/estyler.lst
+	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/ru
+	$(REDIRECT) -C $(PATH_ROOT)/nls/ru/doc -E 'BEGINLIBPATH=$(PATH_ROOT)/nls/tools' -- $(PATH_ROOT)/nls/tools/ipfbld estyler.lst
+	$(REDIRECT) -E 'IPFC=$(TOOLKIT)\ipfc' -- $(TOOLKIT)/bin/ipfc.exe -D:007 -C:866 -L:RUS $(PATH_ROOT)/nls/ru/doc/estyler.ipf $@
 
 $(PATH_OBJ)/ja/styler.hlp: nls/ja/doc/estyler.lst
 	$(QUIET)$(MKDIR) -p $(PATH_OBJ)/ja
