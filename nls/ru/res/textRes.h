@@ -105,7 +105,7 @@
 #define SZ_DEFIMAGE              "   Изображение по умолчанию"
 #define SZ_SCALEIMAGE            "~Масштабировать изображение"
 //#define SZ_IMAGEOPTIONS        "Параметры и~зображения..."
-#define SZ_ADDIMAGE              "Добавить ~новое изображение..."
+#define SZ_ADDIMAGE              "Добавить ~новое..."
 // border controls
 #define SZ_SHOWBORDER            "По~казать рамку строки заголовка"
 #define SZ_LEFTTOPCLR            "Цвет левого/вер~хнего"
@@ -274,7 +274,7 @@
 // #define SZ_SBMPBCWIDTH      "~Ширина рамки/края:"
 // #define SZ_SBMPBCHEIGHT     "~Высота рамки/края:"
 // #define SZ_SBMPPREVIEW      "Предпросмотр изображения"
-// #define SZ_SBMPSAMPLEHEIGHT "Высота предпросмотра изображения (~пикселей) :"
+// #define SZ_SBMPSAMPLEHEIGHT "Высота предпросмотра (~пикселей) :"
 
 
 /* --------------------------------------------------------------------------

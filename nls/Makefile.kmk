@@ -6,7 +6,7 @@ SUB_DEPTH = ..
 include $(KBUILD_PATH)/subheader.kmk
 
 DLLS                       += estylerEN estylerDE estylerNL estylerES estylerRU estylerJA estylerTW
-INSTALLS                   += estylerEN-docs estylerDE-docs estylerNL-docs estylerES-docs estylerJA-docs
+INSTALLS                   += estylerEN-docs estylerDE-docs estylerNL-docs estylerES-docs estylerRU-docs estylerJA-docs
 
 estylerEN_TEMPLATE          = eStylerDLL
 estylerEN_NAME              = estlrlrs
