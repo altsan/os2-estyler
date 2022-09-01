@@ -83,7 +83,7 @@ typedef struct {
    WinDrawBitmap((hps), (hbmp), (PRECTL)(pSrcRect), (PPOINTL)(pDestPoint), \
                  0, 0, DBM_NORMAL)
 
-// draw a bitmap without scaling it to a destination rectangle
+// draw a bitmap scaling it to a destination rectangle
 #define mScaleBitmap(hps, hbmp, pSrcRect, pDestRect) \
    WinDrawBitmap((hps), (hbmp), (PRECTL)(pSrcRect), (PPOINTL)(pDestRect), \
                  0, 0, DBM_STRETCH)

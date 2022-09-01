@@ -594,16 +594,44 @@ VOID paintTitlebar(HWND hwnd, HPS hps, PTBARHILITE ptbo, PSIZEL pSize) {
       case TBARBKGNDBMP:
          // scaled bitmap
          if (ptbo->fl & TBO_STRETCHBMP) {
+#if 1
+            // [ALT 2022-08-30] If bitmap is larger than titlebar, crop it
+            mScaleBmpRectAt(hps, ptbo->bmpp.hbmp, aptl,
+                            0, 0, min(pSize->cx, ptbo->bmpp.cx),
+                                  min(pSize->cy, ptbo->bmpp.cy),
+                            0, 0, pSize->cx, pSize->cy);
+#else
             mScaleBmpToRect(hps, ptbo->bmpp.hbmp,
                             aptl, 0, 0, pSize->cx, pSize->cy);
+#endif
          // tiled bitmap
          } else {
+#if 0
+            mSetBmpSrcRectDestRect( aptl, 0, 0,
+                                    min(pSize->cx, ptbo->bmpp.cx), min(pSize->cy, ptbo->bmpp.cy),
+                                    0, 0, min(pSize->cx, ptbo->bmpp.cx), pSize->cy );
+            while (aptl[2].x <= pSize->cx) {
+/*
+               printf("bmp subrect: %d,%d, %d,%d;  dest rect: %d,%d, %d,%d\n",
+                      aptl[0].x, aptl[0].y,
+                      aptl[1].x, aptl[1].y,
+                      aptl[2].x, aptl[2].y,
+                      aptl[3].x, aptl[3].y );
+*/
+               mScaleBitmap(hps, ptbo->bmpp.hbmp, aptl, aptl + 2);
+               aptl[2].x += ptbo->bmpp.cx;
+               aptl[1].x = pSize->cx - aptl[2].x;
+               aptl[3].x = min(pSize->cx, aptl[2].x + ptbo->bmpp.cx);
+            } // endwhile
+//            printf("\n");
+#else
             mSetBmpSrcRectDestPos(aptl, 0, 0, pSize->cx, pSize->cy, 0, 0);
             while (aptl[2].x <= pSize->cx) {
                mDrawBitmap(hps, ptbo->bmpp.hbmp, aptl, aptl + 2);
                aptl[2].x += ptbo->bmpp.cx;
                aptl[1].x = pSize->cx - aptl[2].x;
             } /* endwhile */
+#endif
          } /* endif */
          break;
       // solid color background ------------------------------------------

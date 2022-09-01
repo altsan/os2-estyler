@@ -16,6 +16,10 @@
 #include "stlrTitlebar.h"
 #include "stlrGraphics.h"
 
+#ifndef min
+#define min(a, b)       (((a) < (b))? (a) : (b))
+#endif
+
 // prototypes ---------------------------------------------------------------
 static BOOL isWinOS2Window(HWND hwnd, PTBDATA p);
 ULONG copyStripReturns(PSZ target, PSZ source);
@@ -248,16 +252,37 @@ VOID drawTitlebar(HPS hps, PTBDATA p) {
       case TBARBKGNDBMP:
          // scaled bitmap
          if (ptbo->fl & TBO_STRETCHBMP) {
+#if 1
+            // [ALT 2022-08-30] If bitmap is larger than titlebar, crop it
+            mScaleBmpRectAt(hps, ptbo->bmpp.hbmp, aptl,
+                            0, 0, min(p->size.cx, ptbo->bmpp.cx),
+                                  min(p->size.cy, ptbo->bmpp.cy),
+                            0, 0, p->size.cx, p->size.cy);
+#else
             mScaleBmpToRect(hps, ptbo->bmpp.hbmp,
                             aptl, 0, 0, p->size.cx, p->size.cy);
+#endif
          // tiled bitmap
          } else {
+#if 0
+            // [ALT 2022-08-31] Also tile vertically if necessary
+            mSetBmpSrcRectDestRect( aptl, 0, 0,
+                                    min(p->size.cx, ptbo->bmpp.cx), min(p->size.cy, ptbo->bmpp.cy),
+                                    0, 0, min(p->size.cx, ptbo->bmpp.cx), p->size.cy );
+            while (aptl[2].x <= p->size.cx) {
+               mScaleBitmap(hps, ptbo->bmpp.hbmp, aptl, aptl + 2);
+               aptl[2].x += ptbo->bmpp.cx;
+               aptl[1].x = p->size.cx - aptl[2].x;
+               aptl[3].x = min(p->size.cx, aptl[2].x + ptbo->bmpp.cx);
+            } // endwhile
+#else
             mSetBmpSrcRectDestPos(aptl, 0, 0, p->size.cx, p->size.cy, 0, 0);
             while (aptl[2].x <= p->size.cx) {
                mDrawBitmap(hps, ptbo->bmpp.hbmp, aptl, aptl + 2);
                aptl[2].x += ptbo->bmpp.cx;
                aptl[1].x = p->size.cx - aptl[2].x;
             } /* endwhile */
+#endif
          } /* endif */
          break;
       // solid color background ------------------------------------------

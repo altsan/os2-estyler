@@ -140,7 +140,7 @@
 #define SZ_PRODUCT               "Styler para OS/2"
 #define SZ_PIVERSION             "Versi¢n %d.%d - compilaci¢n n§. %d"
 #define SZ_PICPYRIGHT            "¸ 1998-2004 Alessandro Felice Cantatore"
-#define SZ_PICPYRIGHT2           "Partes ¸ 2008-2017 Alexander Taylor"
+#define SZ_PICPYRIGHT2           "Partes ¸ 2008-2022 Alexander Taylor"
 #define SZ_PIURL                 "https://github.com/altsan/os2-estyler"
 #define SZ_PILICENSE             "Publicado bajo Licencia P£blica General de GNU versi¢n 3"
 
