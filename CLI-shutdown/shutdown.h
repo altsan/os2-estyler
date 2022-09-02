@@ -57,10 +57,10 @@ typedef STLR_GETWORKERHWND_FN * PSTLR_GETWORKERHWND_FN;
  TEXTMESSAGES      error and text messages.
 */
 #define SZERR_WORKERHANDLE \
-" Failed to get the eStyler worker thread object window handle.\r\n"
+" Failed to get the Styler worker thread object window handle.\r\n"
 #define SZERR_INVALIDPARMS \
 " Invalid parameters. Type \"SHUTDOWN /? for more details.\r\n"
 #define SZERR_POSTMSG \
-" Failed to post the shutdown request to the eStyler worker thread.\r\n"
+" Failed to post the shutdown request to the Styler worker thread.\r\n"
 
 #endif // #ifndef _CLI_SHUTDOWN_H_
