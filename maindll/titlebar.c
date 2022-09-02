@@ -264,7 +264,7 @@ VOID drawTitlebar(HPS hps, PTBDATA p) {
 #endif
          // tiled bitmap
          } else {
-#if 0
+#if 1
             // [ALT 2022-08-31] Also tile vertically if necessary
             mSetBmpSrcRectDestRect( aptl, 0, 0,
                                     min(p->size.cx, ptbo->bmpp.cx), min(p->size.cy, ptbo->bmpp.cy),
@@ -272,8 +272,8 @@ VOID drawTitlebar(HPS hps, PTBDATA p) {
             while (aptl[2].x <= p->size.cx) {
                mScaleBitmap(hps, ptbo->bmpp.hbmp, aptl, aptl + 2);
                aptl[2].x += ptbo->bmpp.cx;
-               aptl[1].x = p->size.cx - aptl[2].x;
                aptl[3].x = min(p->size.cx, aptl[2].x + ptbo->bmpp.cx);
+               aptl[1].x = min(p->size.cx - aptl[2].x, ptbo->bmpp.cx);
             } // endwhile
 #else
             mSetBmpSrcRectDestPos(aptl, 0, 0, p->size.cx, p->size.cy, 0, 0);

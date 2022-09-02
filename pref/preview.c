@@ -606,7 +606,7 @@ VOID paintTitlebar(HWND hwnd, HPS hps, PTBARHILITE ptbo, PSIZEL pSize) {
 #endif
          // tiled bitmap
          } else {
-#if 0
+#if 1
             mSetBmpSrcRectDestRect( aptl, 0, 0,
                                     min(pSize->cx, ptbo->bmpp.cx), min(pSize->cy, ptbo->bmpp.cy),
                                     0, 0, min(pSize->cx, ptbo->bmpp.cx), pSize->cy );
@@ -620,8 +620,8 @@ VOID paintTitlebar(HWND hwnd, HPS hps, PTBARHILITE ptbo, PSIZEL pSize) {
 */
                mScaleBitmap(hps, ptbo->bmpp.hbmp, aptl, aptl + 2);
                aptl[2].x += ptbo->bmpp.cx;
-               aptl[1].x = pSize->cx - aptl[2].x;
                aptl[3].x = min(pSize->cx, aptl[2].x + ptbo->bmpp.cx);
+               aptl[1].x = min(pSize->cx - aptl[2].x, ptbo->bmpp.cx);
             } // endwhile
 //            printf("\n");
 #else
