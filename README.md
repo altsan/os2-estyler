@@ -10,7 +10,7 @@ Styler is licensed under the GNU GPL version 3:
 
   Styler for OS/2  
   Copyright (C) 1998-2004 Alessandro Felice Cantatore  
-  Copyright (C) 2009-2016 Alexander Taylor  
+  Copyright (C) 2009-2022 Alexander Taylor  
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
