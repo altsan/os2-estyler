@@ -158,7 +158,8 @@ MRESULT EXPENTRY stlrTitleBarProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) 
          p->size.cx = m_creatParm(mp2)->cx; // titlebar size
          p->size.cy = m_creatParm(mp2)->cy;
          // update the titlebar font
-         if (o.ui.tb.on && !o.ui.disabled) m_setFont(hwnd, o.ui.tb.achFont);
+         if (o.ui.tb.overrideFont && o.ui.tb.on && !o.ui.disabled)
+            m_setFont(hwnd, o.ui.tb.achFont);
          break;
       case WM_DESTROY:
          if (pid && (NULL != (p = mTitlebarData(hwnd)))) {

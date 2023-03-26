@@ -388,9 +388,10 @@
 #define IDS_CLRSHADINNER          63    // "~Inner"
 #define IDS_DEFIMAGE              64    // "Default image"
 #define IDS_DIALOGFONT            65    // "Dialog font"
+#define IDS_DLGFONTON             66    // "Use %s for dialog windows"
 
 // change this when adding further string IDs
-#define IDS_LAST                  IDS_DIALOGFONT
+#define IDS_LAST                  IDS_DLGFONTON
 
 /* --------------------------------------------------------------------------
  ERRMSGSSTRIDS     error messages string IDs

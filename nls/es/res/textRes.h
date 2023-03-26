@@ -131,8 +131,8 @@
 /* --------------------------------------------------------------------------
  DIALOG            dialog font options
 */
-#define SZ_DLGFONTON             "~Establecer una fuente por omisi¢n para los di logos"
 #define SZ_DLGOVERPP             "~Ignorar fuentes establecidas expl¡citamente"
+/* see string resources below for SZ_DLGFONTON */
 
 /* --------------------------------------------------------------------------
  PRODINFO          product information dialog
@@ -334,6 +334,7 @@
 #define SZ_CLRSHADBOTTOM    "~bajo"
 #define SZ_CLRSHADINNER     "i~nterior"
 #define SZ_DIALOGFONT       "Fuente de los di logos"
+#define SZ_DLGFONTON        "~Use %s for dialog windows"
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

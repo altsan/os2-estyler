@@ -130,8 +130,8 @@
 /* --------------------------------------------------------------------------
  DIALOG            dialog font options
 */
-#define SZ_DLGFONTON             "~Standardschrift fÅr Dialogfenster setzen"
 #define SZ_DLGOVERPP             "N~icht-Standard-Schriften umgehen"
+/* see string resources below for SZ_DLGFONTON */
 
 /* --------------------------------------------------------------------------
  PRODINFO          product information dialog
@@ -333,6 +333,7 @@
 #define SZ_CLRSHADBOTTOM    "~Unten"
 #define SZ_CLRSHADINNER     "~Innen"
 #define SZ_DIALOGFONT       "Dialogschriftart"
+#define SZ_DLGFONTON        "~Use %s for dialog windows"
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

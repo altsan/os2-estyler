@@ -131,8 +131,8 @@
 /* --------------------------------------------------------------------------
  DIALOG            dialog font options
 */
-#define SZ_DLGFONTON             "~Stel een standaard lettertype voor de dialoogvensters in"
 #define SZ_DLGOVERPP             "~Vervang niet standaard lettertypes"
+/* see string resources below for SZ_DLGFONTON */
 
 /* --------------------------------------------------------------------------
  PRODINFO          product information dialog
@@ -337,6 +337,7 @@
 #define SZ_CLRSHADBOTTOM    "~Onderkant"
 #define SZ_CLRSHADINNER     "B~innenkant"
 #define SZ_DIALOGFONT       "Dialoogvensters lettertype"
+#define SZ_DLGFONTON        "~Use %s for dialog windows"
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

@@ -131,8 +131,8 @@
 /* --------------------------------------------------------------------------
  DIALOG            dialog font options
 */
-#define SZ_DLGFONTON             "~Set a default font for the dialog windows"
 #define SZ_DLGOVERPP             "~Override non-default fonts"
+/* see string resources below for SZ_DLGFONTON */
 
 /* --------------------------------------------------------------------------
  PRODINFO          product information dialog
@@ -335,6 +335,7 @@
 #define SZ_CLRSHADBOTTOM    "~Bottom"
 #define SZ_CLRSHADINNER     "~Inner"
 #define SZ_DIALOGFONT       "Dialog font"
+#define SZ_DLGFONTON        "~Use %s for dialog windows"
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

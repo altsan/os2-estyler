@@ -109,7 +109,7 @@ VOID updatePreviewWindow(ULONG updateFlag) {
    hwndMainClient = WinWindowFromID(g.pUiData->preview.hwnd, FID_CLIENT);
    hwndActive = WinWindowFromID(hwndMainClient, ID_PREVIEWACTIVE);
    hwndInactive = WinWindowFromID(hwndMainClient, ID_PREVIEWINACTIVE);
-   if (updateFlag & PVUPD_TITLEFONT) {
+   if ((updateFlag & PVUPD_TITLEFONT) && g.pUiData->pOpts->tb.overrideFont) {
       if (!g.pUiData->pOpts->tb.on) {
          PrfQueryProfileString(HINI_USER, SZPRO_SYSFONT, SZPRO_WINTITLES,
                                SZPRO_WSBOLD, achFont, CCH_FONTDATA);

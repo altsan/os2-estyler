@@ -140,10 +140,25 @@ static VOID onCmdMsg(HWND hwnd, ULONG id) {
  VOID
 -------------------------------------------------------------------------- */
 static VOID setControlsState(HWND hwnd) {
+   HWND hCtl;
+   LONG x;
+   SWP  swp;
+
    g.state |= STLRIS_SKIPNOTIFICATION;
+   setCtrlTextParm(hwnd, CHK_DLGFONTON, IDS_DLGFONTON, g.pUiData->pOpts->dlg.achFont);
+
+   // slide the font dialog btn leftward to the end of the checkbox
+   hCtl = WinWindowFromID(hwnd, CHK_DLGFONTON);
+   WinSendMsg(hCtl, BM_AUTOSIZE, 0, 0);
+   WinQueryWindowPos(hCtl, &swp);
+   x = swp.x + swp.cx + 8;
+   hCtl = WinWindowFromID(hwnd, BTN_DLGFONT);
+   WinQueryWindowPos(hCtl, &swp);
+   if (swp.x > x)
+      WinSetWindowPos(hCtl, 0, x, swp.y, 0, 0, SWP_MOVE | SWP_NOREDRAW);
+
    dBtnCheckSet(hwnd, CHK_DLGFONTON, g.pUiData->pOpts->dlg.on);
    dBtnCheckSet(hwnd, CHK_DLGOVERPP, g.pUiData->pOpts->dlg.overridePP);
-   setCtrlTextParm(hwnd, TXT_DLGFONT, IDS_FONT_, g.pUiData->pOpts->dlg.achFont);
    setEnableDependencies(hwnd);
    g.state &= ~STLRIS_SKIPNOTIFICATION;
 }
@@ -151,16 +166,19 @@ static VOID setControlsState(HWND hwnd) {
 
 /* --------------------------------------------------------------------------
  Enable/disable the secondary controls according to the check state of the
- 'Set a default font for the dialog windows' checkbox.
+ 'Use <font> for dialog windows' checkbox.
 - Parameters -------------------------------------------------------------
  HWND hwnd : dialog window handle.
 - Return value -----------------------------------------------------------
  VOID
 -------------------------------------------------------------------------- */
 static VOID setEnableDependencies(HWND hwnd) {
-   INT i;
-   for (i = CHK_DLGOVERPP; i <= BTN_DLGFONT; ++i)
-      DlgItemEnable(hwnd, i, g.pUiData->pOpts->dlg.on);
+   BOOL fEnable = g.pUiData->pOpts->dlg.on;
+   BOOL fShow = g.pUiData->pOpts->dlg.overrideFont;
+
+   WinEnableWindow(WinWindowFromID(hwnd, CHK_DLGOVERPP), fEnable);
+   WinEnableWindow(WinWindowFromID(hwnd, BTN_DLGFONT), (fShow && fEnable));
+   WinShowWindow(  WinWindowFromID(hwnd, BTN_DLGFONT), fShow);
 }
 
 
@@ -189,7 +207,8 @@ static VOID checkOptionsChanged(VOID) {
 -------------------------------------------------------------------------- */
 static VOID checkApplyState(VOID) {
    BOOL bEnable;
-   bEnable = strcmp(g.pUiData->pOpts->dlg.achFont, g.pCurOpts->ui.dlg.achFont)
+   bEnable = (g.pUiData->pOpts->dlg.overrideFont &&
+              strcmp(g.pUiData->pOpts->dlg.achFont, g.pCurOpts->ui.dlg.achFont))
              ||
              (g.pUiData->pOpts->dlg.on != g.pCurOpts->ui.dlg.on)
              ||
@@ -212,7 +231,8 @@ static VOID checkApplyState(VOID) {
 -------------------------------------------------------------------------- */
 static VOID checkUndoState(VOID) {
    BOOL bEnable;
-   bEnable = strcmp(g.pUiData->pOpts->dlg.achFont, g.pUndoUiOpts->dlg.achFont)
+   bEnable = (g.pUiData->pOpts->dlg.overrideFont &&
+              strcmp(g.pUiData->pOpts->dlg.achFont, g.pUndoUiOpts->dlg.achFont))
              ||
              (g.pUiData->pOpts->dlg.on != g.pUndoUiOpts->dlg.on)
              ||
@@ -234,7 +254,8 @@ static VOID checkUndoState(VOID) {
 -------------------------------------------------------------------------- */
 static VOID checkDefaultState(VOID) {
    BOOL bEnable;
-   bEnable = strcmp(g.pUiData->pOpts->dlg.achFont, SZ_DEFDLGFONT)
+   bEnable = (g.pUiData->pOpts->dlg.overrideFont &&
+              strcmp(g.pUiData->pOpts->dlg.achFont, SZ_DEFDLGFONT))
              ||
              !g.pUiData->pOpts->dlg.on
              ||
@@ -271,7 +292,8 @@ static VOID applyOptions(HWND hwnd) {
  VOID
 -------------------------------------------------------------------------- */
 static VOID undoOptions(HWND hwnd) {
-   strcpy(g.pUiData->pOpts->dlg.achFont, g.pUndoUiOpts->dlg.achFont);
+   if (g.pUiData->pOpts->dlg.overrideFont)
+      strcpy(g.pUiData->pOpts->dlg.achFont, g.pUndoUiOpts->dlg.achFont);
    g.pUiData->pOpts->dlg.on = g.pUndoUiOpts->dlg.on;
    g.pUiData->pOpts->dlg.overridePP = g.pUndoUiOpts->dlg.overridePP;
    setControlsState(hwnd);

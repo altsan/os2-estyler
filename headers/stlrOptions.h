@@ -77,11 +77,11 @@ typedef struct {
 typedef struct {
    TBARHILITE a;               // active titlebar options
    TBARHILITE i;               // inactive titlebar options
-   CHAR achFont[CCH_FONTDATA]; // default titlebar font
+   CHAR achFont[CCH_FONTDATA]; // default titlebar font (normally from PM_SYSTEMFONTS)
    UINT on            : 1;     // 1/0 titlebar enhancements on/off
    UINT overridePP    : 1;     // 1/0 titlebar override presentation parameters
    UINT center        : 1;     // 1/0 align text to center/left
-   UINT               : 0;
+   UINT overrideFont  : 1;     // 1/0 titlebar override system font (normally off)
 } TITLEBAR, * PTITLEBAR;       // variable name o.ui.tb
 
 /* --------------------------------------------------------------------------
@@ -111,7 +111,7 @@ typedef struct {
    CHAR achFont[CCH_FONTDATA]; // default dialog font
    UCHAR on;                   // if TRUE apply the font to all dialogs
    UCHAR overridePP;           // override dialog font pres parms
-   UCHAR res1;                 // padding
+   UCHAR overrideFont;         // override system dialog font (normally off)
    UCHAR res2;                 // padding
 } DLGOPTIONS, * PDLGOPTIONS;   // variable name o.ui.dlg
 #pragma pack()

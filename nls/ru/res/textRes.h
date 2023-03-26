@@ -131,8 +131,8 @@
 /* --------------------------------------------------------------------------
  DIALOG            dialog font options
 */
-#define SZ_DLGFONTON             "~Установить шрифт по умолчанию для диалоговых окон"
 #define SZ_DLGOVERPP             "~Переопределить шрифты не по умолчанию"
+/* see string resources below for SZ_DLGFONTON */
 
 /* --------------------------------------------------------------------------
  PRODINFO          product information dialog
@@ -334,6 +334,7 @@
 #define SZ_CLRSHADBOTTOM    "Снизу"
 #define SZ_CLRSHADINNER     "Внутри"
 #define SZ_DIALOGFONT       "Диалог Шрифты"
+#define SZ_DLGFONTON        "~Use %s for dialog windows"
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources
