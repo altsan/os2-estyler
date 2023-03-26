@@ -15,8 +15,8 @@
 # These variables are used by nmake32
 #
 VERMAJ = 1
-VERMIN = 1
-VERBUILD = 202
+VERMIN = 2
+VERBUILD = 0
 #
 #
 # The variables below are used by icc.
@@ -27,8 +27,8 @@ VERBUILD = 202
    #define _STLRVER_H_
 
 #define VERMAJ      1
-#define VERMIN      1
-#define VERBUILD    202
+#define VERMIN      2
+#define VERBUILD    0
 
 #define CURINIVER   110
 
