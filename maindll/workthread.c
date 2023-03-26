@@ -26,7 +26,7 @@ static BOOL systemShutdown(VOID);
 static VOID setNextBootVolume(VOID);
 
 // global variables ---------------------------------------------------------
-static PSHDWNPRGLIST psdpl;
+static PSHDWNPRGLIST psdpl = 0;
 
 /* --------------------------------------------------------------------------
  Worker thread. Create an object window to manage all time intensive stuff.
@@ -53,7 +53,6 @@ VOID _System threadWorker(ULONG ul) {
          WinDispatchMsg(g.worker.hab, &qmsg);
    } /* endfor */
    // termination
-   stopWorker();
 }
 
 

@@ -245,7 +245,6 @@ static BOOL eCenterHandle(ULONG fl, PHWND phwnd) {
    HENUM henum;
    HWND hwndNext;
    SWP swp;
-   ULONG cbClassName;
    CHAR achClass[16];
    ULONG iHwnd;
    phwnd[0] = NULLHANDLE;

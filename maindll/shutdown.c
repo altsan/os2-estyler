@@ -47,6 +47,11 @@ VOID ForceCommitFn( PFN pAddress );
 
 // global variables ---------------------------------------------------------
 
+// stuff to quiet the compiler
+void   *dummy1 = (void*)&AcpiTracePoint;
+void   *dummy2 = (void*)&AcpiDebugPrintRaw;
+void   *dummy3 = (void*)&AcpiDebugPrint;
+
 /* --------------------------------------------------------------------------
  Shutdown thread.
 - Parameters -------------------------------------------------------------
@@ -89,9 +94,11 @@ dbgPrintf2("*** shutdown mode: %08x\n", mode);
                    &&
                    ((mode >> 16) < dsd.pRebootList->ci))
                   strcpy(&g.achsd[1], dsd.pRebootList->aSetBootParm[mode >> 16]);
+#pragma info(none)
                // fall through the next cases
             case SDFL_OFF:
             case SDFL_SHUTDOWN:
+#pragma info(restore)
                o.sd.adv.runProgOnce = ((mode & SDFL_EXECUTE) > 0);
                runSysClosingBox(hab, &dsd);
                break;
@@ -695,18 +702,17 @@ BOOL tryAcpiPwrOff(VOID)
 {
    BOOL fAcpiOK = FALSE;
    ACPI_API_HANDLE Hdl;
-   ULONG ul;
 
    if (g.acpifn.pfnAcpiStartApi && g.acpifn.pfnAcpiGoToSleep && g.acpifn.pfnAcpiEndApi) {
       if (g.acpifn.pfnAcpiStartApi(&Hdl) == NO_ERROR) {
          fAcpiOK = TRUE;
          dbgPrintf1("Initiating ACPI power-off.\n");
          dbgEnd();
-         ul = WinCancelShutdown(g.worker.hmq, TRUE);
+         WinCancelShutdown(g.worker.hmq, TRUE);
          ForceCommitFn(g.acpifn.pfnAcpiGoToSleep);
-         ul = DosShutdown(0L);
+         DosShutdown(0L);
          DosSleep(o.sd.wait.onPowerOff);
-         ul = g.acpifn.pfnAcpiGoToSleep(&Hdl, ACPI_STATE_S5);
+         g.acpifn.pfnAcpiGoToSleep(&Hdl, ACPI_STATE_S5);
          // The next lines will probably never be reached if poweroff was successful...
          g.acpifn.pfnAcpiEndApi(&Hdl);
          DosFreeModule(g.hmodAcpi);
@@ -778,6 +784,8 @@ exit_0:
 - Return value -----------------------------------------------------------
 VOID
 -------------------------------------------------------------------------- */
+// the compiler doesn't like cTmp getting assigned but not used
+#pragma info(none)
 VOID ForceCommitFn( PFN pAddress )
 {
     char  cTmp;
@@ -792,5 +800,6 @@ VOID ForceCommitFn( PFN pAddress )
             cTmp = *(( (volatile char *) pAddress ) + 4096 );
     }
 }
+#pragma info(restore)
 
 

@@ -317,7 +317,6 @@ static BOOL handleSysColorChange(HWND hwnd, PBTNDATA p) {
 static MRESULT overrideBtnProc(HWND hwnd, ULONG msg,
                                MPARAM mp1, MPARAM mp2, PBTNDATA p) {
    MRESULT mr;
-   HPS hps;
    ULONG flShowing, flStyle;
    PBTNDRAW pbd;
 

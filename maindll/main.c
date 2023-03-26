@@ -60,10 +60,8 @@ ULONG _System eStylerInitTerm(ULONG hmod, ULONG flag) {
          return (ULONG)initialize(hmod);
       case 1:
          return (ULONG)terminate();
-      default:
-         return 0L;
    } /* endswitch */
-   return 1L;
+   return 0;
 }
 
 
@@ -393,9 +391,6 @@ VOID stlrSetShutdownTimingDefaults(PSDTIMING psdt) {
  BOOL : TRUE/FALSE (valid/invalid operating system version).
 -------------------------------------------------------------------------- */
 static BOOL cacheSysVals(VOID) {
-   HDC hdc = NULLHANDLE;
-   HPS hps = NULLHANDLE;
-   HMODULE hmod;
    CHAR achDLLs[512];
    g.is.bootdrv = 'A' + sysInfo(QSV_BOOT_DRIVE) - 1; // boot drive letter
    if ((g.is.version = sysInfo(QSV_VERSION_MINOR)) < VERSUPPORTED)

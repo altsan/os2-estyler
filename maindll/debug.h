@@ -26,15 +26,15 @@
    #define dbgPrintf6(a,b,c,d,e,f)    _dbgPrintf(a,b,c,d,e,f)
    #define dbgPrintf7(a,b,c,d,e,f,g)  _dbgPrintf(a,b,c,d,e,f,g)
 #else
-   #define dbgInit()                  ((void)0)
-   #define dbgEnd()                   ((void)0)
-   #define dbgPrintf1(a)              ((void)0)
-   #define dbgPrintf2(a,b)            ((void)0)
-   #define dbgPrintf3(a,b,c)          ((void)0)
-   #define dbgPrintf4(a,b,c,d)        ((void)0)
-   #define dbgPrintf5(a,b,c,d,e)      ((void)0)
-   #define dbgPrintf6(a,b,c,d,e,f)    ((void)0)
-   #define dbgPrintf7(a,b,c,d,e,f,g)  ((void)0)
+   #define dbgInit()                  {}
+   #define dbgEnd()                   {}
+   #define dbgPrintf1(a)              {}
+   #define dbgPrintf2(a,b)            {}
+   #define dbgPrintf3(a,b,c)          {}
+   #define dbgPrintf4(a,b,c,d)        {}
+   #define dbgPrintf5(a,b,c,d,e)      {}
+   #define dbgPrintf6(a,b,c,d,e,f)    {}
+   #define dbgPrintf7(a,b,c,d,e,f,g)  {}
 #endif
 
 #endif // #ifndef _STLR_DEBUG_H_
