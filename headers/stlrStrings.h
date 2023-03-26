@@ -19,11 +19,18 @@
 #ifndef _ESTYLER_TEXTSTRINGS_H_
    #define _ESTYLER_TEXTSTRINGS_H_
 
+#ifndef VERMAJ
+#include "stlrVersion.h"
+#endif
+
+// M2S - convert the content of a macro to a string
+#define MKS(x) #x      // convert the resolved arg to a string
+#define M2S(a) MKS(a)  // resolve the arg before making it a string
 
 /* --------------------------------------------------------------------------
  FILENAMES         module and file names
 */
-#define SZ_MODULENAME    "ESTLRL11"         // ESTLRL11 (runtime module)
+#define SZ_MODULENAME    "ESTLRL" M2S(VERMAJ) M2S(VERMIN) // ESTLRLxx (runtime module)
 #define SZ_RESMODULE     "ESTLRLRS"         // ESTLRLRS (resources module)
 #define SZ_LOGFILE       ":\\Styler.log"    // errors log file
 #define SZPRO_PROFNAME   "STYLER.INI"       // profile name

@@ -1,51 +1,69 @@
-# To add new extensions to the inference rules uncomment and redefine this:
-#.SUFFIXES:
+#######################################################################
 #
-#.SUFFIXES: \
-#    .C .obj .rc .res
+# Styler\maindll makefile
+#
+# This builds Styler hook dll
+#
+# Tools used: nmake32  ilink(v5)  vacpp(v3.08 or v3.65)
+#
+#
+# Set the path to the ACPI Toolkit headers here or in the environment
 
-EXTRAFLAGS =
-# To build using the APIEX000 headers set the following:
-# EXTRAFLAGS = /DUSE_APIEX=1
+!ifndef ACPI_INCL
+ACPI_INCL = C:\path\to\acpi\h
+!endif
 
-# compiler, linker, resource compiler, resource binder MACRO
 
+#######################################################################
+#
+# Variables
+#
+
+# this pulls in Styler's version number
+!include "$(MAKEDIR)\..\headers\stlrVersion.h"
+
+# versioned name of the dll
+STYLER_DLL = estlrl$(VERMAJ)$(VERMIN).dll
+
+# compiler, linker
 CC = icc.exe
 CL = ilink.exe
-RC = rc.exe
-RB = rc.exe
 
 # compiler and linker flags
+INCL = /I..\headers /I..\shared\headers /I$(ACPI_INCL)
+WARN = /Wall+ext-gnr-got-par-por-ppc-ppt-trd-uni-
+EXTRA = /DACPI_ENABLED
+
+# To build using the APIEX000 headers set the following:
+# EXTRA += /DUSE_APIEX=1
 
 # Debug version
 !ifdef DEBUG
-CFLAGS = /I..\headers /I$(APIEXINCL) /Ss /Q /Ti /Rn /Ge- /G5 /C /DDEBUGGING=2 $(EXTRAFLAGS)
-LFLAGS = /DE /E:2 /PM:PM /PACKD /A:4 /OPTF /NOL /M /L
+CFLAGS = /Ti /Ss /Q /Rn /Ge- /G5 /C $(WARN) $(EXTRA) $(INCL) /DDEBUGGING=2
+LFLAGS = /EXEPACK:2 /PM:PM /NOLOGO /MAP /LINE /DEBUG
 
+# Release version
 !else
-# RELEASE version
-CFLAGS = /I..\headers /I$(APIEXINCL) /Ss /Q /O /Oc /Rn /Ge- /G5 /C $(EXTRAFLAGS)
-LFLAGS = /E:2 /PM:PM /PACKD /A:4 /OPTF /NOL /M /L
-
+CFLAGS = /O  /Ss /Q /Rn /Ge- /G5 /C $(WARN) $(EXTRA) $(INCL)
+LFLAGS = /EXEPACK:2 /PM:PM /NOLOGO /MAP
 !endif
 
-!ifdef ACPI_ENABLED
-CFLAGS = $(CFLAGS) /I$(ACPIINCL) /DACPI_ENABLED
-# LIBS   = $(ACPILIB)
+# BldLevelInf.cmd's command line and options
+BLDLVL = $(MAKEDIR)\..\shared\util\BldLevelInf.cmd
+BLDLVL_OPTS  = -V"$(VERMAJ).$(VERMIN)" -M"$(VERBUILD)"
+BLDLVL_OPTS += -P"$(VERMAJ).$(VERMIN)-$(VERBUILD)"
+BLDLVL_OPTS += -N"Alessandro Cantatore" -D"Styler hook library"
 
-!else
-LIBS=
+#######################################################################
+#
+# Targets
+#
+# Note: ilink will warn "entry point ignored; specified previously"
+# because Styler's custom _DLL_InitTerm replaces the C-RTL's version.
 
-!endif
+all: $(STYLER_DLL)
 
-
-.c.obj:
-   $(CC) $(CFLAGS) $<
-
-all: estlrl11.dll
-
-# ESTLRL11.DLL
-estlrl11.dll: \
+$(STYLER_DLL): \
    main.obj \
    bitmaps.obj \
    process.obj \
@@ -59,10 +77,11 @@ estlrl11.dll: \
    utils.obj \
    workthread.obj \
    estyler.def
-   $(CL) @<<
+   $(BLDLVL) estyler.def temp.def $(BLDLVL_OPTS)
+   $(CL) @<< estlrl.lrf
       $(LFLAGS)
-      /O:estlrl11.dll
-      estyler.def
+      /O:$@
+      temp.def
       main.obj
       bitmaps.obj
       process.obj
@@ -76,6 +95,23 @@ estlrl11.dll: \
       utils.obj
       workthread.obj
 <<
+   -@del temp.def > nul 2>&1
+
+
+clean cleanall cleandll:
+    %echo cleaning maindll
+    -@del *.obj 2> nul
+    -@del *.dll 2> nul
+    -@del *.map 2> nul
+
+
+#######################################################################
+#
+# Inference rules and dependencies
+#
+
+.c.obj:
+   $(CC) $(CFLAGS) $<
 
 main.obj       : main.c          *.h ..\headers\*.h
 bitmaps.obj    : bitmaps.c       *.h ..\headers\*.h
