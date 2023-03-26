@@ -186,11 +186,8 @@ static VOID setControlsState(HWND hwnd) {
  VOID
 -------------------------------------------------------------------------- */
 static VOID checkOptionsChanged(HWND hwnd, ULONG fl) {
-   PSZ pList;
-   ULONG cb;
    BOOL bEnable;
    WINKEY wk;
-   cb = 1;
    if (fl & CHECK_UNDOSTATE) {
       bEnable = memcmp(&g.pCurOpts->wk, g.pUndoWkOpts, sizeof(WINKEY));
       if (bEnable != DlgItemIsEnabled(g.appl.hwnd, BTN_UNDO))

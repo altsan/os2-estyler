@@ -128,7 +128,6 @@ static BOOL onDlgInit(HWND hwnd) {
  VOID
 -------------------------------------------------------------------------- */
 static VOID setControlsState(HWND hwnd, PTBARHILITE ptbo, PSZ pszBmpFile) {
-   HWND hwndLbox;
    g.state |= STLRIS_SKIPNOTIFICATION;
    dLbxItemSelect(hwnd, COMBO_TBBKGND, ptbo->bkgnd);
    setShadeList(hwnd, ptbo);
@@ -370,10 +369,8 @@ static VOID onCmdMsg(HWND hwnd, ULONG id) {
  VOID
 -------------------------------------------------------------------------- */
 static VOID onWorkerJobEnd(HWND hwnd, ULONG jobId, ULONG rc) {
-   PTBARHILITESETS p;
    switch (jobId) { // end of directory scan for bitmap files
       case STLRWID_LISTBMPFILES:
-         p = WinQueryWindowPtr(hwnd, QWL_USER);
          fillBitmapList(DlgItemHwnd(hwnd, COMBO_TBIMAGE),
                         (PLISTBMPFILES)g.worker.pCurJob->pData,
                         TRUE);
@@ -846,7 +843,6 @@ static VOID defaultOptions(HWND hwnd, PTBARHILITESETS p) {
    GpiDeleteBitmap(p->pSetsCur->bmpp.hbmp);
    stlrSetTitlebarHiliteDefaults(p->pSetsCur,
                                  (p->pBmp->flPreview == PVUPD_TITLEACTIVE));
-   *p->pBmp->pszCur;
    getTitlebarHbmp(NULLHANDLE, NULL, p->pSetsCur, NULL, p->pBmp->idRes);
    setControlsState(hwnd, p->pSetsCur, p->pBmp->pszCur);
    updatePreviewWindow(p->pBmp->flPreview);
@@ -888,7 +884,6 @@ VOID swapColors(HWND hwnd, ULONG id1, ULONG id2) {
 -------------------------------------------------------------------------- */
 static BOOL getTitlebarBitmapData(HWND hwnd, PTBARHILITESETS p) {
    PGETBMPDATA pGetBmp;
-   PSZ pszBmpFile;
    if (NULL == (pGetBmp = malloc(sizeof(GETBMPDATA) - 4)))
       return handleError(ISERR_ALLOCATION, FALSE);
    memset(pGetBmp, 0, sizeof(GETBMPDATA) - 4);

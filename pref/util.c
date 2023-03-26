@@ -261,9 +261,10 @@ BOOL handleSpinbtnEvent(HWND hwnd, ULONG ulEvent, PLONG pVal, LONG lCurVal) {
       case SPBN_DOWNARROW:
          bSpinning = TRUE;
          break;
-      case SPBN_ENDSPIN:
-         bSpinning = FALSE;
       case SPBN_CHANGE:
+      case SPBN_ENDSPIN:
+         if (ulEvent == SPBN_ENDSPIN)
+             bSpinning = FALSE;
          return !bSpinning
                 &&
                 (BOOL)WinSendMsg(hwnd, SPBM_QUERYVALUE, (MPARAM)pVal,
@@ -343,7 +344,6 @@ BOOL addFileDlg(HWND hwnd, PSZ pszFileMask) {
    FILEDLG fdlg;
    CHAR achTitle[256];
    CHAR achBtn[256];
-   ULONG ul;
    PSZ pFileName;
    pFileName = strrchr(g.achFileSel, '\\');
    strcpy(pFileName + 1, pszFileMask);
@@ -412,11 +412,10 @@ PBYTE dataDup(PBYTE pData, ULONG cbData, PULONG pCbDup) {
  VOID
 -------------------------------------------------------------------------- */
 VOID moveItem(HWND hwnd, ULONG id, INT offset) {
-   INT iMax, iItem;
+   INT iItem;
    CHAR buf[1024];
    ULONG handle;
    hwnd = DlgItemHwnd(hwnd, id);
-   iMax = wLbxItemCount(hwnd) - 1;
    iItem = wLbxItemSelected(hwnd);
    wLbxItemText(hwnd, iItem, sizeof(buf), buf);
    handle = wLbxItemHnd(hwnd, iItem);

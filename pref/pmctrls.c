@@ -78,34 +78,43 @@ BOOL xClrButtonRegister(HAB hab) {
  MRESULT.
 -------------------------------------------------------------------------- */
 MRESULT EXPENTRY xcombo2Proc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
-   PSZ pStart, pEnd, pText;
-   if (msg == WM_CHAR) {
-      if (!WinIsWindowEnabled(hwnd)) return MRFALSE;
-   } else if (msg == WM_CREATE) {
-      pText = ((PCREATESTRUCT)mp2)->pszText;
-      // call the default procedure first
-      if (pfnComboBox(hwnd, msg, mp1, mp2)) return (MRESULT)TRUE;
-      // if any text was defined in the CREATESTRUCT use it to fill the listbox
-      if (pText && *pText && (NULL != (pText = strdup(pText)))) {
-         // this is due to the stupid implementation of strchr in IBM visual AGE
-         for (pStart = pEnd = pText; *pStart; ++pEnd) {
-            if (!*pEnd) {
-               pfnComboBox(hwnd, LM_INSERTITEM, (MPARAM)LIT_END, (MPARAM)pStart);
-               break;
-            } /* endif */
-            if (*pEnd == '\t') {
-               *pEnd = 0;
-               pfnComboBox(hwnd, LM_INSERTITEM, (MPARAM)LIT_END, (MPARAM)pStart);
-               pStart = ++pEnd;
-            } /* endif */
-         } /* endfor */
-         free(pText);
-      } /* endif */
-      return (MRESULT)FALSE;
-   } /* endif */
-   return pfnComboBox(hwnd, msg, mp1, mp2);
-}
+   PSZ     pStart, pEnd, pText;
+   MRESULT mr;
 
+   if (msg == WM_CHAR) {
+      if (!WinIsWindowEnabled(hwnd))
+         return 0;
+   }
+
+   // send all msgs to the default wndproc,
+   // then exit if the current msg is not WM_CREATE 
+   mr = pfnComboBox(hwnd, msg, mp1, mp2);
+   if (msg != WM_CREATE || mr)
+      return mr;
+
+   // if any text was defined in the CREATESTRUCT use it to fill the listbox
+   pText = ((PCREATESTRUCT)mp2)->pszText;
+   if (pText && *pText) {
+
+      // this is due to the implementation of strchr in IBM visual AGE
+      for (pStart = pText, pEnd = pText; *pStart; ++pEnd)
+      {
+         if (!*pEnd) {
+            pfnComboBox(hwnd, LM_INSERTITEM, (MPARAM)LIT_END, (MPARAM)pStart);
+            break;
+         }
+
+         if (*pEnd == '\t') {
+            *pEnd = 0;
+            pfnComboBox(hwnd, LM_INSERTITEM, (MPARAM)LIT_END, (MPARAM)pStart);
+            *pEnd = '\t';
+            pStart = ++pEnd;
+         }
+      }
+   }
+
+   return 0;
+}
 
 /* --------------------------------------------------------------------------
  Color button procedure.
@@ -128,7 +137,7 @@ MRESULT EXPENTRY xClrBtnProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
             WinShowCursor(hwnd, TRUE);
          } /* endif */
          return mr;
-      }  break;
+      }
       case WM_PAINT:
          pfnBtn(hwnd, msg, mp1, mp2);
          btnPaint(hwnd);
@@ -173,6 +182,7 @@ MRESULT EXPENTRY xClrBtnProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
          ((PCREATESTRUCT)mp2)->pszText = NULL;
          // ignore BS_PRIMARYSTYLES
          WinSetWindowBits(hwnd, QWL_STYLE, 0, ~BCLRS_VALIDSTYLES);
+         return pfnBtn(hwnd, msg, mp1, mp2);
       default :
          return pfnBtn(hwnd, msg, mp1, mp2);
    } /* endswitch */
@@ -190,7 +200,6 @@ MRESULT EXPENTRY xClrBtnProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
 VOID btnPaint(HWND hwnd) {
    HPS hps;
    RECTL r;
-   BOOL bEnabled = WinIsWindowEnabled(hwnd);
    BOOL bFocus = (hwnd == WinQueryFocus(HWND_DESKTOP))
                  &&
                  !(WinStyle(hwnd) & BS_NOPOINTERFOCUS);

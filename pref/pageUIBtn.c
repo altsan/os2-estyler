@@ -250,7 +250,6 @@ static VOID onWorkerJobEnd(HWND hwnd, ULONG jobId, ULONG rc) {
  VOID
 -------------------------------------------------------------------------- */
 static VOID setControlsState(HWND hwnd, PSZ pszBmpFile) {
-   HWND hwndLbox;
    g.state |= STLRIS_SKIPNOTIFICATION;
    dBtnCheckSet(hwnd, CHK_BTNON, g.pUiData->pOpts->btn.on);
    dBtnCheckSet(hwnd, CHK_BTNTHICK, g.pUiData->pOpts->btn.border);

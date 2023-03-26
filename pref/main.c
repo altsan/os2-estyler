@@ -100,11 +100,10 @@ MRESULT EXPENTRY mainDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
                       SHORT2FROMMP(mp1), (PPAGESELECTNOTIFY)mp2);
          break;
       case WM_COMMAND:
-         if ((ULONG)mp1 == BTN_PREVIEW) {
+         if ((ULONG)mp1 == BTN_PREVIEW)
             togglePreviewWindow(FALSE);
-         } else {
+         else
             WinSendMsg(wnbkQueryTopPageHwnd(g.hwndNoteBook), msg, mp1, mp2);
-         } /* endif */
          break;
       case WM_CLOSE:
          quit();
@@ -112,7 +111,7 @@ MRESULT EXPENTRY mainDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
       case WM_ENABLE:
          wnbkSetPageHelp(g.hwndHelp, g.appl.hwnd, g.hwndNoteBook,
                          (mp1 ? wnbkQueryTopPageHwnd(g.hwndNoteBook) : 0));
-         // fall through the next statement
+         return WinDefDlgProc(hwnd, msg, mp1, mp2);
       default:
          return WinDefDlgProc(hwnd, msg, mp1, mp2);
    } /* endswitch */
@@ -400,7 +399,6 @@ VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, PPAGESELECTNOTIFY ppsn) {
          } /* endif */
       // find the new page index and reset the buttons state
       } else if (event == BKN_PAGESELECTED) {
-         MRESULT mr;
 //         wnbkSetPageHelp(g.hwndHelp, g.appl.hwnd,
 //                         g.hwndNoteBook, ppsn->ulPageIdNew);
          if (NULLHANDLE

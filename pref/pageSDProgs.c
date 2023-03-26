@@ -196,7 +196,6 @@ static VOID fillRunProgramList(HWND hwnd) {
  VOID
 -------------------------------------------------------------------------- */
 static VOID setControlsState(HWND hwnd) {
-   HWND hwndLbox;
    g.state |= STLRIS_SKIPNOTIFICATION;
    dBtnCheckSet(hwnd, CHK_SDWNRUNPROG, g.pCurOpts->sd.adv.runPrograms);
    setEnableDependencies(hwnd);

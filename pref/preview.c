@@ -321,6 +321,7 @@ MRESULT EXPENTRY activeDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
          break;
       case WM_WINDOWPOSCHANGED:
          if (((PSWP)mp1)->fl & SWP_SIZE) rearrangeControls(hwnd, (PSWP)mp1);
+         return WinDefDlgProc(hwnd, msg, mp1, mp2);
       default:
          return WinDefDlgProc(hwnd, msg, mp1, mp2);
    } /* endswitch */
@@ -729,8 +730,6 @@ static VOID paintBtn(HWND hwnd, HPS hps) {
    ULONG flHilite;
    CHAR buf[64];
    ULONG cbText;
-   POINTL aptl[2];
-   ULONG cyText;
    LONG color;
    ULONG style;
    PVBTN btn;

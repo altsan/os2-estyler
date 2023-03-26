@@ -67,7 +67,6 @@ MRESULT EXPENTRY uiDlgPageProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
  BOOL : TRUE/FALSE (success/error)
 -------------------------------------------------------------------------- */
 static BOOL onDlgInit(HWND hwnd) {
-   INT i;
    initPage(hwnd);
    setControlsState(hwnd);
    checkDefaultState();
