@@ -16,6 +16,7 @@
 *.ZIP
 *.bak
 *.BAK
+build.log
 
 # ignore rel directory
 rel/

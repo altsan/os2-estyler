@@ -13,7 +13,7 @@
 # Set the path to the ACPI Toolkit headers here or in the environment
 
 !ifndef ACPI_INCL
-%setenv ACPI_INCL = C:\path\to\acpi\h
+%setenv ACPI_INCL = $(MAKEDIR)\shared\acpi_tk\h
 !endif
 
 

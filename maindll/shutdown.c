@@ -48,7 +48,9 @@ VOID ForceCommitFn( PFN pAddress );
 // global variables ---------------------------------------------------------
 
 // stuff to quiet the compiler
+#ifdef ACPI_TRACE_POINT
 void   *dummy1 = (void*)&AcpiTracePoint;
+#endif
 void   *dummy2 = (void*)&AcpiDebugPrintRaw;
 void   *dummy3 = (void*)&AcpiDebugPrint;
 
