@@ -24,7 +24,7 @@
 # FYI... the '-=' switch below avoids rebuilding an up-to-date
 # target when it has the same timestamp as one of its dependents
 
-all: dll exe nlv
+all: dll exe cli nlv
 
 dll:
     %cd $(MAKEDIR)\maindll
@@ -33,6 +33,11 @@ dll:
 
 exe:
     %cd $(MAKEDIR)\pref
+    @echo .
+    @nmake32 -= $(ARGS)
+
+cli:
+    %cd $(MAKEDIR)\CLI-shutdown
     @echo .
     @nmake32 -= $(ARGS)
 
@@ -46,9 +51,9 @@ de en es ja nl ru tw:
     %do nlv
 
 
-clean cleanall: clean_msg cleandll cleanexe cleannlv
+clean cleanall: clean_msg cleandll cleanexe cleancli cleannlv
 
-cleandll cleanexe cleannlv:
+cleandll cleanexe cleancli cleannlv:
     %set ARGS = -c $@
     %do $[c,$@,6,8]
 
@@ -57,6 +62,6 @@ cleande cleanen cleanes cleanja cleannl cleanru cleantw:
     %do nlv
 
 clean_msg:
-    @echo Other targets: cleanall cleandll cleanexe cleannlv
+    @echo Other targets: cleanall cleandll cleanexe cleancli cleannlv
     @echo + cleande cleanen cleanes cleanja cleannl cleanru cleantw
 
