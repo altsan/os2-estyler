@@ -61,7 +61,7 @@ BLDLVL_OPTS += -N"Alessandro Cantatore" -D"Styler hook library"
 # Note: ilink will warn "entry point ignored; specified previously"
 # because Styler's custom _DLL_InitTerm replaces the C-RTL's version.
 
-all: $(STYLER_DLL)
+all: $(STYLER_DLL) symbols
 
 $(STYLER_DLL): \
    main.obj \
@@ -96,6 +96,10 @@ $(STYLER_DLL): \
       workthread.obj
 <<
    -@del temp.def > nul 2>&1
+
+
+symbols: estlrl$(VERMAJ)$(VERMIN).map
+   @mapsym $<
 
 
 clean cleanall cleandll:

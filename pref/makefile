@@ -63,7 +63,7 @@ RBFLAGS = -x2 -n
 # Targets
 #
 
-all: Styler.exe
+all: Styler.exe symbols
 
 Styler.exe:          \
    main.obj          \
@@ -130,6 +130,10 @@ eStyler.res: eStyler.rc ..\\nls\\res\\Styler.ICO
     %cd ..
     $(RC) $(RCFLAGS) pref\eStyler.rc
     %cd $(MAKEDIR)
+
+
+symbols: Styler.map
+   @mapsym $<
 
 
 clean cleanall cleanexe:

@@ -52,7 +52,7 @@ BLDLVL_OPTS += -N"Alessandro Cantatore" -D"Styler enhanced shutdown command"
 # Note: ilink will warn "entry point ignored; specified previously"
 # because Styler's custom _DLL_InitTerm replaces the C-RTL's version.
 
-all: $(SHUTDOWN_EXE)
+all: $(SHUTDOWN_EXE) symbols
 
 $(SHUTDOWN_EXE): \
    shutdown.obj
@@ -65,6 +65,10 @@ $(SHUTDOWN_EXE): \
       shutdown.obj
 <<
    -@del temp.def > nul 2>&1
+
+
+symbols: shutdown.map
+   @mapsym $<
 
 
 clean cleanall cleancli:
