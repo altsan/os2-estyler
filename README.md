@@ -1,15 +1,15 @@
-Styler (also known as eStyler or StylerLite) is a graphical UI enhancement for 
-OS/2 Presentation Manager.  It was originally written by Alessandro Cantatore,
-based in part on his Styler/2 product.  It is now maintained by Alexander 
-Taylor.
+Styler (also known as eStyler or StylerLite) is a graphical UI enhancement
+for OS/2 Presentation Manager.  It was originally written by Alessandro
+Cantatore, based in part on his Styler/2 product.  It is now maintained by
+Alexander Taylor.
 
 Building the source requires NMake32 and the IBM VisualAge C++ compiler; 
 see `README.txt` for more information.
 
-The Styler preferences app makes use of Alessandro's AFCUTL05.DLL library, 
-the source code of which is included in the Styler/2 project (hosted at 
-https://github.com/OS2World/UTIL-WPS-Styler_2) in the `utildll` directory.
-For convenience, a prebuilt DLL and import library are included in this
+The Styler preferences app makes use of Alessandro's AFCUTL05 library, the
+the source code for which is part of the Styler/2 project (hosted at 
+https://github.com/OS2World/UTIL-WPS-Styler_2 under `utildll`).  For
+convenience, a prebuilt DLL and import library are included in this 
 repository.
 
 Styler is licensed under the GNU GPL version 3:
