@@ -18,6 +18,8 @@
 *.ZIP
 *.bak
 *.BAK
+*.wpi
+*.WPI
 build.log
 
 # ignore rel directory
