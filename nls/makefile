@@ -13,6 +13,8 @@
 #
 # N.B. you can also build a specific NLV from the top-level makefile
 
+# Force use of RC v4.x (included by this name in the IBM toolkit)
+RC = rc16.exe
 
 #######################################################################
 #
@@ -83,7 +85,7 @@ $(MAKEDIR)\$(XX)\res\estlrlrs.dll: \
     $(BLDLVL) $(BLDLVL_SRC) $(BLDLVL_TMP) $(BLDLVL_OPTS)
     ilink /NOL /DLL /OUT:$@ $(SRC_PATH)\estlrlrs.obj $(BLDLVL_TMP)
     -@del $(BLDLVL_TMP) > nul 2>&1
-    rc -x2 -n $*.res $@
+    $(RC) -x2 -n $*.res $@
 
 $(MAKEDIR)\$(XX)\res\estlrlrs.res: \
         $(SRC_PATH)\*.rc \
@@ -91,7 +93,7 @@ $(MAKEDIR)\$(XX)\res\estlrlrs.res: \
         $(MAKEDIR)\$(XX)\res\textres.h
     %cd $(SRC_PATH)
     @echo .
-    rc $(RC_OPTS) $(RC_INCL) $(SRC_PATH)\estylerres.rc $@
+    $(RC) $(RC_OPTS) $(RC_INCL) $(SRC_PATH)\estylerres.rc $@
     %cd $(MAKEDIR)
 
 !endfor

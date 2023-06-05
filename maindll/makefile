@@ -78,7 +78,7 @@ $(STYLER_DLL): \
    workthread.obj \
    estyler.def
    $(BLDLVL) estyler.def temp.def $(BLDLVL_OPTS)
-   $(CL) @<< estlrl.lrf
+   -4$(CL) @<< estlrl.lrf
       $(LFLAGS)
       /O:$@
       temp.def

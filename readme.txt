@@ -5,10 +5,8 @@ The current sources can now be built using IBM NMake32.  The
 previous kbuild system may still work (no promises) but is
 not currently maintained.
 
-Building Styler requires the VisualAge C++ 3.08 compiler.  In
-principal it should be possible to build with version 3.65,
-but there seems to be some linking problem preventing this
-from working at the moment.
+Building Styler requires the IBM C/C++ Compiler (version 
+3.65 is recommended) and the OS/2 4.5x Toolkit.
 
 The proper environment for the IBM compiler must be present.
 
