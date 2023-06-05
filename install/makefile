@@ -33,8 +33,10 @@ base:
     %foreach d in $(PKG_DIRS_COMMON)
       -mkdir $(MAKEDIR)\$(d) 2> nul
     %endfor
+    copy $(TOPDIR)\shared\util\afcutl05.dll $(MAKEDIR)\1\afcutl05.dll
     copy $(TOPDIR)\maindll\estlrl12.dll $(MAKEDIR)\1\estlrl12.dll
-    copy $(TOPDIR)\shared\util\afcutl05.lib $(MAKEDIR)\1\afcutl05.lib
+    copy $(TOPDIR)\maindll\estlrl12.map $(MAKEDIR)\2\estlrl12.map
+    copy $(TOPDIR)\maindll\estlrl12.sym $(MAKEDIR)\2\estlrl12.sym
     copy $(TOPDIR)\pref\styler.exe $(MAKEDIR)\2\styler.exe
     copy $(TOPDIR)\pref\styler.map $(MAKEDIR)\2\styler.map
     copy $(TOPDIR)\pref\styler.sym $(MAKEDIR)\2\styler.sym
@@ -86,7 +88,6 @@ clean cleanall cleaninstall:
     %echo cleaning install
     -@del styler-*-$(WPI_SUFFIX).wpi 2> nul
     -@del 1\*.dll 2> nul
-    -@del 1\*.lib 2> nul
     -@del 2\*.exe 2> nul
     -@del 2\*.map 2> nul
     -@del 2\*.sym 2> nul

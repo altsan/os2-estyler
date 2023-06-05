@@ -69,10 +69,10 @@
          SELECT
          NOBASE
          REQUIRES=2
-         CREATEOBJECT="REPLACE WPFolder|Styler for OS/2|<WP_DESKTOP>|OBJECTID=<STYLER_FOLDER>;"
-         CREATEOBJECT="REPLACE WPProgram|Styler Preferences|<STYLER_FOLDER>|EXENAME=$(2)\STYLER.EXE;PROGTYPE=PM;CCVIEW=NO;ICONRESOURCE=1,ESTLRLRS;OBJECTID=<STYLER_PREF>;"
-         CREATEOBJECT="REPLACE WPProgram|Shutdown Options|<STYLER_FOLDER>|EXENAME=$(2)\STYLER.EXE;PARAMETERS=S;PROGTYPE=PM;CCVIEW=NO;ICONRESOURCE=3,ESTLRLRS;OBJECTID=<STYLER_SHUTDOWN>;"
-         CREATEOBJECT="REPLACE WPProgram|Keyboard - OEM Keys|<STYLER_FOLDER>|EXENAME=$(2)\STYLER.EXE;PARAMETERS=W;PROGTYPE=PM;CCVIEW=NO;ICONRESOURCE=4,ESTLRLRS;OBJECTID=<STYLER_KEYS>;"
+         CREATEOBJECT="WPFolder|Styler for OS/2|<WP_DESKTOP>|OBJECTID=<STYLER_FOLDER>;"
+         CREATEOBJECT="WPProgram|Styler Preferences|<STYLER_FOLDER>|EXENAME=$(2)\STYLER.EXE;PROGTYPE=PM;CCVIEW=NO;ICONRESOURCE=1,ESTLRLRS;OBJECTID=<STYLER_PREF>;"
+         CREATEOBJECT="WPProgram|Shutdown Options|<STYLER_FOLDER>|EXENAME=$(2)\STYLER.EXE;PARAMETERS=S;PROGTYPE=PM;CCVIEW=NO;ICONRESOURCE=3,ESTLRLRS;OBJECTID=<STYLER_SHUTDOWN>;"
+         CREATEOBJECT="WPProgram|Keyboard - OEM Keys|<STYLER_FOLDER>|EXENAME=$(2)\STYLER.EXE;PARAMETERS=W;PROGTYPE=PM;CCVIEW=NO;ICONRESOURCE=4,ESTLRLRS;OBJECTID=<STYLER_KEYS>;"
     >The Styler English-language resources.</PCK>
 
     <PCK INDEX=2001 PACKAGEID="Alessandro Cantatore\Styler\Help (English)\1\2\0"
@@ -136,7 +136,7 @@
 
         <p>After the installation has finished, you must reboot.</p><br>
 
-        <p><b>Upgrading from older versions of eCSStylerLite and eStyler</b></p>
+        <p><b>Upgrading from eCSStylerLite / eStyler version 1.0</b></p>
 
         <p>Styler was heavily rewritten since version 1.0.
         Some of the major differences include:
@@ -148,14 +148,22 @@
               options are now available, and the termination list can be
               configured directly using the settings program.
           <li>ACPI is now supported in addition to APM for shutdown and suspend.
-        </ul><br>
+        </ul></p><br>
 
         <p>If you currently have eCSStylerLite version 1.0 installed, you are
         recommended to uninstall it before installing this version.</p>
 
-        <p>If you have eStyler version 1.1 installed, you can upgrade it to 1.2
-        by installing this package.  Note that some of the Styler desktop objects
-        may become duplicated as a result.</p><br>
+        <p><b>Upgrading from Styler / eStyler version 1.1</b></p>
+
+        <p>If you have Styler version 1.1 installed, you can upgrade it to 1.2
+        by installing this package.  Two things to potentially be aware of:
+        <ol>
+          <li>Some of the Styler desktop objects may move or become duplicated.
+          <li>The old Styler 1.1 runtime library <b>ESTLRL11.DLL</b> will be
+              removed from the WarpIN database but will not be deleted. After
+              rebooting, you can safely delete this file if you wish.
+        </ol>
+        </p><br>
 
         <p>Select the <b>Next</b> button to begin the installation.</p>
         <br></README>
