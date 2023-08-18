@@ -55,7 +55,7 @@ MRESULT EXPENTRY uiDlgPageProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
          onCmdMsg(hwnd, (ULONG)mp1);
          break;
       case WM_PRESPARAMCHANGED:
-         if (mp1 == PP_FONTNAMESIZE)
+         if ((LONG)mp1 == PP_FONTNAMESIZE)
              shiftButtonAfterCheckbox(hwnd, BTN_DLGFONT, CHK_DLGFONTON);
          break;
       default:
@@ -145,10 +145,6 @@ static VOID onCmdMsg(HWND hwnd, ULONG id) {
  VOID
 -------------------------------------------------------------------------- */
 static VOID setControlsState(HWND hwnd) {
-   HWND hCtl;
-   LONG x;
-   SWP  swp;
-
    g.state |= STLRIS_SKIPNOTIFICATION;
    setCtrlTextParm(hwnd, CHK_DLGFONTON, IDS_DLGFONTON, g.pUiData->pOpts->dlg.achFont);
 
