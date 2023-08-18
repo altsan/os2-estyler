@@ -22,6 +22,7 @@ static BOOL onDlgInit(HWND hwnd);
 static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl);
 static VOID onCmdMsg(HWND hwnd, ULONG id);
 static VOID setControlsState(HWND hwnd);
+static VOID shiftButtonAfterCheckbox(HWND hwnd, USHORT usBtnID, USHORT usChkID );
 static VOID setEnableDependencies(HWND hwnd);
 static VOID checkOptionsChanged(VOID);
 static VOID checkApplyState(VOID);
@@ -52,6 +53,10 @@ MRESULT EXPENTRY uiDlgPageProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
          break;
       case WM_COMMAND:
          onCmdMsg(hwnd, (ULONG)mp1);
+         break;
+      case WM_PRESPARAMCHANGED:
+         if (mp1 == PP_FONTNAMESIZE)
+             shiftButtonAfterCheckbox(hwnd, BTN_DLGFONT, CHK_DLGFONTON);
          break;
       default:
          return WinDefDlgProc(hwnd, msg, mp1, mp2);
@@ -148,19 +153,36 @@ static VOID setControlsState(HWND hwnd) {
    setCtrlTextParm(hwnd, CHK_DLGFONTON, IDS_DLGFONTON, g.pUiData->pOpts->dlg.achFont);
 
    // slide the font dialog btn leftward to the end of the checkbox
-   hCtl = WinWindowFromID(hwnd, CHK_DLGFONTON);
-   WinSendMsg(hCtl, BM_AUTOSIZE, 0, 0);
-   WinQueryWindowPos(hCtl, &swp);
-   x = swp.x + swp.cx + 8;
-   hCtl = WinWindowFromID(hwnd, BTN_DLGFONT);
-   WinQueryWindowPos(hCtl, &swp);
-   if (swp.x > x)
-      WinSetWindowPos(hCtl, 0, x, swp.y, 0, 0, SWP_MOVE | SWP_NOREDRAW);
+   shiftButtonAfterCheckbox(hwnd, BTN_DLGFONT, CHK_DLGFONTON);
 
    dBtnCheckSet(hwnd, CHK_DLGFONTON, g.pUiData->pOpts->dlg.on);
    dBtnCheckSet(hwnd, CHK_DLGOVERPP, g.pUiData->pOpts->dlg.overridePP);
    setEnableDependencies(hwnd);
    g.state &= ~STLRIS_SKIPNOTIFICATION;
+}
+
+
+/* --------------------------------------------------------------------------
+ Reposition a button leftward to the end of a checkbox
+- Parameters -------------------------------------------------------------
+ HWND hwnd        : dialog window handle.
+ USHORT usBtnID   : ID of button control
+ USHORT usChkID   : ID of checkbox control
+- Return value -----------------------------------------------------------
+ VOID
+-------------------------------------------------------------------------- */
+static VOID shiftButtonAfterCheckbox(HWND hwnd, USHORT usBtnID, USHORT usChkID ) {
+   HWND hCtl;
+   LONG x;
+   SWP  swp;
+
+   hCtl = WinWindowFromID(hwnd, usChkID);
+   WinSendMsg(hCtl, BM_AUTOSIZE, 0, 0);
+   WinQueryWindowPos(hCtl, &swp);
+   x = swp.x + swp.cx + 8;
+   hCtl = WinWindowFromID(hwnd, usBtnID);
+   WinQueryWindowPos(hCtl, &swp);
+   WinSetWindowPos(hCtl, 0, x, swp.y, 0, 0, SWP_MOVE | SWP_NOREDRAW);
 }
 
 
@@ -331,7 +353,7 @@ static VOID defaultOptions(HWND hwnd) {
 static VOID selectFont(HWND hwnd) {
    if (fontDlg(hwnd, IDS_DIALOGFONT, IDS_FONTDLGSAMPLE,
                g.pUiData->pOpts->dlg.achFont)) {
-      setCtrlTextParm(hwnd, TXT_DLGFONT, IDS_FONT_, g.pUiData->pOpts->dlg.achFont);
+      setCtrlTextParm(hwnd, CHK_DLGFONTON, IDS_DLGFONTON, g.pUiData->pOpts->dlg.achFont);
       checkOptionsChanged();
       updatePreviewWindow(PVUPD_DLGFONT);
    } /* endif */
