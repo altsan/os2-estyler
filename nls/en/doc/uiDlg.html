@@ -6,22 +6,32 @@
 
 <br>
 Usually, when no other kind of font has been explicitly specified by
-the programmer, all dialog windows use the ugly <i>System Proportional</i>
+the programmer, all dialog windows use the <i>System Proportional</i>
 font.
 <p>
-Styler allows to override this system behaviour forcing all dialog
-windows to use the user's favourite font.<br>
-When the <b>Set a default font for the dialog windows</b> checkbox
-is checked all dialog windows will use the font selected via the
-<b>ellipsis</b> button below.<br>
-This will work in all dialog windows which use the system default font.
-<b>Override Presentation Parameters</b> forces all dialog windows to use
-the selected font.
+Styler allows you to override this behaviour by forcing dialog windows
+to use the system window text font (as defined in the current desktop
+scheme). Enable this behaviour by selecting the <b>Use &lt;font&gt;
+for dialog windows</b> checkbox.
+<p>
+You can use the OS/2 Scheme Palette to define or change the window text
+font.
+<p>
+If no window text font is defined in the scheme, a <b>...</b> button
+will be shown here, allowing you to select a dialog font to use.
+<p>
+This will work in all dialog windows which have no explicit font defined.
+Selecting the <b>Override non-default fonts</b> checkbox will also force
+dialog windows which specify an explicit font to use the window text font
+instead, subject to the limitation noted below.
 <p>
 <b>Note:</b><br>
-The dialog controls inherit the font attribute (presentation parameter)
-from the dialog unless they have been explicitly set to use a different
-font. In this latter case, the Styler font feature cannot work.
+Individual controls on a dialog will inherit the font attribute (presentation
+parameter) from the dialog window itself, <i>unless</i> they have been
+explicitly set to use a different font. In this latter case, the Styler font
+feature will not apply to them. Also note that this feature only affects
+dialog windows, and not other types of windows (such as frames and client
+windows)
 <p>
 <b>See also:</b>
 <ul compact>
