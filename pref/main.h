@@ -261,6 +261,8 @@ BOOL addUniqueFileName(HWND hwnd, ULONG lboxId, PSZ pszItem, INT offset);
 VOID selectListItem(HWND hlbox, PSZ pszItem);
 BOOL setProfileString(HINI hini, PSZ pszApp, PSZ pszKey, PSZ pData);
 BOOL setProfileData(HINI hini, PSZ pszApp, PSZ pszKey, PVOID pData, ULONG cb);
+VOID emboldenCtrlText(HWND hwnd, USHORT idCtrl, PSZ pszFont);
+VOID underlineCtrlText(HWND hwnd, USHORT idCtrl, PSZ pszFont);
 
 // preview.c
 VOID togglePreviewWindow(BOOL pageTurned);

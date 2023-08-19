@@ -534,3 +534,56 @@ BOOL setProfileData(HINI hini, PSZ pszApp, PSZ pszKey, PVOID pData, ULONG cb) {
    return TRUE;
 }
 
+
+/* --------------------------------------------------------------------------
+ Try and set the window control text font to the bold version of the
+ specified font.
+- Parameters -------------------------------------------------------------
+ HWND hwnd     : Parent window of the control
+ USHORT idCtrl : Window ID of the control
+ PSZ pszFont   : Font to embolden
+- Return value -----------------------------------------------------------
+ VOID
+-------------------------------------------------------------------------- */
+VOID emboldenCtrlText(HWND hwnd, USHORT idCtrl, PSZ pszFont) {
+   HPS hps;
+   CHAR *ptr;
+   CHAR achBoldFont[CCH_FONTDATA] = {0};
+   LONG lFonts = 1;
+
+   if (!pszFont) return;
+   strncpy(achBoldFont, pszFont, CCH_FONTDATA-6);
+   strcat(achBoldFont, " Bold");
+
+   hps = WinGetScreenPS(HWND_DESKTOP);
+   ptr = strchr(achBoldFont, '.');
+   if (ptr && GpiQueryFonts(hps, QF_PUBLIC | QF_PRIVATE,
+                            ++ptr, &lFonts, sizeof(FONTMETRICS), NULL))
+   {
+      WinSetPresParam(WinWindowFromID(hwnd, idCtrl),
+                      PP_FONTNAMESIZE, strlen(achBoldFont), achBoldFont);
+   }
+   WinReleasePS(hps);
+}
+
+
+/* --------------------------------------------------------------------------
+ Try and set the window control text font to an underlined version of the
+ specified font.
+- Parameters -------------------------------------------------------------
+ HWND hwnd     : Parent window of the control
+ USHORT idCtrl : Window ID of the control
+ PSZ pszFont   : Font to underline
+- Return value -----------------------------------------------------------
+ VOID
+-------------------------------------------------------------------------- */
+VOID underlineCtrlText(HWND hwnd, USHORT idCtrl, PSZ pszFont) {
+   CHAR achUlFont[CCH_FONTDATA] = {0};
+
+   if (!pszFont) return;
+   strncpy(achUlFont, pszFont, CCH_FONTDATA-12);
+   strcat(achUlFont, ".Underscore");
+   WinSetPresParam(WinWindowFromID(hwnd, idCtrl),
+                   PP_FONTNAMESIZE, strlen(achUlFont), achUlFont);
+}
+
