@@ -130,8 +130,10 @@ VOID updatePreviewWindow(ULONG updateFlag) {
       mUpdatePreviewControl(hwndActive, ID_PVBTNDEFAULT);
    if (updateFlag & PVUPD_BTNDISABLED)
       mUpdatePreviewControl(hwndActive, ID_PVBTNDISABLED);
-   if (updateFlag & PVUPD_DLGFONT)
+   if (updateFlag & PVUPD_DLGFONT) {
       setDialogFont(hwndActive);
+      setDialogFont(hwndInactive);
+   }
 }
 
 
