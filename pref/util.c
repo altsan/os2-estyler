@@ -546,24 +546,12 @@ BOOL setProfileData(HINI hini, PSZ pszApp, PSZ pszKey, PVOID pData, ULONG cb) {
  VOID
 -------------------------------------------------------------------------- */
 VOID emboldenCtrlText(HWND hwnd, USHORT idCtrl, PSZ pszFont) {
-   HPS hps;
-   CHAR *ptr;
-   CHAR achBoldFont[CCH_FONTDATA] = {0};
-   LONG lFonts = 1;
+   CHAR achBoldFont[CCH_FONTDATA];
 
    if (!pszFont) return;
    strncpy(achBoldFont, pszFont, CCH_FONTDATA-6);
    strcat(achBoldFont, " Bold");
-
-   hps = WinGetScreenPS(HWND_DESKTOP);
-   ptr = strchr(achBoldFont, '.');
-   if (ptr && GpiQueryFonts(hps, QF_PUBLIC | QF_PRIVATE,
-                            ++ptr, &lFonts, sizeof(FONTMETRICS), NULL))
-   {
-      WinSetPresParam(WinWindowFromID(hwnd, idCtrl),
-                      PP_FONTNAMESIZE, strlen(achBoldFont), achBoldFont);
-   }
-   WinReleasePS(hps);
+   m_setFont(WinWindowFromID(hwnd, idCtrl), achBoldFont);
 }
 
 
@@ -578,12 +566,11 @@ VOID emboldenCtrlText(HWND hwnd, USHORT idCtrl, PSZ pszFont) {
  VOID
 -------------------------------------------------------------------------- */
 VOID underlineCtrlText(HWND hwnd, USHORT idCtrl, PSZ pszFont) {
-   CHAR achUlFont[CCH_FONTDATA] = {0};
+   CHAR achUlFont[CCH_FONTDATA];
 
    if (!pszFont) return;
    strncpy(achUlFont, pszFont, CCH_FONTDATA-12);
    strcat(achUlFont, ".Underscore");
-   WinSetPresParam(WinWindowFromID(hwnd, idCtrl),
-                   PP_FONTNAMESIZE, strlen(achUlFont), achUlFont);
+   m_setFont(WinWindowFromID(hwnd, idCtrl), achUlFont);
 }
 

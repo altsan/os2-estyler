@@ -62,9 +62,9 @@ static BOOL onDlgInit(HWND hwnd) {
    for (i = BTN_APPLY; i <= BTN_PREVIEW; ++i)
       WinEnableControl(g.appl.hwnd, i, FALSE);
 
-   if (g.pCurOpts->ui.dlg.on) {
-      emboldenCtrlText(hwnd, TXT_PIPRODUCT, g.pCurOpts->ui.dlg.achFont);
-      underlineCtrlText(hwnd, BTN_PIURL, g.pCurOpts->ui.dlg.achFont);
+   if (*g.achUIFont) {
+      emboldenCtrlText(hwnd, TXT_PIPRODUCT, g.achUIFont);
+      underlineCtrlText(hwnd, BTN_PIURL, g.achUIFont);
       WinSendMsg(WinWindowFromID(hwnd, BTN_PIURL), BM_AUTOSIZE, 0, 0);
    }
    return TRUE;

@@ -248,6 +248,15 @@ static BOOL setNotebookPages(HWND hwnd) {
    // fill the notebook control
    g.state |= STLRIS_INSERTINGPAGES;
    g.hwndNoteBook = DlgItemHwnd(hwnd, PREF_NOTEBOOK);
+
+   // set the UI to the system window text font
+   if (PrfQueryProfileString(HINI_USERPROFILE, "PM_SystemFonts",
+                             "WindowText", 0, g.achUIFont,
+                             sizeof(g.achUIFont)) > 3)
+      m_setFont(g.appl.hwnd, g.achUIFont);
+   else
+      g.achUIFont[0] = '\0';
+
    switch (g.mode) {
       case IDX_USERINTERFACEPREF:           // user interface settings
          DlgItemShow(hwnd, BTN_PREVIEW, TRUE);

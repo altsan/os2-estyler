@@ -176,6 +176,7 @@ typedef struct {
       PWINKEY pUndoWkOpts;   // undo windows key options
    } ;
    POINTL winPos;         // window position
+   UCHAR achUIFont[CCH_FONTDATA];   // font to use for the preferences UI
    ULONG state;           // state flags
    UCHAR mode;            // operating mode (user-interface/shutdonw/winkeys)
                           // test mode used for developing and debugging
