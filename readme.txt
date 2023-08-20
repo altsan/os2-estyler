@@ -8,6 +8,10 @@ not currently maintained.
 Building Styler requires the IBM C/C++ Compiler (version 
 3.65 is recommended) and the OS/2 4.5x Toolkit.
 
+- Run 'nmake32' from the top-level directory to build all components.
+- Run 'nmake32' from the 'install' directory to build the WarpIN
+  install package.
+
 The proper environment for the IBM compiler must be present.
 
 To use kbuild, create localConfig.kmk as appropriate and run
