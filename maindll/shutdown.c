@@ -247,30 +247,33 @@ static VOID animateShutdownScreen(HWND hwnd, PDOSHUTDOWN p) {
    INT i, x0, y0, x1, y1, dx, dy;
    HPS hps;
    RECTL r, rClip;
-   i = o.sd.gen.anim? 0: o.sd.gen.steps - 1;
-   x0 = y0 = 0;
-   x1 = g.scr.cx << 16;
-   y1 = g.scr.cy << 16;
-   dx = x1 / (o.sd.gen.steps * 2);
-   dy = y1 / (o.sd.gen.steps * 2);
-   RectSet(&r, 0, 0, g.scr.cx, g.scr.cy);
-   DosSetPriority(PRTYS_THREAD, PRTYC_FOREGROUNDSERVER, PRTYD_MAXIMUM, 0);
-   if (NULLHANDLE != (hps = WinGetPS(hwnd))) {
-      GpiSetPattern(hps, PATSYM_HALFTONE);
-      while (++i <= o.sd.gen.steps) {
-         WinSetPointerPos(HWND_DESKTOP, p->r.xLeft, p->r.yBottom);
-         x0 += dx, y0 += dy, x1 -= dx, y1 -= dy;
-         RectSet(&rClip, x0 >> 16, y0 >> 16, x1 >> 16, y1 >> 16);
-         if (i < o.sd.gen.steps) GpiExcludeClipRectangle(hps, &rClip);
-         GpiMove(hps, (PPOINTL)&r);
-         GpiBox(hps, DRO_FILL, (PPOINTL)&r.xRight, 0, 0);
-         GpiDestroyRegion(hps, GpiQueryClipRegion(hps));
-         GpiSetClipRegion(hps, NULLHANDLE, NULLHANDLE);
-      } /* endwhile */
-      WinReleasePS(hps);
-   } /* endif */
-   WinAlarm(HWND_DESKTOP, WA_WARNING);
-   DosSetPriority(PRTYS_THREAD, PRTYC_REGULAR, 0, 0);
+
+   if (o.sd.gen.shade) {    // [ALT 2023-10-21] this is now configurable
+      i = o.sd.gen.anim? 0: o.sd.gen.steps - 1;
+      x0 = y0 = 0;
+      x1 = g.scr.cx << 16;
+      y1 = g.scr.cy << 16;
+      dx = x1 / (o.sd.gen.steps * 2);
+      dy = y1 / (o.sd.gen.steps * 2);
+      RectSet(&r, 0, 0, g.scr.cx, g.scr.cy);
+      DosSetPriority(PRTYS_THREAD, PRTYC_FOREGROUNDSERVER, PRTYD_MAXIMUM, 0);
+      if (NULLHANDLE != (hps = WinGetPS(hwnd))) {
+         GpiSetPattern(hps, PATSYM_HALFTONE);
+         while (++i <= o.sd.gen.steps) {
+            WinSetPointerPos(HWND_DESKTOP, p->r.xLeft, p->r.yBottom);
+            x0 += dx, y0 += dy, x1 -= dx, y1 -= dy;
+            RectSet(&rClip, x0 >> 16, y0 >> 16, x1 >> 16, y1 >> 16);
+            if (i < o.sd.gen.steps) GpiExcludeClipRectangle(hps, &rClip);
+            GpiMove(hps, (PPOINTL)&r);
+            GpiBox(hps, DRO_FILL, (PPOINTL)&r.xRight, 0, 0);
+            GpiDestroyRegion(hps, GpiQueryClipRegion(hps));
+            GpiSetClipRegion(hps, NULLHANDLE, NULLHANDLE);
+         } /* endwhile */
+         WinReleasePS(hps);
+      } /* endif */
+      WinAlarm(HWND_DESKTOP, WA_WARNING);
+      DosSetPriority(PRTYS_THREAD, PRTYC_REGULAR, 0, 0);
+   }
    WinDlgBox(HWND_DESKTOP, hwnd, shutdownSelProc, p->hModRes, DLG_SHUTDOWNREQ, p);
    WinPostMsg(hwnd, WM_QUIT, MPVOID, MPVOID);
 }

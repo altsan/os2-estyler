@@ -302,7 +302,7 @@ static VOID stlrAdjustTitlebarFont(PTITLEBAR ptbo) {
       ptbo->overrideFont = 0;          // do not override dflt font
       strcpy(ptbo->achFont, achFont);  // make our entry match the dflt
    }
-   else {   
+   else {
       ptbo->overrideFont = 1;          // override dflt font
       if (!ptbo->achFont[0])
          strcpy(ptbo->achFont, "9.WarpSans Bold");
@@ -398,7 +398,7 @@ static VOID stlrAdjustDlgFont(PDLGOPTIONS pdo) {
       pdo->overrideFont = 0;          // do not override dflt font
       strcpy(pdo->achFont, achFont);  // make our entry match the dflt
    }
-   else {   
+   else {
       pdo->overrideFont = 1;          // override dflt font
       if (!pdo->achFont[0])
          strcpy(pdo->achFont, "9.WarpSans");
@@ -425,6 +425,7 @@ VOID stlrSetShutdownDefaults(HINI hini, PSDGENERAL psd) {
    psd->reboot = 1;
    psd->ord = 1;
    psd->anim = 0;
+   psd->shade = 1;
 }
 
 
