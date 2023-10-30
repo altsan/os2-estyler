@@ -227,8 +227,10 @@ MRESULT EXPENTRY shutdownScreenProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2
          animateShutdownScreen(hwnd, (PDOSHUTDOWN)mp1);
          break;
       case WM_HITTEST:
-         blockMouse(hwnd, SHORT1FROMMP(mp1), SHORT2FROMMP(mp1));
-         break;
+         if (o.sd.gen.shade) {     // [ALT 2023-10-30] now controls mouse constraint too
+            blockMouse(hwnd, SHORT1FROMMP(mp1), SHORT2FROMMP(mp1));
+            break;
+         }                          // else fall thru to default
       default:
          return WinDefWindowProc(hwnd, msg, mp1, mp2);
    } /* endswitch */
