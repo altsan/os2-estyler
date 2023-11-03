@@ -11,9 +11,10 @@
 -------------------------------------------------------------------------- */
 
 
-
 #ifndef _BOOTLIST_H_
    #define _BOOTLIST_H_
+
+#pragma pack(1)
 
    #include "lvm_intr.h"
    #include "LvmWrap.h"
@@ -57,7 +58,6 @@
    // success
    #define GBL_NOERROR                 0x00000000
 
-#pragma pack(1)
 // main Airboot data structure (up to the relevant data)
 typedef struct {
    USHORT reserved;
