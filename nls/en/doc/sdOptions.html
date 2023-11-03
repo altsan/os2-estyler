@@ -31,7 +31,7 @@ before the machine is switched off.
 <li><b>Shut down</b> works exactly like the ordinary system shutdown
 but still offering the options to run and terminate programs before
 the system is closed.
-<li><b>Reboot</b> allows to directly reboot the machine optionally
+<li><b>Reboot</b> allows you to directly reboot the machine, optionally
 selecting a different boot volume.<br>
 Unlike the reboot features offered by the SETBOOT.EXE program
 (located in the \OS2 directory), the Styler reboot feature,
@@ -42,11 +42,14 @@ and the desktop state before the machine is rebooted.
 <b>Note:</b>
 <ul compact>
 <li>The shutdown dialog appears whenever the user requests to shutdown
-the system via the desktop menu, the warp center, the eCenter or
+the system via the desktop menu, the WarpCenter, the XCenter or
 the launchpad.
 <li><i>Lockup and suspend</i>, <i>Suspend</i> and <i>Power off</i>
-will work only if the APM support is enabled in CONFIG.SYS and if
-the OS/2 APM driver fully supports the machine motherboard.
+will work only if ACPI or APM support is enabled in CONFIG.SYS, and if
+the corresponding driver fully supports the machine motherboard.
+<li>If the system uses ACPI, be aware that not all OS/2 device drivers
+properly support ACPI suspend and resume. This may prevent suspend from
+working properly, or cause problems when waking up.
 </ul>
 <p>
 <b>See also:</b>

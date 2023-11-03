@@ -425,7 +425,7 @@ VOID stlrSetShutdownDefaults(HINI hini, PSDGENERAL psd) {
    psd->reboot = 1;
    psd->ord = 1;
    psd->anim = 0;
-   psd->shade = 1;
+   psd->mouse = 0;
 }
 
 

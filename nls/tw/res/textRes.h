@@ -142,7 +142,7 @@
 #define SZ_PICPYRIGHT            "(C) 1998-2004 Alessandro Felice Cantatore"
 #define SZ_PICPYRIGHT2           "Portions (c) 2008-2023 Alexander Taylor"
 #define SZ_PIURL                 "https://github.com/altsan/os2-estyler"
-#define SZ_PILICENSE             "Licensed under the GNU General Public License version 3"
+#define SZ_PILICENSE             "Licensed under the GNU General Public License V3"
 
 /* --------------------------------------------------------------------------
  SHUTDOWNGEN       shutdown - general options dialog
@@ -157,6 +157,7 @@
 #define SZ_SDWNANIMATE           "關機對話框以動畫出現(~A)"
 #define SZ_SDWNSTEPS             "Animation s~teps:"
 #define SZ_SDWNADVOPTS           "Advanced ~options..."
+#define SZ_SDWNMOUSE             "~Capture mouse pointer"
 
 /* --------------------------------------------------------------------------
  DLG_SDTIMING      shutdown - general options dialog

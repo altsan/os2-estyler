@@ -67,7 +67,7 @@ VOID _System shutdownThread(ULONG mode) {
    HMQ hmq;
    DOSHUTDOWN dsd;
 dbgPrintf2("*** shutdown thread creation - mode: %08x\n", mode);
-   // get the list of bootable volumes from estyler.ini (error not critical)
+   // get the list of bootable volumes from styler.ini (error not critical)
    dsd.pRebootList = getRebootList();
    // initialization
    hmq = WinCreateMsgQueue((hab = WinInitialize(0)), 0);
@@ -126,7 +126,7 @@ dbgPrintf2("*** shutdown mode: %08x\n", mode);
 
 
 /* --------------------------------------------------------------------------
- Get the list of the bootable volumes stored in eStylerIni.
+ Get the list of the bootable volumes stored in StylerIni.
  The format of each list item is:
  <volumeName>\t<volumeDescription>\x00
  Each item include a volume name followed by a tab character and the
@@ -143,13 +143,13 @@ PREBOOTLIST getRebootList(VOID) {
    ULONG ul;
    PSZ psz;
    PREBOOTLIST pRebootList = NULL;
-   // open estyler.ini and allocate storage to read the bootable volumes list
+   // open styler.ini and allocate storage to read the bootable volumes list
    if (!(hini = stlrOpenProfile())) return NULL;
    if (!PrfQueryProfileSize(hini, SZPRO_SHUTDWON, SZPRO_SDWNLIST, &ul))
       goto exit_0;
    if (NULL == (pRebootList = memLkAlloc(ul + sizeof(REBOOTLIST) - 4)))
       goto exit_0;
-   // read data from estyler.ini
+   // read data from styler.ini
    if (!PrfQueryProfileData(hini, SZPRO_SHUTDWON, SZPRO_SDWNLIST,
                             pRebootList->ablist, &ul))
       goto exit_1;
@@ -227,7 +227,7 @@ MRESULT EXPENTRY shutdownScreenProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2
          animateShutdownScreen(hwnd, (PDOSHUTDOWN)mp1);
          break;
       case WM_HITTEST:
-         if (o.sd.gen.shade) {     // [ALT 2023-10-30] now controls mouse constraint too
+         if (o.sd.gen.mouse) {  // [ALT 2023-10-31] now configurable
             blockMouse(hwnd, SHORT1FROMMP(mp1), SHORT2FROMMP(mp1));
             break;
          }                          // else fall thru to default
@@ -250,32 +250,32 @@ static VOID animateShutdownScreen(HWND hwnd, PDOSHUTDOWN p) {
    HPS hps;
    RECTL r, rClip;
 
-   if (o.sd.gen.shade) {    // [ALT 2023-10-21] this is now configurable
-      i = o.sd.gen.anim? 0: o.sd.gen.steps - 1;
-      x0 = y0 = 0;
-      x1 = g.scr.cx << 16;
-      y1 = g.scr.cy << 16;
-      dx = x1 / (o.sd.gen.steps * 2);
-      dy = y1 / (o.sd.gen.steps * 2);
-      RectSet(&r, 0, 0, g.scr.cx, g.scr.cy);
-      DosSetPriority(PRTYS_THREAD, PRTYC_FOREGROUNDSERVER, PRTYD_MAXIMUM, 0);
-      if (NULLHANDLE != (hps = WinGetPS(hwnd))) {
-         GpiSetPattern(hps, PATSYM_HALFTONE);
-         while (++i <= o.sd.gen.steps) {
-            WinSetPointerPos(HWND_DESKTOP, p->r.xLeft, p->r.yBottom);
-            x0 += dx, y0 += dy, x1 -= dx, y1 -= dy;
-            RectSet(&rClip, x0 >> 16, y0 >> 16, x1 >> 16, y1 >> 16);
-            if (i < o.sd.gen.steps) GpiExcludeClipRectangle(hps, &rClip);
-            GpiMove(hps, (PPOINTL)&r);
-            GpiBox(hps, DRO_FILL, (PPOINTL)&r.xRight, 0, 0);
-            GpiDestroyRegion(hps, GpiQueryClipRegion(hps));
-            GpiSetClipRegion(hps, NULLHANDLE, NULLHANDLE);
-         } /* endwhile */
-         WinReleasePS(hps);
-      } /* endif */
-      WinAlarm(HWND_DESKTOP, WA_WARNING);
-      DosSetPriority(PRTYS_THREAD, PRTYC_REGULAR, 0, 0);
-   }
+//   if (o.sd.gen.mouse) {
+   i = o.sd.gen.anim? 0: o.sd.gen.steps - 1;
+   x0 = y0 = 0;
+   x1 = g.scr.cx << 16;
+   y1 = g.scr.cy << 16;
+   dx = x1 / (o.sd.gen.steps * 2);
+   dy = y1 / (o.sd.gen.steps * 2);
+   RectSet(&r, 0, 0, g.scr.cx, g.scr.cy);
+   DosSetPriority(PRTYS_THREAD, PRTYC_FOREGROUNDSERVER, PRTYD_MAXIMUM, 0);
+   if (NULLHANDLE != (hps = WinGetPS(hwnd))) {
+      GpiSetPattern(hps, PATSYM_HALFTONE);
+      while (++i <= o.sd.gen.steps) {
+         WinSetPointerPos(HWND_DESKTOP, p->r.xLeft, p->r.yBottom);
+         x0 += dx, y0 += dy, x1 -= dx, y1 -= dy;
+         RectSet(&rClip, x0 >> 16, y0 >> 16, x1 >> 16, y1 >> 16);
+         if (i < o.sd.gen.steps) GpiExcludeClipRectangle(hps, &rClip);
+         GpiMove(hps, (PPOINTL)&r);
+         GpiBox(hps, DRO_FILL, (PPOINTL)&r.xRight, 0, 0);
+         GpiDestroyRegion(hps, GpiQueryClipRegion(hps));
+         GpiSetClipRegion(hps, NULLHANDLE, NULLHANDLE);
+      } /* endwhile */
+      WinReleasePS(hps);
+   } /* endif */
+   WinAlarm(HWND_DESKTOP, WA_WARNING);
+   DosSetPriority(PRTYS_THREAD, PRTYC_REGULAR, 0, 0);
+//   }
    WinDlgBox(HWND_DESKTOP, hwnd, shutdownSelProc, p->hModRes, DLG_SHUTDOWNREQ, p);
    WinPostMsg(hwnd, WM_QUIT, MPVOID, MPVOID);
 }
@@ -745,7 +745,7 @@ PSHDWNPRGLIST shdwnReadProgList(BOOL getList) {
    HINI hini;
    ULONG ul;
    PSHDWNPRGLIST pProgramList = NULL;
-   // apre estyler.ini
+   // apre styler.ini
    if (NULLHANDLE == (hini = stlrOpenProfile())) return NULL;
    // get the size of the list
    if (!PrfQueryProfileSize(hini, SZPRO_SHUTDWON, SZPRO_SDWNPRGLIST, &ul))

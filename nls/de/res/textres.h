@@ -156,6 +156,7 @@
 #define SZ_SDWNANIMATE           "Systemabschluá-Dialog a~nimieren"
 #define SZ_SDWNSTEPS             "Animationsschri~tte:"
 #define SZ_SDWNADVOPTS           "Erweiterte ~Optionen..."
+#define SZ_SDWNMOUSE             "~Capture mouse pointer"           // TRANSLATE
 
 /* --------------------------------------------------------------------------
  DLG_SDTIMING      shutdown - general options dialog
@@ -198,7 +199,7 @@
 /* --------------------------------------------------------------------------
  SHUTDOWNPROGRAMS  shutdown - shutdown programs list dialog
 */
-#define SZ_SDWNRUNPROG           "~Run the following programs on shutdown:"
+#define SZ_SDWNRUNPROG           "~Run the following programs on shutdown:"     // TRANSLATE
 #define SZ_SDWNPROG              "~Programm:"
 #define SZ_SDWNPARMS             "Para~meter:"
 #define SZ_SDWNWIN               "~Fenster:"
@@ -333,7 +334,7 @@
 #define SZ_CLRSHADBOTTOM    "~Unten"
 #define SZ_CLRSHADINNER     "~Innen"
 #define SZ_DIALOGFONT       "Dialogschriftart"
-#define SZ_DLGFONTON        "~Use %s for dialog windows"
+#define SZ_DLGFONTON        "~Use %s for dialog windows"        // TRANSLATE
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

@@ -157,6 +157,7 @@
 #define SZ_SDWNANIMATE           "~Анимированный диалог выключения"
 #define SZ_SDWNSTEPS             "~Шагов анимации:"
 #define SZ_SDWNADVOPTS           "~Расширенные опции..."
+#define SZ_SDWNMOUSE             "~Capture mouse pointer"           // TRANSLATE
 
 /* --------------------------------------------------------------------------
  DLG_SDTIMING      shutdown - general options dialog
@@ -334,7 +335,7 @@
 #define SZ_CLRSHADBOTTOM    "Снизу"
 #define SZ_CLRSHADINNER     "Внутри"
 #define SZ_DIALOGFONT       "Диалог Шрифты"
-#define SZ_DLGFONTON        "~Use %s for dialog windows"
+#define SZ_DLGFONTON        "~Use %s for dialog windows"        // TRANSLATE
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

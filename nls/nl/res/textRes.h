@@ -158,6 +158,7 @@
 #define SZ_SDWNANIMATE           "Afsluitdialoog ~animatie"
 #define SZ_SDWNSTEPS             "Animatie s~toppen:"
 #define SZ_SDWNADVOPTS           "Uitgebreide ~opties..."
+#define SZ_SDWNMOUSE             "~Capture mouse pointer"           // TRANSLATE
 
 /* --------------------------------------------------------------------------
  DLG_SDTIMING      shutdown - general options dialog
@@ -337,7 +338,7 @@
 #define SZ_CLRSHADBOTTOM    "~Onderkant"
 #define SZ_CLRSHADINNER     "B~innenkant"
 #define SZ_DIALOGFONT       "Dialoogvensters lettertype"
-#define SZ_DLGFONTON        "~Use %s for dialog windows"
+#define SZ_DLGFONTON        "~Use %s for dialog windows"        // TRANSLATE
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

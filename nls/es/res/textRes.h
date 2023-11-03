@@ -157,6 +157,7 @@
 #define SZ_SDWNANIMATE           "A~nimar el di logo de concluir"
 #define SZ_SDWNSTEPS             "Pasos de la ani~maci¢n:"
 #define SZ_SDWNADVOPTS           "~Opciones avanzadas..."
+#define SZ_SDWNMOUSE             "~Capture mouse pointer"           // TRANSLATE
 
 /* --------------------------------------------------------------------------
  DLG_SDTIMING      shutdown - general options dialog
@@ -334,7 +335,7 @@
 #define SZ_CLRSHADBOTTOM    "~bajo"
 #define SZ_CLRSHADINNER     "i~nterior"
 #define SZ_DIALOGFONT       "Fuente de los di logos"
-#define SZ_DLGFONTON        "~Use %s for dialog windows"
+#define SZ_DLGFONTON        "~Use %s for dialog windows"        // TRANSLATE
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

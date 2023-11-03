@@ -144,7 +144,7 @@ typedef struct {
    UINT reboot  : 1;           // reboot
    UINT ord     : 1;           // ordinary shutdown
    UINT anim    : 1;           // animates shutdown dialog
-   UINT shade   : 1;           // enable shaded background [ALT 2023-10-21]
+   UINT mouse   : 1;           // capture mouse pointer [ALT 2023-10-31]
 } SDGENERAL, * PSDGENERAL;     // variable name o.sd.gen
 
 /* --------------------------------------------------------------------------

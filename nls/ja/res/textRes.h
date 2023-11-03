@@ -157,6 +157,7 @@
 #define SZ_SDWNANIMATE           "~Animate the shutdown dialog"
 #define SZ_SDWNSTEPS             "Animation s~teps:"
 #define SZ_SDWNADVOPTS           "Advanced ~options..."
+#define SZ_SDWNMOUSE             "~Capture mouse pointer"
 
 /* --------------------------------------------------------------------------
  DLG_SDTIMING      shutdown - general options dialog

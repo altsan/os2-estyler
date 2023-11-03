@@ -161,6 +161,7 @@
 #define TXT_SDNWSTEPS            108
 #define SPIN_SDWNSTEPS           109
 #define BTN_SDWNADVANCDED        110
+#define CHK_SDWNMOUSE            111
 
 /* --------------------------------------------------------------------------
  SHUTDOWNTIMING    shutdown - general options dialog
