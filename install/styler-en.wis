@@ -98,7 +98,8 @@
           <dt>Visual enhancements
           <dd>Allows window titlebars and pushbuttons to be customized with
               graphics or color gradients.
-              <!-- Also allows you to set the default dialog font used throughout the system. -->
+              Also allows you to apply the current scheme's window text
+              font to dialogs throughout the system.
           <dt>OEM (Windows) keys
           <dd>Allows you to configure the behaviour of the so-called "Windows
               keys" that exist on most modern keyboards.
@@ -110,7 +111,19 @@
               already be using other shutdown enhancers such as XWorkplace.
               (Note that if the Styler shutdown is enabled, it will supersede
               XWorkplace's XShutdown.)
-        </dl><br>
+        </dl></p><br>
+
+        <p>The major changes in version 1.2 are:
+        <ul>
+          <li>The dialog replacement font now uses the current desktop scheme's
+              "window text" font, rather than a separately-defined dialog font.
+          <li>Titlebar enhancements now use the current scheme's titlebar text
+              font, rather than a separately-defined titlebar font.
+          <li>The enhanced shutdown dialog no longer constrains the mouse pointer
+              to the dialog by default (although this can be enabled).
+          <li>Styler preference notebook pages now use the configured dialog font.
+          <li>Various bug fixes and other tweaks.
+        </ul></p><br>
 
         <p><b>Installation</b></p>
         <p>The installation archive contains five packages:
@@ -136,6 +149,18 @@
 
         <p>After the installation has finished, you must reboot.</p><br>
 
+        <p><b>Upgrading from Styler / eStyler version 1.1</b></p>
+
+        <p>If you have Styler version 1.1 installed, you can upgrade it to 1.2
+        by installing this package.  Two things to potentially be aware of:
+        <ol>
+          <li>Some of the Styler desktop objects may move or become duplicated.
+          <li>The old Styler 1.1 runtime library <b>ESTLRL11.DLL</b> will be
+              removed from the WarpIN database but will not be deleted. After
+              rebooting, you can safely delete this file if you wish.
+        </ol>
+        </p><br>
+
         <p><b>Upgrading from eCSStylerLite / eStyler version 1.0</b></p>
 
         <p>Styler was heavily rewritten since version 1.0.
@@ -151,19 +176,7 @@
         </ul></p><br>
 
         <p>If you currently have eCSStylerLite version 1.0 installed, you are
-        recommended to uninstall it before installing this version.</p>
-
-        <p><b>Upgrading from Styler / eStyler version 1.1</b></p>
-
-        <p>If you have Styler version 1.1 installed, you can upgrade it to 1.2
-        by installing this package.  Two things to potentially be aware of:
-        <ol>
-          <li>Some of the Styler desktop objects may move or become duplicated.
-          <li>The old Styler 1.1 runtime library <b>ESTLRL11.DLL</b> will be
-              removed from the WarpIN database but will not be deleted. After
-              rebooting, you can safely delete this file if you wish.
-        </ol>
-        </p><br>
+        recommended to uninstall it before installing this version.</p><br>
 
         <p>Select the <b>Next</b> button to begin the installation.</p>
         <br></README>
