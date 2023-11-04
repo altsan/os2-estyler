@@ -131,8 +131,8 @@
 /* --------------------------------------------------------------------------
  DIALOG            dialog font options
 */
-#define SZ_DLGFONTON             "~Stel een standaard lettertype voor de dialoogvensters in"
 #define SZ_DLGOVERPP             "~Vervang niet standaard lettertypes"
+/* see string resources below for SZ_DLGFONTON */
 
 /* --------------------------------------------------------------------------
  PRODINFO          product information dialog
@@ -140,7 +140,7 @@
 #define SZ_PRODUCT               "Styler voor OS/2"
 #define SZ_PIVERSION             "Versie %d.%d - build nr. %d"
 #define SZ_PICPYRIGHT            "¸ 1998-2004 Alessandro Felice Cantatore"
-#define SZ_PICPYRIGHT2           "Portions (c) 2008-2022 Alexander Taylor"
+#define SZ_PICPYRIGHT2           "Portions (c) 2008-2023 Alexander Taylor"
 #define SZ_PIURL                 "https://github.com/altsan/os2-estyler"
 #define SZ_PILICENSE             "Licensed under the GNU General Public License version 3"
 
@@ -158,6 +158,7 @@
 #define SZ_SDWNANIMATE           "Afsluitdialoog ~animatie"
 #define SZ_SDWNSTEPS             "Animatie s~toppen:"
 #define SZ_SDWNADVOPTS           "Uitgebreide ~opties..."
+#define SZ_SDWNMOUSE             "~Capture mouse pointer"           // TRANSLATE
 
 /* --------------------------------------------------------------------------
  DLG_SDTIMING      shutdown - general options dialog
@@ -337,6 +338,7 @@
 #define SZ_CLRSHADBOTTOM    "~Onderkant"
 #define SZ_CLRSHADINNER     "B~innenkant"
 #define SZ_DIALOGFONT       "Dialoogvensters lettertype"
+#define SZ_DLGFONTON        "~Use %s for dialog windows"        // TRANSLATE
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

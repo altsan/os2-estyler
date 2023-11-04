@@ -173,7 +173,6 @@ static VOID fillKillList(HWND hwnd) {
  VOID
 -------------------------------------------------------------------------- */
 static VOID setControlsState(HWND hwnd) {
-   HWND hwndLbox;
    g.state |= STLRIS_SKIPNOTIFICATION;
    dBtnCheckSet(hwnd, CHK_SDWNKILLPROG, !g.pCurOpts->sd.adv.skipKillList);
    setEnableDependencies(hwnd);
@@ -328,7 +327,6 @@ static VOID undoOptions(HWND hwnd) {
 -------------------------------------------------------------------------- */
 static VOID addItem(HWND hwnd) {
    CHAR buf[CCHMAXPATH];
-   ULONG cb;
    HWND hwndLbox;
    INT iItem;
    BOOL resetControls = FALSE;

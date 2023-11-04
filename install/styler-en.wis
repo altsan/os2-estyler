@@ -1,0 +1,203 @@
+<WARPIN VERSION="1.0.15" OS="OS2_45X">
+<HEAD>
+    <TITLE>Desktop Styler</TITLE>
+
+    <!-- REXX -->
+
+    <REXX NAME="DefaultPath">
+        path = VALUE('OSDIR',,'OS2ENVIRONMENT')
+        IF path <> '' THEN DO
+            os = TRANSLATE( VALUE('OS',,'OS2ENVIRONMENT'))
+            IF os == 'ECS' THEN
+                path = path'\system'
+            ELSE
+                path = path'\apps'
+        END
+        ELSE path = '$(WARPIN_DEFAULTTOOLSPATH)'
+        RETURN path
+    </REXX>
+
+    <REXX NAME="DefaultBasePath">
+        CALL RxFuncAdd 'SysBootDrive','REXXUTIL','SysBootDrive'
+        path = VALUE('OSDIR',,'OS2ENVIRONMENT')
+        IF path <> '' THEN
+            RETURN path
+        _bd = SysBootDrive()
+        IF _bd == '' THEN
+            _bd = FILESPEC('DRIVE', VALUE('COMSPEC',,'OS2ENVIRONMENT'))
+        RETURN _bd'\OS2'
+    </REXX>
+
+    <!-- Packages -->
+
+    <PCK INDEX=1 PACKAGEID="Alessandro Cantatore\Styler\Runtime\1\2\0"
+         TITLE="Styler Base Runtime"
+         TARGET="=("DefaultBasePath")\DLL"
+         SELECT
+         NOBASE
+         CONFIGSYS="LIBPATH=$(1)|ADDRIGHT"
+    >The Styler 'kernel' which hooks into the system to provide all enhancements. Required.</PCK>
+
+    <PCK INDEX=2 PACKAGEID="Alessandro Cantatore\Styler\Settings\1\2\0"
+         TITLE="Styler Configuration"
+         TARGET="=("DefaultPath")\styler"
+         SELECT
+         BASE
+         REQUIRES=1
+         REQUIRES=1001
+         EXECUTE="$(2)\ENABLE.CMD"
+         DEEXECUTE="$(2)\DISABLE.CMD"
+    >The Styler configuration program and support files. Required.</PCK>
+
+    <PCK INDEX=3 PACKAGEID="Alessandro Cantatore\Styler\Bitmaps\1\2\0"
+         TITLE="Standard Bitmaps"
+         TARGET="$(2)"
+         SELECT
+        >A standard collection of titlebar and button background graphics.</PCK>
+
+    <PCK INDEX=4 PACKAGEID="Alessandro Cantatore\Styler\CLI-Shutdown\1\2\0"
+         TITLE="Command-Line Shutdown"
+         TARGET="=("DefaultBasePath")\BIN"
+         SELECT
+         NOBASE
+         CONFIGSYS="LIBPATH=$(1)|ADDRIGHT"
+    >A command-line tool for activating the enhanced system shutdown.</PCK>
+
+    <PCK INDEX=1001 PACKAGEID="Alessandro Cantatore\Styler\Resources (English)\1\2\0"
+         TITLE="English Language Support"
+         TARGET="$(1)"
+         SELECT
+         NOBASE
+         REQUIRES=2
+         CREATEOBJECT="WPFolder|Styler for OS/2|<WP_DESKTOP>|OBJECTID=<STYLER_FOLDER>;"
+         CREATEOBJECT="WPProgram|Styler Preferences|<STYLER_FOLDER>|EXENAME=$(2)\STYLER.EXE;PROGTYPE=PM;CCVIEW=NO;ICONRESOURCE=1,ESTLRLRS;OBJECTID=<STYLER_PREF>;"
+         CREATEOBJECT="WPProgram|Shutdown Options|<STYLER_FOLDER>|EXENAME=$(2)\STYLER.EXE;PARAMETERS=S;PROGTYPE=PM;CCVIEW=NO;ICONRESOURCE=3,ESTLRLRS;OBJECTID=<STYLER_SHUTDOWN>;"
+         CREATEOBJECT="WPProgram|Keyboard - OEM Keys|<STYLER_FOLDER>|EXENAME=$(2)\STYLER.EXE;PARAMETERS=W;PROGTYPE=PM;CCVIEW=NO;ICONRESOURCE=4,ESTLRLRS;OBJECTID=<STYLER_KEYS>;"
+    >The Styler English-language resources.</PCK>
+
+    <PCK INDEX=2001 PACKAGEID="Alessandro Cantatore\Styler\Help (English)\1\2\0"
+         TITLE="English User Guide"
+         TARGET="=("DefaultBasePath")\HELP"
+         SELECT
+         REQUIRES=1
+         CREATEOBJECT="REPLACE WPProgram|Styler User's Guide|<STYLER_FOLDER>|EXENAME=VIEW.EXE;PARAMETERS=STYLER.HLP;PROGTYPE=PM;CCVIEW=NO;OBJECTID=<STYLER_HELP>;"
+         >The English-language help file for Styler.</PCK>
+
+</HEAD>
+
+<BODY>
+
+    <PAGE INDEX=1 TYPE=README>
+       <TEXT>This archive will install Styler version 1.2 (English).</TEXT>
+       <README FORMAT=HTML>Styler (previously known as eStyler and eCSStylerLite)
+       is an optional system component which enhances the OS/2 graphical user
+       interface in various ways.</p>
+
+       <p>These enhancements fall into the following general categories:</p>
+       <dl>
+          <dt>Visual enhancements
+          <dd>Allows window titlebars and pushbuttons to be customized with
+              graphics or color gradients.
+              Also allows you to apply the current scheme's window text
+              font to dialogs throughout the system.
+          <dt>OEM (Windows) keys
+          <dd>Allows you to configure the behaviour of the so-called "Windows
+              keys" that exist on most modern keyboards.
+          <dt>An enhanced shutdown
+          <dd>Provides an enhanced system shutdown, with support for selective
+              termination of processes, options for rebooting and power
+              management, and an optional list of programs to be run at shutdown
+              time.  <i>This feature is disabled by default</i>, as people may
+              already be using other shutdown enhancers such as XWorkplace.
+              (Note that if the Styler shutdown is enabled, it will supersede
+              XWorkplace's XShutdown.)
+        </dl></p><br>
+
+        <p>The major changes in version 1.2 are:
+        <ul>
+          <li>The dialog replacement font now uses the current desktop scheme's
+              "window text" font, rather than a separately-defined dialog font.
+          <li>Titlebar enhancements now use the current scheme's titlebar text
+              font, rather than a separately-defined titlebar font.
+          <li>The enhanced shutdown dialog no longer constrains the mouse pointer
+              to the dialog by default (although this can be enabled).
+          <li>Styler preference notebook pages now use the configured dialog font.
+          <li>Various bug fixes and other tweaks.
+        </ul></p><br>
+
+        <p><b>Installation</b></p>
+        <p>The installation archive contains five packages:
+        <ul>
+          <li>Styler base runtime (or 'kernel')
+          <li>Styler configuration program
+          <li>Language-specific support file for the configuration program
+          <li>User guide
+          <li>A standard set of titlebar and button bitmaps.
+        </ul>
+        Only the first item is technically required for Styler to be able to
+        function; but unless the configuration program and its language file is
+        installed, you will be unable to configure Styler (or even activate it,
+        unless you feel like editing your OS2.INI directly).  Also, without the
+        standard bitmaps, you will not be able to change the titlebar or button
+        bitmaps from the built-in defaults (although you should still be able
+        to use colour settings for the titlebar).</p>
+
+        <p><b>Note:</b> Although support files for other languages are
+        available (separately), due to the design of the software, they are
+        mutually exclusive. In other words, only one Styler language can be
+        installed.</p>
+
+        <p>After the installation has finished, you must reboot.</p><br>
+
+        <p><b>Upgrading from Styler / eStyler version 1.1</b></p>
+
+        <p>If you have Styler version 1.1 installed, you can upgrade it to 1.2
+        by installing this package.  Two things to potentially be aware of:
+        <ol>
+          <li>Some of the Styler desktop objects may move or become duplicated.
+          <li>The old Styler 1.1 runtime library <b>ESTLRL11.DLL</b> will be
+              removed from the WarpIN database but will not be deleted. After
+              rebooting, you can safely delete this file if you wish.
+        </ol>
+        </p><br>
+
+        <p><b>Upgrading from eCSStylerLite / eStyler version 1.0</b></p>
+
+        <p>Styler was heavily rewritten since version 1.0.
+        Some of the major differences include:
+        <ul>
+          <li>The configuration program has been divided into three separate
+              interfaces (corresponding to the three functional categories
+              listed above).  The interface has also been changed extensively.
+          <li>Shutdown is now configurable in more detail.  Advanced timing
+              options are now available, and the termination list can be
+              configured directly using the settings program.
+          <li>ACPI is now supported in addition to APM for shutdown and suspend.
+        </ul></p><br>
+
+        <p>If you currently have eCSStylerLite version 1.0 installed, you are
+        recommended to uninstall it before installing this version.</p><br>
+
+        <p>Select the <b>Next</b> button to begin the installation.</p>
+        <br></README>
+    </PAGE>
+
+    <PAGE INDEX=2 TYPE=CONTAINER>
+     <TEXT>Select the packages to install.
+
+The Base Runtime package is required.  You should also install the Configuration
+and Language Support packages unless you have a very specific reason for not doing
+so.  The Standard Bitmaps, Command-Line Shutdown, and User Guide are optional but
+strongly recommended.
+</TEXT>
+    </PAGE>
+
+    <PAGE INDEX=3 TYPE=CONFIGURE>
+      <TEXT>Ready to start the installation.
+
+Please reboot once the installation is complete.</TEXT>
+      <NEXTBUTTON TARGET=0>I~nstall</NEXTBUTTON>
+    </PAGE>
+
+</BODY>
+</WARPIN>

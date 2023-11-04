@@ -47,6 +47,13 @@ VOID ForceCommitFn( PFN pAddress );
 
 // global variables ---------------------------------------------------------
 
+// stuff to quiet the compiler
+#ifdef ACPI_TRACE_POINT
+void   *dummy1 = (void*)&AcpiTracePoint;
+#endif
+void   *dummy2 = (void*)&AcpiDebugPrintRaw;
+void   *dummy3 = (void*)&AcpiDebugPrint;
+
 /* --------------------------------------------------------------------------
  Shutdown thread.
 - Parameters -------------------------------------------------------------
@@ -60,7 +67,7 @@ VOID _System shutdownThread(ULONG mode) {
    HMQ hmq;
    DOSHUTDOWN dsd;
 dbgPrintf2("*** shutdown thread creation - mode: %08x\n", mode);
-   // get the list of bootable volumes from estyler.ini (error not critical)
+   // get the list of bootable volumes from styler.ini (error not critical)
    dsd.pRebootList = getRebootList();
    // initialization
    hmq = WinCreateMsgQueue((hab = WinInitialize(0)), 0);
@@ -89,9 +96,11 @@ dbgPrintf2("*** shutdown mode: %08x\n", mode);
                    &&
                    ((mode >> 16) < dsd.pRebootList->ci))
                   strcpy(&g.achsd[1], dsd.pRebootList->aSetBootParm[mode >> 16]);
+#pragma info(none)
                // fall through the next cases
             case SDFL_OFF:
             case SDFL_SHUTDOWN:
+#pragma info(restore)
                o.sd.adv.runProgOnce = ((mode & SDFL_EXECUTE) > 0);
                runSysClosingBox(hab, &dsd);
                break;
@@ -117,7 +126,7 @@ dbgPrintf2("*** shutdown mode: %08x\n", mode);
 
 
 /* --------------------------------------------------------------------------
- Get the list of the bootable volumes stored in eStylerIni.
+ Get the list of the bootable volumes stored in StylerIni.
  The format of each list item is:
  <volumeName>\t<volumeDescription>\x00
  Each item include a volume name followed by a tab character and the
@@ -134,13 +143,13 @@ PREBOOTLIST getRebootList(VOID) {
    ULONG ul;
    PSZ psz;
    PREBOOTLIST pRebootList = NULL;
-   // open estyler.ini and allocate storage to read the bootable volumes list
+   // open styler.ini and allocate storage to read the bootable volumes list
    if (!(hini = stlrOpenProfile())) return NULL;
    if (!PrfQueryProfileSize(hini, SZPRO_SHUTDWON, SZPRO_SDWNLIST, &ul))
       goto exit_0;
    if (NULL == (pRebootList = memLkAlloc(ul + sizeof(REBOOTLIST) - 4)))
       goto exit_0;
-   // read data from estyler.ini
+   // read data from styler.ini
    if (!PrfQueryProfileData(hini, SZPRO_SHUTDWON, SZPRO_SDWNLIST,
                             pRebootList->ablist, &ul))
       goto exit_1;
@@ -218,8 +227,10 @@ MRESULT EXPENTRY shutdownScreenProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2
          animateShutdownScreen(hwnd, (PDOSHUTDOWN)mp1);
          break;
       case WM_HITTEST:
-         blockMouse(hwnd, SHORT1FROMMP(mp1), SHORT2FROMMP(mp1));
-         break;
+         if (o.sd.gen.mouse) {  // [ALT 2023-10-31] now configurable
+            blockMouse(hwnd, SHORT1FROMMP(mp1), SHORT2FROMMP(mp1));
+            break;
+         }                          // else fall thru to default
       default:
          return WinDefWindowProc(hwnd, msg, mp1, mp2);
    } /* endswitch */
@@ -238,6 +249,8 @@ static VOID animateShutdownScreen(HWND hwnd, PDOSHUTDOWN p) {
    INT i, x0, y0, x1, y1, dx, dy;
    HPS hps;
    RECTL r, rClip;
+
+//   if (o.sd.gen.mouse) {
    i = o.sd.gen.anim? 0: o.sd.gen.steps - 1;
    x0 = y0 = 0;
    x1 = g.scr.cx << 16;
@@ -262,6 +275,7 @@ static VOID animateShutdownScreen(HWND hwnd, PDOSHUTDOWN p) {
    } /* endif */
    WinAlarm(HWND_DESKTOP, WA_WARNING);
    DosSetPriority(PRTYS_THREAD, PRTYC_REGULAR, 0, 0);
+//   }
    WinDlgBox(HWND_DESKTOP, hwnd, shutdownSelProc, p->hModRes, DLG_SHUTDOWNREQ, p);
    WinPostMsg(hwnd, WM_QUIT, MPVOID, MPVOID);
 }
@@ -695,18 +709,17 @@ BOOL tryAcpiPwrOff(VOID)
 {
    BOOL fAcpiOK = FALSE;
    ACPI_API_HANDLE Hdl;
-   ULONG ul;
 
    if (g.acpifn.pfnAcpiStartApi && g.acpifn.pfnAcpiGoToSleep && g.acpifn.pfnAcpiEndApi) {
       if (g.acpifn.pfnAcpiStartApi(&Hdl) == NO_ERROR) {
          fAcpiOK = TRUE;
          dbgPrintf1("Initiating ACPI power-off.\n");
          dbgEnd();
-         ul = WinCancelShutdown(g.worker.hmq, TRUE);
+         WinCancelShutdown(g.worker.hmq, TRUE);
          ForceCommitFn(g.acpifn.pfnAcpiGoToSleep);
-         ul = DosShutdown(0L);
+         DosShutdown(0L);
          DosSleep(o.sd.wait.onPowerOff);
-         ul = g.acpifn.pfnAcpiGoToSleep(&Hdl, ACPI_STATE_S5);
+         g.acpifn.pfnAcpiGoToSleep(&Hdl, ACPI_STATE_S5);
          // The next lines will probably never be reached if poweroff was successful...
          g.acpifn.pfnAcpiEndApi(&Hdl);
          DosFreeModule(g.hmodAcpi);
@@ -732,7 +745,7 @@ PSHDWNPRGLIST shdwnReadProgList(BOOL getList) {
    HINI hini;
    ULONG ul;
    PSHDWNPRGLIST pProgramList = NULL;
-   // apre estyler.ini
+   // apre styler.ini
    if (NULLHANDLE == (hini = stlrOpenProfile())) return NULL;
    // get the size of the list
    if (!PrfQueryProfileSize(hini, SZPRO_SHUTDWON, SZPRO_SDWNPRGLIST, &ul))
@@ -778,6 +791,8 @@ exit_0:
 - Return value -----------------------------------------------------------
 VOID
 -------------------------------------------------------------------------- */
+// the compiler doesn't like cTmp getting assigned but not used
+#pragma info(none)
 VOID ForceCommitFn( PFN pAddress )
 {
     char  cTmp;
@@ -792,5 +807,6 @@ VOID ForceCommitFn( PFN pAddress )
             cTmp = *(( (volatile char *) pAddress ) + 4096 );
     }
 }
+#pragma info(restore)
 
 

@@ -26,7 +26,7 @@ static BOOL systemShutdown(VOID);
 static VOID setNextBootVolume(VOID);
 
 // global variables ---------------------------------------------------------
-static PSHDWNPRGLIST psdpl;
+static PSHDWNPRGLIST psdpl = 0;
 
 /* --------------------------------------------------------------------------
  Worker thread. Create an object window to manage all time intensive stuff.
@@ -53,7 +53,6 @@ VOID _System threadWorker(ULONG ul) {
          WinDispatchMsg(g.worker.hab, &qmsg);
    } /* endfor */
    // termination
-   stopWorker();
 }
 
 
@@ -272,6 +271,17 @@ static BOOL systemShutdown(VOID) {
                       MPVOID, BMSG_POST | BMSG_DESCENDANTS | BMSG_FRAMEONLY);
       DosSleep(o.sd.wait.unrollWindows);
    } /* endif */
+
+   // if this key exists, have XWorkplace update the system default
+   // fonts and reset folders and notebooks to use those defaults
+   if (PrfQueryProfileSize(HINI_USERPROFILE, "XWorkplace", "TextSize", &ul)) {
+      if ((ul = WinQueryObject("<WP_DESKTOP>")) != 0 ||
+          (ul = WinQueryObject("<LOCATION_DESKTOP>")) != 0) {
+         WinSetObjectData(ul, "UPDATETEXTSIZE=YES;");
+         DosSleep(120);
+      }
+   }
+
    // reads the kill list from ESTYLER.INI -> Shutdown ->KillList
    if (!(hini = stlrOpenProfile())) goto error;
    if (PrfQueryProfileSize(hini, SZPRO_SHUTDWON, SZPRO_KILLPROGS, &ul)) {

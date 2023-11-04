@@ -176,6 +176,7 @@ typedef struct {
       PWINKEY pUndoWkOpts;   // undo windows key options
    } ;
    POINTL winPos;         // window position
+   UCHAR achUIFont[CCH_FONTDATA];   // font to use for the preferences UI
    ULONG state;           // state flags
    UCHAR mode;            // operating mode (user-interface/shutdonw/winkeys)
                           // test mode used for developing and debugging
@@ -261,6 +262,8 @@ BOOL addUniqueFileName(HWND hwnd, ULONG lboxId, PSZ pszItem, INT offset);
 VOID selectListItem(HWND hlbox, PSZ pszItem);
 BOOL setProfileString(HINI hini, PSZ pszApp, PSZ pszKey, PSZ pData);
 BOOL setProfileData(HINI hini, PSZ pszApp, PSZ pszKey, PVOID pData, ULONG cb);
+VOID emboldenCtrlText(HWND hwnd, USHORT idCtrl, PSZ pszFont);
+VOID underlineCtrlText(HWND hwnd, USHORT idCtrl, PSZ pszFont);
 
 // preview.c
 VOID togglePreviewWindow(BOOL pageTurned);

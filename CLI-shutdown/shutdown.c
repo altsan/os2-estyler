@@ -37,7 +37,6 @@ VOID printHelp(VOID);
 
 INT main(INT argc, PSZ* argv) {
    HWND hwndWorker;
-   ULONG rc;
    ULONG shutdownMode;
    if (NULLHANDLE == (hwndWorker = getWorkerWindowHandle()))
       return RC_CLISD_GETOBJWINHANDLE;
@@ -336,7 +335,7 @@ static VOID printMsg(HFILE hf, PSZ psz) {
 static VOID showHelp(VOID) {
    CHAR achHelpFile[CCHMAXPATH + 256];
    PROGDETAILS pd;
-   // find estyler.hlp
+   // find styler.hlp
    if (!DosSearchPath(SEARCH_IGNORENETERRS | SEARCH_ENVIRONMENT,
                       "HELP",
                       SZ_HLPFILE,

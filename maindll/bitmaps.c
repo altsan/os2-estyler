@@ -215,7 +215,6 @@ HBITMAP stlrHBmpFromBmpData(HPS hps, PBYTE pbmp, PBMPPAINT pbp, PBMPDAT pbd) {
 -------------------------------------------------------------------------- */
 HBITMAP stlrHBmpFromModule(HPS hps, HMODULE hmod, ULONG id,
                            PBMPPAINT pbp, PBMPDAT pbd) {
-   BITMAPINFOHEADER bih;
    HBITMAP hbmp;
    PBYTE pBmpData;
    // load the bitmap data (return NULLHANDLE in case of error)
@@ -412,7 +411,6 @@ VOID stlrFreeGlobalBitmaps(HPS hps, HWND hwnd, PID pid, ULONG flDelete) {
    PTIB ptib = NULL;
    PPIB ppib = NULL;
    BOOL releasePS;
-   INT i;
    releasePS = (BOOL)!hps;
    if (!pid) {
       DosGetInfoBlocks(&ptib, &ppib);

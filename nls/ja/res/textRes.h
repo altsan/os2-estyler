@@ -131,8 +131,8 @@
 /* --------------------------------------------------------------------------
  DIALOG            dialog font options
 */
-#define SZ_DLGFONTON             "~Set a default font for the dialog windows"
 #define SZ_DLGOVERPP             "~Override non-default fonts"
+/* see string resources below for SZ_DLGFONTON */
 
 /* --------------------------------------------------------------------------
  PRODINFO          product information dialog
@@ -140,7 +140,7 @@
 #define SZ_PRODUCT               "Styler for OS/2"
 #define SZ_PIVERSION             "Version %d.%d - build no. %d"
 #define SZ_PICPYRIGHT            "(c) 1998-2004 Alessandro Felice Cantatore"
-#define SZ_PICPYRIGHT2           "Portions (c) 2008-2022 Alexander Taylor"
+#define SZ_PICPYRIGHT2           "Portions (c) 2008-2023 Alexander Taylor"
 #define SZ_PIURL                 "https://github.com/altsan/os2-estyler"
 #define SZ_PILICENSE             "Licensed under the GNU General Public License version 3"
 
@@ -157,6 +157,7 @@
 #define SZ_SDWNANIMATE           "~Animate the shutdown dialog"
 #define SZ_SDWNSTEPS             "Animation s~teps:"
 #define SZ_SDWNADVOPTS           "Advanced ~options..."
+#define SZ_SDWNMOUSE             "~Capture mouse pointer"
 
 /* --------------------------------------------------------------------------
  DLG_SDTIMING      shutdown - general options dialog
@@ -335,6 +336,7 @@
 #define SZ_CLRSHADBOTTOM    "~Bottom"
 #define SZ_CLRSHADINNER     "~Inner"
 #define SZ_DIALOGFONT       "Dialog font"
+#define SZ_DLGFONTON        "~Use %s for dialog windows"
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

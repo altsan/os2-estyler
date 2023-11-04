@@ -382,7 +382,6 @@ static VOID delItem(HWND hwnd) {
 static VOID editItem(HWND hwnd) {
    HWND hwndLbox;
    CHAR buf[64];
-   PSZ p;
    INT iItem;
    ULONG cb, cbDescr;
    hwndLbox = DlgItemHwnd(hwnd, LBX_SDWNREBOOTLIST);
@@ -442,7 +441,6 @@ static PSZ getListContent(HWND hwnd, PULONG pCb) {
  BOOL : TRUE/FALSE (success/error)
 -------------------------------------------------------------------------- */
 static BOOL getBootList(HWND hwnd) {
-   HWND hwndWaitMsg;
    PGETBOOTLIST pgbl;
    if (NULL == (pgbl = malloc(sizeof(GETBOOTLIST))))
       return handleError(ISERR_ALLOCATION, FALSE);
@@ -528,8 +526,6 @@ static ULONG checkAirBoot(PGETBOOTLIST pgbl) {
    BYTE abSector[1024];
    APIRET rc;
    HFILE hDrive;
-   ULONG cVols;
-   PAIRBOOTVOLREC pVolRec;
    rc = DosPhysicalDisk(INFO_GETIOCTLHANDLE, &hDrive, 2, "1:", 3);
    if (NO_ERROR != rc) return GBL_ERRDISKHANDLE | rc;
    // read the first track
@@ -573,7 +569,6 @@ ULONG getVolList(HFILE hDrive, PAIRBOOTVOLREC pVolRec,
                  PGETBOOTLIST pgbl, ULONG cVols) {
    ULONG rc;
    INT i, j, k;
-   PSZ p;
    // read the airboot volume records
    if ((NO_ERROR != (rc = readDiskSector(hDrive, 55, (PBYTE)pVolRec)))
        ||
@@ -607,7 +602,7 @@ ULONG getVolList(HFILE hDrive, PAIRBOOTVOLREC pVolRec,
  ULONG : return code (0 = success).
 -------------------------------------------------------------------------- */
 static ULONG readDiskSector(HFILE hDrive, ULONG sector, PBYTE buf) {
-   ULONG cyl, head, sect, ulParm, cbParm, cbData;
+   ULONG cbParm, cbData;
    TRACKLAYOUT tl;
    cbParm = sizeof(TRACKLAYOUT);
    cbData = 512;

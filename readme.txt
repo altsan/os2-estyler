@@ -1,13 +1,25 @@
 =====================================================
 IMPORTANT NOTICE
 =====================================================
-The current sources use kbuild. Create localConfig.kmk as
-appropriate and run 'kmk' to build. You must have kbuild, as
-well as the OS/2 Toolkit and the IBM C Compiler, installed.
-(The proper environment for ICC must be present.)
+The current sources can now be built using IBM NMake32.  The
+previous kbuild system may still work (no promises) but is
+not currently maintained.
+
+Building Styler requires the IBM C/C++ Compiler (version 
+3.65 is recommended) and the OS/2 4.5x Toolkit.
+
+- Run 'nmake32' from the top-level directory to build all components.
+- Run 'nmake32' from the 'install' directory to build the WarpIN
+  install package.
+
+The proper environment for the IBM compiler must be present.
+
+To use kbuild, create localConfig.kmk as appropriate and run
+'kmk' to build. You must have kbuild, as well as the OS/2
+Toolkit and the IBM compiler, installed.
 
 The instructions below describe the old build system as
-implemented by Alessandro Cantatore. They are officially 
+implemented by Alessandro Cantatore. They are officially
 deprecated and should no longer be used (and in any event are
 unlikely to work with the current codebase).
 

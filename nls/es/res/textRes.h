@@ -131,8 +131,8 @@
 /* --------------------------------------------------------------------------
  DIALOG            dialog font options
 */
-#define SZ_DLGFONTON             "~Establecer una fuente por omisi¢n para los di logos"
 #define SZ_DLGOVERPP             "~Ignorar fuentes establecidas expl¡citamente"
+/* see string resources below for SZ_DLGFONTON */
 
 /* --------------------------------------------------------------------------
  PRODINFO          product information dialog
@@ -140,7 +140,7 @@
 #define SZ_PRODUCT               "Styler para OS/2"
 #define SZ_PIVERSION             "Versi¢n %d.%d - compilaci¢n n§. %d"
 #define SZ_PICPYRIGHT            "¸ 1998-2004 Alessandro Felice Cantatore"
-#define SZ_PICPYRIGHT2           "Partes ¸ 2008-2022 Alexander Taylor"
+#define SZ_PICPYRIGHT2           "Partes ¸ 2008-2023 Alexander Taylor"
 #define SZ_PIURL                 "https://github.com/altsan/os2-estyler"
 #define SZ_PILICENSE             "Publicado bajo Licencia P£blica General de GNU versi¢n 3"
 
@@ -157,6 +157,7 @@
 #define SZ_SDWNANIMATE           "A~nimar el di logo de concluir"
 #define SZ_SDWNSTEPS             "Pasos de la ani~maci¢n:"
 #define SZ_SDWNADVOPTS           "~Opciones avanzadas..."
+#define SZ_SDWNMOUSE             "~Capture mouse pointer"           // TRANSLATE
 
 /* --------------------------------------------------------------------------
  DLG_SDTIMING      shutdown - general options dialog
@@ -334,6 +335,7 @@
 #define SZ_CLRSHADBOTTOM    "~bajo"
 #define SZ_CLRSHADINNER     "i~nterior"
 #define SZ_DIALOGFONT       "Fuente de los di logos"
+#define SZ_DLGFONTON        "~Use %s for dialog windows"        // TRANSLATE
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

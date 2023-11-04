@@ -179,11 +179,16 @@ static VOID onCmdMsg(HWND hwnd, ULONG id) {
  VOID
 -------------------------------------------------------------------------- */
 static VOID enablePageControls(HWND hwnd, BOOL flag) {
+
+   BOOL fShow = (g.pUiData->pOpts->tb.overrideFont != 0);
+
    WinEnableControl(hwnd, CHK_OVERRIDEPP, flag);
-   WinEnableControl(hwnd, TXT_TBFONT, flag);
-   WinEnableControl(hwnd, BTN_TBFONT, flag);
    WinEnableControl(hwnd, TXT_TBALIGN, flag);
    WinEnableControl(hwnd, COMBO_TBALIGN, flag);
+   WinEnableControl(hwnd, TXT_TBFONT, fShow && flag);
+   WinEnableControl(hwnd, BTN_TBFONT, fShow && flag);
+   WinShowWindow(WinWindowFromID(hwnd, TXT_TBFONT), fShow);
+   WinShowWindow(WinWindowFromID(hwnd, BTN_TBFONT), fShow);
 }
 
 

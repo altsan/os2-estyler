@@ -261,9 +261,10 @@ BOOL handleSpinbtnEvent(HWND hwnd, ULONG ulEvent, PLONG pVal, LONG lCurVal) {
       case SPBN_DOWNARROW:
          bSpinning = TRUE;
          break;
-      case SPBN_ENDSPIN:
-         bSpinning = FALSE;
       case SPBN_CHANGE:
+      case SPBN_ENDSPIN:
+         if (ulEvent == SPBN_ENDSPIN)
+             bSpinning = FALSE;
          return !bSpinning
                 &&
                 (BOOL)WinSendMsg(hwnd, SPBM_QUERYVALUE, (MPARAM)pVal,
@@ -343,7 +344,6 @@ BOOL addFileDlg(HWND hwnd, PSZ pszFileMask) {
    FILEDLG fdlg;
    CHAR achTitle[256];
    CHAR achBtn[256];
-   ULONG ul;
    PSZ pFileName;
    pFileName = strrchr(g.achFileSel, '\\');
    strcpy(pFileName + 1, pszFileMask);
@@ -412,11 +412,10 @@ PBYTE dataDup(PBYTE pData, ULONG cbData, PULONG pCbDup) {
  VOID
 -------------------------------------------------------------------------- */
 VOID moveItem(HWND hwnd, ULONG id, INT offset) {
-   INT iMax, iItem;
+   INT iItem;
    CHAR buf[1024];
    ULONG handle;
    hwnd = DlgItemHwnd(hwnd, id);
-   iMax = wLbxItemCount(hwnd) - 1;
    iItem = wLbxItemSelected(hwnd);
    wLbxItemText(hwnd, iItem, sizeof(buf), buf);
    handle = wLbxItemHnd(hwnd, iItem);
@@ -533,5 +532,45 @@ BOOL setProfileData(HINI hini, PSZ pszApp, PSZ pszKey, PVOID pData, ULONG cb) {
    if (pData || PrfQueryProfileSize(hini, pszApp, pszKey, &cbQuery))
       return PrfWriteProfileData(hini, pszApp, pszKey, pData, cb);
    return TRUE;
+}
+
+
+/* --------------------------------------------------------------------------
+ Try and set the window control text font to the bold version of the
+ specified font.
+- Parameters -------------------------------------------------------------
+ HWND hwnd     : Parent window of the control
+ USHORT idCtrl : Window ID of the control
+ PSZ pszFont   : Font to embolden
+- Return value -----------------------------------------------------------
+ VOID
+-------------------------------------------------------------------------- */
+VOID emboldenCtrlText(HWND hwnd, USHORT idCtrl, PSZ pszFont) {
+   CHAR achBoldFont[CCH_FONTDATA];
+
+   if (!pszFont) return;
+   strncpy(achBoldFont, pszFont, CCH_FONTDATA-6);
+   strcat(achBoldFont, " Bold");
+   m_setFont(WinWindowFromID(hwnd, idCtrl), achBoldFont);
+}
+
+
+/* --------------------------------------------------------------------------
+ Try and set the window control text font to an underlined version of the
+ specified font.
+- Parameters -------------------------------------------------------------
+ HWND hwnd     : Parent window of the control
+ USHORT idCtrl : Window ID of the control
+ PSZ pszFont   : Font to underline
+- Return value -----------------------------------------------------------
+ VOID
+-------------------------------------------------------------------------- */
+VOID underlineCtrlText(HWND hwnd, USHORT idCtrl, PSZ pszFont) {
+   CHAR achUlFont[CCH_FONTDATA];
+
+   if (!pszFont) return;
+   strncpy(achUlFont, pszFont, CCH_FONTDATA-12);
+   strcat(achUlFont, ".Underscore");
+   m_setFont(WinWindowFromID(hwnd, idCtrl), achUlFont);
 }
 

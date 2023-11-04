@@ -161,6 +161,7 @@
 #define TXT_SDNWSTEPS            108
 #define SPIN_SDWNSTEPS           109
 #define BTN_SDWNADVANCDED        110
+#define CHK_SDWNMOUSE            111
 
 /* --------------------------------------------------------------------------
  SHUTDOWNTIMING    shutdown - general options dialog
@@ -388,9 +389,10 @@
 #define IDS_CLRSHADINNER          63    // "~Inner"
 #define IDS_DEFIMAGE              64    // "Default image"
 #define IDS_DIALOGFONT            65    // "Dialog font"
+#define IDS_DLGFONTON             66    // "Use %s for dialog windows"
 
 // change this when adding further string IDs
-#define IDS_LAST                  IDS_DIALOGFONT
+#define IDS_LAST                  IDS_DLGFONTON
 
 /* --------------------------------------------------------------------------
  ERRMSGSSTRIDS     error messages string IDs

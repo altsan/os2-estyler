@@ -130,7 +130,6 @@ static VOID APIENTRY processExitHandler(ULONG ul) {
    // free process memory heap
    memterm();
    DosExitList(EXLST_EXIT, (PFNEXITLIST)NULL);
-   ul;
 }
 
 
@@ -255,7 +254,6 @@ VOID heapLockPM(HWND hwnd) {
  VOID
 -------------------------------------------------------------------------- */
 VOID heapLock(VOID) {
-   QMSG qmsg;
    while (__lxchg(&isem, HEAP_LOCK)) DosSleep(1);
 }
 

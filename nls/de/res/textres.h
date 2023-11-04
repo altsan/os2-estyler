@@ -130,8 +130,8 @@
 /* --------------------------------------------------------------------------
  DIALOG            dialog font options
 */
-#define SZ_DLGFONTON             "~Standardschrift fÅr Dialogfenster setzen"
 #define SZ_DLGOVERPP             "N~icht-Standard-Schriften umgehen"
+/* see string resources below for SZ_DLGFONTON */
 
 /* --------------------------------------------------------------------------
  PRODINFO          product information dialog
@@ -139,7 +139,7 @@
 #define SZ_PRODUCT               "Styler fÅr OS/2"
 #define SZ_PIVERSION             "Version %d.%d - Build Nr. %d"
 #define SZ_PICPYRIGHT            "(c) 1998-2004 Alessandro Felice Cantatore"
-#define SZ_PICPYRIGHT2           "Teile (c) 2008-2022 Alexander Taylor"
+#define SZ_PICPYRIGHT2           "Teile (c) 2008-2023 Alexander Taylor"
 #define SZ_PIURL                 "https://github.com/altsan/os2-estyler"
 #define SZ_PILICENSE             "Lizenziert unter GNU General Public License V3"
 
@@ -156,6 +156,7 @@
 #define SZ_SDWNANIMATE           "Systemabschlu·-Dialog a~nimieren"
 #define SZ_SDWNSTEPS             "Animationsschri~tte:"
 #define SZ_SDWNADVOPTS           "Erweiterte ~Optionen..."
+#define SZ_SDWNMOUSE             "~Capture mouse pointer"           // TRANSLATE
 
 /* --------------------------------------------------------------------------
  DLG_SDTIMING      shutdown - general options dialog
@@ -198,7 +199,7 @@
 /* --------------------------------------------------------------------------
  SHUTDOWNPROGRAMS  shutdown - shutdown programs list dialog
 */
-#define SZ_SDWNRUNPROG           "~Run the following programs on shutdown:"
+#define SZ_SDWNRUNPROG           "~Run the following programs on shutdown:"     // TRANSLATE
 #define SZ_SDWNPROG              "~Programm:"
 #define SZ_SDWNPARMS             "Para~meter:"
 #define SZ_SDWNWIN               "~Fenster:"
@@ -333,6 +334,7 @@
 #define SZ_CLRSHADBOTTOM    "~Unten"
 #define SZ_CLRSHADINNER     "~Innen"
 #define SZ_DIALOGFONT       "Dialogschriftart"
+#define SZ_DLGFONTON        "~Use %s for dialog windows"        // TRANSLATE
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

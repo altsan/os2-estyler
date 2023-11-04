@@ -8,7 +8,7 @@ include $(KBUILD_PATH)/subheader.kmk
 DLLS                        = eStylerLite
 
 eStylerLite_TEMPLATE        = eStylerDLL
-eStylerLite_NAME            = estlrl11
+eStylerLite_NAME            = estlrl12
 eStylerLite_SOURCES         = \
                                 main.c \
                                 bitmaps.c \

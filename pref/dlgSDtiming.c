@@ -47,6 +47,7 @@ MRESULT EXPENTRY sdTimeOptsProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
       case WM_COMMAND:
          // if OK or CANCEL fall thrugh the next case otherwise return FALSE
          if (onCmdMsg(hwnd, (ULONG)mp1)) break;
+         return WinDefDlgProc(hwnd, msg, mp1, mp2);
       default:
          return WinDefDlgProc(hwnd, msg, mp1, mp2);
    } /* endswitch */
@@ -78,7 +79,6 @@ static BOOL onDlgInit(HWND hwnd) {
  VOID
 -------------------------------------------------------------------------- */
 static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl) {
-   BOOL bSettingsChanged = FALSE;
    LONG lValue;
    switch (id) {
       case SPIN_SDTIMLKUPSUSP:
@@ -207,7 +207,6 @@ static VOID setControlsState(HWND hwnd) {
  VOID
 -------------------------------------------------------------------------- */
 static VOID checkDefaultState(HWND hwnd) {
-   BOOL bEnable;
    SDTIMING sdt;
    memset(&sdt, 0, sizeof(sdt));
    stlrSetShutdownTimingDefaults(&sdt);

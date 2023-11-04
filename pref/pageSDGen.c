@@ -93,6 +93,7 @@ static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl) {
                                g.pCurOpts->sd.gen.on);
             dlgItemMultiEnable(hwnd, TXT_SDNWSTEPS, SPIN_SDWNSTEPS,
                                g.pCurOpts->sd.gen.on && g.pCurOpts->sd.gen.anim);
+            DlgItemEnable(hwnd, CHK_SDWNMOUSE, g.pCurOpts->sd.gen.on);
             DlgItemEnable(hwnd, BTN_SDWNADVANCDED, g.pCurOpts->sd.gen.on);
             enableNotebookTabs(g.hwndNoteBook, g.pCurOpts->sd.gen.on);
             bSettingsChanged = TRUE;
@@ -158,6 +159,13 @@ static VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, HWND hCtrl) {
             bSettingsChanged = TRUE;
          } /* endif */
          break;
+      case CHK_SDWNMOUSE:   // [ALT 2023-10-31] add option for mouse capture
+         if ((event == BN_CLICKED) || (event == BN_DBLCLICKED)) {
+            g.pCurOpts->sd.gen.mouse = wBtnCheckState(hCtrl);
+            bSettingsChanged = TRUE;
+         } /* endif */
+         break;
+
    } /* endswitch */
    if (bSettingsChanged) {
       checkUndoState();
@@ -214,6 +222,8 @@ static VOID setControlsState(HWND hwnd, BOOL bSetRebootPage) {
                       g.pCurOpts->sd.gen.on);
    dlgItemMultiEnable(hwnd, TXT_SDNWSTEPS, SPIN_SDWNSTEPS,
                       g.pCurOpts->sd.gen.on && g.pCurOpts->sd.gen.anim);
+   dBtnCheckSet(hwnd, CHK_SDWNMOUSE, g.pCurOpts->sd.gen.mouse);
+   DlgItemEnable(hwnd, CHK_SDWNMOUSE, g.pCurOpts->sd.gen.on);
    DlgItemEnable(hwnd, BTN_SDWNADVANCDED, g.pCurOpts->sd.gen.on);
    enableNotebookTabs(g.hwndNoteBook, g.pCurOpts->sd.gen.on);
    g.state &= ~STLRIS_SKIPNOTIFICATION;

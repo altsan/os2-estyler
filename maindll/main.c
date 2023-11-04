@@ -18,6 +18,8 @@ static BOOL terminate(VOID);
 static BOOL keyPressedToAbortLoading(VOID);
 static VOID readProfile(VOID);
 static VOID setUserInterfaceDefaults(VOID);
+static VOID stlrAdjustTitlebarFont(PTITLEBAR ptbo);
+static VOID stlrAdjustDlgFont(PDLGOPTIONS pdo);
 static BOOL cacheSysVals(VOID);
 static BOOL stlrQueryScreenCaps(PSCRRES pScreenData);
 static VOID handleColorDepthChange(HINI hini, ULONG cclrs);
@@ -60,10 +62,8 @@ ULONG _System eStylerInitTerm(ULONG hmod, ULONG flag) {
          return (ULONG)initialize(hmod);
       case 1:
          return (ULONG)terminate();
-      default:
-         return 0L;
    } /* endswitch */
-   return 1L;
+   return 0;
 }
 
 
@@ -175,9 +175,13 @@ static VOID readProfile(VOID) {
    if (!(hini = stlrOpenProfile())) stlrlog(IDERR_INIOPEN);
    // if cannot get the user interface options set the default values
    ul = sizeof(UIOPTIONS);
-   if (!hini
-       ||
-       !PrfQueryProfileData(hini, SZPRO_OPTIONS, SZPRO_UINTERFACE, &o.ui, &ul))
+   if (hini &&
+      PrfQueryProfileData(hini, SZPRO_OPTIONS, SZPRO_UINTERFACE, &o.ui, &ul)) {
+         // these ensure Styler uses the defaults in PM_SystemFonts if present
+         stlrAdjustTitlebarFont(&o.ui.tb);
+         stlrAdjustDlgFont(&o.ui.dlg);
+    }
+    else
       setUserInterfaceDefaults();
    // if cannot get the shutdown options set the default values
    ul = sizeof(SHUTDOWN);
@@ -267,12 +271,43 @@ static VOID setUserInterfaceDefaults(VOID) {
  VOID
 -------------------------------------------------------------------------- */
 VOID stlrSetTitlebarGeneralDefaults(PTITLEBAR ptbo) {
-   strcpy(ptbo->achFont, "9.WarpSans Bold");
    ptbo->on = 1;                    // enable enhancements
    ptbo->overridePP = 1;            // override presentation parameters
    ptbo->center = 1;                // center the text
+
+   // if there's no valid system-wide default titlebar font,
+   // allow Styler to change the font to its own default
+   if (PrfQueryProfileString(HINI_USERPROFILE, "PM_SystemFonts",
+                               "WindowTitles", 0, ptbo->achFont,
+                               sizeof(ptbo->achFont)) < 4) {
+      ptbo->overrideFont = 1;       // override dflt font
+      strcpy(ptbo->achFont, "9.WarpSans Bold");
+   }
+   else
+      ptbo->overrideFont = 0;       // do not override dflt font
 }
 
+/* ----------------------------------------------------------------------- */
+// if PM_SystemFonts->WindowTitles is present and appears valid,
+// don't change the titlebar's font and don't present a font
+// selection UI on the titlebar page of the prefs app
+
+static VOID stlrAdjustTitlebarFont(PTITLEBAR ptbo) {
+   CHAR  achFont[CCH_FONTDATA];
+
+   // don't interfere with the system default if it is valid
+   if (PrfQueryProfileString(HINI_USERPROFILE, "PM_SystemFonts",
+                               "WindowTitles", 0, achFont,
+                               sizeof(achFont)) > 3) {
+      ptbo->overrideFont = 0;          // do not override dflt font
+      strcpy(ptbo->achFont, achFont);  // make our entry match the dflt
+   }
+   else {
+      ptbo->overrideFont = 1;          // override dflt font
+      if (!ptbo->achFont[0])
+         strcpy(ptbo->achFont, "9.WarpSans Bold");
+   }
+}
 
 /* --------------------------------------------------------------------------
  Set the active/inactive titlebar default values.
@@ -336,11 +371,39 @@ VOID stlrSetButtonDefaults(PBTNOPT pbo) {
  VOID
 -------------------------------------------------------------------------- */
 VOID stlrSetDlgDefaults(PDLGOPTIONS pdo) {
-   strcpy(pdo->achFont, SZ_DEFDLGFONT);
    pdo->on = 1;                    // enable enhancements
    pdo->overridePP = 0;            // don't override presentation parameters
+
+   // if there's no valid system-wide default dialog font,
+   // allow the user to choose a default font
+   if (PrfQueryProfileString(HINI_USERPROFILE, "PM_SystemFonts",
+                             "WindowText", 0, pdo->achFont,
+                             sizeof(pdo->achFont)) < 4) {
+      pdo->overrideFont = 1;
+      strcpy(pdo->achFont, "9.WarpSans");
+   }
 }
 
+/* ----------------------------------------------------------------------- */
+// if PM_SystemFonts->WindowText is present and appears valid,
+// use it and don't present a font selection UI on the dialog page
+
+static VOID stlrAdjustDlgFont(PDLGOPTIONS pdo) {
+   CHAR  achFont[CCH_FONTDATA];
+
+   // don't interfere with the system default if it is valid
+   if (PrfQueryProfileString(HINI_USERPROFILE, "PM_SystemFonts",
+                               "WindowText", 0, achFont,
+                               sizeof(achFont)) > 3) {
+      pdo->overrideFont = 0;          // do not override dflt font
+      strcpy(pdo->achFont, achFont);  // make our entry match the dflt
+   }
+   else {
+      pdo->overrideFont = 1;          // override dflt font
+      if (!pdo->achFont[0])
+         strcpy(pdo->achFont, "9.WarpSans");
+   }
+}
 
 /* --------------------------------------------------------------------------
  Set the default shutdown values.
@@ -362,6 +425,7 @@ VOID stlrSetShutdownDefaults(HINI hini, PSDGENERAL psd) {
    psd->reboot = 1;
    psd->ord = 1;
    psd->anim = 0;
+   psd->mouse = 0;
 }
 
 
@@ -393,9 +457,6 @@ VOID stlrSetShutdownTimingDefaults(PSDTIMING psdt) {
  BOOL : TRUE/FALSE (valid/invalid operating system version).
 -------------------------------------------------------------------------- */
 static BOOL cacheSysVals(VOID) {
-   HDC hdc = NULLHANDLE;
-   HPS hps = NULLHANDLE;
-   HMODULE hmod;
    CHAR achDLLs[512];
    g.is.bootdrv = 'A' + sysInfo(QSV_BOOT_DRIVE) - 1; // boot drive letter
    if ((g.is.version = sysInfo(QSV_VERSION_MINOR)) < VERSUPPORTED)

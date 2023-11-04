@@ -100,11 +100,10 @@ MRESULT EXPENTRY mainDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
                       SHORT2FROMMP(mp1), (PPAGESELECTNOTIFY)mp2);
          break;
       case WM_COMMAND:
-         if ((ULONG)mp1 == BTN_PREVIEW) {
+         if ((ULONG)mp1 == BTN_PREVIEW)
             togglePreviewWindow(FALSE);
-         } else {
+         else
             WinSendMsg(wnbkQueryTopPageHwnd(g.hwndNoteBook), msg, mp1, mp2);
-         } /* endif */
          break;
       case WM_CLOSE:
          quit();
@@ -112,7 +111,7 @@ MRESULT EXPENTRY mainDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
       case WM_ENABLE:
          wnbkSetPageHelp(g.hwndHelp, g.appl.hwnd, g.hwndNoteBook,
                          (mp1 ? wnbkQueryTopPageHwnd(g.hwndNoteBook) : 0));
-         // fall through the next statement
+         return WinDefDlgProc(hwnd, msg, mp1, mp2);
       default:
          return WinDefDlgProc(hwnd, msg, mp1, mp2);
    } /* endswitch */
@@ -249,6 +248,15 @@ static BOOL setNotebookPages(HWND hwnd) {
    // fill the notebook control
    g.state |= STLRIS_INSERTINGPAGES;
    g.hwndNoteBook = DlgItemHwnd(hwnd, PREF_NOTEBOOK);
+
+   // set the UI to the system window text font
+   if (PrfQueryProfileString(HINI_USERPROFILE, "PM_SystemFonts",
+                             "WindowText", 0, g.achUIFont,
+                             sizeof(g.achUIFont)) > 3)
+      m_setFont(g.appl.hwnd, g.achUIFont);
+   else
+      g.achUIFont[0] = '\0';
+
    switch (g.mode) {
       case IDX_USERINTERFACEPREF:           // user interface settings
          DlgItemShow(hwnd, BTN_PREVIEW, TRUE);
@@ -400,7 +408,6 @@ VOID onCtrlMsg(HWND hwnd, ULONG id, ULONG event, PPAGESELECTNOTIFY ppsn) {
          } /* endif */
       // find the new page index and reset the buttons state
       } else if (event == BKN_PAGESELECTED) {
-         MRESULT mr;
 //         wnbkSetPageHelp(g.hwndHelp, g.appl.hwnd,
 //                         g.hwndNoteBook, ppsn->ulPageIdNew);
          if (NULLHANDLE

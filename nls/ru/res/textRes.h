@@ -131,8 +131,8 @@
 /* --------------------------------------------------------------------------
  DIALOG            dialog font options
 */
-#define SZ_DLGFONTON             "~Установить шрифт по умолчанию для диалоговых окон"
 #define SZ_DLGOVERPP             "~Переопределить шрифты не по умолчанию"
+/* see string resources below for SZ_DLGFONTON */
 
 /* --------------------------------------------------------------------------
  PRODINFO          product information dialog
@@ -140,7 +140,7 @@
 #define SZ_PRODUCT               "Styler for OS/2"
 #define SZ_PIVERSION             "Версия %d.%d - сборка № %d"
 #define SZ_PICPYRIGHT            "(c) 1998-2004 Alessandro Felice Cantatore"
-#define SZ_PICPYRIGHT2           "Частично (c) 2008-2022 Alexander Taylor"
+#define SZ_PICPYRIGHT2           "Частично (c) 2008-2023 Alexander Taylor"
 #define SZ_PIURL                 "https://github.com/altsan/os2-estyler"
 #define SZ_PILICENSE             "Под лицензией GNU General Public License версии 3"
 
@@ -157,6 +157,7 @@
 #define SZ_SDWNANIMATE           "~Анимированный диалог выключения"
 #define SZ_SDWNSTEPS             "~Шагов анимации:"
 #define SZ_SDWNADVOPTS           "~Расширенные опции..."
+#define SZ_SDWNMOUSE             "~Capture mouse pointer"           // TRANSLATE
 
 /* --------------------------------------------------------------------------
  DLG_SDTIMING      shutdown - general options dialog
@@ -334,6 +335,7 @@
 #define SZ_CLRSHADBOTTOM    "Снизу"
 #define SZ_CLRSHADINNER     "Внутри"
 #define SZ_DIALOGFONT       "Диалог Шрифты"
+#define SZ_DLGFONTON        "~Use %s for dialog windows"        // TRANSLATE
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources

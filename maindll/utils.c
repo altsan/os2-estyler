@@ -59,11 +59,12 @@ HFILE stlrOpenLog(VOID) {
  BOOL : TRUE/FALSE (success/error).
 -------------------------------------------------------------------------- */
 BOOL stlrDateTime(PSZ psz) {
-   COUNTRYCODE cc = {0};
-   COUNTRYINFO ci = {0};
+   COUNTRYCODE cc = {0, 0};
+   COUNTRYINFO ci;
    DATETIME dt;
    ULONG ul = 0;
    // rileva informazioni relative formato dati secondo nazionalit…
+   memset(&ci, 0, sizeof(COUNTRYINFO));
    if (DosQueryCtryInfo(sizeof(COUNTRYINFO), &cc, &ci, &ul))
       return FALSE;
    DosGetDateTime(&dt);

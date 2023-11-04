@@ -33,7 +33,6 @@ static VOID EXPENTRY workerThreadProc(ULONG ul);
  BOOL : TRUE/FALSE (success/error)
 -------------------------------------------------------------------------- */
 BOOL startWorkerThread(VOID) {
-   TID tid;
    if (DosCreateEventSem(NULL, &g.worker.hev, 0L, FALSE))
       return handleError(ISERR_WORKERSEMAPHORE, FALSE);
    g.state |= STLRIS_SEMAPHOREOK;

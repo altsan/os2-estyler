@@ -36,8 +36,8 @@ MRESULT EXPENTRY newFontDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2);
  BOOL : TRUE (new font selected) or FALSE (error or no new font selected).
 -------------------------------------------------------------------------- */
 BOOL fontDlg(HWND hwnd, ULONG idsTitle, ULONG idsSample, PSZ pszFont) {
-   FONTDLG fd = {0};
-   FONTMETRICS fm = {0};
+   FONTDLG fd;
+   FONTMETRICS fm;
    CHAR achTitle[128];
    CHAR achSample[128];
    PSZ p;
@@ -48,6 +48,8 @@ BOOL fontDlg(HWND hwnd, ULONG idsTitle, ULONG idsSample, PSZ pszFont) {
    ULONG pointSize;
 
    if (!pszFont) return FALSE; // pszFont must be a valid address
+   memset(&fd, 0, sizeof(fd));
+   memset(&fm, 0, sizeof(fm));
    loadString(idsTitle, achTitle);
    loadString(idsSample, achSample);
    fd.cbSize = sizeof(FONTDLG);

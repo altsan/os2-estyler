@@ -36,7 +36,7 @@
 */
 #define TBO_NOBORDER           0x00    // no border
 #define TBO_BORDER             0x01    // draw a border around the titlebar
-#define TBO_HORZSHADE          0x00    // draw an horizontal shade
+#define TBO_HORZSHADE          0x00    // draw a horizontal shade
 #define TBO_VERTSHADE          0x02    // draw a vertical shade
 #define TBO_TEXTNORMAL         0x00    // draw ordinary text
 #define TBO_TEXTSHADOW         0x04    // draw a shadow under the text
@@ -77,11 +77,11 @@ typedef struct {
 typedef struct {
    TBARHILITE a;               // active titlebar options
    TBARHILITE i;               // inactive titlebar options
-   CHAR achFont[CCH_FONTDATA]; // default titlebar font
+   CHAR achFont[CCH_FONTDATA]; // default titlebar font (normally from PM_SYSTEMFONTS)
    UINT on            : 1;     // 1/0 titlebar enhancements on/off
    UINT overridePP    : 1;     // 1/0 titlebar override presentation parameters
    UINT center        : 1;     // 1/0 align text to center/left
-   UINT               : 0;
+   UINT overrideFont  : 1;     // 1/0 titlebar override system font (normally off)
 } TITLEBAR, * PTITLEBAR;       // variable name o.ui.tb
 
 /* --------------------------------------------------------------------------
@@ -111,7 +111,7 @@ typedef struct {
    CHAR achFont[CCH_FONTDATA]; // default dialog font
    UCHAR on;                   // if TRUE apply the font to all dialogs
    UCHAR overridePP;           // override dialog font pres parms
-   UCHAR res1;                 // padding
+   UCHAR overrideFont;         // override system dialog font (normally off)
    UCHAR res2;                 // padding
 } DLGOPTIONS, * PDLGOPTIONS;   // variable name o.ui.dlg
 #pragma pack()
@@ -144,7 +144,7 @@ typedef struct {
    UINT reboot  : 1;           // reboot
    UINT ord     : 1;           // ordinary shutdown
    UINT anim    : 1;           // animates shutdown dialog
-   UINT         : 0;
+   UINT mouse   : 1;           // capture mouse pointer [ALT 2023-10-31]
 } SDGENERAL, * PSDGENERAL;     // variable name o.sd.gen
 
 /* --------------------------------------------------------------------------

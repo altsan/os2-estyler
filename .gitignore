@@ -8,6 +8,8 @@
 *.IPF
 *.map
 *.MAP
+*.sym
+*.SYM
 *.dll
 *.DLL
 *.exe
@@ -16,6 +18,9 @@
 *.ZIP
 *.bak
 *.BAK
+*.wpi
+*.WPI
+build.log
 
 # ignore rel directory
 rel/

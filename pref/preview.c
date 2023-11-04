@@ -109,7 +109,7 @@ VOID updatePreviewWindow(ULONG updateFlag) {
    hwndMainClient = WinWindowFromID(g.pUiData->preview.hwnd, FID_CLIENT);
    hwndActive = WinWindowFromID(hwndMainClient, ID_PREVIEWACTIVE);
    hwndInactive = WinWindowFromID(hwndMainClient, ID_PREVIEWINACTIVE);
-   if (updateFlag & PVUPD_TITLEFONT) {
+   if ((updateFlag & PVUPD_TITLEFONT) && g.pUiData->pOpts->tb.overrideFont) {
       if (!g.pUiData->pOpts->tb.on) {
          PrfQueryProfileString(HINI_USER, SZPRO_SYSFONT, SZPRO_WINTITLES,
                                SZPRO_WSBOLD, achFont, CCH_FONTDATA);
@@ -130,8 +130,10 @@ VOID updatePreviewWindow(ULONG updateFlag) {
       mUpdatePreviewControl(hwndActive, ID_PVBTNDEFAULT);
    if (updateFlag & PVUPD_BTNDISABLED)
       mUpdatePreviewControl(hwndActive, ID_PVBTNDISABLED);
-   if (updateFlag & PVUPD_DLGFONT)
+   if (updateFlag & PVUPD_DLGFONT) {
       setDialogFont(hwndActive);
+      setDialogFont(hwndInactive);
+   }
 }
 
 
@@ -321,6 +323,7 @@ MRESULT EXPENTRY activeDlgProc(HWND hwnd, ULONG msg, MPARAM mp1, MPARAM mp2) {
          break;
       case WM_WINDOWPOSCHANGED:
          if (((PSWP)mp1)->fl & SWP_SIZE) rearrangeControls(hwnd, (PSWP)mp1);
+         return WinDefDlgProc(hwnd, msg, mp1, mp2);
       default:
          return WinDefDlgProc(hwnd, msg, mp1, mp2);
    } /* endswitch */
@@ -729,8 +732,6 @@ static VOID paintBtn(HWND hwnd, HPS hps) {
    ULONG flHilite;
    CHAR buf[64];
    ULONG cbText;
-   POINTL aptl[2];
-   ULONG cyText;
    LONG color;
    ULONG style;
    PVBTN btn;

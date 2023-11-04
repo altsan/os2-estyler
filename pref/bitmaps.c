@@ -51,7 +51,7 @@ ULONG getBitmapDataJob(PGETBMPDATA pgb) {
    } /* endif */
    if (NULLHANDLE == (hps = WinGetPS(g.appl.hwnd))) {
       return GETBMP_ERR_HPS;
-      goto exit_0;
+//      goto exit_0;
    } /* endif */
    pgb->bmpp.hbmp = stlrHBmp(hps, pData, &pgb->bmpp, pgb->pBmp->idRes, pbd);
    rc = (NULLHANDLE == pgb->bmpp.hbmp) ? GETBMP_ERR_BMPHANDLE : GETBMP_SUCCESS;
@@ -600,7 +600,6 @@ exit_0:
  BOOL : TRUE/FALSE (success/error).
 -------------------------------------------------------------------------- */
 BOOL getBtnHbmp(HPS hps, PBYTE pData, PBTNOPT pbtno) {
-   BOOL rc = FALSE;
    BOOL bFreeHPS = FALSE;
    if (!hps) {
       if (NULLHANDLE == (hps = WinGetScreenPS(HWND_DESKTOP)))
@@ -634,7 +633,6 @@ BOOL getBtnHbmp(HPS hps, PBYTE pData, PBTNOPT pbtno) {
 -------------------------------------------------------------------------- */
 BOOL addImage(HWND hwnd, PSZ pszPath, PBMPLIMITS pBmpLimit) {
    PADDBMPFILE pabf;
-   PSZ pEndPath;
    if (addFileDlg(hwnd, "*.BMP")) {
       if (NULL == (pabf = malloc(sizeof(ADDBMPFILE))))
          return handleError(ISERR_ALLOCATION, FALSE);
