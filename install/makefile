@@ -27,7 +27,7 @@ PKG_DIRS_COMMON = 1 2 3 3\bitmap 3\bitmap\button 3\bitmap\tbkgnds 4
 # Targets
 #
 
-all: base en
+all: base en es ru
 
 base:
     %foreach d in $(PKG_DIRS_COMMON)

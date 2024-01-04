@@ -157,7 +157,7 @@
 #define SZ_SDWNANIMATE           "A~nimar el di logo de concluir"
 #define SZ_SDWNSTEPS             "Pasos de la ani~maci¢n:"
 #define SZ_SDWNADVOPTS           "~Opciones avanzadas..."
-#define SZ_SDWNMOUSE             "~Capture mouse pointer"           // TRANSLATE
+#define SZ_SDWNMOUSE             "~Capturar puntero del rat¢n"
 
 /* --------------------------------------------------------------------------
  DLG_SDTIMING      shutdown - general options dialog
@@ -324,7 +324,7 @@
 #define SZ_WKEYITEM26       "Mostrar bandeja 8 del XCenter"
 #define SZ_WKEYITEM27       "Mostrar bandeja 9 del XCenter"
 #define SZ_WKEYITEM28       "Mostrar bandeja 10 del XCenter"
-#define SZ_WKEYITEM29       "Mover el XCenter tras/sobre las otras ventanas"
+#define SZ_WKEYITEM29       "Mover el XCenter tras/ante las otras ventanas"
 #define SZ_TITLEBARFONT     "Fuente de las barras de t¡tulo"
 #define SZ_FONTDLGSAMPLE    "Styler - texto de muestra"
 #define SZ_GRADIENTCOLOR    "Color %s del gradiente"
@@ -335,7 +335,7 @@
 #define SZ_CLRSHADBOTTOM    "~bajo"
 #define SZ_CLRSHADINNER     "i~nterior"
 #define SZ_DIALOGFONT       "Fuente de los di logos"
-#define SZ_DLGFONTON        "~Use %s for dialog windows"        // TRANSLATE
+#define SZ_DLGFONTON        "~Usar %s para los di logos"
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources
