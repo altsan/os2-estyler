@@ -9,24 +9,36 @@ Normalerweise, wenn keine andere Schriftart vom Programmierer explizit
 angegeben wurde, verwenden alle Dialogfenster die eher unsch&ouml;ne Schriftart
 <i>System Proportional</i>.
 <p>
-Styler erlaubt es, dieses Systemverhalten au&szlig;er Kraft zu setzen und alle
-Dialogfenster zur Verwendung der Lieblingsschriftart des Benutzers zu zwingen.
-<br>Wenn das Kontrollk&auml;stchen <b>Standardschriftart f&uuml;r die Dialogfenster
-einstellen</b> aktiviert ist, verwenden alle Dialogfenster die Schriftart, die
-&uuml;ber die Schaltfl&auml;che <b>ellipsis</b> unten ausgew&auml;hlt wurde.<br>
-Dies funktioniert in allen Dialogfenstern, die die Standardschriftart
-des Systems verwenden.<br><br>
-<b>Pr&auml;sentationsmanager-Parameter &uuml;bergehen</b> zwingt alle Dialogfenster,
-die gew&auml;hlte Schriftart zu verwenden.
+Styler erlaubt Ihnen, dieses Verhalten au&szlig;er Kraft zu setzen, indem Sie
+Dialogfenster dazu zwingen, den systemdefinierte Schriftart zu verwenden
+(wie im aktuellen Desktop-Schema definiert). Aktivieren Sie dieses Verhalten,
+indem Sie das Kontrollk&auml;stchen <b>&lt;Schriftart&gt;</b> f&uuml;r
+Dialogfenster verwenden.
+<p>
+Sie k&ouml;nnen die OS/2-Schema-Palette verwenden, um die Schriftart des
+Fenstertextes zu definieren oder zu &auml;ndern.
+<p>
+Wenn im Schema keine Fenstertextschriftart definiert ist, wird hier eine
+Schaltfl&auml;che ... angezeigt, mit der Sie eine Dialogschriftart
+ausw&auml;hlen k&ouml;nnen.
+<p>
+Dies funktioniert in allen Dialogfenstern, in denen keine explizite
+Schriftart definiert ist.
+Wenn Sie das Kontrollk&auml;stchen <b>Nicht-Standard-Schriftarten
+&uuml;bergehen</b> aktivieren, wird auch in Dialogfenstern, die eine explizite
+Schriftart angeben, stattdessen die Fenstertextschriftart verwendet, mit der
+unten genannten Einschr&auml;nkung. 
 <p>
 <b>Hinweis:</b><br>
-Die Dialogfeld-Steuerelemente erben das Schriftartattribut
-(Pr&auml;sentationsmanager-Parameter) vom Dialogfeld, es sei denn, sie wurden
-explizit auf die Verwendung einer anderen Schriftart eingestellt.
-In diesem letzten Fall kann die Schriftart-Funktion des Stylers
-nicht funktionieren.
+Einzelne Steuerelemente eines Dialogs erben das Schriftattribut vom
+OS/2-Pr&auml;sentatiosmanager und vom Dialogfenster selbst, <i>es sei
+denn</i>, sie wurden explizit so eingestellt, da&szlig; sie eine andere
+Schriftart verwenden. Im letzteren Fall wird die Styler-Schriftartfunktion
+nicht auf sie angewendet. Beachten Sie auch, da&szlig; diese Funktion nur
+Dialogfenster betrifft und nicht andere Fenstertypen (wie Rahmen und
+Client-Fenster).
 <p>
-<b>Siehe auch:</b>
+<b>Siehe au&szlig;erdem:</b>
 <ul compact>
 <li>Notizblock f&uuml;r Benutzeroberfl&auml;cheneinstellungen - <a href="uiGen.html">Deckblatt</a>
 <li>Hilfe zu den Schaltfl&auml;chen <a href="commonbtns.html">Anwenden, R&uuml;ckg&auml;ngig, Standard, und Vorschau</a>

@@ -1,6 +1,7 @@
 /* --------------------------------------------------------------------------
  textres.h : text definitions used by dialog templates and string tables
  2004-05-29 - Alessandro Felice Cantatore
+
 - Notes : ----------------------------------------------------------------
 - Contents: --------------------------------------------------------------
  COMMON            text strings shared among multiple dialogs
@@ -149,14 +150,14 @@
 #define SZ_SDWNON                "~Erweiterten Systemabschlu· aktivieren"
 #define SZ_SDWNINCLUDE           "Einschlie·en dieser Abschaltoptionen: "
 #define SZ_SDWNLKSUSP            "~Sperren und Ruhezustand"
-#define SZ_SDWNSUSP              "~Ruhezustand"
+#define SZ_SDWNSUSP              "R~uhezustand"
 #define SZ_SDWNOFF               "~Abschalten"
 #define SZ_SDWNORD               "S~ystemabschlu·"
 #define SZ_SDWNREBOOT            "Neusta~rt"
 #define SZ_SDWNANIMATE           "Systemabschlu·-Dialog a~nimieren"
 #define SZ_SDWNSTEPS             "Animationsschri~tte:"
 #define SZ_SDWNADVOPTS           "Erweiterte ~Optionen..."
-#define SZ_SDWNMOUSE             "~Capture mouse pointer"           // TRANSLATE
+#define SZ_SDWNMOUSE             "~Mauszeiger im Dialog fangen"
 
 /* --------------------------------------------------------------------------
  DLG_SDTIMING      shutdown - general options dialog
@@ -199,7 +200,7 @@
 /* --------------------------------------------------------------------------
  SHUTDOWNPROGRAMS  shutdown - shutdown programs list dialog
 */
-#define SZ_SDWNRUNPROG           "~Run the following programs on shutdown:"     // TRANSLATE
+#define SZ_SDWNRUNPROG           "~Start d. Anwendungen bei Systemabschlu·"
 #define SZ_SDWNPROG              "~Programm:"
 #define SZ_SDWNPARMS             "Para~meter:"
 #define SZ_SDWNWIN               "~Fenster:"
@@ -334,7 +335,7 @@
 #define SZ_CLRSHADBOTTOM    "~Unten"
 #define SZ_CLRSHADINNER     "~Innen"
 #define SZ_DIALOGFONT       "Dialogschriftart"
-#define SZ_DLGFONTON        "~Use %s for dialog windows"        // TRANSLATE
+#define SZ_DLGFONTON        "~Verwende %s fÅr Dialogfenster"
 
 /* --------------------------------------------------------------------------
  ERRORMSGS         error messages string resources
